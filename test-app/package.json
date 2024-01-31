@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/MegaGlub/spell-builder#readme",
   "devDependencies": {
-    "electron" : "28.2.1"
+    "electron": "^28.2.1"
   }
-  }
+}
