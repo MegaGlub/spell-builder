@@ -2,10 +2,9 @@ const { app, BrowserWindow } = require('electron')
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-    titleBarStyle: 'hidden',
-    titleBarOverlay: 'true'
+    width: 1920, 
+    height: 1080, //these guys have real computers
+    titleBarStyle: 'default'
   })
 
   win.loadFile('test.html')
