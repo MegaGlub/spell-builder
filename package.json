@@ -1,5 +1,27 @@
 {
+  "name": "spell-builder",
+  "version": "0.0.2",
+  "description": "\"GUI for building spells for a ttrpg campaign\"",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MegaGlub/spell-builder.git"
+  },
+  "keywords": [
+    "not",
+    "applicable"
+  ],
+  "author": "MegaGlub",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/MegaGlub/spell-builder/issues"
+  },
+  "homepage": "https://github.com/MegaGlub/spell-builder#readme",
   "devDependencies": {
-    "electron": "^28.2.0"
+    "electron": "^28.2.1"
   }
 }
