@@ -7,7 +7,7 @@ const createWindow = () => {
     titleBarStyle: 'default'
   })
 
-  win.loadFile('test.html')
+  win.loadFile('main.html')
 }
 
 app.whenReady().then(() => {
