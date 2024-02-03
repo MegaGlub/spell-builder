@@ -12,6 +12,7 @@ form{
 body{
     background-color: #333333;
     color: #FFFFF0;
+    font-size: 1em;
     padding: 0px;
 }
 button{
@@ -30,29 +31,38 @@ button{
     position: fixed;
     top: 0px;
     width: 100%;
-    z-index: 255;
+    z-index: 100;
 }
 .mainMenuButtons{
+    background-color: #2F4F4F;
     display: block;
     margin: auto;
     padding: 10px;
-    width: fit-content;
+    width: 50%;
 }
 .mainMenuSpellsButton{
     background-color: #333333;
-    display: inline;
-    height: 10%;
-    margin: auto;
+    color: #FFFFF0;
+    display: inline-block;
+    font-size: 2.5em;
+    height: 80px;
+    margin: 4%;
     outline: 2px;
-    width: 10%;
+    /*padding: 40px 100px;*/
+    text-align: center;
+    width: 40%;
 }
 .mainMenuMartialsButton{
     background-color: #333333;
-    display: inline;
-    height: 10%;
-    margin: auto;
+    color: #FFFFF0;
+    display: inline-block;
+    font-size: 2.5em;
+    height: 80px;
+    margin: 4%;
     outline: 2px;
-    width: 10%;
+    /*padding: 40px 100px;*/
+    text-align: center;
+    width: 40%;
 }
 .bottomToolBar{
     background-color: #808080;
@@ -63,10 +73,15 @@ button{
     overflow: hidden;
     position: fixed;
     width: 100%;
+    z-index: 50;
 }
 
-.bottomToolBar button{
+.bottomToolBarButton{
     background-color: #2F4F4F;
+    color: #FFFFF0;
     display: inline-block;
-    width: 80px;
+    height: 100%;
+    margin-left: 2%;
+    outline-width: 2px;
+    width: 8%;
 }

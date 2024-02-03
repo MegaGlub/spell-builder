@@ -5,13 +5,40 @@
 <body>
   <div class = "mainMenuScreen" id = "mainMenuScreen">
     <span class = "mainMenuButtons">
-      <span class = "mainMenuSpellsButton" onclick = "mainMenuSpellsButton()" id = "mainMenuSpellsButton">test</span>
-      <span class = "mainMenuMartialsButton">test2</span>
+      <button class = "mainMenuSpellsButton" onclick = "mainMenuSpellsButtonPress()" id = "mainMenuSpellsButton">
+        Spell Workbench</button>
+      <button class = "mainMenuMartialsButton" onclick = "mainMenuMartialsButtonPress()" id = "mainMenuMartialsButton">
+        Martial Arts</button>
     </span>
   </div>
-  <div class = "bottomToolBar">test3
-    <span class = "bottomToolBarButton">
-      test4
-    </span>
+  <div class = "bottomToolBar">
+    <button class = "bottomToolBarButton" onclick = "unhideMainMenu()">
+      Main Menu
+    </button>
   </div>
 </body>
+<script>
+mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
+mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
+mainMenuScreen = document.getElementById("mainMenuScreen");
+
+  function mainMenuSpellsButtonPress(){
+    hideMainMenu();
+  }
+
+  function mainMenuMartialsButtonPress(){
+
+  }
+
+  function hideMainMenu(){
+    mainMenuSpellsButton.disabled = true;
+    mainMenuMartialsButton.disabled = true;
+    mainMenuScreen.style.display = "none";
+  }
+
+  function unhideMainMenu(){
+    mainMenuScreen.style.display = "flex";
+    mainMenuSpellsButton.disabled = false;
+    mainMenuMartialsButton.disabled = false;
+  }
+</script>
