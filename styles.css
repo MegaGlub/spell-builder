@@ -48,7 +48,6 @@ button{
     height: 80px;
     margin: 4%;
     outline: 2px;
-    /*padding: 40px 100px;*/
     text-align: center;
     width: 40%;
 }
@@ -60,9 +59,24 @@ button{
     height: 80px;
     margin: 4%;
     outline: 2px;
-    /*padding: 40px 100px;*/
     text-align: center;
     width: 40%;
+}
+.toolTip{
+    background-color: #000000;
+    color: #FFFFF0;
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+.toolTipButton{
+    background-color: #2F4F4F;
+    height: 40px;
+    width: 100px;
+}
+.toolTipButton:hover .toolTip{
+    display: block;
 }
 .bottomToolBar{
     background-color: #808080;
@@ -75,7 +89,6 @@ button{
     width: 100%;
     z-index: 50;
 }
-
 .bottomToolBarButton{
     background-color: #2F4F4F;
     color: #FFFFF0;
