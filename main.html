@@ -23,18 +23,18 @@
   </div>
 </body>
 <script>
-mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
-mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
-mainMenuScreen = document.getElementById("mainMenuScreen");
-toolTipButtons = document.getElementsByClassName("toolTipButton");
-toolTip = document.getElementById("toolTip");
+const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
+const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
+const mainMenuScreen = document.getElementById("mainMenuScreen");
+const toolTipButtons = document.getElementsByClassName("toolTipButton");
+const toolTip = document.getElementById("toolTip");
 
   function mainMenuSpellsButtonPress(){
     hideMainMenu();
   }
 
   function mainMenuMartialsButtonPress(){
-
+    hideMainMenu();
   }
 
   function hideMainMenu(){
@@ -48,12 +48,14 @@ toolTip = document.getElementById("toolTip");
     mainMenuSpellsButton.disabled = false;
     mainMenuMartialsButton.disabled = false;
   }
-
+  console.log(toolTipButtons);
   toolTipButtons.forEach(toolTipButton => {
+    console.log(toolTipButton);
     toolTipButton.addEventListener("mousemove", updateToolTipPosition(event));
   });
 
   function updateToolTipPosition(mouseEvent){
+    console.log(event);
     toolTip.style.left = mouseEvent.clientX + "px";
     toolTip.style.top = mouseEvent.clientY + "px";
   }
