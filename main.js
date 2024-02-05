@@ -6,7 +6,6 @@ const createWindow = () => {
     height: 1080, //these guys have real computers
     titleBarStyle: 'default'
   })
-
   win.loadFile('main.html')
 }
 

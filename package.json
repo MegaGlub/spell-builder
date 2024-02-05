@@ -23,5 +23,8 @@
   "homepage": "https://github.com/MegaGlub/spell-builder#readme",
   "devDependencies": {
     "electron": "^28.2.1"
+  },
+  "dependencies": {
+    "electron-log": "^5.1.1"
   }
 }
