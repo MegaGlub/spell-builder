@@ -48,12 +48,14 @@
     mainMenuSpellsButton.disabled = false;
     mainMenuMartialsButton.disabled = false;
   }
-  console.log(toolTipButtons);
-  toolTipButtons.forEach(assignToolTips);
+  
+  for (index = 0; index < toolTipButtons.length - 1; index++){
+    assignToolTips(toolTipButtons[index]);
+  }
 
   function assignToolTips(toolTipButton){
     console.log(toolTipButton);
-    toolTipButton.addEventListener("mousemove", updateToolTipPosition(event));
+    toolTipButton.addEventListener('mousemove', updateToolTipPosition);
   }
 
   function updateToolTipPosition(mouseEvent){
