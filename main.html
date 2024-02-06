@@ -11,11 +11,30 @@
         Martial Arts</button>
     </span>
   </div>
+    <button class = "toolTipButton">
+      <div class="toolTip">Test 1</div>
+    </button>
 
-  <button class = "toolTipButton">
-    <div class="toolTip">Test 1</div>
-  </button>
-
+    <button class = "toolTipButton">
+      <div class="toolTip">Test 2</div>
+    </button>
+    
+    <button class = "toolTipButton">
+      <div class="toolTip">Test 3</div>
+    </button>
+    
+    <button class = "toolTipButton">
+      <div class="toolTip">Test 4</div>
+    </button>
+    
+    <button class = "toolTipButton">
+      <div class="toolTip">Test 5</div>
+    </button>
+    
+    <button class = "toolTipButton">
+      <div class="toolTip">Test 6</div>
+    </button>
+  
   <div class = "bottomToolBar">
     <button class = "bottomToolBarButton" onclick = "unhideMainMenu()">
       Main Menu
@@ -54,15 +73,27 @@
   }
 
   function assignToolTips(toolTipButton){
-    console.log(toolTipButton);
     toolTipButton.addEventListener('mousemove', function(event){
       updateToolTipPosition(event, toolTipButton)}
       );
   }
 
+  console.log("Width: " + window.innerWidth);
   function updateToolTipPosition(mouseEvent, toolTipButton){
     const toolTip = toolTipButton.getElementsByClassName("toolTip")[0];
-    toolTip.style.left = mouseEvent.clientX + 18 + "px";
-    toolTip.style.top = mouseEvent.clientY + 12 + "px";
+    const clientX = mouseEvent.clientX;
+    const clientY = mouseEvent.clientY;
+
+    if (clientX + toolTip.offsetWidth > window.innerWidth){
+      toolTip.style.right = clientX + 18 + "px";
+    }else{
+      toolTip.style.left = mouseEvent.clientX + 18 + "px";
+    }
+
+    if (clientY + toolTip.offsetHeight > window.innerHeight){
+      toolTip.style.bottom = mouseEvent.clientY + 12 + px;
+    }else{
+      toolTip.style.top = mouseEvent.clientY + 12 + "px";
+    }
   }
 </script>

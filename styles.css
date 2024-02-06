@@ -66,17 +66,23 @@ button{
     background-color: #000000;
     color: #FFFFF0;
     display: none;
+    font-size: 1.5em;
+    height: fit-content;
     left: 0;
-    position: fixed;
+    padding: 4px;
+    position: absolute;
     top: 0;
+    width: 256px;
+    z-index: 51;
 }
 .toolTipButton{
     background-color: #2F4F4F;
-    height: 40px;
-    width: 100px;
+    height: 128px;
+    margin: 8px;
+    width: 256px;
 }
 .toolTipButton:hover .toolTip{
-    display: block;
+    display: inline;
 }
 .bottomToolBar{
     background-color: #808080;
