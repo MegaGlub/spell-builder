@@ -67,7 +67,7 @@ button{
     color: #FFFFF0;
     display: none;
     left: 0;
-    position: absolute;
+    position: fixed;
     top: 0;
 }
 .toolTipButton{

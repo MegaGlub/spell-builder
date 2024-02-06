@@ -27,7 +27,6 @@
   const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
   const mainMenuScreen = document.getElementById("mainMenuScreen");
   const toolTipButtons = document.getElementsByClassName("toolTipButton");
-  const toolTip = document.getElementById("toolTip");
 
   function mainMenuSpellsButtonPress(){
     hideMainMenu();
@@ -49,18 +48,21 @@
     mainMenuMartialsButton.disabled = false;
   }
   
-  for (index = 0; index < toolTipButtons.length - 1; index++){
+  console.log(toolTipButtons);
+  for (index = 0; index < toolTipButtons.length; index++){
     assignToolTips(toolTipButtons[index]);
   }
 
   function assignToolTips(toolTipButton){
     console.log(toolTipButton);
-    toolTipButton.addEventListener('mousemove', updateToolTipPosition);
+    toolTipButton.addEventListener('mousemove', function(event){
+      updateToolTipPosition(event, toolTipButton)}
+      );
   }
 
-  function updateToolTipPosition(mouseEvent){
-    console.log(event);
-    toolTip.style.left = mouseEvent.clientX + "px";
-    toolTip.style.top = mouseEvent.clientY + "px";
+  function updateToolTipPosition(mouseEvent, toolTipButton){
+    const toolTip = toolTipButton.getElementsByClassName("toolTip")[0];
+    toolTip.style.left = mouseEvent.clientX + 18 + "px";
+    toolTip.style.top = mouseEvent.clientY + 12 + "px";
   }
 </script>
