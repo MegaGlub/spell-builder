@@ -82,17 +82,23 @@
     const toolTip = toolTipButton.getElementsByClassName("toolTip")[0];
     const clientX = mouseEvent.clientX;
     const clientY = mouseEvent.clientY;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const toolTipWidth = toolTip.offsetWidth;
+    const toolTipHeight = toolTip.offsetHeight;
 
-    if (clientX + toolTip.offsetWidth + 18 > window.innerWidth){
-      toolTip.style.right = clientX + 18 + "px";
+    if (clientX + toolTipWidth + 18 > windowWidth){
+      toolTip.style.left = (windowWidth - toolTipWidth) + "px";
+      console.log("oopsie");
     }else{
-      toolTip.style.left = mouseEvent.clientX + 18 + "px";
+      toolTip.style.left = clientX + 18 + "px";
+      console.log("daisy");
     }
 
-    if (clientY + toolTip.offsetHeight + 12 > window.innerHeight){
-      toolTip.style.bottom = mouseEvent.clientY + 12 + px;
+    if (clientY + toolTipHeight + 12 > windowHeight){
+      toolTip.style.top = (windowHeight - toolTipHeight) + "px";
     }else{
-      toolTip.style.top = mouseEvent.clientY + 12 + "px";
+      toolTip.style.top = clientY + 12 + "px";
     }
   }
 </script>
