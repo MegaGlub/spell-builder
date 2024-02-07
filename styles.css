@@ -77,12 +77,13 @@ button{
 }
 .toolTipButton{
     background-color: #2F4F4F;
+    display: inline-block;
     height: 128px;
     margin: 8px;
     width: 256px;
 }
 .toolTipButton:hover .toolTip{
-    display: inline;
+    display: block;
 }
 .bottomToolBar{
     background-color: #808080;
