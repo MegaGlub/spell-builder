@@ -67,11 +67,12 @@ img{
 }
 .spellBox{
     background-color: #333333;
-    display: inline;
-    height: 100%;
+    display: inline-block;
+    height: 40%;
     left: 0;
+    margin: 0;
     padding: 0;
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: 0;
     z-index: 0;
@@ -117,8 +118,23 @@ img{
     color: #808080;
     font-size: 1em;
 }
-.bottomToolBar{
+.wandBox{
     background-color: #808080;
+    display: inline-block;
+    height: 57%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    z-index: 12;
+}
+.wandSelector{
+
+}
+.bottomToolBar{
+    background-color: #333333;
     bottom: 0px;
     color: #FFFFF0;
     height: 3%;
