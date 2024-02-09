@@ -11,10 +11,14 @@
         Martial Arts</button>
     </span>
   </div>
-  <div class = "toolTipButton">
-    <img src = "images/enhancements/sparkler.png">
-    <div class="toolTip">Test 1</div>
-  </div>
+
+  <span class = "spellBox">
+    <div class = "toolTipButton">
+      <span class = "spellComponent">
+        <img src = "images/nothing.png">
+      </span>
+      <div class="toolTip">Test 1</div>
+    </div>
 
     <div class = "toolTipButton">
       <div class="toolTip">Test 2</div>
@@ -23,18 +27,7 @@
     <div class = "toolTipButton">
       <div class="toolTip">Test 3</div>
     </div>
-    
-    <div class = "toolTipButton">
-      <div class="toolTip">Test 4</div>
-    </div>
-    
-    <div class = "toolTipButton">
-      <div class="toolTip">Test 5</div>
-    </div>
-    
-    <div class = "toolTipButton">
-      <div class="toolTip">Test 6</div>
-    </div>
+  </span>
   
   <div class = "bottomToolBar">
     <button class = "bottomToolBarButton" onclick = "unhideMainMenu()">
@@ -47,6 +40,52 @@
   const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
   const mainMenuScreen = document.getElementById("mainMenuScreen");
   const toolTipButtons = document.getElementsByClassName("toolTipButton");
+  const spellBox = document.getElementsByClassName("spellBox")[0];
+
+  class spellComponent {
+    name = "Nothing";
+    type = "Void";
+    description = "Lack of anything at all.";
+    image = "images/nothing.png";
+    primaryCost = 0;
+    secondaryCost = 0;
+    energyCost = 0;
+    potencyModifier = 0;
+
+    constructor(name, type, description, image, primaryCost, secondaryCost, energyCost, potencyModifier){
+      this.name = name;
+      this.type = type;
+      this.description = description;
+      this.primaryCost = primaryCost;
+      this.secondaryCost = secondaryCost;
+      this.energyCost = energyCost;
+      this.potencyModifier = potencyModifier;
+
+      this.buildComponentVisuals();
+    }
+
+    buildComponentVisuals(){
+      const newToolTipButton = document.createElement("div");
+      const newToolTip = document.createElement("div");
+      const newComponent = document.createElement("div");
+      const newImage = document.createElement("img");
+
+      newToolTipButton.appendChild(newComponent);
+      newToolTipButton.appendChild(newToolTip);
+      newComponent.appendChild(newImage);
+      spellBox.appendChild(newToolTipButton);
+
+      newImage.src = this.image;
+
+      newToolTip.innerText = this.name + "\n" + this.type + "\n" + this.description;
+
+      newToolTipButton.className = "toolTipButton";
+      newComponent.className = "spellComponent";
+      newToolTip.className = "toolTip";
+    }
+  }
+
+  const testComponent = new spellComponent();
 
   function mainMenuSpellsButtonPress(){
     hideMainMenu();

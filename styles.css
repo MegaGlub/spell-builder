@@ -10,7 +10,6 @@ form{
     color: #FFFFF0;
 }
 body{
-    background-color: #333333;
     color: #FFFFF0;
     font-size: 1em;
     padding: 0px;
@@ -31,10 +30,10 @@ img{
     color: #FFFFF0;
     display: flex;
     height: 100%;
-    left: 0px;
-    padding: 0px;
+    left: 0;
+    padding: 0;
     position: fixed;
-    top: 0px;
+    top: 0;
     width: 100%;
     z-index: 100;
 }
@@ -67,6 +66,27 @@ img{
     text-align: center;
     width: 40%;
 }
+.spellBox{
+    background-color: #333333;
+    display: inline;
+    height: 100%;
+    left: 0;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 0;
+}
+.toolTipButton{
+    /*background-color: #2F4F4F;*/
+    display: inline-block;
+    height: 128px;
+    margin: 8px;
+    width: 128px;
+}
+.toolTipButton:hover .toolTip{
+    display: block;
+}
 .toolTip{
     background-color: #000000;
     color: #FFFFF0;
@@ -80,15 +100,11 @@ img{
     width: 256px;
     z-index: 51;
 }
-.toolTipButton{
-    /*background-color: #2F4F4F;*/
-    display: inline-block;
+.spellComponent{
+    display: inline;
     height: 128px;
-    margin: 8px;
+    margin: auto;
     width: 128px;
-}
-.toolTipButton:hover .toolTip{
-    display: block;
 }
 .bottomToolBar{
     background-color: #808080;
