@@ -81,7 +81,7 @@ img{
     /*background-color: #2F4F4F;*/
     display: inline-block;
     height: 128px;
-    margin: 8px;
+    margin: 16px;
     width: 128px;
 }
 .toolTipButton:hover .toolTip{
