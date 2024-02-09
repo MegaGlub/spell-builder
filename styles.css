@@ -20,6 +20,11 @@ button{
     color: #333333;
     text-align: center;
 }
+img{
+    height: 100%;
+    width: 100%
+
+}
 .mainMenuScreen{
     align-items: center;
     background-color: #808080;
@@ -76,11 +81,11 @@ button{
     z-index: 51;
 }
 .toolTipButton{
-    background-color: #2F4F4F;
+    /*background-color: #2F4F4F;*/
     display: inline-block;
     height: 128px;
     margin: 8px;
-    width: 256px;
+    width: 128px;
 }
 .toolTipButton:hover .toolTip{
     display: block;
