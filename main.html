@@ -13,20 +13,6 @@
   </div>
 
   <span class = "spellBox">
-    <div class = "toolTipButton">
-      <span class = "spellComponent">
-        <img src = "images/nothing.png">
-      </span>
-      <div class="toolTip">Test 1</div>
-    </div>
-
-    <div class = "toolTipButton">
-      <div class="toolTip">Test 2</div>
-    </div>
-    
-    <div class = "toolTipButton">
-      <div class="toolTip">Test 3</div>
-    </div>
   </span>
   
   <div class = "bottomToolBar">
@@ -52,7 +38,7 @@
     energyCost = 0;
     potencyModifier = 0;
 
-    constructor(name, type, description, image, primaryCost, secondaryCost, energyCost, potencyModifier){
+    constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier){
       this.name = name;
       this.type = type;
       this.description = description;
@@ -67,25 +53,59 @@
     buildComponentVisuals(){
       const newToolTipButton = document.createElement("div");
       const newToolTip = document.createElement("div");
-      const newComponent = document.createElement("div");
+      const newSpellTitle = document.createElement("div");
+      const newSpellType = document.createElement("div");
+      const newSpellDescription = document.createElement("div");
+      const newComponent = document.createElement("span");
       const newImage = document.createElement("img");
 
+      spellBox.appendChild(newToolTipButton);
       newToolTipButton.appendChild(newComponent);
       newToolTipButton.appendChild(newToolTip);
+      newToolTip.appendChild(newSpellTitle);
+      newToolTip.appendChild(newSpellType);
+      newToolTip.appendChild(newSpellDescription);
       newComponent.appendChild(newImage);
-      spellBox.appendChild(newToolTipButton);
 
       newImage.src = this.image;
 
-      newToolTip.innerText = this.name + "\n" + this.type + "\n" + this.description;
+      newSpellTitle.innerHTML = this.name;
+      newSpellType.innerHTML = this.type;
+      newSpellType.style.color = this.#getTypeColor();
+      newSpellDescription.innerHTML = this.description;
 
       newToolTipButton.className = "toolTipButton";
       newComponent.className = "spellComponent";
       newToolTip.className = "toolTip";
+      newSpellTitle.className = "spellTitle";
+      newSpellType.className = "spellType";
+      newSpellDescription.className = "spellDescription";
+    }
+
+    #getTypeColor(){
+      switch(this.type){
+        case "Void":
+          return "#8A2BE2";
+          break;
+        default:
+          return "#FFFFF0";
+          break;
+      }
     }
   }
 
-  const testComponent = new spellComponent();
+  const testComponent = new spellComponent(
+    "Nothing",
+    "Void",
+    "Lack of anything at all.",
+    "images/nothing.png",
+    0,
+    "Primary",
+    0,
+    "Secondary",
+    0,
+    0
+  );
 
   function mainMenuSpellsButtonPress(){
     hideMainMenu();
