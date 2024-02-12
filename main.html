@@ -39,7 +39,9 @@
     description = "Lack of anything at all.";
     image = "images/nothing.png";
     primaryCost = 0;
+    primaryType = "Primary";
     secondaryCost = 0;
+    secondaryType = "Secondary";
     energyCost = 0;
     potencyModifier = 0;
 
@@ -47,8 +49,11 @@
       this.name = name;
       this.type = type;
       this.description = description;
+      this.image = image;
       this.primaryCost = primaryCost;
+      this.primaryType = primaryType;
       this.secondaryCost = secondaryCost;
+      this.secondaryType = secondaryType;
       this.energyCost = energyCost;
       this.potencyModifier = potencyModifier;
 
@@ -92,6 +97,9 @@
         case "Void":
           return "#8A2BE2";
           break;
+        case "Form":
+          return "#A0AECD";
+          break;
         default:
           return "#FFFFF0";
           break;
@@ -104,6 +112,19 @@
     "Void",
     "Lack of anything at all.",
     "images/nothing.png",
+    0,
+    "Primary",
+    0,
+    "Secondary",
+    0,
+    0
+  );
+
+  const testComponent2 = new spellComponent(
+    "Ball",
+    "Form",
+    "In the shape of a fist sized ball.",
+    "images/forms/ball.png",
     0,
     "Primary",
     0,
