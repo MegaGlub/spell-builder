@@ -119,8 +119,8 @@ img{
     font-size: 1em;
 }
 .componentStatTable{
-    background-color: #2F4F4F;
-    color: #FFFFF0;
+    background-color: #778899;
+    color: #000000;
     margin-top: 8px;
     width: 100%;
 }
@@ -130,7 +130,7 @@ img{
     width: 100%;
 }
 .componentStatRow:nth-child(even){
-    background-color: #333333;
+    background-color: #B0C4DE;
 }
 .componentStatCell{
     border-left: 1px solid #000000;
