@@ -113,8 +113,12 @@
     }
 
     formattedDataCell(num, descriptor){
-      if (this.type == "Void" && descriptor == "Potency"){
-        return "Inverted Potency";
+      if (this.type == "Void"){
+        if (descriptor == "Energy"){
+          return "Nullified " + descriptor;
+        }else {
+        return "Inverted " + descriptor;
+        }
       }else{
         return this.#getSignedCost(num) + " " + descriptor;
       }
