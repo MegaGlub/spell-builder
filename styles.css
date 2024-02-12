@@ -120,23 +120,26 @@ img{
 }
 .componentStatTable{
     background-color: #778899;
+    border-collapse: collapse;
     color: #000000;
     margin-top: 8px;
-    width: 100%;
-}
-.componentStatRow{
-    text-align: center;
-    margin: 0;
+    padding: 0;
     width: 100%;
 }
 .componentStatRow:nth-child(even){
     background-color: #B0C4DE;
 }
+.componentStatRow{
+    margin: auto;
+    width: 100%;
+}
 .componentStatCell{
     border-left: 1px solid #000000;
     border-right: 1px solid #000000;
-    margin: 0;
+    margin: auto;
     padding: 4px;
+    text-align: center;
+    width: 33.33%;
 }
 .wandBox{
     background-color: #808080;

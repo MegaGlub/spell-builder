@@ -67,7 +67,7 @@
       const modifierRow = document.createElement("tr");
       const newPotencyCell = document.createElement("td");
 
-      newComponent.id = "spellComponent" + this.name;
+      newToolTipButton.id = "spellComponent" + this.name;
 
       newToolTipButton.className = "toolTipButton";
       newComponent.className = "spellComponent";
@@ -102,18 +102,22 @@
 
       newSpellTitle.innerHTML = this.name;
       newSpellType.innerHTML = this.type;
-      newSpellType.style.color = this.#getTypeColor();
+      newSpellType.style.color = this.getTypeColor();
       newSpellDescription.innerHTML = this.description;
 
-      newPrimaryCell.innerHTML = this.#formattedDataCell(this.primaryCost, this.primaryType);
-      newSecondaryCell.innerHTML = this.#formattedDataCell(this.secondaryCost, this.secondaryType);
-      newEnergyCell.innerHTML = this.#formattedDataCell(this.energyCost, "Energy");
+      newPrimaryCell.innerHTML = this.formattedDataCell(this.primaryCost, this.primaryType);
+      newSecondaryCell.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
+      newEnergyCell.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
 
-      newPotencyCell.innerHTML = this.#formattedDataCell(this.potencyModifier, "Potency");
+      newPotencyCell.innerHTML = this.formattedDataCell(this.potencyModifier, "Potency");
     }
 
-    #formattedDataCell(num, descriptor){
-      return this.#getSignedCost(num) + " " + descriptor;
+    formattedDataCell(num, descriptor){
+      if (this.type == "Void" && descriptor == "Potency"){
+        return "Inverted Potency";
+      }else{
+        return this.#getSignedCost(num) + " " + descriptor;
+      }
     }
 
     #getSignedCost(num){
@@ -124,7 +128,7 @@
       }
     }
 
-    #getTypeColor(){
+    getTypeColor(){
       switch(this.type){
         case "Void":
           return "#8A2BE2";
@@ -143,9 +147,21 @@
       super(name, "Form", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
       this.formDescription = formDescription;
       this.size = size;
+      this.buildFormVisuals();
     }
 
+    buildFormVisuals(){
+      const spellComponent = document.getElementById("spellComponent" + this.name);
+      const statTable = spellComponent.lastChild.lastChild;
+      const tableRows = statTable.getElementsByClassName("componentStatRow");
+      const newSizeCell = document.createElement("td");
 
+      tableRows[1].appendChild(newSizeCell);
+
+      newSizeCell.className = "componentStatCell";
+
+      newSizeCell.innerHTML = "Size: " + this.size;
+    }
   }
 
   const testComponent = new spellComponent(
