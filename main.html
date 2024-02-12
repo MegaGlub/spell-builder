@@ -32,6 +32,7 @@
   const mainMenuScreen = document.getElementById("mainMenuScreen");
   const toolTipButtons = document.getElementsByClassName("toolTipButton");
   const spellBox = document.getElementsByClassName("spellBox")[0];
+  var componentList = [];
 
   class spellComponent {
     constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier){
@@ -47,6 +48,7 @@
       this.potencyModifier = potencyModifier;
 
       this.buildComponentVisuals();
+      componentList.push(this);
     }
 
     buildComponentVisuals(){
@@ -57,6 +59,29 @@
       const newSpellDescription = document.createElement("div");
       const newComponent = document.createElement("span");
       const newImage = document.createElement("img");
+      const newStatTable = document.createElement("table");
+      const visRow = document.createElement("tr");
+      const newPrimaryCell = document.createElement("td");
+      const newSecondaryCell = document.createElement("td");
+      const newEnergyCell = document.createElement("td");
+      const modifierRow = document.createElement("tr");
+      const newPotencyCell = document.createElement("td");
+
+      newComponent.id = "spellComponent" + this.name;
+
+      newToolTipButton.className = "toolTipButton";
+      newComponent.className = "spellComponent";
+      newToolTip.className = "toolTip";
+      newSpellTitle.className = "spellTitle";
+      newSpellType.className = "spellType";
+      newSpellDescription.className = "spellDescription";
+      newStatTable.className = "componentStatTable";
+      visRow.className = "componentStatRow";
+      modifierRow.className = "componentStatRow";
+      newPrimaryCell.className = "componentStatCell";
+      newSecondaryCell.className = "componentStatCell";
+      newEnergyCell.className = "componentStatCell";
+      newPotencyCell.className = "componentStatCell";
 
       spellBox.appendChild(newToolTipButton);
       newToolTipButton.appendChild(newComponent);
@@ -64,6 +89,13 @@
       newToolTip.appendChild(newSpellTitle);
       newToolTip.appendChild(newSpellType);
       newToolTip.appendChild(newSpellDescription);
+      newToolTip.appendChild(newStatTable);
+      newStatTable.appendChild(visRow);
+      visRow.appendChild(newPrimaryCell);
+      visRow.appendChild(newSecondaryCell);
+      visRow.appendChild(newEnergyCell);
+      newStatTable.appendChild(modifierRow);
+      modifierRow.appendChild(newPotencyCell);
       newComponent.appendChild(newImage);
 
       newImage.src = this.image;
@@ -73,12 +105,23 @@
       newSpellType.style.color = this.#getTypeColor();
       newSpellDescription.innerHTML = this.description;
 
-      newToolTipButton.className = "toolTipButton";
-      newComponent.className = "spellComponent";
-      newToolTip.className = "toolTip";
-      newSpellTitle.className = "spellTitle";
-      newSpellType.className = "spellType";
-      newSpellDescription.className = "spellDescription";
+      newPrimaryCell.innerHTML = this.#formattedDataCell(this.primaryCost, this.primaryType);
+      newSecondaryCell.innerHTML = this.#formattedDataCell(this.secondaryCost, this.secondaryType);
+      newEnergyCell.innerHTML = this.#formattedDataCell(this.energyCost, "Energy");
+
+      newPotencyCell.innerHTML = this.#formattedDataCell(this.potencyModifier, "Potency");
+    }
+
+    #formattedDataCell(num, descriptor){
+      return this.#getSignedCost(num) + " " + descriptor;
+    }
+
+    #getSignedCost(num){
+      if (num < 0){
+        return "-" + num;
+      } else{
+        return "+" + num;
+      }
     }
 
     #getTypeColor(){

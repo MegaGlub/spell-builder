@@ -97,7 +97,7 @@ img{
     padding: 4px;
     position: absolute;
     top: 0;
-    width: 256px;
+    width: 512px;
     z-index: 51;
 }
 .spellComponent{
@@ -117,6 +117,26 @@ img{
 .spellDescription{
     color: #808080;
     font-size: 1em;
+}
+.componentStatTable{
+    background-color: #2F4F4F;
+    color: #FFFFF0;
+    margin-top: 8px;
+    width: 100%;
+}
+.componentStatRow{
+    text-align: center;
+    margin: 0;
+    width: 100%;
+}
+.componentStatRow:nth-child(even){
+    background-color: #333333;
+}
+.componentStatCell{
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    margin: 0;
+    padding: 4px;
 }
 .wandBox{
     background-color: #808080;
