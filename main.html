@@ -34,17 +34,6 @@
   const spellBox = document.getElementsByClassName("spellBox")[0];
 
   class spellComponent {
-    name = "Nothing";
-    type = "Void";
-    description = "Lack of anything at all.";
-    image = "images/nothing.png";
-    primaryCost = 0;
-    primaryType = "Primary";
-    secondaryCost = 0;
-    secondaryType = "Secondary";
-    energyCost = 0;
-    potencyModifier = 0;
-
     constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier){
       this.name = name;
       this.type = type;
@@ -106,6 +95,15 @@
       }
     }
   }
+  class formComponent extends spellComponent{
+    constructor(name, description, formDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, size){
+      super(name, "Form", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
+      this.formDescription = formDescription;
+      this.size = size;
+    }
+
+
+  }
 
   const testComponent = new spellComponent(
     "Nothing",
@@ -120,17 +118,16 @@
     0
   );
 
-  const testComponent2 = new spellComponent(
+  const testComponent2 = new formComponent(
     "Ball",
-    "Form",
     "In the shape of a fist sized ball.",
+    "a fist sized ball of ",
     "images/forms/ball.png",
     0,
-    "Primary",
     0,
-    "Secondary",
     0,
-    0
+    0,
+    "5cm"
   );
 
   function mainMenuSpellsButtonPress(){
@@ -175,10 +172,8 @@
 
     if (clientX + toolTipWidth + 18 > windowWidth){
       toolTip.style.left = (windowWidth - toolTipWidth) + "px";
-      console.log("oopsie");
     }else{
       toolTip.style.left = clientX + 18 + "px";
-      console.log("daisy");
     }
 
     if (clientY + toolTipHeight + 12 > windowHeight){
