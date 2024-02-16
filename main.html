@@ -120,11 +120,11 @@
         return "Inverted " + descriptor;
         }
       }else{
-        return this.#getSignedCost(num) + " " + descriptor;
+        return this.#getSign(num) + " " + descriptor;
       }
     }
 
-    #getSignedCost(num){
+    #getSign(num){
       if (num < 0){
         return "-" + num;
       } else{
@@ -168,6 +168,57 @@
     }
   }
 
+  class pathComponent extends spellComponent{
+    constructor(name, description, pathDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, range, lifetime){
+      super(name, "Path", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
+      this.pathDescription = pathDescription;
+      this.range = range;
+      this.lifetime = lifetime;
+      this.buildPathVisuals();
+    }
+
+    buildPathVisuals(){
+      const spellComponent = document.getElementById("spellComponent" + this.name);
+      const statTable = spellComponent.lastChild.lastChild;
+      const tableRows = statTable.getElementsByClassName("componentStatRow");
+      const newRangeCell = document.createElement("td");
+      const newLifetimeCell = document.createElement("td");
+
+      tableRows[1].appendChild(newRangeCell);
+      tableRows[1].appendChild(newLifetimeCell);
+
+      newRangeCell.className = "componentStatCell";
+      newLifetimeCell.className = "componentStatCell";
+
+      newRangeCell.innerHTML = "Range: ~" + this.range;
+      newLifetimeCell.innerHTML = "Proj. Life: " + this.timeFormat(this.lifetime);
+    }
+
+    timeFormat(seconds){
+      if (seconds == 3600){
+        return "1 hour";
+      }
+      else if (seconds / 3600 > 1){
+        return this.roundTo2(seconds / 3600) + " hours";
+      }
+      else if (seconds == 60){
+        return "1 minute";
+      }
+      else if (seconds / 60 > 1){
+        return this.roundTo2(seconds / 60) + " minutes";
+      }
+      else if (seconds == 1){
+        return "1 second";
+      }else{
+        return seconds + " seconds";
+      }
+    }
+
+    roundTo2(num){
+      return Math.round(num * 100) / 100
+    }
+  }
+
   const testComponent = new spellComponent(
     "Nothing",
     "Void",
@@ -191,6 +242,19 @@
     0,
     0,
     "5cm"
+  );
+
+  const testComponent3 = new pathComponent(
+    "Arc",
+    "As if thrown.",
+    "Throw in an arc ",
+    "images/nothing.png",
+    0,
+    0,
+    0,
+    0,
+    "30m",
+    60
   );
 
   function mainMenuSpellsButtonPress(){
