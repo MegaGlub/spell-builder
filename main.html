@@ -155,16 +155,20 @@
       switch(this.type){
         case "Void":
           return "#8A2BE2";
-          break;
         case "Form":
-          return "#A0AECD";
-          break;
+          return "#3CB371";
         case "Path":
           return "#DAA520";
-          break;
+        case "Purpose":
+          return "#A0AECD";
+        case "Enhancement":
+          return "#6495ED";
+        case "Refund":
+          return "#BC8F8F";
+        case "Trigger":
+          return "#FA8072";
         default:
           return "#FFFFF0";
-          break;
       }
     }
   }
@@ -288,7 +292,7 @@
     0,
     0,
     "30m",
-    60
+    6
   );
 
   function mainMenuSpellsButtonPress(){
