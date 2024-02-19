@@ -53,17 +53,13 @@
 
     buildComponentVisuals(){
       this.#createEmptyElements();
-
       this.#assignElementClasses();
       this.#assignElementIds();
       this.#assignImage();
-
       this.#relateElements();
-
       this.#fillInnerHTML();
       this.#colorizeText();
     }
-
     #createEmptyElements(){
       this.toolTipButtonElement = document.createElement("div");
       this.toolTipElement = document.createElement("div");
@@ -183,12 +179,9 @@
     buildFormVisuals(){
       this.#createEmptyElements();
       this.#assignElementClasses();
-
       this.#relateElements();
-
       this.#fillInnerHTML();
     }
-
     #createEmptyElements(){
       this.sizeCellElement = document.createElement("td");
     }
@@ -218,7 +211,6 @@
       this.#relateElements();
       this.#fillInnerHTML();
     }
-
     #createEmptyElements(){
       this.rangeCellElement = document.createElement("td");
       this.lifetimeCellElement = document.createElement("td");
