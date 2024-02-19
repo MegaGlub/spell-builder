@@ -181,16 +181,25 @@
     }
 
     buildFormVisuals(){
-      const spellComponent = document.getElementById("spellComponent" + this.name);
-      const statTable = spellComponent.lastChild.lastChild;
-      const tableRows = statTable.getElementsByClassName("componentStatRow");
-      const newSizeCell = document.createElement("td");
+      this.#createEmptyElements();
+      this.#assignElementClasses();
 
-      tableRows[1].appendChild(newSizeCell);
+      this.#relateElements();
 
-      newSizeCell.className = "componentStatCell";
+      this.#fillInnerHTML();
+    }
 
-      newSizeCell.innerHTML = "Size: " + this.size;
+    #createEmptyElements(){
+      this.sizeCellElement = document.createElement("td");
+    }
+    #assignElementClasses(){
+      this.sizeCellElement.className = "componentStatCell";
+    }
+    #relateElements(){
+      this.modifierRowElement.appendChild(this.sizeCellElement);
+    }
+    #fillInnerHTML(){
+      this.sizeCellElement.innerHTML = "Size: " + this.size;
     }
   }
 
