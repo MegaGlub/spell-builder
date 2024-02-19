@@ -213,20 +213,27 @@
     }
 
     buildPathVisuals(){
-      const spellComponent = document.getElementById("spellComponent" + this.name);
-      const statTable = spellComponent.lastChild.lastChild;
-      const tableRows = statTable.getElementsByClassName("componentStatRow");
-      const newRangeCell = document.createElement("td");
-      const newLifetimeCell = document.createElement("td");
+      this.#createEmptyElements();
+      this.#assignElementClasses();
+      this.#relateElements();
+      this.#fillInnerHTML();
+    }
 
-      tableRows[1].appendChild(newRangeCell);
-      tableRows[1].appendChild(newLifetimeCell);
-
-      newRangeCell.className = "componentStatCell";
-      newLifetimeCell.className = "componentStatCell";
-
-      newRangeCell.innerHTML = "Range: ~" + this.range;
-      newLifetimeCell.innerHTML = "Proj. Life: " + this.timeFormat(this.lifetime);
+    #createEmptyElements(){
+      this.rangeCellElement = document.createElement("td");
+      this.lifetimeCellElement = document.createElement("td");
+    }
+    #assignElementClasses(){
+      this.rangeCellElement.className = "componentStatCell";
+      this.lifetimeCellElement.className = "componentStatCell";
+    }
+    #relateElements(){
+      this.modifierRowElement.appendChild(this.rangeCellElement);
+      this.modifierRowElement.appendChild(this.lifetimeCellElement);
+    }
+    #fillInnerHTML(){
+      this.rangeCellElement.innerHTML = "Range: ~" + this.range;
+      this.lifetimeCellElement.innerHTML = "Proj. Life: " + this.timeFormat(this.lifetime);
     }
 
     timeFormat(seconds){
