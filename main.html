@@ -52,64 +52,87 @@
     }
 
     buildComponentVisuals(){
-      const newToolTipButton = document.createElement("div");
-      const newToolTip = document.createElement("div");
-      const newSpellTitle = document.createElement("div");
-      const newSpellType = document.createElement("div");
-      const newSpellDescription = document.createElement("div");
-      const newComponent = document.createElement("span");
-      const newImage = document.createElement("img");
-      const newStatTable = document.createElement("table");
-      const visRow = document.createElement("tr");
-      const newPrimaryCell = document.createElement("td");
-      const newSecondaryCell = document.createElement("td");
-      const newEnergyCell = document.createElement("td");
-      const modifierRow = document.createElement("tr");
-      const newPotencyCell = document.createElement("td");
+      this.#createEmptyElements();
 
-      newToolTipButton.id = "spellComponent" + this.name;
+      this.#assignElementClasses();
+      this.#assignElementIds();
+      this.#assignImage();
 
-      newToolTipButton.className = "toolTipButton";
-      newComponent.className = "spellComponent";
-      newToolTip.className = "toolTip";
-      newSpellTitle.className = "spellTitle";
-      newSpellType.className = "spellType";
-      newSpellDescription.className = "spellDescription";
-      newStatTable.className = "componentStatTable";
-      visRow.className = "componentStatRow";
-      modifierRow.className = "componentStatRow";
-      newPrimaryCell.className = "componentStatCell";
-      newSecondaryCell.className = "componentStatCell";
-      newEnergyCell.className = "componentStatCell";
-      newPotencyCell.className = "componentStatCell";
+      this.#relateElements();
 
-      spellBox.appendChild(newToolTipButton);
-      newToolTipButton.appendChild(newComponent);
-      newToolTipButton.appendChild(newToolTip);
-      newToolTip.appendChild(newSpellTitle);
-      newToolTip.appendChild(newSpellType);
-      newToolTip.appendChild(newSpellDescription);
-      newToolTip.appendChild(newStatTable);
-      newStatTable.appendChild(visRow);
-      visRow.appendChild(newPrimaryCell);
-      visRow.appendChild(newSecondaryCell);
-      visRow.appendChild(newEnergyCell);
-      newStatTable.appendChild(modifierRow);
-      modifierRow.appendChild(newPotencyCell);
-      newComponent.appendChild(newImage);
+      this.#fillInnerHTML();
+      this.#colorizeText();
+    }
 
-      newImage.src = this.image;
+    #createEmptyElements(){
+      this.toolTipButtonElement = document.createElement("div");
+      this.toolTipElement = document.createElement("div");
+      this.spellTitleElement = document.createElement("div");
+      this.spellTypeElement = document.createElement("div");
+      this.spellDescriptionElement = document.createElement("div");
+      this.componentElement = document.createElement("span");
+      this.imageElement = document.createElement("img");
+      this.statTableElement = document.createElement("table");
+      this.visRowElement = document.createElement("tr");
+      this.primaryCellElement = document.createElement("td");
+      this.secondaryCellElement = document.createElement("td");
+      this.energyCellElement = document.createElement("td");
+      this.modifierRowElement = document.createElement("tr");
+      this.potencyCellElement = document.createElement("td");
+    }
+    #assignElementClasses(){
+      this.toolTipButtonElement.className = "toolTipButton";
+      this.toolTipElement.className = "toolTip";
+      this.spellTitleElement.className = "spellTitle";
+      this.spellTypeElement.className = "spellType";
+      this.spellDescriptionElement.className = "spellDescription";
+      this.componentElement.className = "spellComponent";
+      this.statTableElement.className = "componentStatTable";
+      this.visRowElement.className = "componentStatRow";
+      this.primaryCellElement.className = "componentStatCell";
+      this.secondaryCellElement.className = "componentStatCell";
+      this.energyCellElement.className = "componentStatCell";
+      this.modifierRowElement.className = "componentStatRow";
+      this.potencyCellElement.className = "componentStatCell";
+    }
+    #assignElementIds(){
+      this.toolTipButtonElement.id = "spellComponent" + this.name;
+    }
+    #relateElements(){
+      spellBox.appendChild(this.toolTipButtonElement);
+      this.toolTipButtonElement.appendChild(this.componentElement);
+      this.toolTipButtonElement.appendChild(this.toolTipElement);
+      this.toolTipElement.appendChild(this.spellTitleElement);
+      this.toolTipElement.appendChild(this.spellTypeElement);
+      this.toolTipElement.appendChild(this.spellDescriptionElement);
+      this.toolTipElement.appendChild(this.statTableElement);
+      this.statTableElement.appendChild(this.visRowElement);
+      this.visRowElement.appendChild(this.primaryCellElement);
+      this.visRowElement.appendChild(this.secondaryCellElement);
+      this.visRowElement.appendChild(this.energyCellElement);
+      this.statTableElement.appendChild(this.modifierRowElement);
+      this.modifierRowElement.appendChild(this.potencyCellElement);
+      this.componentElement.appendChild(this.imageElement);
+    }
+    #assignImage() {
+      this.imageElement.src = this.image;
+    }
+    #fillInnerHTML() {
+      this.spellTitleElement.innerHTML = this.name;
+      this.spellTypeElement.innerHTML = this.type;
+      this.spellDescriptionElement.innerHTML = this.description;
 
-      newSpellTitle.innerHTML = this.name;
-      newSpellType.innerHTML = this.type;
-      newSpellType.style.color = this.getTypeColor();
-      newSpellDescription.innerHTML = this.description;
+      this.#fillStatTable();
+    }
+    #fillStatTable(){
+      this.primaryCellElement.innerHTML = this.formattedDataCell(this.primaryCost, this.primaryType);
+      this.secondaryCellElement.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
+      this.energyCellElement.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
 
-      newPrimaryCell.innerHTML = this.formattedDataCell(this.primaryCost, this.primaryType);
-      newSecondaryCell.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
-      newEnergyCell.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
-
-      newPotencyCell.innerHTML = this.formattedDataCell(this.potencyModifier, "Potency");
+      this.potencyCellElement.innerHTML = this.formattedDataCell(this.potencyModifier, "Potency");
+    }
+    #colorizeText(){
+      this.spellTypeElement.style.color = this.getTypeColor();
     }
 
     formattedDataCell(num, descriptor){
@@ -139,6 +162,9 @@
           break;
         case "Form":
           return "#A0AECD";
+          break;
+        case "Path":
+          return "#DAA520";
           break;
         default:
           return "#FFFFF0";
@@ -248,7 +274,7 @@
     "Arc",
     "As if thrown.",
     "Throw in an arc ",
-    "images/nothing.png",
+    "images/paths/arc.png",
     0,
     0,
     0,
