@@ -57,7 +57,7 @@
       this.#assignElementIds();
       this.#assignImage();
       this.#relateElements();
-      this.#fillInnerHTML();
+      this.fillInnerHTML();
       this.#colorizeText();
     }
     #createEmptyElements(){
@@ -113,7 +113,7 @@
     #assignImage() {
       this.imageElement.src = this.image;
     }
-    #fillInnerHTML() {
+    fillInnerHTML() {
       this.spellTitleElement.innerHTML = this.name;
       this.spellTypeElement.innerHTML = this.type;
       this.spellDescriptionElement.innerHTML = this.description;
@@ -145,7 +145,7 @@
 
     #getSign(num){
       if (num < 0){
-        return "-" + num;
+        return num; // negative numbers already have the "-" character
       } else{
         return "+" + num;
       }
@@ -257,6 +257,28 @@
     }
   }
 
+  class triggerComponent extends spellComponent{
+    constructor(name, description, triggerDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier){
+      super(name, "Trigger", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
+      this.triggerDescription = triggerDescription;
+    }
+  }
+
+  class enhancementComponent extends spellComponent{
+    constructor(name, description, enhancementDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, enhancementType, enhancementModifier, enhancementMultiplier){
+      this.enhancementDescription = enhancementDescription;
+      this.enhancementType = enhancementType;
+      this.enhancementModifier = enhancementModifier;
+      this.enhancementMultiplier = enhancementMultiplier;
+      this.identifyEnhancementType();
+      super(name, "Enhancement", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier); //remember to change this 0!
+    }//add ability to identify enhancement type and deliver this to a buildEnhancementVisuals method
+
+    buildEnhancementVisuals(){
+
+    }
+  }
+
   const testComponent = new spellComponent(
     "Nothing",
     "Void",
@@ -274,7 +296,7 @@
     "Ball",
     "In the shape of a fist sized ball.",
     "a fist sized ball of ",
-    "images/forms/ball.png",
+    "images/forms/form-frame.png",
     0,
     0,
     0,
@@ -294,6 +316,31 @@
     "30m",
     6
   );
+
+  const testComponent4 = new triggerComponent(
+    "On Water",
+    "Activate on contact with water.",
+    " The spell will lie dormant until it contacts water.",
+    "images/triggers/trigger-frame.png",
+    -1,
+    0,
+    -1,
+    0
+  )
+
+  const testComponent5 = new enhancementComponent(
+    "Invisible",
+    "Hides the spell from regular sight.",
+    " invisible,",
+    "image/enhancements/enhancement-frame.png",
+    1,
+    1,
+    0,
+    0,
+    "Visual",
+    0,
+    0
+  )
 
   function mainMenuSpellsButtonPress(){
     hideMainMenu();
