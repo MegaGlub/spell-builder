@@ -265,13 +265,13 @@
   }
 
   class enhancementComponent extends spellComponent{
-    constructor(name, description, enhancementDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, enhancementType, enhancementModifier, enhancementMultiplier){
+    constructor(name, description, enhancementDescription, image, primaryCost, secondaryCost, energyCost, enhancementType, enhancementModifier, enhancementMultiplier){
+      super(name, "Enhancement", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, 0);
       this.enhancementDescription = enhancementDescription;
       this.enhancementType = enhancementType;
       this.enhancementModifier = enhancementModifier;
       this.enhancementMultiplier = enhancementMultiplier;
-      this.identifyEnhancementType();
-      super(name, "Enhancement", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier); //remember to change this 0!
+      //this.identifyEnhancementType();
     }//add ability to identify enhancement type and deliver this to a buildEnhancementVisuals method
 
     buildEnhancementVisuals(){
@@ -332,10 +332,9 @@
     "Invisible",
     "Hides the spell from regular sight.",
     " invisible,",
-    "image/enhancements/enhancement-frame.png",
+    "images/enhancements/enhancement-frame.png",
     1,
     1,
-    0,
     0,
     "Visual",
     0,
