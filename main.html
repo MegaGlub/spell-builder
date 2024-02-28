@@ -139,11 +139,11 @@
         return "Inverted " + descriptor;
         }
       }else{
-        return this.#getSign(num) + " " + descriptor;
+        return this.getSign(num) + " " + descriptor;
       }
     }
 
-    #getSign(num){
+    getSign(num){
       if (num < 0){
         return num; // negative numbers already have the "-" character
       } else{
@@ -265,19 +265,43 @@
   }
 
   class enhancementComponent extends spellComponent{
-    constructor(name, description, enhancementDescription, image, primaryCost, secondaryCost, energyCost, enhancementType, enhancementModifier, enhancementMultiplier){
+    constructor(name, description, enhancementDescription, image, primaryCost, secondaryCost, energyCost, enhancementType, enhancementModifier, enhancementMultiplier, showStats){
       super(name, "Enhancement", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, 0);
       this.enhancementDescription = enhancementDescription;
       this.enhancementType = enhancementType;
       this.enhancementModifier = enhancementModifier;
       this.enhancementMultiplier = enhancementMultiplier;
-      //this.identifyEnhancementType();
-    }//add ability to identify enhancement type and deliver this to a buildEnhancementVisuals method
+      this.showStats = showStats
+      if (this.showStats){
+        this.buildEnhancementVisuals();
+      }
+    }
 
     buildEnhancementVisuals(){
-
+      this.#createEmptyElements();
+      this.#assignElementClasses();
+      this.#relateElements();
+      this.#fillInnerHTML();
+    }
+    #createEmptyElements(){
+      this.enhancementCellElement = document.createElement("td");
+    }
+    #assignElementClasses(){
+      this.enhancementCellElement.className = "componentStatCell";
+    }
+    #relateElements(){
+      this.modifierRowElement.appendChild(this.enhancementCellElement);
+    }
+    #fillInnerHTML(){
+      var formattedEnhancementCell = this.enhancementType + ": " + this.getSign(this.enhancementModifier);
+      if (this.enhancementMultiplier != 1){
+        formattedEnhancementCell += " (" + this.enhancementMultiplier + "x)"
+      }
+      this.enhancementCellElement.innerHTML = formattedEnhancementCell;
     }
   }
+
+
 
   const testComponent = new spellComponent(
     "Nothing",
@@ -338,7 +362,8 @@
     0,
     "Visual",
     0,
-    0
+    1,
+    true
   )
 
   function mainMenuSpellsButtonPress(){
