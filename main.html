@@ -366,6 +366,9 @@
     true
   )
 
+  var dataTestComponent;
+  console.log(fetchRawJSON("data/components/basicTest.json"))
+
   function mainMenuSpellsButtonPress(){
     hideMainMenu();
   }
@@ -386,7 +389,6 @@
     mainMenuMartialsButton.disabled = false;
   }
   
-  console.log(toolTipButtons);
   for (index = 0; index < toolTipButtons.length; index++){
     assignToolTips(toolTipButtons[index]);
   }
@@ -417,5 +419,23 @@
     }else{
       toolTip.style.top = clientY + 12 + "px";
     }
+  }
+
+  function fetchRawJSON(fileName){
+    fetch(fileName)
+      .then((res) => {
+        if(!res.ok){
+          throw new Error ("HTTP Error, status: " + res.status);
+          console.log("Skill issue.");
+        }
+        return res.json;
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
+        console.error("Unable to fetch JSON: ", error);
+      });
   }
 </script>
