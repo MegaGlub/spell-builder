@@ -32,7 +32,6 @@
   const mainMenuScreen = document.getElementById("mainMenuScreen");
   const toolTipButtons = document.getElementsByClassName("toolTipButton");
   const spellBox = document.getElementsByClassName("spellBox")[0];
-  const fs = require("fs");
   var componentList = [];
 
   class spellComponent {
@@ -49,6 +48,7 @@
       this.potencyModifier = potencyModifier;
 
       this.buildComponentVisuals();
+      assignToolTip(this.toolTipButtonElement);
       componentList.push(this);
     }
 
@@ -368,8 +368,7 @@
   );
 
   var dataTestComponent;
-  //const testJsonRaw = fetchRawJSON("data/components/basicTest.json");
-  const testJsonRaw = JSON.parse(fs.readFileSync("file", "utf8"));
+  const testJsonRaw = fetchRawJSON("data/components/basicTest.json");
   console.log(testJsonRaw);
 
   function mainMenuSpellsButtonPress(){
@@ -392,11 +391,11 @@
     mainMenuMartialsButton.disabled = false;
   }
   
-  for (index = 0; index < toolTipButtons.length; index++){
-    assignToolTips(toolTipButtons[index]);
-  }
+  // for (index = 0; index < toolTipButtons.length; index++){
+  //   assignToolTips(toolTipButtons[index]);
+  // }
 
-  function assignToolTips(toolTipButton){
+  function assignToolTip(toolTipButton){
     toolTipButton.addEventListener('mousemove', function(event){
       updateToolTipPosition(event, toolTipButton)}
       );
@@ -424,22 +423,35 @@
     }
   }
 
-  function fetchRawJSON(fileName){
-    console.log(fileName);
+  async function fetchRawJSON(fileName){
     fetch(fileName)
       .then(response => response.json())
       .then(jsonResponse => {
         console.log(jsonResponse);
-        return jsonResponse});
+        convertJSONToSpellComponent(jsonResponse)});
   }
 
-  function handleJSONFileFailure(error){
-    console.log("Skill issue.");
-    console.log(error);
+  function convertJSONToSpellComponent(json){
+    switch (json.class){
+      default:
+        createVoidComponentFromJSON(json)
+        return;
+    }
   }
 
-  function handleJSONFileSuccess(promisedJSON){
-    console.log(promisedJSON);
-    return promisedJSON;
+  function createVoidComponentFromJSON(json){
+    console.log(json.image);
+    new spellComponent(
+      json.name,
+      json.type,
+      json.description,
+      json.image,
+      json.costs.primary,
+      json.vis.primary,
+      json.costs.secondary,
+      json.vis.secondary,
+      json.costs.energy,
+      json.potency
+    );
   }
 </script>

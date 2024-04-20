@@ -1,8 +1,17 @@
 {
-    "name": "meeeee",
-    "description": "tester",
-    "opinions":
-    {
-        "hatredOfJSON": "true"
-    }
+    "class": "Void",
+    "name": "Nothing",
+    "type": "Void",
+    "description": "Lack of anything at all.",
+    "image": "images/nothing.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 0,
+        "energy": 0
+        },
+    "vis": {
+        "primary": "Primary",
+        "secondary": "Secondary"
+    },
+    "potency": 0
 }
