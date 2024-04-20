@@ -32,6 +32,7 @@
   const mainMenuScreen = document.getElementById("mainMenuScreen");
   const toolTipButtons = document.getElementsByClassName("toolTipButton");
   const spellBox = document.getElementsByClassName("spellBox")[0];
+  const fs = require("fs");
   var componentList = [];
 
   class spellComponent {
@@ -367,7 +368,8 @@
   );
 
   var dataTestComponent;
-  const testJsonRaw = fetchRawJSON("data/components/basicTest.json");
+  //const testJsonRaw = fetchRawJSON("data/components/basicTest.json");
+  const testJsonRaw = JSON.parse(fs.readFileSync("file", "utf8"));
   console.log(testJsonRaw);
 
   function mainMenuSpellsButtonPress(){
@@ -425,20 +427,19 @@
   function fetchRawJSON(fileName){
     console.log(fileName);
     fetch(fileName)
-      .then((res) => {
-        if(!res.ok){
-          throw new Error ("HTTP Error, status: " + res.status);
-          console.log("Skill issue.");
-        }
-        console.log(res);
-        res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        return data;
-      })
-      .catch((error) => {
-        console.error("Unable to fetch JSON: ", error);
-      });
+      .then(response => response.json())
+      .then(jsonResponse => {
+        console.log(jsonResponse);
+        return jsonResponse});
+  }
+
+  function handleJSONFileFailure(error){
+    console.log("Skill issue.");
+    console.log(error);
+  }
+
+  function handleJSONFileSuccess(promisedJSON){
+    console.log(promisedJSON);
+    return promisedJSON;
   }
 </script>
