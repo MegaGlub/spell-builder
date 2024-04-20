@@ -350,7 +350,7 @@
     0,
     -1,
     0
-  )
+  );
 
   const testComponent5 = new enhancementComponent(
     "Invisible",
@@ -364,10 +364,11 @@
     0,
     1,
     true
-  )
+  );
 
   var dataTestComponent;
-  console.log(fetchRawJSON("data/components/basicTest.json"))
+  const testJsonRaw = fetchRawJSON("data/components/basicTest.json");
+  console.log(testJsonRaw);
 
   function mainMenuSpellsButtonPress(){
     hideMainMenu();
@@ -422,13 +423,15 @@
   }
 
   function fetchRawJSON(fileName){
+    console.log(fileName);
     fetch(fileName)
       .then((res) => {
         if(!res.ok){
           throw new Error ("HTTP Error, status: " + res.status);
           console.log("Skill issue.");
         }
-        return res.json;
+        console.log(res);
+        res.json();
       })
       .then((data) => {
         console.log(data);
