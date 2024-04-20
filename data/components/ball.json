@@ -1,0 +1,14 @@
+{
+    "type": "Form",
+    "name": "Ball",
+    "description": "In the shape of a fist sized ball.",
+    "formDescription": "a fist sized ball of ",
+    "image": "images/forms/form-frame.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 0,
+        "energy": 0
+        },
+    "potency": 0,
+    "size": "5cm"
+}

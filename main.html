@@ -304,30 +304,30 @@
 
 
 
-  const testComponent = new spellComponent(
-    "Nothing",
-    "Void",
-    "Lack of anything at all.",
-    "images/nothing.png",
-    0,
-    "Primary",
-    0,
-    "Secondary",
-    0,
-    0
-  );
+  // const testComponent = new spellComponent(
+  //   "Nothing",
+  //   "Void",
+  //   "Lack of anything at all.",
+  //   "images/nothing.png",
+  //   0,
+  //   "Primary",
+  //   0,
+  //   "Secondary",
+  //   0,
+  //   0
+  // );
 
-  const testComponent2 = new formComponent(
-    "Ball",
-    "In the shape of a fist sized ball.",
-    "a fist sized ball of ",
-    "images/forms/form-frame.png",
-    0,
-    0,
-    0,
-    0,
-    "5cm"
-  );
+  // const testComponent2 = new formComponent(
+  //   "Ball",
+  //   "In the shape of a fist sized ball.",
+  //   "a fist sized ball of ",
+  //   "images/forms/form-frame.png",
+  //   0,
+  //   0,
+  //   0,
+  //   0,
+  //   "5cm"
+  // );
 
   const testComponent3 = new pathComponent(
     "Arc",
@@ -367,9 +367,8 @@
     true
   );
 
-  var dataTestComponent;
-  const testJsonRaw = fetchRawJSON("data/components/basicTest.json");
-  console.log(testJsonRaw);
+  fetchRawJSON("data/components/void.json");
+  fetchRawJSON("data/components/ball.json")
 
   function mainMenuSpellsButtonPress(){
     hideMainMenu();
@@ -432,15 +431,43 @@
   }
 
   function convertJSONToSpellComponent(json){
-    switch (json.class){
+    switch (json.type){
+      case "Form":
+        createFormComponentFromJSON(json);
+        return;
+      case "Path":
+        createPathComponentFromJSON(json);
+        return;
+      case "Trigger":
+        createTriggerComponentFromJSON(json);
+        return;
+      case "Enhancement":
+        createEnhancementComponentFromJSON(json);
+        return;
+      case "Purpose":
+        createPurposeComponentFromJSON(json);
+        return;
       default:
-        createVoidComponentFromJSON(json)
+        createVoidComponentFromJSON(json);
         return;
     }
   }
 
+  function createFormComponentFromJSON(json){
+    new formComponent(
+    json.name,
+    json.description,
+    json.formDescription,
+    json.image,
+    json.costs.primary,
+    json.costs.secondary,
+    json.costs.energy,
+    json.potency,
+    json.size
+  );
+  }
+
   function createVoidComponentFromJSON(json){
-    console.log(json.image);
     new spellComponent(
       json.name,
       json.type,
