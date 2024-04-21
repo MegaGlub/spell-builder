@@ -1,0 +1,19 @@
+{
+    "type": "Enhancement",
+    "name": "Invisible",
+    "description": "Hides the spell from regular sight.",
+    "formDescription": "invisible ",
+    "image": "images/enhancements/enhancement-frame.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 0
+        },
+    "enhancement": {
+        "type": "Visual",
+        "modifier": 0,
+        "multiplier": 1,
+        "showStats": true
+    }
+    
+}

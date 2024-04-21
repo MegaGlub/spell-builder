@@ -305,71 +305,6 @@
     }
   }
 
-
-
-  // const testComponent = new spellComponent(
-  //   "Nothing",
-  //   "Void",
-  //   "Lack of anything at all.",
-  //   "images/nothing.png",
-  //   0,
-  //   "Primary",
-  //   0,
-  //   "Secondary",
-  //   0,
-  //   0
-  // );
-
-  // const testComponent2 = new formComponent(
-  //   "Ball",
-  //   "In the shape of a fist sized ball.",
-  //   "a fist sized ball of ",
-  //   "images/forms/form-frame.png",
-  //   0,
-  //   0,
-  //   0,
-  //   0,
-  //   "5cm"
-  // );
-
-  // const testComponent3 = new pathComponent(
-  //   "Arc",
-  //   "As if thrown.",
-  //   "Throw in an arc ",
-  //   "images/paths/arc.png",
-  //   0,
-  //   0,
-  //   0,
-  //   0,
-  //   "30m",
-  //   6
-  // );
-
-  // const testComponent4 = new triggerComponent(
-  //   "On Water",
-  //   "Activate on contact with water.",
-  //   " The spell will lie dormant until it contacts water.",
-  //   "images/triggers/trigger-frame.png",
-  //   -1,
-  //   0,
-  //   -1,
-  //   0
-  // );
-
-  const testComponent5 = new enhancementComponent(
-    "Invisible",
-    "Hides the spell from regular sight.",
-    " invisible,",
-    "images/enhancements/enhancement-frame.png",
-    1,
-    1,
-    0,
-    "Visual",
-    0,
-    1,
-    true
-  );
-
   function mainMenuSpellsButtonPress(){
     hideMainMenu();
   }
@@ -497,6 +432,22 @@
       json.costs.secondary,
       json.costs.energy,
       json.potency
+    );
+  }
+
+  function createEnhancementComponentFromJSON(json){
+    new enhancementComponent(
+      json.name,
+      json.description,
+      json.enhancementDescription,
+      json.image,
+      json.costs.primary,
+      json.costs.secondary,
+      json.costs.energy,
+      json.enhancement.type,
+      json.enhancement.modifier,
+      json.enhancement.multiplier,
+      json.enhancement.showStats
     );
   }
 
