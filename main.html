@@ -345,16 +345,16 @@
   //   6
   // );
 
-  const testComponent4 = new triggerComponent(
-    "On Water",
-    "Activate on contact with water.",
-    " The spell will lie dormant until it contacts water.",
-    "images/triggers/trigger-frame.png",
-    -1,
-    0,
-    -1,
-    0
-  );
+  // const testComponent4 = new triggerComponent(
+  //   "On Water",
+  //   "Activate on contact with water.",
+  //   " The spell will lie dormant until it contacts water.",
+  //   "images/triggers/trigger-frame.png",
+  //   -1,
+  //   0,
+  //   -1,
+  //   0
+  // );
 
   const testComponent5 = new enhancementComponent(
     "Invisible",
@@ -484,6 +484,19 @@
       json.potency,
       json.range,
       json.lifetime
+    );
+  }
+
+  function createTriggerComponentFromJSON(json){
+    new triggerComponent(
+      json.name,
+      json.description,
+      json.triggerDescription,
+      json.image,
+      json.costs.primary,
+      json.costs.secondary,
+      json.costs.energy,
+      json.potency
     );
   }
 

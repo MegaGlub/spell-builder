@@ -1,0 +1,13 @@
+{
+    "type": "Trigger",
+    "name": "On Water",
+    "description": "Activate on contact with water.",
+    "formDescription": " The spell will lie dormant until it contacts water.",
+    "image": "images/triggers/trigger-frame.png",
+    "costs": {
+        "primary": -1,
+        "secondary": 0,
+        "energy": -1
+        },
+    "potency": 0
+}
