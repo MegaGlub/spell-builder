@@ -27,12 +27,15 @@
   </div>
 </body>
 <script>
+  var fs = module.require('fs');
   const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
   const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
   const mainMenuScreen = document.getElementById("mainMenuScreen");
   const toolTipButtons = document.getElementsByClassName("toolTipButton");
   const spellBox = document.getElementsByClassName("spellBox")[0];
   var componentList = [];
+
+  readJSONDirectory("data/components");
 
   class spellComponent {
     constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier){
@@ -329,18 +332,18 @@
   //   "5cm"
   // );
 
-  const testComponent3 = new pathComponent(
-    "Arc",
-    "As if thrown.",
-    "Throw in an arc ",
-    "images/paths/arc.png",
-    0,
-    0,
-    0,
-    0,
-    "30m",
-    6
-  );
+  // const testComponent3 = new pathComponent(
+  //   "Arc",
+  //   "As if thrown.",
+  //   "Throw in an arc ",
+  //   "images/paths/arc.png",
+  //   0,
+  //   0,
+  //   0,
+  //   0,
+  //   "30m",
+  //   6
+  // );
 
   const testComponent4 = new triggerComponent(
     "On Water",
@@ -366,9 +369,6 @@
     1,
     true
   );
-
-  fetchRawJSON("data/components/void.json");
-  fetchRawJSON("data/components/ball.json")
 
   function mainMenuSpellsButtonPress(){
     hideMainMenu();
@@ -422,11 +422,16 @@
     }
   }
 
-  async function fetchRawJSON(fileName){
+  function readJSONDirectory(dirPath){
+    fs.readdirSync(dirPath).forEach(file => {
+      fetchRawJSON(dirPath + "/" + file);
+    });
+  }
+
+  function fetchRawJSON(fileName){
     fetch(fileName)
       .then(response => response.json())
       .then(jsonResponse => {
-        console.log(jsonResponse);
         convertJSONToSpellComponent(jsonResponse)});
   }
 
@@ -455,16 +460,31 @@
 
   function createFormComponentFromJSON(json){
     new formComponent(
-    json.name,
-    json.description,
-    json.formDescription,
-    json.image,
-    json.costs.primary,
-    json.costs.secondary,
-    json.costs.energy,
-    json.potency,
-    json.size
-  );
+      json.name,
+      json.description,
+      json.formDescription,
+      json.image,
+      json.costs.primary,
+      json.costs.secondary,
+      json.costs.energy,
+      json.potency,
+      json.size
+    );
+  }
+
+  function createPathComponentFromJSON(json){
+    new pathComponent(
+      json.name,
+      json.description,
+      json.pathDescription,
+      json.image,
+      json.costs.primary,
+      json.costs.secondary,
+      json.costs.energy,
+      json.potency,
+      json.range,
+      json.lifetime
+    );
   }
 
   function createVoidComponentFromJSON(json){
