@@ -57,7 +57,7 @@
 
       this.buildComponentVisuals();
       assignToolTip(this.toolTipButtonElement);
-      componentList.push(this);
+      //componentList.push(this);
     }
 
     buildComponentVisuals(){
@@ -359,9 +359,12 @@
   }
 
   function readJSONDirectory(dirPath){
+    var result = [];
     fs.readdirSync(dirPath).forEach(file => {
       fetchRawJSON(dirPath + "/" + file);
+      result += dirPath + "/" + file;
     });
+    return result;
   }
 
   function fetchRawJSON(fileName){
