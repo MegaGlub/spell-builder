@@ -361,7 +361,7 @@
   function readJSONDirectory(dirPath){
     var result = [];
     fs.readdirSync(dirPath).forEach(file => {
-      fetchRawJSON(dirPath + "/" + file);
+      //fetchRawJSON(dirPath + "/" + file);
       result += dirPath + "/" + file;
     });
     return result;
