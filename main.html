@@ -33,9 +33,14 @@
   const mainMenuScreen = document.getElementById("mainMenuScreen");
   const toolTipButtons = document.getElementsByClassName("toolTipButton");
   const spellBox = document.getElementsByClassName("spellBox")[0];
-  var componentList = [];
 
-  readJSONDirectory("data/components");
+  const root = "data/components";
+  var miscList = readJSONDirectory(root + "/misc");
+  var pathList = readJSONDirectory(root + "/paths");
+  var formList = readJSONDirectory(root + "/forms");
+  var purposeList = readJSONDirectory(root + "/purposes");
+  var enhancementList = readJSONDirectory(root + "/enhancements");
+  var triggerList = readJSONDirectory(root + "/triggers");
 
   class spellComponent {
     constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier){
@@ -324,10 +329,6 @@
     mainMenuSpellsButton.disabled = false;
     mainMenuMartialsButton.disabled = false;
   }
-  
-  // for (index = 0; index < toolTipButtons.length; index++){
-  //   assignToolTips(toolTipButtons[index]);
-  // }
 
   function assignToolTip(toolTipButton){
     toolTipButton.addEventListener('mousemove', function(event){
