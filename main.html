@@ -379,22 +379,16 @@
   }
 
   function buildSortedComponentsFromArrays(){
-    miscList.forEach(fetchRawJSON);
-    formList.forEach(fetchRawJSON);
-    pathList.forEach(fetchRawJSON);
-    purposeList.forEach(fetchRawJSON);
-    enhancementList.forEach(fetchRawJSON);
-    triggerList.forEach(fetchRawJSON);
+    componentLists.forEach(sortComponents);
+    componentLists.forEach(buildComponents);
   }
 
   function sortComponents(componentPathList){
-    
+    componentPathList.sort();
   }
 
   function buildComponents(componentPathList){
-    for (var i = 0; i < componentPathList.length; i++){
-      fetchRawJSON(componentPathList[i]);
-    }
+    componentPathList.forEach(fetchRawJSON);
   }
 
   //buildSortedComponentsFromArrays will sort each list via sortComponents, and then send them to buildComponents
