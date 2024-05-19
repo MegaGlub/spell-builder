@@ -35,12 +35,21 @@
   const spellBox = document.getElementsByClassName("spellBox")[0];
 
   const root = "data/components";
-  const miscList = readJSONDirectory(root + "/misc");
-  const formList = readJSONDirectory(root + "/forms");
-  const pathList = readJSONDirectory(root + "/paths");
-  const purposeList = readJSONDirectory(root + "/purposes");
-  const enhancementList = readJSONDirectory(root + "/enhancements");
-  const triggerList = readJSONDirectory(root + "/triggers");
+  const componentLists = [
+    readJSONDirectory(root + "/misc"),
+    readJSONDirectory(root + "/forms"),
+    readJSONDirectory(root + "/paths"),
+    readJSONDirectory(root + "/purposes"),
+    readJSONDirectory(root + "/enhancements"),
+    readJSONDirectory(root + "/triggers")
+  ];
+
+  // const miscList = readJSONDirectory(root + "/misc");
+  // const formList = readJSONDirectory(root + "/forms");
+  // const pathList = readJSONDirectory(root + "/paths");
+  // const purposeList = readJSONDirectory(root + "/purposes");
+  // const enhancementList = readJSONDirectory(root + "/enhancements");
+  // const triggerList = readJSONDirectory(root + "/triggers");
 
   buildSortedComponentsFromArrays();
 
@@ -362,7 +371,6 @@
 
   function readJSONDirectory(dirPath){
     var result = [];
-    console.log(typeof result);
     fs.readdirSync(dirPath).forEach(file => {
       //fetchRawJSON(dirPath + "/" + file);
       result.push(dirPath + "/" + file);
