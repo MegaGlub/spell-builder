@@ -1,0 +1,14 @@
+{
+    "type": "Form",
+    "name": "Bolt",
+    "description": "In the shape of a lightning bolt.",
+    "formDescription": "a splintering bolt of ",
+    "image": "images/forms/form-frame.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 1,
+        "energy": 0
+        },
+    "potency": 0,
+    "size": "200cm"
+}

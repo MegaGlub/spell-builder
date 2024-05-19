@@ -35,12 +35,14 @@
   const spellBox = document.getElementsByClassName("spellBox")[0];
 
   const root = "data/components";
-  var miscList = readJSONDirectory(root + "/misc");
-  var pathList = readJSONDirectory(root + "/paths");
-  var formList = readJSONDirectory(root + "/forms");
-  var purposeList = readJSONDirectory(root + "/purposes");
-  var enhancementList = readJSONDirectory(root + "/enhancements");
-  var triggerList = readJSONDirectory(root + "/triggers");
+  const miscList = readJSONDirectory(root + "/misc");
+  const formList = readJSONDirectory(root + "/forms");
+  const pathList = readJSONDirectory(root + "/paths");
+  const purposeList = readJSONDirectory(root + "/purposes");
+  const enhancementList = readJSONDirectory(root + "/enhancements");
+  const triggerList = readJSONDirectory(root + "/triggers");
+
+  buildSortedComponentsFromArrays();
 
   class spellComponent {
     constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier){
@@ -360,12 +362,37 @@
 
   function readJSONDirectory(dirPath){
     var result = [];
+    console.log(typeof result);
     fs.readdirSync(dirPath).forEach(file => {
       //fetchRawJSON(dirPath + "/" + file);
-      result += dirPath + "/" + file;
+      result.push(dirPath + "/" + file);
     });
     return result;
   }
+
+  function buildSortedComponentsFromArrays(){
+    miscList.forEach(fetchRawJSON);
+    formList.forEach(fetchRawJSON);
+    pathList.forEach(fetchRawJSON);
+    purposeList.forEach(fetchRawJSON);
+    enhancementList.forEach(fetchRawJSON);
+    triggerList.forEach(fetchRawJSON);
+  }
+
+  function sortComponents(componentPathList){
+    
+  }
+
+  function buildComponents(componentPathList){
+    for (var i = 0; i < componentPathList.length; i++){
+      fetchRawJSON(componentPathList[i]);
+    }
+  }
+
+  //buildSortedComponentsFromArrays will sort each list via sortComponents, and then send them to buildComponents
+  //sortComponents will sort the components by filename (alphabetically)
+  //buildComponents will send each element of a sorted array into fetchRawJSON
+
 
   function fetchRawJSON(fileName){
     fetch(fileName)
