@@ -44,12 +44,9 @@
     readJSONDirectory(root + "/triggers")
   ];
 
-  // const miscList = readJSONDirectory(root + "/misc");
-  // const formList = readJSONDirectory(root + "/forms");
-  // const pathList = readJSONDirectory(root + "/paths");
-  // const purposeList = readJSONDirectory(root + "/purposes");
-  // const enhancementList = readJSONDirectory(root + "/enhancements");
-  // const triggerList = readJSONDirectory(root + "/triggers");
+  //async behavior could be solved by storing the prebuilt components,
+  //but then saving them later will be very difficult
+  //unless you track both? but that sounds like a different problem entirely
 
   buildSortedComponentsFromArrays();
 
