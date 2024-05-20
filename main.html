@@ -48,6 +48,14 @@
   //but then saving them later will be very difficult
   //unless you track both? but that sounds like a different problem entirely
 
+  //solution: track both and have a function that makes all of them children of the spellBox
+  //after being sorted. therefore, they can be sorted by cost and type, and saved easily.
+  //this will probably worsen performance when loading / importing, but that shouldn't
+  //be a huge deal.
+  
+  //likely i should start by refactoring the spell components into their own files first.
+  //js import and export time!
+
   buildSortedComponentsFromArrays();
 
   class spellComponent {
@@ -112,7 +120,6 @@
       this.toolTipButtonElement.id = "spellComponent" + this.name;
     }
     #relateElements(){
-      spellBox.appendChild(this.toolTipButtonElement);
       this.toolTipButtonElement.appendChild(this.componentElement);
       this.toolTipButtonElement.appendChild(this.toolTipElement);
       this.toolTipElement.appendChild(this.spellTitleElement);
