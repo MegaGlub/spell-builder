@@ -1,341 +1,82 @@
 <!DOCTYPE html>
+
 <head>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div class = "mainMenuScreen" id = "mainMenuScreen">
-    <span class = "mainMenuButtons">
-      <button class = "mainMenuSpellsButton" onclick = "mainMenuSpellsButtonPress()" id = "mainMenuSpellsButton">
+  <div class="mainMenuScreen" id="mainMenuScreen">
+    <span class="mainMenuButtons">
+      <button class="mainMenuSpellsButton" onclick="mainMenuSpellsButtonPress()" id="mainMenuSpellsButton">
         Spell Workbench</button>
-      <button class = "mainMenuMartialsButton" onclick = "mainMenuMartialsButtonPress()" id = "mainMenuMartialsButton">
+      <button class="mainMenuMartialsButton" onclick="mainMenuMartialsButtonPress()" id="mainMenuMartialsButton">
         Martial Arts</button>
     </span>
   </div>
 
-  <span class = "spellBox">
+  <span class="spellBox">
   </span>
 
-  <span class = "wandBox">
-    <span class = "wandSelector">
+  <span class="wandBox">
+    <span class="wandSelector">
     </span>
   </span>
-  
-  <div class = "bottomToolBar">
-    <button class = "bottomToolBarButton" onclick = "unhideMainMenu()">
+
+  <div class="bottomToolBar">
+    <button class="bottomToolBarButton" onclick="unhideMainMenu()">
       Main Menu
     </button>
   </div>
 </body>
-<script>
+<script type="module">
   var fs = module.require('fs');
   const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
   const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
   const mainMenuScreen = document.getElementById("mainMenuScreen");
   const toolTipButtons = document.getElementsByClassName("toolTipButton");
   const spellBox = document.getElementsByClassName("spellBox")[0];
-  var componentList = [];
+  var componentList = []; //Components should use componentList.push(constructor); when being made
 
   readJSONDirectory("data/components");
 
-  class spellComponent {
-    constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier){
-      this.name = name;
-      this.type = type;
-      this.description = description;
-      this.image = image;
-      this.primaryCost = primaryCost;
-      this.primaryType = primaryType;
-      this.secondaryCost = secondaryCost;
-      this.secondaryType = secondaryType;
-      this.energyCost = energyCost;
-      this.potencyModifier = potencyModifier;
+  import { spellComponent } from "./spellComponent.js";
+  import { formComponent } from "./formComponent.js";
+  import { pathComponent } from "./pathComponent.js";
+  import { triggerComponent } from "./triggerComponent.js";
+  import { enhancementComponent } from "./enhancementComponent.js";
 
-      this.buildComponentVisuals();
-      assignToolTip(this.toolTipButtonElement);
-      componentList.push(this);
-    }
-
-    buildComponentVisuals(){
-      this.#createEmptyElements();
-      this.#assignElementClasses();
-      this.#assignElementIds();
-      this.#assignImage();
-      this.#relateElements();
-      this.fillInnerHTML();
-      this.#colorizeText();
-    }
-    #createEmptyElements(){
-      this.toolTipButtonElement = document.createElement("div");
-      this.toolTipElement = document.createElement("div");
-      this.spellTitleElement = document.createElement("div");
-      this.spellTypeElement = document.createElement("div");
-      this.spellDescriptionElement = document.createElement("div");
-      this.componentElement = document.createElement("span");
-      this.imageElement = document.createElement("img");
-      this.statTableElement = document.createElement("table");
-      this.visRowElement = document.createElement("tr");
-      this.primaryCellElement = document.createElement("td");
-      this.secondaryCellElement = document.createElement("td");
-      this.energyCellElement = document.createElement("td");
-      this.modifierRowElement = document.createElement("tr");
-      this.potencyCellElement = document.createElement("td");
-    }
-    #assignElementClasses(){
-      this.toolTipButtonElement.className = "toolTipButton";
-      this.toolTipElement.className = "toolTip";
-      this.spellTitleElement.className = "spellTitle";
-      this.spellTypeElement.className = "spellType";
-      this.spellDescriptionElement.className = "spellDescription";
-      this.componentElement.className = "spellComponent";
-      this.statTableElement.className = "componentStatTable";
-      this.visRowElement.className = "componentStatRow";
-      this.primaryCellElement.className = "componentStatCell";
-      this.secondaryCellElement.className = "componentStatCell";
-      this.energyCellElement.className = "componentStatCell";
-      this.modifierRowElement.className = "componentStatRow";
-      this.potencyCellElement.className = "componentStatCell";
-    }
-    #assignElementIds(){
-      this.toolTipButtonElement.id = "spellComponent" + this.name;
-    }
-    #relateElements(){
-      spellBox.appendChild(this.toolTipButtonElement);
-      this.toolTipButtonElement.appendChild(this.componentElement);
-      this.toolTipButtonElement.appendChild(this.toolTipElement);
-      this.toolTipElement.appendChild(this.spellTitleElement);
-      this.toolTipElement.appendChild(this.spellTypeElement);
-      this.toolTipElement.appendChild(this.spellDescriptionElement);
-      this.toolTipElement.appendChild(this.statTableElement);
-      this.statTableElement.appendChild(this.visRowElement);
-      this.visRowElement.appendChild(this.primaryCellElement);
-      this.visRowElement.appendChild(this.secondaryCellElement);
-      this.visRowElement.appendChild(this.energyCellElement);
-      this.statTableElement.appendChild(this.modifierRowElement);
-      this.modifierRowElement.appendChild(this.potencyCellElement);
-      this.componentElement.appendChild(this.imageElement);
-    }
-    #assignImage() {
-      this.imageElement.src = this.image;
-    }
-    fillInnerHTML() {
-      this.spellTitleElement.innerHTML = this.name;
-      this.spellTypeElement.innerHTML = this.type;
-      this.spellDescriptionElement.innerHTML = this.description;
-
-      this.#fillStatTable();
-    }
-    #fillStatTable(){
-      this.primaryCellElement.innerHTML = this.formattedDataCell(this.primaryCost, this.primaryType);
-      this.secondaryCellElement.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
-      this.energyCellElement.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
-
-      this.potencyCellElement.innerHTML = this.formattedDataCell(this.potencyModifier, "Potency");
-    }
-    #colorizeText(){
-      this.spellTypeElement.style.color = this.getTypeColor();
-    }
-
-    formattedDataCell(num, descriptor){
-      if (this.type == "Void"){
-        if (descriptor == "Energy"){
-          return "Nullified " + descriptor;
-        }else {
-        return "Inverted " + descriptor;
-        }
-      }else{
-        return this.getSign(num) + " " + descriptor;
-      }
-    }
-
-    getSign(num){
-      if (num < 0){
-        return num; // negative numbers already have the "-" character
-      } else{
-        return "+" + num;
-      }
-    }
-
-    getTypeColor(){
-      switch(this.type){
-        case "Void":
-          return "#8A2BE2";
-        case "Form":
-          return "#3CB371";
-        case "Path":
-          return "#DAA520";
-        case "Purpose":
-          return "#A0AECD";
-        case "Enhancement":
-          return "#6495ED";
-        case "Refund":
-          return "#BC8F8F";
-        case "Trigger":
-          return "#FA8072";
-        default:
-          return "#FFFFF0";
-      }
-    }
-  }
-  class formComponent extends spellComponent{
-    constructor(name, description, formDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, size){
-      super(name, "Form", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
-      this.formDescription = formDescription;
-      this.size = size;
-      this.buildFormVisuals();
-    }
-
-    buildFormVisuals(){
-      this.#createEmptyElements();
-      this.#assignElementClasses();
-      this.#relateElements();
-      this.#fillInnerHTML();
-    }
-    #createEmptyElements(){
-      this.sizeCellElement = document.createElement("td");
-    }
-    #assignElementClasses(){
-      this.sizeCellElement.className = "componentStatCell";
-    }
-    #relateElements(){
-      this.modifierRowElement.appendChild(this.sizeCellElement);
-    }
-    #fillInnerHTML(){
-      this.sizeCellElement.innerHTML = "Size: " + this.size;
-    }
-  }
-
-  class pathComponent extends spellComponent{
-    constructor(name, description, pathDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, range, lifetime){
-      super(name, "Path", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
-      this.pathDescription = pathDescription;
-      this.range = range;
-      this.lifetime = lifetime;
-      this.buildPathVisuals();
-    }
-
-    buildPathVisuals(){
-      this.#createEmptyElements();
-      this.#assignElementClasses();
-      this.#relateElements();
-      this.#fillInnerHTML();
-    }
-    #createEmptyElements(){
-      this.rangeCellElement = document.createElement("td");
-      this.lifetimeCellElement = document.createElement("td");
-    }
-    #assignElementClasses(){
-      this.rangeCellElement.className = "componentStatCell";
-      this.lifetimeCellElement.className = "componentStatCell";
-    }
-    #relateElements(){
-      this.modifierRowElement.appendChild(this.rangeCellElement);
-      this.modifierRowElement.appendChild(this.lifetimeCellElement);
-    }
-    #fillInnerHTML(){
-      this.rangeCellElement.innerHTML = "Range: ~" + this.range;
-      this.lifetimeCellElement.innerHTML = "Proj. Life: " + this.timeFormat(this.lifetime);
-    }
-
-    timeFormat(seconds){
-      if (seconds == 3600){
-        return "1 hour";
-      }
-      else if (seconds / 3600 > 1){
-        return this.roundTo2(seconds / 3600) + " hours";
-      }
-      else if (seconds == 60){
-        return "1 minute";
-      }
-      else if (seconds / 60 > 1){
-        return this.roundTo2(seconds / 60) + " minutes";
-      }
-      else if (seconds == 1){
-        return "1 second";
-      }else{
-        return seconds + " seconds";
-      }
-    }
-
-    roundTo2(num){
-      return Math.round(num * 100) / 100;
-    }
-  }
-
-  class triggerComponent extends spellComponent{
-    constructor(name, description, triggerDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier){
-      super(name, "Trigger", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
-      this.triggerDescription = triggerDescription;
-    }
-  }
-
-  class enhancementComponent extends spellComponent{
-    constructor(name, description, enhancementDescription, image, primaryCost, secondaryCost, energyCost, enhancementType, enhancementModifier, enhancementMultiplier, showStats){
-      super(name, "Enhancement", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, 0);
-      this.enhancementDescription = enhancementDescription;
-      this.enhancementType = enhancementType;
-      this.enhancementModifier = enhancementModifier;
-      this.enhancementMultiplier = enhancementMultiplier;
-      this.showStats = showStats
-      if (this.showStats){
-        this.buildEnhancementVisuals();
-      }
-    }
-
-    buildEnhancementVisuals(){
-      this.#createEmptyElements();
-      this.#assignElementClasses();
-      this.#relateElements();
-      this.#fillInnerHTML();
-    }
-    #createEmptyElements(){
-      this.enhancementCellElement = document.createElement("td");
-    }
-    #assignElementClasses(){
-      this.enhancementCellElement.className = "componentStatCell";
-    }
-    #relateElements(){
-      this.modifierRowElement.appendChild(this.enhancementCellElement);
-    }
-    #fillInnerHTML(){
-      var formattedEnhancementCell = this.enhancementType + ": " + this.getSign(this.enhancementModifier);
-      if (this.enhancementMultiplier != 1){
-        formattedEnhancementCell += " (" + this.enhancementMultiplier + "x)"
-      }
-      this.enhancementCellElement.innerHTML = formattedEnhancementCell;
-    }
-  }
-
-  function mainMenuSpellsButtonPress(){
+  function mainMenuSpellsButtonPress() {
     hideMainMenu();
   }
 
-  function mainMenuMartialsButtonPress(){
+  function mainMenuMartialsButtonPress() {
     hideMainMenu();
   }
 
-  function hideMainMenu(){
+  function hideMainMenu() {
     mainMenuSpellsButton.disabled = true;
     mainMenuMartialsButton.disabled = true;
     mainMenuScreen.style.display = "none";
   }
 
-  function unhideMainMenu(){
+  function unhideMainMenu() {
     mainMenuScreen.style.display = "flex";
     mainMenuSpellsButton.disabled = false;
     mainMenuMartialsButton.disabled = false;
   }
-  
+
   // for (index = 0; index < toolTipButtons.length; index++){
   //   assignToolTips(toolTipButtons[index]);
   // }
 
-  function assignToolTip(toolTipButton){
-    toolTipButton.addEventListener('mousemove', function(event){
-      updateToolTipPosition(event, toolTipButton)}
-      );
+  function assignToolTip(toolTipButton) {
+    toolTipButton.addEventListener('mousemove', function (event) {
+      updateToolTipPosition(event, toolTipButton)
+    }
+    );
   }
-  
-  function updateToolTipPosition(mouseEvent, toolTipButton){
+
+  function updateToolTipPosition(mouseEvent, toolTipButton) {
     const toolTip = toolTipButton.getElementsByClassName("toolTip")[0];
     const clientX = mouseEvent.clientX;
     const clientY = mouseEvent.clientY;
@@ -344,34 +85,35 @@
     const toolTipWidth = toolTip.offsetWidth;
     const toolTipHeight = toolTip.offsetHeight;
 
-    if (clientX + toolTipWidth + 18 > windowWidth){
+    if (clientX + toolTipWidth + 18 > windowWidth) {
       toolTip.style.left = (windowWidth - toolTipWidth) + "px";
-    }else{
+    } else {
       toolTip.style.left = clientX + 18 + "px";
     }
 
-    if (clientY + toolTipHeight + 12 > windowHeight){
+    if (clientY + toolTipHeight + 12 > windowHeight) {
       toolTip.style.top = (windowHeight - toolTipHeight) + "px";
-    }else{
+    } else {
       toolTip.style.top = clientY + 12 + "px";
     }
   }
 
-  function readJSONDirectory(dirPath){
+  function readJSONDirectory(dirPath) {
     fs.readdirSync(dirPath).forEach(file => {
       fetchRawJSON(dirPath + "/" + file);
     });
   }
 
-  function fetchRawJSON(fileName){
+  function fetchRawJSON(fileName) {
     fetch(fileName)
       .then(response => response.json())
       .then(jsonResponse => {
-        convertJSONToSpellComponent(jsonResponse)});
+        convertJSONToSpellComponent(jsonResponse)
+      });
   }
 
-  function convertJSONToSpellComponent(json){
-    switch (json.type){
+  function convertJSONToSpellComponent(json) {
+    switch (json.type) {
       case "Form":
         createFormComponentFromJSON(json);
         return;
@@ -393,7 +135,7 @@
     }
   }
 
-  function createFormComponentFromJSON(json){
+  function createFormComponentFromJSON(json) {
     new formComponent(
       json.name,
       json.description,
@@ -407,7 +149,7 @@
     );
   }
 
-  function createPathComponentFromJSON(json){
+  function createPathComponentFromJSON(json) {
     new pathComponent(
       json.name,
       json.description,
@@ -422,7 +164,7 @@
     );
   }
 
-  function createTriggerComponentFromJSON(json){
+  function createTriggerComponentFromJSON(json) {
     new triggerComponent(
       json.name,
       json.description,
@@ -435,7 +177,7 @@
     );
   }
 
-  function createEnhancementComponentFromJSON(json){
+  function createEnhancementComponentFromJSON(json) {
     new enhancementComponent(
       json.name,
       json.description,
@@ -451,7 +193,7 @@
     );
   }
 
-  function createVoidComponentFromJSON(json){
+  function createVoidComponentFromJSON(json) {
     new spellComponent(
       json.name,
       json.type,
