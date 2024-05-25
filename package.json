@@ -2,7 +2,7 @@
   "name": "spell-builder",
   "version": "0.1.0",
   "description": "\"GUI for building spells for a ttrpg campaign\"",
-  "main": "main.js",
+  "main": "run.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"

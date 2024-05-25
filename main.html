@@ -7,14 +7,14 @@
 <body>
   <div class="mainMenuScreen" id="mainMenuScreen">
     <span class="mainMenuButtons">
-      <button class="mainMenuSpellsButton" onclick="mainMenuSpellsButtonPress()" id="mainMenuSpellsButton">
+      <button class="mainMenuSpellsButton" id="mainMenuSpellsButton">
         Spell Workbench</button>
-      <button class="mainMenuMartialsButton" onclick="mainMenuMartialsButtonPress()" id="mainMenuMartialsButton">
+      <button class="mainMenuMartialsButton" id="mainMenuMartialsButton">
         Martial Arts</button>
     </span>
   </div>
 
-  <span class="spellBox">
+  <span class="spellBox" id="spellBox">
   </span>
 
   <span class="wandBox">
@@ -23,188 +23,9 @@
   </span>
 
   <div class="bottomToolBar">
-    <button class="bottomToolBarButton" onclick="unhideMainMenu()">
+    <button class="bottomToolBarButton" id="mainMenuButton">
       Main Menu
     </button>
   </div>
 </body>
-<script type="module">
-  var fs = module.require('fs');
-  const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
-  const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
-  const mainMenuScreen = document.getElementById("mainMenuScreen");
-  const toolTipButtons = document.getElementsByClassName("toolTipButton");
-  const spellBox = document.getElementsByClassName("spellBox")[0];
-  var componentList = []; //Components should use componentList.push(constructor); when being made
-
-  readJSONDirectory("data/components");
-
-  import { spellComponent } from "./src/spellComponent.js";
-  import { formComponent } from "./src/formComponent.js";
-  import { pathComponent } from "./src/pathComponent.js";
-  import { triggerComponent } from "./src/triggerComponent.js";
-  import { enhancementComponent } from "./src/enhancementComponent.js";
-
-  function mainMenuSpellsButtonPress() {
-    hideMainMenu();
-  }
-
-  function mainMenuMartialsButtonPress() {
-    hideMainMenu();
-  }
-
-  function hideMainMenu() {
-    mainMenuSpellsButton.disabled = true;
-    mainMenuMartialsButton.disabled = true;
-    mainMenuScreen.style.display = "none";
-  }
-
-  function unhideMainMenu() {
-    mainMenuScreen.style.display = "flex";
-    mainMenuSpellsButton.disabled = false;
-    mainMenuMartialsButton.disabled = false;
-  }
-
-  // for (index = 0; index < toolTipButtons.length; index++){
-  //   assignToolTips(toolTipButtons[index]);
-  // }
-
-  function assignToolTip(toolTipButton) {
-    toolTipButton.addEventListener('mousemove', function (event) {
-      updateToolTipPosition(event, toolTipButton)
-    }
-    );
-  }
-
-  function updateToolTipPosition(mouseEvent, toolTipButton) {
-    const toolTip = toolTipButton.getElementsByClassName("toolTip")[0];
-    const clientX = mouseEvent.clientX;
-    const clientY = mouseEvent.clientY;
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const toolTipWidth = toolTip.offsetWidth;
-    const toolTipHeight = toolTip.offsetHeight;
-
-    if (clientX + toolTipWidth + 18 > windowWidth) {
-      toolTip.style.left = (windowWidth - toolTipWidth) + "px";
-    } else {
-      toolTip.style.left = clientX + 18 + "px";
-    }
-
-    if (clientY + toolTipHeight + 12 > windowHeight) {
-      toolTip.style.top = (windowHeight - toolTipHeight) + "px";
-    } else {
-      toolTip.style.top = clientY + 12 + "px";
-    }
-  }
-
-  function readJSONDirectory(dirPath) {
-    fs.readdirSync(dirPath).forEach(file => {
-      fetchRawJSON(dirPath + "/" + file);
-    });
-  }
-
-  function fetchRawJSON(fileName) {
-    fetch(fileName)
-      .then(response => response.json())
-      .then(jsonResponse => {
-        convertJSONToSpellComponent(jsonResponse)
-      });
-  }
-
-  function convertJSONToSpellComponent(json) {
-    switch (json.type) {
-      case "Form":
-        createFormComponentFromJSON(json);
-        return;
-      case "Path":
-        createPathComponentFromJSON(json);
-        return;
-      case "Trigger":
-        createTriggerComponentFromJSON(json);
-        return;
-      case "Enhancement":
-        createEnhancementComponentFromJSON(json);
-        return;
-      case "Purpose":
-        createPurposeComponentFromJSON(json);
-        return;
-      default:
-        createVoidComponentFromJSON(json);
-        return;
-    }
-  }
-
-  function createFormComponentFromJSON(json) {
-    new formComponent(
-      json.name,
-      json.description,
-      json.formDescription,
-      json.image,
-      json.costs.primary,
-      json.costs.secondary,
-      json.costs.energy,
-      json.potency,
-      json.size
-    );
-  }
-
-  function createPathComponentFromJSON(json) {
-    new pathComponent(
-      json.name,
-      json.description,
-      json.pathDescription,
-      json.image,
-      json.costs.primary,
-      json.costs.secondary,
-      json.costs.energy,
-      json.potency,
-      json.range,
-      json.lifetime
-    );
-  }
-
-  function createTriggerComponentFromJSON(json) {
-    new triggerComponent(
-      json.name,
-      json.description,
-      json.triggerDescription,
-      json.image,
-      json.costs.primary,
-      json.costs.secondary,
-      json.costs.energy,
-      json.potency
-    );
-  }
-
-  function createEnhancementComponentFromJSON(json) {
-    new enhancementComponent(
-      json.name,
-      json.description,
-      json.enhancementDescription,
-      json.image,
-      json.costs.primary,
-      json.costs.secondary,
-      json.costs.energy,
-      json.enhancement.type,
-      json.enhancement.modifier,
-      json.enhancement.multiplier,
-      json.enhancement.showStats
-    );
-  }
-
-  function createVoidComponentFromJSON(json) {
-    new spellComponent(
-      json.name,
-      json.type,
-      json.description,
-      json.image,
-      json.costs.primary,
-      json.vis.primary,
-      json.costs.secondary,
-      json.vis.secondary,
-      json.costs.energy,
-      json.potency
-    );
-  }
-</script>
+<script type="module" src="main.js"></script>
