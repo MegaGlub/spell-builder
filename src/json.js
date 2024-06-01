@@ -7,45 +7,43 @@ import { purposeComponent } from "./purposeComponent.js";
 import { enhancementComponent } from "./enhancementComponent.js";
 
 export function readJSONDirectory(dirPath) {
+    const freshComponents = [];
     fs.readdirSync(dirPath).forEach(file => {
-        console.log(dirPath + "/" + file);
-        fetchRawJSON(dirPath + "/" + file);
+        freshComponents.push(fetchRawJSON(dirPath + "/" + file));
     });
+    console.log(freshComponents);
+    return freshComponents;
 }
 
 function fetchRawJSON(fileName) {
     fetch(fileName)
         .then(response => response.json())
         .then(jsonResponse => {
-            convertJSONToSpellComponent(jsonResponse)
+            return convertJSONToSpellComponent(jsonResponse)
         });
 }
 
 function convertJSONToSpellComponent(json) {
     switch (json.type) {
         case "Form":
-            createFormComponentFromJSON(json);
-            return;
+            const result = createFormComponentFromJSON(json);
+            console.log(result);
+            return result;
         case "Path":
-            createPathComponentFromJSON(json);
-            return;
+            return createPathComponentFromJSON(json);
         case "Trigger":
-            createTriggerComponentFromJSON(json);
-            return;
+            return createTriggerComponentFromJSON(json);
         case "Enhancement":
-            createEnhancementComponentFromJSON(json);
-            return;
+            return createEnhancementComponentFromJSON(json);
         case "Purpose":
-            createPurposeComponentFromJSON(json);
-            return;
+            return createPurposeComponentFromJSON(json);
         default:
-            createVoidComponentFromJSON(json);
-            return;
+            return createMiscComponentFromJSON(json);
     }
 }
 
 function createFormComponentFromJSON(json) {
-    return new formComponent(
+    var result = new formComponent(
         json.name,
         json.description,
         json.formDescription,
@@ -56,6 +54,8 @@ function createFormComponentFromJSON(json) {
         json.potency,
         json.size
     );
+    console.log(result);
+    return result;
 }
 
 function createPathComponentFromJSON(json) {
@@ -117,7 +117,7 @@ function createPurposeComponentFromJSON(json) {
     );
 }
 
-function createVoidComponentFromJSON(json) {
+function createMiscComponentFromJSON(json) {
     return new spellComponent(
         json.name,
         json.type,

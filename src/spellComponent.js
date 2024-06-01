@@ -154,4 +154,8 @@ export class spellComponent {
                 return "#FFFFF0";
         }
     }
+
+    valueOf() {
+        return this.primaryCost + this.secondaryCost + (2 * this.energyCost);
+    }
 }
