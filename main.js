@@ -1,9 +1,8 @@
-var fs = module.require('fs');
-
 import { spellComponent } from "./src/spellComponent.js";
 import { formComponent } from "./src/formComponent.js";
 import { pathComponent } from "./src/pathComponent.js";
 import { triggerComponent } from "./src/triggerComponent.js";
+import { purposeComponent } from "./src/purposeComponent.js";
 import { enhancementComponent } from "./src/enhancementComponent.js";
 import { readJSONDirectory } from "./src/json.js";
 
@@ -24,8 +23,16 @@ assignClickableButtonByID("mainMenuSpellsButton", mainMenuSpellsButtonPress);
 assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress);
 assignClickableButtonByID("mainMenuButton", unhideMainMenu);
 
+buildComponentsFromFiles();
 
-readJSONDirectory("data/components");
+function buildComponentsFromFiles(){
+    const root = "data/components/";
+    const leaves = ["enhancements", "forms", "misc", "paths", "purposes", "triggers"];
+    leaves.forEach(leaf => {
+        console.log(root + leaf);
+        readJSONDirectory(root + leaf);
+    });
+}
 
 function assignClickableButtonByID(elementId, funct){
     const element = document.getElementById(elementId);

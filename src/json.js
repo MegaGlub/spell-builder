@@ -1,5 +1,14 @@
+var fs = module.require('fs');
+import { spellComponent } from "./spellComponent.js";
+import { formComponent } from "./formComponent.js";
+import { pathComponent } from "./pathComponent.js";
+import { triggerComponent } from "./triggerComponent.js";
+import { purposeComponent } from "./purposeComponent.js";
+import { enhancementComponent } from "./enhancementComponent.js";
+
 export function readJSONDirectory(dirPath) {
     fs.readdirSync(dirPath).forEach(file => {
+        console.log(dirPath + "/" + file);
         fetchRawJSON(dirPath + "/" + file);
     });
 }
