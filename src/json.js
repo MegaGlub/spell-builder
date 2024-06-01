@@ -1,5 +1,3 @@
-
-
 export function readJSONDirectory(dirPath) {
     fs.readdirSync(dirPath).forEach(file => {
         fetchRawJSON(dirPath + "/" + file);
@@ -28,9 +26,9 @@ function convertJSONToSpellComponent(json) {
         case "Enhancement":
             createEnhancementComponentFromJSON(json);
             return;
-        // case "Purpose":
-        //     createPurposeComponentFromJSON(json);
-        //     return;
+        case "Purpose":
+            createPurposeComponentFromJSON(json);
+            return;
         default:
             createVoidComponentFromJSON(json);
             return;
@@ -92,6 +90,21 @@ function createEnhancementComponentFromJSON(json) {
         json.enhancement.modifier,
         json.enhancement.multiplier,
         json.enhancement.showStats
+    );
+}
+
+function createPurposeComponentFromJSON(json) {
+    return new purposeComponent(
+        json.name,
+        json.description,
+        json.purposeDescription,
+        json.image,
+        json.costs.primary,
+        json.types.primary,
+        json.costs.secondary,
+        json.types.secondary,
+        json.costs.energy,
+        json.purpose.target
     );
 }
 
