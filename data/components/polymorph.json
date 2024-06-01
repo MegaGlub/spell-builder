@@ -1,0 +1,19 @@
+{
+    "type": "Purpose",
+    "name": "Polymorph",
+    "description": "Assume the form of a creature of your choice.",
+    "purposeDescription": "energy that converts the targeted creature into a new creature of your choice for a time. The target maintains their size, mass, intelligence, and casting ability. ",
+    "image": "images/purposes/purpose-frame.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 0,
+        "energy": 1
+    },
+    "types": {
+        "primary": "Nature",
+        "secondary": ""
+    },
+    "purpose": {
+        "target": "Living Beings"
+    }
+}
