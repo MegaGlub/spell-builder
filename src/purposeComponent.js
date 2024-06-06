@@ -1,8 +1,8 @@
 import { spellComponent } from "./spellComponent.js";
 export class purposeComponent extends spellComponent { //This feels incomplete, but I'm pretty sure it's done.
-    constructor(name, description, purposeDescription, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, targetType){
+    constructor(name, description, purposeDescriptions, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, targetType){
         super(name, "Purpose", description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, 0);
-        this.purposeDescription = purposeDescription;
+        this.purposeDescription = purposeDescriptions;
         this.targetType = targetType;
         this.buildPurposeVisuals();
     }
