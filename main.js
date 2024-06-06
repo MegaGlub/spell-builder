@@ -6,6 +6,8 @@ import { purposeComponent } from "./src/purposeComponent.js";
 import { enhancementComponent } from "./src/enhancementComponent.js";
 import { readJSONDirectory } from "./src/json.js";
 
+const loadingScreen = document.getElementById("loadingScreen");
+const loadingLog = document.getElementById("loadingLog");
 const mainMenuScreen = document.getElementById("mainMenuScreen");
 const spellBox = document.getElementById("spellBox");
 const componentList = []; //Components should use componentList.push(constructor); when being made
@@ -25,14 +27,22 @@ assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress)
 assignClickableButtonByID("mainMenuButton", unhideMainMenu);
 assignClickableButtonByID("logButton", showLog);
 
-buildComponentsFromFiles();
-drawAll(componentList);
+//buildComponentsFromFiles();
+//drawAll(componentList);
 
-function buildComponentsFromFiles(){
+logText("Trying to read spell components...");
+buildComponentsFromFiles();
+
+logText("Drawing spell components...");
+// drawAll(componentList);
+
+finishLoading();
+
+function buildComponentsFromFiles() {
     const root = "data/components/";
     const leaves = ["enhancements", "forms", "misc", "paths", "purposes", "triggers"];
     leaves.forEach(leaf => {
-        console.log(root + leaf);
+        logText("Exploring: " + root + leaf);
         const freshComponents = readJSONDirectory(root + leaf);
         freshComponents.forEach(component => {
             console.log(component);
@@ -41,14 +51,14 @@ function buildComponentsFromFiles(){
     });
 }
 
-function drawAll(components){
+function drawAll(components) {
     components.forEach(component => {
         console.log(component);
         component.drawElement(spellBox);
     });
 }
 
-function assignClickableButtonByID(elementId, funct){
+function assignClickableButtonByID(elementId, funct) {
     const element = document.getElementById(elementId);
     element.addEventListener("click", funct);
 }
@@ -76,4 +86,14 @@ function unhideMainMenu() {
 function showLog() {
     console.log("Show log");
     //to-do, after modals
+}
+
+function logText(text) {
+    console.log(text);
+    loadingLog.innerHTML = text;
+    //the log at the bottom should also receive the text
+}
+
+function finishLoading() {
+    loadingScreen.style.display = "none";
 }

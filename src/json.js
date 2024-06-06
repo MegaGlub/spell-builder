@@ -9,26 +9,29 @@ import { enhancementComponent } from "./enhancementComponent.js";
 export function readJSONDirectory(dirPath) {
     const freshComponents = [];
     fs.readdirSync(dirPath).forEach(file => {
-        freshComponents.push(fetchRawJSON(dirPath + "/" + file));
+        const component = fetchRawJSON(dirPath + "/" + file);
+        console.log(component);
+        freshComponents.push(component);
     });
-    console.log(freshComponents);
+    //console.log(freshComponents);
     return freshComponents;
 }
 
 function fetchRawJSON(fileName) {
-    fetch(fileName)
+    fetch(fileName) //asynchronous bastard, ruining my perfectly synchronous code
         .then(response => response.json())
         .then(jsonResponse => {
-            return convertJSONToSpellComponent(jsonResponse)
+            convertJSONToSpellComponent(jsonResponse);
+            // const component = convertJSONToSpellComponent(jsonResponse);
+            // console.log(component);
+            // return component;
         });
 }
 
 function convertJSONToSpellComponent(json) {
     switch (json.type) {
         case "Form":
-            const result = createFormComponentFromJSON(json);
-            console.log(result);
-            return result;
+            return createFormComponentFromJSON(json);
         case "Path":
             return createPathComponentFromJSON(json);
         case "Trigger":
@@ -43,7 +46,7 @@ function convertJSONToSpellComponent(json) {
 }
 
 function createFormComponentFromJSON(json) {
-    var result = new formComponent(
+    return new formComponent(
         json.name,
         json.description,
         json.formDescription,
@@ -54,8 +57,6 @@ function createFormComponentFromJSON(json) {
         json.potency,
         json.size
     );
-    console.log(result);
-    return result;
 }
 
 function createPathComponentFromJSON(json) {
