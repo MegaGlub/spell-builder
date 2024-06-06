@@ -45,7 +45,7 @@ function buildComponentsFromFiles() {
         logText("Exploring: " + root + leaf);
         const freshComponents = readJSONDirectory(root + leaf);
         freshComponents.forEach(component => {
-            console.log(component);
+            //console.log(component);
             componentList.push(component);
         });
     });

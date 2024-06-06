@@ -21,10 +21,10 @@ function fetchRawJSON(fileName) {
     fetch(fileName) //asynchronous bastard, ruining my perfectly synchronous code
         .then(response => response.json())
         .then(jsonResponse => {
-            convertJSONToSpellComponent(jsonResponse);
-            // const component = convertJSONToSpellComponent(jsonResponse);
-            // console.log(component);
-            // return component;
+            // return convertJSONToSpellComponent(jsonResponse);
+            const component = convertJSONToSpellComponent(jsonResponse);
+            console.log(component);
+            return component;
         });
 }
 
