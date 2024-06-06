@@ -6,24 +6,23 @@ import { triggerComponent } from "./triggerComponent.js";
 import { purposeComponent } from "./purposeComponent.js";
 import { enhancementComponent } from "./enhancementComponent.js";
 
-export function readJSONDirectory(dirPath) {
+export async function readJSONDirectory(dirPath) {
     const freshComponents = [];
-    fs.readdirSync(dirPath).forEach(file => {
-        const component = fetchRawJSON(dirPath + "/" + file);
-        console.log(component);
+    const files = fs.readdirSync(dirPath);
+    for (const file of files){
+        const component = await fetchRawJSON(dirPath + "/" + file);
+        // console.log(component);
         freshComponents.push(component);
-    });
-    //console.log(freshComponents);
+    };
     return freshComponents;
 }
 
-function fetchRawJSON(fileName) {
-    fetch(fileName) //asynchronous bastard, ruining my perfectly synchronous code
+async function fetchRawJSON(fileName) {
+    return fetch(fileName) //asynchronous bastard, ruining my perfectly synchronous code
         .then(response => response.json())
         .then(jsonResponse => {
-            // return convertJSONToSpellComponent(jsonResponse);
             const component = convertJSONToSpellComponent(jsonResponse);
-            console.log(component);
+            // console.log(component);
             return component;
         });
 }

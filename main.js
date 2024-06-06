@@ -27,35 +27,34 @@ assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress)
 assignClickableButtonByID("mainMenuButton", unhideMainMenu);
 assignClickableButtonByID("logButton", showLog);
 
-//buildComponentsFromFiles();
-//drawAll(componentList);
 
 logText("Trying to read spell components...");
-buildComponentsFromFiles();
+await buildComponentsFromFiles();
+
+logText("Sorting spell components...");
 
 logText("Drawing spell components...");
-// drawAll(componentList);
+drawAll(componentList);
 
+logText("Complete!");
 finishLoading();
 
-function buildComponentsFromFiles() {
+async function buildComponentsFromFiles() {
     const root = "data/components/";
     const leaves = ["enhancements", "forms", "misc", "paths", "purposes", "triggers"];
-    leaves.forEach(leaf => {
+    for (const leaf of leaves){
         logText("Exploring: " + root + leaf);
-        const freshComponents = readJSONDirectory(root + leaf);
-        freshComponents.forEach(component => {
-            //console.log(component);
+        const freshComponents = await readJSONDirectory(root + leaf);
+        for (const component of freshComponents){
             componentList.push(component);
-        });
-    });
+        };
+    };
 }
 
 function drawAll(components) {
-    components.forEach(component => {
-        console.log(component);
+    for (const component of components){
         component.drawElement(spellBox);
-    });
+    } 
 }
 
 function assignClickableButtonByID(elementId, funct) {

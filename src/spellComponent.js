@@ -104,6 +104,7 @@ export class spellComponent {
     }
 
     drawElement(parentElement) {
+        console.log("Drawn!");
         parentElement.appendChild(this.toolTipButtonElement);
     }
 
