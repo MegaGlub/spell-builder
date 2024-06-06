@@ -10,9 +10,8 @@ const loadingScreen = document.getElementById("loadingScreen");
 const loadingLog = document.getElementById("loadingLog");
 const mainMenuScreen = document.getElementById("mainMenuScreen");
 const spellBox = document.getElementById("spellBox");
-const componentList = []; //Components should use componentList.push(constructor); when being made
+const componentList = [];
 
-//push components into the list when constructed. For fuck's sake i hate async
 //sort the componentList by some attribute (add configuration for it?)
 //find somewhere to call spellComponent's drawElement()
 //work on the wand box
