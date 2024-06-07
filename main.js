@@ -1,9 +1,3 @@
-import { spellComponent } from "./src/spellComponent.js";
-import { formComponent } from "./src/formComponent.js";
-import { pathComponent } from "./src/pathComponent.js";
-import { triggerComponent } from "./src/triggerComponent.js";
-import { purposeComponent } from "./src/purposeComponent.js";
-import { enhancementComponent } from "./src/enhancementComponent.js";
 import { readJSONDirectory } from "./src/json.js";
 import { logText, showLog } from "./src/logging.js";
 
@@ -41,20 +35,20 @@ finishLoading();
 async function buildComponentsFromFiles() {
     const root = "data/components/";
     const leaves = ["enhancements", "forms", "misc", "paths", "purposes", "triggers"];
-    for (const leaf of leaves){
+    for (const leaf of leaves) {
         logText("Exploring: " + root + leaf);
         const freshComponents = await readJSONDirectory(root + leaf);
-        for (const component of freshComponents){
+        for (const component of freshComponents) {
             componentList.push(component);
         };
     };
 }
 
 function drawAll(components) {
-    for (const component of components){
+    for (const component of components) {
         logText("Drawing " + component.name + "...");
         component.drawElement(spellBox);
-    } 
+    }
 }
 
 function assignClickableButtonByID(elementId, funct) {
