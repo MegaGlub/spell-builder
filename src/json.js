@@ -11,7 +11,6 @@ export async function readJSONDirectory(dirPath) {
     const files = fs.readdirSync(dirPath);
     for (const file of files){
         const component = await fetchRawJSON(dirPath + "/" + file);
-        // console.log(component);
         freshComponents.push(component);
     };
     return freshComponents;
@@ -22,7 +21,6 @@ async function fetchRawJSON(fileName) {
         .then(response => response.json())
         .then(jsonResponse => {
             const component = convertJSONToSpellComponent(jsonResponse);
-            // console.log(component);
             return component;
         });
 }
