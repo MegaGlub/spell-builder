@@ -7,7 +7,6 @@ const mainMenuScreen = document.getElementById("mainMenuScreen");
 const spellBox = document.getElementById("spellBox");
 const componentList = [];
 
-//find somewhere to call spellComponent's drawElement()
 //work on the wand box
 //work on modals
 //work on the martial arts
