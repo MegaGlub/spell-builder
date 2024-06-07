@@ -5,12 +5,15 @@ import { pathComponent } from "./pathComponent.js";
 import { triggerComponent } from "./triggerComponent.js";
 import { purposeComponent } from "./purposeComponent.js";
 import { enhancementComponent } from "./enhancementComponent.js";
+import { logText } from "./logging.js";
 
 export async function readJSONDirectory(dirPath) {
     const freshComponents = [];
     const files = fs.readdirSync(dirPath);
     for (const file of files){
+        logText("Found " + file + "...");
         const component = await fetchRawJSON(dirPath + "/" + file);
+        logText("Constructed " + file + "!");
         freshComponents.push(component);
     };
     return freshComponents;

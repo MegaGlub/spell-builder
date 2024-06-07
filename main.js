@@ -5,9 +5,9 @@ import { triggerComponent } from "./src/triggerComponent.js";
 import { purposeComponent } from "./src/purposeComponent.js";
 import { enhancementComponent } from "./src/enhancementComponent.js";
 import { readJSONDirectory } from "./src/json.js";
+import { logText, showLog } from "./src/logging.js";
 
 const loadingScreen = document.getElementById("loadingScreen");
-const loadingLog = document.getElementById("loadingLog");
 const mainMenuScreen = document.getElementById("mainMenuScreen");
 const spellBox = document.getElementById("spellBox");
 const componentList = [];
@@ -52,6 +52,7 @@ async function buildComponentsFromFiles() {
 
 function drawAll(components) {
     for (const component of components){
+        logText("Drawing " + component.name + "...");
         component.drawElement(spellBox);
     } 
 }
@@ -79,17 +80,6 @@ function unhideMainMenu() {
     mainMenuScreen.style.display = "flex";
     mainMenuSpellsButton.disabled = false;
     mainMenuMartialsButton.disabled = false;
-}
-
-function showLog() {
-    console.log("Show log");
-    //to-do, after modals
-}
-
-function logText(text) {
-    console.log(text);
-    loadingLog.innerHTML = text;
-    //the log at the bottom should also receive the text
 }
 
 function finishLoading() {
