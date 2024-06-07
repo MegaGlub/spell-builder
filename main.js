@@ -9,7 +9,13 @@ const componentList = [];
 
 //work on the wand box
 //work on modals
+    //figure out how to make new wands
+    //how to fill wands
+    //build descriptions
+    //show errors with the wand
+//bake some cookies (or json files)
 //work on the martial arts
+//add more spellComponents
 
 const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
 const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
