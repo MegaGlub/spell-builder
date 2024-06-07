@@ -1,4 +1,5 @@
 import {assignToolTip} from "./toolTips.js";
+import {logText} from "./logging.js";
 export class spellComponent {
     constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier) {
         this.name = name;
@@ -155,7 +156,53 @@ export class spellComponent {
         }
     }
 
+    getTypeValue() {
+        switch (this.type) {
+            case "Void":
+                return 0;
+            case "Form":
+                return 100;
+            case "Path":
+                return 200;
+            case "Purpose":
+                return 300;
+            case "Enhancement":
+                return 400;
+            case "Refund":
+                return 500;
+            case "Trigger":
+                return 600;
+            default:
+                return 700;
+        }
+    }
+
     valueOf() {
         return this.primaryCost + this.secondaryCost + (2 * this.energyCost);
+    }
+
+    compareTo(component) {
+        var result = 0;
+        if (this.getTypeValue() > component.getTypeValue()){
+            logText(this.type + " is greater than " + component.type);
+            result += 100;
+        }else if (this.getTypeValue() < component.getTypeValue()){
+            logText(this.type + " is lesser than " + component.type);
+            result -= 100;
+        }
+
+        if (this.valueOf() > component.valueOf()){
+            result += 10;
+        }else if (this.valueOf() < component.valueOf()){
+            result -= 10;
+        }
+
+        if (this.name > component.name){
+            result += 1;
+        }else if (this.name < component.name){
+            result -= 1;
+        }
+        logText(result);
+        return result;
     }
 }

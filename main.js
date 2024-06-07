@@ -1,12 +1,12 @@
-import { readJSONDirectory } from "./src/json.js";
 import { logText, showLog } from "./src/logging.js";
+import { readJSONDirectory } from "./src/json.js";
+import { quickSort } from "./src/sorting.js";
 
 const loadingScreen = document.getElementById("loadingScreen");
 const mainMenuScreen = document.getElementById("mainMenuScreen");
 const spellBox = document.getElementById("spellBox");
 const componentList = [];
 
-//sort the componentList by some attribute (add configuration for it?)
 //find somewhere to call spellComponent's drawElement()
 //work on the wand box
 //work on modals
@@ -25,6 +25,7 @@ logText("Trying to read spell components...");
 await buildComponentsFromFiles();
 
 logText("Sorting spell components...");
+quickSort(componentList);
 
 logText("Drawing spell components...");
 drawAll(componentList);
