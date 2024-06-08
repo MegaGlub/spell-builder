@@ -177,22 +177,22 @@ export class spellComponent {
         }
     }
 
-    valueOf() {
+    costOf() {
         return this.primaryCost + this.secondaryCost + (2 * this.energyCost);
     }
 
     compareTo(component) {
         var result = 0;
-        
+
         if (this.getTypeValue() > component.getTypeValue()){
             result += 100;
         }else if (this.getTypeValue() < component.getTypeValue()){
             result -= 100;
         }
 
-        if (this.valueOf() > component.valueOf()){
+        if (this.costOf() > component.costOf()){
             result += 10;
-        }else if (this.valueOf() < component.valueOf()){
+        }else if (this.costOf() < component.costOf()){
             result -= 10;
         }
 
