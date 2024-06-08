@@ -13,7 +13,7 @@ export async function readJSONDirectory(dirPath) {
     for (const file of files){
         logText("Found " + file + "...");
         const component = await fetchRawJSON(dirPath + "/" + file);
-        logText("Constructed " + file + "!");
+        // logText("Constructed " + component.name + "!");
         freshComponents.push(component);
     };
     return freshComponents;

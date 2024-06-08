@@ -2,28 +2,37 @@ import { logText, showLog } from "./src/logging.js";
 import { readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
 
-const loadingScreen = document.getElementById("loadingScreen");
-const mainMenuScreen = document.getElementById("mainMenuScreen");
-const spellBox = document.getElementById("spellBox");
-const componentList = [];
-
 //work on the wand box
 //work on modals
-    //figure out how to make new wands
-    //how to fill wands
-    //build descriptions
-    //show errors with the wand
+//figure out how to make new wands
+//how to fill wands
+//build descriptions
+//show errors with the wand
 //bake some cookies (or json files)
 //work on the martial arts
 //add more spellComponents
 
+logText("--Starting...");
+
+logText("--Retrieving element IDs...");
+
+const loadingScreen = document.getElementById("loadingScreen");
+const mainMenuScreen = document.getElementById("mainMenuScreen");
+const spellBox = document.getElementById("spellBox");
 const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
 const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
+const modalBackground = document.getElementById("modalBackground");
+
+const componentList = [];
+
+logText("--Assigning buttons...");
 
 assignClickableButtonByID("mainMenuSpellsButton", mainMenuSpellsButtonPress);
 assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress);
 assignClickableButtonByID("mainMenuButton", unhideMainMenu);
 assignClickableButtonByID("logButton", showLog);
+assignClickableButtonByID("modalBackground", hideModal);
+assignClickableButtonByID("modalCloser", hideModal);
 
 logText("--Fetching cookies...");
 
@@ -85,4 +94,8 @@ function unhideMainMenu() {
 
 function finishLoading() {
     loadingScreen.style.display = "none";
+}
+
+function hideModal() {
+    modalBackground.style.display = "none";
 }

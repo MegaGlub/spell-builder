@@ -15,7 +15,7 @@ function quickSortRecursive(list, low, high) {
 
 function partition(list, low, high){
     let pivot = list[high];
-    logText("Pivot: " + pivot.name);
+    // logText("Pivot: " + pivot.name);
     let i = low - 1;
 
     for (let j = low; j <= high - 1; j++){

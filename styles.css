@@ -112,31 +112,41 @@ img{
     z-index: 51;
 }
 .modalBackground{
-    background-color: #00000066;
+    background-color: #00000099;
     display: none;
+    height: 100%;
     left: 0;
     overflow: auto;
     position: fixed;
     top: 0;
+    width: 100%;
     z-index: 150;
 }
 .modal{
     background-color: #808080;
-    border: 1em solid #000000;
-    margin: 15% auto;
-    padding: 4px;
-    width: 80%;
+    border: 0.25em solid #2F4F4F;
+    margin: 3% auto;
+    padding-bottom: 0.25em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.25em;
+    width: 60%;
 }
 .modalCloser{
     color: #000000;
-    float: right;
-    font-size: 4em;
+    font-size: 2em;
     font-weight: bold;
+    position: fixed;
+    right: 20%; /*Note that this value should change with modal width, to be half*/
 }
-.modalCloser:hover, .modalCloser:focus{
+.modalCloser:hover{
     color: #FFFFF0;
     cursor: pointer;
     text-decoration: none;
+}
+.modalContent{
+    color: #000000;
+    white-space: pre-wrap;
 }
 .spellComponent{
     display: inline;
