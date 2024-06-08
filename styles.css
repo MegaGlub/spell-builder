@@ -202,7 +202,19 @@ img{
     z-index: 12;
 }
 .wandSelector{
-
+    background-color: #2F4F4F;
+    display: flex;
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    top: 0;
+    width: calc(128px + 20px);
+}
+.wandIcon{
+    background-color: #333333;
+    display: block;
+    height: 64px;
+    width: 128px;
 }
 .bottomToolBar{
     background-color: #333333;

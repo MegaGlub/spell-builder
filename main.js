@@ -3,7 +3,6 @@ import { readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
 
 //work on the wand box
-//work on modals
 //figure out how to make new wands
 //how to fill wands
 //build descriptions
