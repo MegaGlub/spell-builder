@@ -207,8 +207,9 @@ img{
     height: 100%;
     left: 0;
     overflow: auto;
+    padding: 0.5em;
     top: 0;
-    width: calc(128px + 20px);
+    width: calc(1em + 128px + 20px);
 }
 .wandIcon{
     background-color: #333333;

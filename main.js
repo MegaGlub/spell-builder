@@ -22,6 +22,8 @@ const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
 const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
 const modalBackground = document.getElementById("modalBackground");
 
+
+
 const componentList = [];
 
 logText("--Assigning buttons...");
