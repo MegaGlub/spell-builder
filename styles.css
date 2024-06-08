@@ -91,9 +91,9 @@ img{
     /*background-color: #2F4F4F;*/
     cursor: pointer;
     display: inline-block;
-    height: 128px;
+    height: auto;
     margin: 16px;
-    width: 128px;
+    width: auto;
 }
 .toolTipButton:hover .toolTip{
     display: block;
@@ -204,6 +204,8 @@ img{
 .wandSelector{
     background-color: #2F4F4F;
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     height: 100%;
     left: 0;
     overflow: auto;
@@ -212,8 +214,7 @@ img{
     width: calc(1em + 128px + 20px);
 }
 .wandIcon{
-    background-color: #333333;
-    display: block;
+    display: inline;
     height: 64px;
     width: 128px;
 }
