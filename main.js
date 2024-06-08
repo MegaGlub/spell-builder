@@ -1,6 +1,7 @@
 import { logText, showLog } from "./src/logging.js";
 import { readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
+import { wand } from "./src/wand.js";
 
 //work on the wand box
 //figure out how to make new wands
@@ -21,8 +22,6 @@ const spellBox = document.getElementById("spellBox");
 const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
 const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
 const modalBackground = document.getElementById("modalBackground");
-
-
 
 const componentList = [];
 
@@ -48,6 +47,8 @@ drawAll(componentList);
 
 logText("--Complete!");
 finishLoading();
+
+const testWand = new wand("Eenis", "images/wands/wand-draft.png", 3);
 
 async function buildComponentsFromFiles() {
     const root = "data/components/";

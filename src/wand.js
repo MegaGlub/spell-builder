@@ -8,6 +8,7 @@ export class wand {
 
         this.buildWandVisuals();
         assignToolTip(this.toolTipButtonElement);
+        this.drawElement(document.getElementById("wandSelector"));
     }
 
     buildWandVisuals() {
@@ -16,6 +17,7 @@ export class wand {
         this.#assignElementIds();
         this.#assignImage();
         this.#relateElements();
+        this.#fillInnerHTML();
     }
 
     #createEmptyElements() {
@@ -40,5 +42,13 @@ export class wand {
     #relateElements() {
         this.toolTipButtonElement.appendChild(this.imageElement);
         this.toolTipButtonElement.appendChild(this.toolTipElement);
+    }
+
+    #fillInnerHTML(){
+        this.toolTipElement.innerHTML = this.name;
+    }
+
+    drawElement(parentElement) {
+        parentElement.appendChild(this.toolTipButtonElement);
     }
 }

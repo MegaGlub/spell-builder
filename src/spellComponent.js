@@ -108,13 +108,6 @@ export class spellComponent {
         parentElement.appendChild(this.toolTipButtonElement);
     }
 
-    assignToolTip(toolTipButton) {
-        toolTipButton.addEventListener('mousemove', function (event) {
-            updateToolTipPosition(event, toolTipButton)
-        }
-        );
-    }
-
     formattedDataCell(num, descriptor) {
         if (this.type == "Void") {
             if (descriptor == "Energy") {

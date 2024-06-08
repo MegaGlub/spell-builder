@@ -199,7 +199,7 @@ img{
     position: absolute;
     width: 100%;
     top: 40%;
-    z-index: 12;
+    z-index: -25;
 }
 .wandSelector{
     background-color: #2F4F4F;
