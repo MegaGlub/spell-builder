@@ -89,6 +89,7 @@ img{
 }
 .toolTipButton{
     /*background-color: #2F4F4F;*/
+    cursor: pointer;
     display: inline-block;
     height: 128px;
     margin: 16px;
@@ -109,6 +110,33 @@ img{
     top: 0;
     width: 512px;
     z-index: 51;
+}
+.modalBackground{
+    background-color: #00000066;
+    display: none;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    z-index: 150;
+}
+.modal{
+    background-color: #808080;
+    border: 1em solid #000000;
+    margin: 15% auto;
+    padding: 4px;
+    width: 80%;
+}
+.modalCloser{
+    color: #000000;
+    float: right;
+    font-size: 4em;
+    font-weight: bold;
+}
+.modalCloser:hover, .modalCloser:focus{
+    color: #FFFFF0;
+    cursor: pointer;
+    text-decoration: none;
 }
 .spellComponent{
     display: inline;
