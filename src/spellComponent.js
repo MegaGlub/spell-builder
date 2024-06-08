@@ -1,5 +1,5 @@
-import {assignToolTip} from "./toolTips.js";
-import {logText} from "./logging.js";
+import { logText } from "./logging.js";
+import { assignToolTip } from "./toolTips.js";
 export class spellComponent {
     constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier) {
         this.name = name;
@@ -184,21 +184,21 @@ export class spellComponent {
     compareTo(component) {
         var result = 0;
 
-        if (this.getTypeValue() > component.getTypeValue()){
+        if (this.getTypeValue() > component.getTypeValue()) {
             result += 100;
-        }else if (this.getTypeValue() < component.getTypeValue()){
+        } else if (this.getTypeValue() < component.getTypeValue()) {
             result -= 100;
         }
 
-        if (this.costOf() > component.costOf()){
+        if (this.costOf() > component.costOf()) {
             result += 10;
-        }else if (this.costOf() < component.costOf()){
+        } else if (this.costOf() < component.costOf()) {
             result -= 10;
         }
 
-        if (this.name > component.name){
+        if (this.name > component.name) {
             result += 1;
-        }else if (this.name < component.name){
+        } else if (this.name < component.name) {
             result -= 1;
         }
 
