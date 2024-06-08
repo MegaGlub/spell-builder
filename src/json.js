@@ -19,12 +19,11 @@ export async function readJSONDirectory(dirPath) {
     return freshComponents;
 }
 
-async function fetchRawJSON(fileName) {
+async function fetchRawJSON(fileName) { //Thanks Josh194 for helping me with async!
     return fetch(fileName) //asynchronous bastard, ruining my perfectly synchronous code
         .then(response => response.json())
         .then(jsonResponse => {
-            const component = convertJSONToSpellComponent(jsonResponse);
-            return component;
+            return convertJSONToSpellComponent(jsonResponse);
         });
 }
 
