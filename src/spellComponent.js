@@ -183,11 +183,10 @@ export class spellComponent {
 
     compareTo(component) {
         var result = 0;
+        
         if (this.getTypeValue() > component.getTypeValue()){
-            logText(this.type + " is greater than " + component.type);
             result += 100;
         }else if (this.getTypeValue() < component.getTypeValue()){
-            logText(this.type + " is lesser than " + component.type);
             result -= 100;
         }
 
@@ -202,7 +201,7 @@ export class spellComponent {
         }else if (this.name < component.name){
             result -= 1;
         }
-        logText(result);
+
         return result;
     }
 }

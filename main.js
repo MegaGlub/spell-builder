@@ -25,17 +25,18 @@ assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress)
 assignClickableButtonByID("mainMenuButton", unhideMainMenu);
 assignClickableButtonByID("logButton", showLog);
 
+logText("--Fetching cookies...");
 
-logText("Trying to read spell components...");
+logText("--Trying to read spell components...");
 await buildComponentsFromFiles();
 
-logText("Sorting spell components...");
+logText("--Sorting spell components...");
 quickSort(componentList);
 
-logText("Drawing spell components...");
+logText("--Drawing spell components...");
 drawAll(componentList);
 
-logText("Complete!");
+logText("--Complete!");
 finishLoading();
 
 async function buildComponentsFromFiles() {
