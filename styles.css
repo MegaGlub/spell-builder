@@ -171,24 +171,31 @@ img{
     background-color: #778899;
     border-collapse: collapse;
     color: #000000;
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 8px;
     padding: 0;
     width: 100%;
-}
+}/*
 .componentStatRow:nth-child(even){
     background-color: #B0C4DE;
-}
+}*/
 .componentStatRow{
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
     margin: auto;
-    width: 100%;
+    min-width: 100%;
+    padding: 4px;
+    text-align: center;
 }
 .componentStatCell{
     border-left: 1px solid #000000;
     border-right: 1px solid #000000;
+    flex-grow: 1;
     margin: auto;
     padding: 4px;
     text-align: center;
-    width: 33.33%;
+    width: 33.3%;
 }
 .wandBox{
     background-color: #808080;

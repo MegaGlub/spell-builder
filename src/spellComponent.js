@@ -36,12 +36,10 @@ export class spellComponent {
         this.componentElement = document.createElement("span");
         this.imageElement = document.createElement("img");
         this.statTableElement = document.createElement("table");
-        this.visRowElement = document.createElement("tr");
-        this.primaryCellElement = document.createElement("td");
-        this.secondaryCellElement = document.createElement("td");
-        this.energyCellElement = document.createElement("td");
-        this.modifierRowElement = document.createElement("tr");
-        this.potencyCellElement = document.createElement("td");
+        this.primaryCellElement = document.createElement("span");
+        this.secondaryCellElement = document.createElement("span");
+        this.energyCellElement = document.createElement("span");
+        this.potencyCellElement = document.createElement("span");
     }
 
     #assignElementClasses() {
@@ -52,11 +50,9 @@ export class spellComponent {
         this.spellDescriptionElement.className = "spellDescription";
         this.componentElement.className = "spellComponent";
         this.statTableElement.className = "componentStatTable";
-        this.visRowElement.className = "componentStatRow";
         this.primaryCellElement.className = "componentStatCell";
         this.secondaryCellElement.className = "componentStatCell";
         this.energyCellElement.className = "componentStatCell";
-        this.modifierRowElement.className = "componentStatRow";
         this.potencyCellElement.className = "componentStatCell";
     }
 
@@ -71,12 +67,10 @@ export class spellComponent {
         this.toolTipElement.appendChild(this.spellTypeElement);
         this.toolTipElement.appendChild(this.spellDescriptionElement);
         this.toolTipElement.appendChild(this.statTableElement);
-        this.statTableElement.appendChild(this.visRowElement);
-        this.visRowElement.appendChild(this.primaryCellElement);
-        this.visRowElement.appendChild(this.secondaryCellElement);
-        this.visRowElement.appendChild(this.energyCellElement);
-        this.statTableElement.appendChild(this.modifierRowElement);
-        this.modifierRowElement.appendChild(this.potencyCellElement);
+        this.statTableElement.appendChild(this.primaryCellElement);
+        this.statTableElement.appendChild(this.secondaryCellElement);
+        this.statTableElement.appendChild(this.energyCellElement);
+        this.statTableElement.appendChild(this.potencyCellElement);
         this.componentElement.appendChild(this.imageElement);
     }
 

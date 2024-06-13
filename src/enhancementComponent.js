@@ -19,13 +19,13 @@ export class enhancementComponent extends spellComponent {
       this.#fillInnerHTML();
     }
     #createEmptyElements() {
-      this.enhancementCellElement = document.createElement("td");
+      this.enhancementCellElement = document.createElement("span");
     }
     #assignElementClasses() {
       this.enhancementCellElement.className = "componentStatCell";
     }
     #relateElements() {
-      this.modifierRowElement.appendChild(this.enhancementCellElement);
+      this.statTableElement.appendChild(this.enhancementCellElement);
     }
     #fillInnerHTML() {
       var formattedEnhancementCell = this.enhancementType + ": " + this.getSign(this.enhancementModifier);

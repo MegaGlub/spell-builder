@@ -15,16 +15,16 @@ export class pathComponent extends spellComponent {
       this.#fillInnerHTML();
     }
     #createEmptyElements() {
-      this.rangeCellElement = document.createElement("td");
-      this.lifetimeCellElement = document.createElement("td");
+      this.rangeCellElement = document.createElement("span");
+      this.lifetimeCellElement = document.createElement("span");
     }
     #assignElementClasses() {
       this.rangeCellElement.className = "componentStatCell";
       this.lifetimeCellElement.className = "componentStatCell";
     }
     #relateElements() {
-      this.modifierRowElement.appendChild(this.rangeCellElement);
-      this.modifierRowElement.appendChild(this.lifetimeCellElement);
+      this.statTableElement.appendChild(this.rangeCellElement);
+      this.statTableElement.appendChild(this.lifetimeCellElement);
     }
     #fillInnerHTML() {
       this.rangeCellElement.innerHTML = "Range: ~" + this.range;

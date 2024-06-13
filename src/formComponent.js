@@ -14,13 +14,13 @@ export class formComponent extends spellComponent {
         this.#fillInnerHTML();
     }
     #createEmptyElements() {
-        this.sizeCellElement = document.createElement("td");
+        this.sizeCellElement = document.createElement("span");
     }
     #assignElementClasses() {
         this.sizeCellElement.className = "componentStatCell";
     }
     #relateElements() {
-        this.modifierRowElement.appendChild(this.sizeCellElement);
+        this.statTableElement.appendChild(this.sizeCellElement);
     }
     #fillInnerHTML() {
         this.sizeCellElement.innerHTML = "Size: " + this.size;
