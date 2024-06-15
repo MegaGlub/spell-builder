@@ -1,8 +1,13 @@
 {
     "type": "Purpose",
     "name": "Polymorph",
-    "description": "Assume the form of a creature of your choice.",
-    "purposeDescription": "energy that converts the targeted creature into a new creature of your choice for a time. The target maintains their size, mass, intelligence, and casting ability. ",
+    "description": "Assume the form of a new creature.",
+    "purposeDescriptions": {
+        "low": "energy that converts the target creature into a random new creature that you have knowledge of. The target maintains their size, mass, intelligence, and casting ability. ",
+        "mid": "energy that converts the target creature into a new creature of your choice for a time. The target maintains their size, mass, intelligence, and casting ability. ",
+        "high": "energy that converts the target creature into a new creature of your choice semi-permanently. The target maintains their size, mass, intelligence, and casting ability. "
+    },
+    "effects": "Apply Dazed",
     "image": "images/purposes/purpose-frame.png",
     "costs": {
         "primary": 3,
@@ -14,6 +19,7 @@
         "secondary": "Secondary"
     },
     "purpose": {
-        "target": "Living Beings"
+        "target": "Living Beings",
+        "invertible": "false"
     }
 }

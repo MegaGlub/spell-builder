@@ -106,14 +106,16 @@ function createPurposeComponentFromJSON(json) {
     return new purposeComponent(
         json.name,
         json.description,
-        json.purposeDescription,
+        json.purposeDescriptions,
+        json.effects,
         json.image,
         json.costs.primary,
         json.types.primary,
         json.costs.secondary,
         json.types.secondary,
         json.costs.energy,
-        json.purpose.target
+        json.purpose.target,
+        json.purpose.invertible
     );
 }
 

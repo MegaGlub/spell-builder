@@ -204,26 +204,14 @@ img {
     width: 100%;
 }
 
-.componentStatCell:nth-child(6n - 2) {
-    background-color: #B0C4DE;
-}
-
-.componentStatCell:nth-child(6n - 1) {
-    background-color: #B0C4DE;
-}
-
-.componentStatCell:nth-child(6n) {
-    background-color: #B0C4DE;
-}
-
-/* ^ I wish it was easier to use than this, but oh well */
 .componentStatRow {
-    border-left: 1px solid #000000;
-    border-right: 1px solid #000000;
+    border: 1px solid #000000;
+    flex-basis: auto;
+    flex-grow: 1;
     margin: auto;
-    min-width: 100%;
     padding: 4px;
     text-align: center;
+    width: 90%; /* This should be 100% but flexbox is wierd. */
 }
 
 .componentStatCell {
@@ -235,6 +223,19 @@ img {
     text-align: center;
     width: calc(25% - 6px);
     /* Theoretically this should work with 33.3%, but for some ungodly reason it needs lower. */
+}
+
+/* I wish it was easier to use make zebra stripes, but oh well */
+.componentStatCell:nth-child(6n - 2) {
+    background-color: #B0C4DE;
+}
+
+.componentStatCell:nth-child(6n - 1) {
+    background-color: #B0C4DE;
+}
+
+.componentStatCell:nth-child(6n) {
+    background-color: #B0C4DE;
 }
 
 .wandBox {

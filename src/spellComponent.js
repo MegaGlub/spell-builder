@@ -35,7 +35,7 @@ export class spellComponent {
         this.spellDescriptionElement = document.createElement("div");
         this.componentElement = document.createElement("span");
         this.imageElement = document.createElement("img");
-        this.statTableElement = document.createElement("table");
+        this.statTableElement = document.createElement("div");
         this.primaryCellElement = document.createElement("span");
         this.secondaryCellElement = document.createElement("span");
         this.energyCellElement = document.createElement("span");
