@@ -32,8 +32,6 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
   }
   #fillStatTable() {
     this.targetCellElement.innerHTML = "Targets: " + this.targetType;
-    console.log("Targets set: " + this.targetType);
-    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.effects;
-    console.log("Effects set: " + this.effects);
+    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.effects[1]; //Choose the middle effect
   }
 }
