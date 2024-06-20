@@ -1,5 +1,6 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
+import { assignClickableButtonByID } from "./buttons.js";
 export class wand {
     constructor(name, image, slots) {
         this.name = name;
@@ -9,6 +10,7 @@ export class wand {
         this.buildWandVisuals();
         assignToolTip(this.toolTipButtonElement);
         this.drawElement(document.getElementById("wandSelector"));
+        assignClickableButtonByID("wand" + this.name, this.#selectWand);
     }
 
     buildWandVisuals() {
@@ -24,11 +26,15 @@ export class wand {
         this.toolTipButtonElement = document.createElement("div");
         this.toolTipElement = document.createElement("div");
         this.imageElement = document.createElement("img");
+        this.descriptionElement = document.createElement("span");
+        this.titleElement = document.createElement("div");
     }
 
     #assignElementClasses() {
         this.toolTipButtonElement.className = "toolTipButton";
         this.toolTipElement.className = "toolTip";
+        this.descriptionElement.className = "wandDescription";
+        this.titleElement.className = "wandTitle";
     }
 
     #assignElementIds() {
@@ -42,17 +48,20 @@ export class wand {
     #relateElements() {
         this.toolTipButtonElement.appendChild(this.imageElement);
         this.toolTipButtonElement.appendChild(this.toolTipElement);
+        this.toolTipElement.appendChild(this.descriptionElement);
+        this.descriptionElement.appendChild(this.titleElement);
     }
 
     #fillInnerHTML(){
-        this.toolTipElement.innerHTML = this.name;
+        this.titleElement.innerHTML = "\"" + this.name + "\"";
     }
 
     drawElement(parentElement) {
         parentElement.appendChild(this.toolTipButtonElement);
     }
 
-    selectWand(descriptionBox){
+    #selectWand(){
+        const descriptionBox = document.getElementById("wandWorkbench");
         while (descriptionBox.firstChild) {
             descriptionBox.removeChild(descriptionBox.firstChild);
         }
