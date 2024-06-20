@@ -1,4 +1,4 @@
-import { logText, showLog } from "./src/logging.js";
+import { logText } from "./src/logging.js";
 import { readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
 import { wand } from "./src/wand.js";

@@ -1,4 +1,4 @@
-import { logText } from "./logging.js";
+import { logText, showLog } from "./logging.js";
 
 const mainMenuScreen = document.getElementById("mainMenuScreen");
 const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
