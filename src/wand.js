@@ -10,7 +10,7 @@ export class wand {
         this.buildWandVisuals();
         assignToolTip(this.toolTipButtonElement);
         this.drawElement(document.getElementById("wandSelector"));
-        assignClickableButtonByID("wand" + this.name, this.#selectWand);
+        assignClickableButtonByID("wand" + this.name, this.selectWand.bind(this));
     }
 
     buildWandVisuals() {
@@ -39,6 +39,7 @@ export class wand {
 
     #assignElementIds() {
         this.toolTipButtonElement.id = "wand" + this.name;
+        this.descriptionElement.id = "wandDescription" + this.name;
     }
 
     #assignImage() {
@@ -52,7 +53,7 @@ export class wand {
         this.descriptionElement.appendChild(this.titleElement);
     }
 
-    #fillInnerHTML(){
+    #fillInnerHTML() {
         this.titleElement.innerHTML = "\"" + this.name + "\"";
     }
 
@@ -60,11 +61,12 @@ export class wand {
         parentElement.appendChild(this.toolTipButtonElement);
     }
 
-    #selectWand(){
+    selectWand(){
         const descriptionBox = document.getElementById("wandWorkbench");
         while (descriptionBox.firstChild) {
             descriptionBox.removeChild(descriptionBox.firstChild);
         }
-        descriptionBox.appendChild(this.descriptionElement);
+        descriptionBox.appendChild(this.descriptionElement.cloneNode(true));
     }
 }
+

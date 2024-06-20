@@ -42,6 +42,7 @@ logText("--Complete!");
 finishLoading();
 
 const testWand = new wand("Eenis", "images/wands/wand-draft.png", 3);
+const testWand2 = new wand("Eenis2", "images/wands/wand-draft.png", 3);
 
 async function buildComponentsFromFiles() {
     const root = "data/components/";
