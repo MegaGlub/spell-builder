@@ -211,7 +211,8 @@ img {
     margin: auto;
     padding: 4px;
     text-align: center;
-    width: 90%; /* This should be 100% but flexbox is wierd. */
+    width: 90%;
+    /* This should be 100% but flexbox is wierd. */
 }
 
 .componentStatCell {
@@ -240,7 +241,7 @@ img {
 
 .wandBox {
     background-color: #808080;
-    display: inline-block;
+    display: flex;
     height: 57%;
     left: 0;
     margin: 0;
@@ -268,6 +269,14 @@ img {
     display: inline;
     height: 64px;
     width: 128px;
+}
+
+.wandWorkbench {
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 0.5em;
+    width: calc(100% - (1em + 128px + 20px));
 }
 
 .bottomToolBar {
