@@ -3,6 +3,7 @@ import { readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
 import { wand } from "./src/wand.js";
 import { assignStaticButtons } from "./src/buttons.js";
+import { fetchCookies } from "./src/cookies.js";
 
 //work on the wand box
 //figure out how to make new wands
@@ -26,6 +27,7 @@ logText("--Assigning buttons...");
 assignStaticButtons();
 
 logText("--Fetching cookies...");
+fetchCookies();
 
 logText("--Trying to read spell components...");
 await buildComponentsFromFiles();
