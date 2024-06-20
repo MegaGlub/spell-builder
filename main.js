@@ -2,6 +2,7 @@ import { logText, showLog } from "./src/logging.js";
 import { readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
 import { wand } from "./src/wand.js";
+import { assignStaticButtons } from "./src/buttons.js";
 
 //work on the wand box
 //figure out how to make new wands
@@ -17,22 +18,12 @@ logText("--Starting...");
 logText("--Retrieving element IDs...");
 
 const loadingScreen = document.getElementById("loadingScreen");
-const mainMenuScreen = document.getElementById("mainMenuScreen");
 const spellBox = document.getElementById("spellBox");
-const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
-const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
-const modalBackground = document.getElementById("modalBackground");
-
 const componentList = [];
+const wandList = [];
 
 logText("--Assigning buttons...");
-
-assignClickableButtonByID("mainMenuSpellsButton", mainMenuSpellsButtonPress);
-assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress);
-assignClickableButtonByID("mainMenuButton", unhideMainMenu);
-assignClickableButtonByID("logButton", showLog);
-assignClickableButtonByID("modalBackground", hideModal);
-assignClickableButtonByID("modalCloser", hideModal);
+assignStaticButtons();
 
 logText("--Fetching cookies...");
 
@@ -69,35 +60,6 @@ function drawAll(components) {
     }
 }
 
-function assignClickableButtonByID(elementId, funct) {
-    const element = document.getElementById(elementId);
-    element.addEventListener("click", funct);
-}
-
-function mainMenuSpellsButtonPress() {
-    hideMainMenu();
-}
-
-function mainMenuMartialsButtonPress() {
-    hideMainMenu();
-}
-
-function hideMainMenu() {
-    mainMenuSpellsButton.disabled = true;
-    mainMenuMartialsButton.disabled = true;
-    mainMenuScreen.style.display = "none";
-}
-
-function unhideMainMenu() {
-    mainMenuScreen.style.display = "flex";
-    mainMenuSpellsButton.disabled = false;
-    mainMenuMartialsButton.disabled = false;
-}
-
 function finishLoading() {
     loadingScreen.style.display = "none";
-}
-
-function hideModal() {
-    modalBackground.style.display = "none";
 }

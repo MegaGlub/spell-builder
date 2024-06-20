@@ -51,4 +51,11 @@ export class wand {
     drawElement(parentElement) {
         parentElement.appendChild(this.toolTipButtonElement);
     }
+
+    selectWand(descriptionBox){
+        while (descriptionBox.firstChild) {
+            descriptionBox.removeChild(descriptionBox.firstChild);
+        }
+        descriptionBox.appendChild(this.descriptionElement);
+    }
 }
