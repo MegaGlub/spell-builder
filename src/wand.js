@@ -10,7 +10,7 @@ export class wand {
         this.buildWandVisuals();
         assignToolTip(this.toolTipButtonElement);
         this.drawElement(document.getElementById("wandSelector"));
-        assignClickableButtonByID("wand" + this.name, this.selectWand.bind(this));
+        assignClickableButtonByID("wand" + this.name, this.selectWand.bind(this)); //the bind is stupid ahhh hell, but it keeps "this" in the right scope
     }
 
     buildWandVisuals() {
