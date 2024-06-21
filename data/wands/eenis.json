@@ -1,0 +1,10 @@
+{
+    "type": "Wand",
+    "name": "New Wand",
+    "image": "images/wands/wand-draft.png",
+    "slots": [
+        "Nothing",
+        "Nothing",
+        "Nothing"
+    ]
+}

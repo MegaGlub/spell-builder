@@ -5,6 +5,7 @@ import { pathComponent } from "./pathComponent.js";
 import { triggerComponent } from "./triggerComponent.js";
 import { purposeComponent } from "./purposeComponent.js";
 import { enhancementComponent } from "./enhancementComponent.js";
+import { wand } from "./wand.js";
 import { logText } from "./logging.js";
 
 export async function readJSONDirectory(dirPath) {
@@ -23,11 +24,11 @@ async function fetchRawJSON(fileName) { //Thanks Josh194 for helping me with asy
     return fetch(fileName) //asynchronous bastard, ruining my perfectly synchronous code
         .then(response => response.json())
         .then(jsonResponse => {
-            return convertJSONToSpellComponent(jsonResponse);
+            return convertJSONToItem(jsonResponse);
         });
 }
 
-function convertJSONToSpellComponent(json) {
+function convertJSONToItem(json) {
     switch (json.type) {
         case "Form":
             return createFormComponentFromJSON(json);
@@ -39,6 +40,8 @@ function convertJSONToSpellComponent(json) {
             return createEnhancementComponentFromJSON(json);
         case "Purpose":
             return createPurposeComponentFromJSON(json);
+        case "Wand":
+            return createWandFromJSON(json);
         default:
             return createMiscComponentFromJSON(json);
     }
@@ -131,5 +134,13 @@ function createMiscComponentFromJSON(json) {
         json.vis.secondary,
         json.costs.energy,
         json.potency
+    );
+}
+
+function createWandFromJSON(json){
+    return new wand(
+        json.name,
+        json.image,
+        json.slots
     );
 }

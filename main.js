@@ -5,8 +5,6 @@ import { wand } from "./src/wand.js";
 import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
-//work on the wand box
-//figure out how to make new wands
 //how to fill wands
 //build descriptions
 //show errors with the wand
@@ -38,22 +36,27 @@ quickSort(componentList);
 logText("--Drawing spell components...");
 drawAll(componentList);
 
+logText("--Tring to build wands...");
+buildWands();
+
 logText("--Complete!");
 finishLoading();
 
-const testWand = new wand("Eenis", "images/wands/wand-draft.png", 3);
-const testWand2 = new wand("Eenis2", "images/wands/wand-draft.png", 3);
-
 async function buildComponentsFromFiles() {
     const root = "data/components/";
-    const leaves = ["enhancements", "forms", "misc", "paths", "purposes", "triggers"];
+    const leaves = ["enhancements", 
+        "forms", 
+        "misc", 
+        "paths", 
+        "purposes", 
+        "triggers"];
     for (const leaf of leaves) {
         logText("Exploring: " + root + leaf);
         const freshComponents = await readJSONDirectory(root + leaf);
         for (const component of freshComponents) {
             componentList.push(component);
-        };
-    };
+        }
+    }
 }
 
 function drawAll(components) {
@@ -61,6 +64,12 @@ function drawAll(components) {
         logText("Drawing " + component.name + "...");
         component.drawElement(spellBox);
     }
+}
+
+async function buildWands(){
+    const dir = "data/wands";
+    logText("Exploring: " + dir);
+    await readJSONDirectory(dir);
 }
 
 function finishLoading() {
