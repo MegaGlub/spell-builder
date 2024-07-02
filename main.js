@@ -7,6 +7,7 @@ import { fetchCookies } from "./src/cookies.js";
 
 //how to fill wands
 //build descriptions
+//fix tooltips up!
 //show errors with the wand
 //bake some cookies (or json files)
 //work on the martial arts
@@ -74,4 +75,13 @@ async function buildWands(){
 
 function finishLoading() {
     loadingScreen.style.display = "none";
+}
+
+export function detectComponentByName(name){
+    for (let component of componentList){
+        if (component.name = name){
+            return true;
+        }
+    }
+    return false;
 }

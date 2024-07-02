@@ -1,12 +1,14 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID } from "./buttons.js";
-import { componentList } from "../main.js";
+import { componentList, detectComponentByName } from "../main.js";
 export class wand {
     constructor(name, image, slots) {
         this.name = name;
         this.image = image;
-        this.#formatSlots(slots);
+        this.slots = slots;
+
+        console.log(this.slots);
 
         this.buildWandVisuals();
         assignToolTip(this.toolTipButtonElement);
@@ -22,6 +24,7 @@ export class wand {
         this.#assignImage();
         this.#relateElements();
         this.#fillInnerHTML();
+        this.#updateComponentDisplay();
     }
 
     #createEmptyElements() {
@@ -29,6 +32,7 @@ export class wand {
         this.toolTipElement = document.createElement("div");
         this.imageElement = document.createElement("img");
         this.descriptionElement = document.createElement("span");
+        this.componentDisplayElement = document.createElement("div");
         this.titleElement = document.createElement("div");
     }
 
@@ -36,6 +40,7 @@ export class wand {
         this.toolTipButtonElement.className = "toolTipButton";
         this.toolTipElement.className = "toolTip";
         this.descriptionElement.className = "wandDescription";
+        this.componentDisplayElement.className = "wandComponentDisplay";
         this.titleElement.className = "wandTitle";
     }
 
@@ -53,10 +58,12 @@ export class wand {
         this.toolTipButtonElement.appendChild(this.toolTipElement);
         this.toolTipElement.appendChild(this.descriptionElement);
         this.descriptionElement.appendChild(this.titleElement);
+        this.descriptionElement.appendChild(this.componentDisplayElement);
     }
 
     #fillInnerHTML() {
         this.titleElement.innerHTML = "\"" + this.name + "\"";
+        this.componentDisplayElement;
     }
 
     drawElement(parentElement) {
@@ -71,12 +78,27 @@ export class wand {
         descriptionBox.appendChild(this.descriptionElement.cloneNode(true));
     }
 
-    #formatSlots(jsonSlots) {
-        console.log(jsonSlots);
-        this.slots = [];
-        for (let property in jsonSlots) { //loop through values in jsonEffects
-            if (typeof jsonSlots[property] == "string") { //if the value exists
-                this.slots.push(jsonSlots[property]);
+    // #formatSlots(jsonSlots) {
+    //     console.log(jsonSlots);
+    //     this.slots = [];
+    //     for (let property in jsonSlots) { //loop through values in jsonEffects
+    //         if (typeof jsonSlots[property] == "string") { //if the value exists
+    //             this.slots.push(jsonSlots[property]);
+    //         }
+    //     }
+    // }
+
+    #updateComponentDisplay() { //remember to change the slots first!
+        while (this.componentDisplayElement.firstChild) { //clear old components
+            this.componentDisplayElement.removeChild(this.componentDisplayElement.firstChild);
+        }
+        for (let componentName of this.slots) {
+            console.log(componentList);
+            if (detectComponentByName(componentName)){
+                const clonableComponent = document.getElementById("spellComponent" + componentName);
+                this.componentDisplayElement.appendChild(clonableComponent.cloneNode(true));
+            } else{
+                logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
             }
         }
     }
