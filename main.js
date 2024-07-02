@@ -18,7 +18,7 @@ logText("--Retrieving element IDs...");
 
 const loadingScreen = document.getElementById("loadingScreen");
 const spellBox = document.getElementById("spellBox");
-const componentList = [];
+export const componentList = [];
 const wandList = [];
 
 logText("--Assigning buttons...");

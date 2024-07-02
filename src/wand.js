@@ -1,11 +1,12 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID } from "./buttons.js";
+import { componentList } from "../main.js";
 export class wand {
     constructor(name, image, slots) {
         this.name = name;
         this.image = image;
-        this.slots = slots;
+        this.#formatSlots(slots);
 
         this.buildWandVisuals();
         assignToolTip(this.toolTipButtonElement);
@@ -62,12 +63,22 @@ export class wand {
         parentElement.appendChild(this.toolTipButtonElement);
     }
 
-    selectWand(){
+    selectWand() {
         const descriptionBox = document.getElementById("wandWorkbench");
         while (descriptionBox.firstChild) {
             descriptionBox.removeChild(descriptionBox.firstChild);
         }
         descriptionBox.appendChild(this.descriptionElement.cloneNode(true));
+    }
+
+    #formatSlots(jsonSlots) {
+        console.log(jsonSlots);
+        this.slots = [];
+        for (let property in jsonSlots) { //loop through values in jsonEffects
+            if (typeof jsonSlots[property] == "string") { //if the value exists
+                this.slots.push(jsonSlots[property]);
+            }
+        }
     }
 }
 
