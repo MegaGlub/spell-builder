@@ -1,6 +1,7 @@
 {
     "type": "Wand",
     "name": "New Wand",
+    "flavor": "Destroys the universe or whatever.",
     "image": "images/wands/wand-draft.png",
     "slots": [
         "Nothing",

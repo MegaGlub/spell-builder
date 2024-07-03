@@ -1,7 +1,7 @@
 {
     "type": "Form",
     "name": "Bolt",
-    "description": "In the shape of a lightning bolt.",
+    "flavor": "In the shape of a lightning bolt.",
     "formDescription": "a splintering bolt of ",
     "image": "images/forms/form-frame.png",
     "costs": {

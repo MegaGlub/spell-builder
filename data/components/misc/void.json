@@ -1,7 +1,7 @@
 {
     "type": "Void",
     "name": "Nothing",
-    "description": "Lack of anything at all.",
+    "flavor": "Lack of anything at all.",
     "image": "images/nothing.png",
     "costs": {
         "primary": 0,

@@ -50,7 +50,7 @@ function convertJSONToItem(json) {
 function createFormComponentFromJSON(json) {
     return new formComponent(
         json.name,
-        json.description,
+        json.flavor,
         json.formDescription,
         json.image,
         json.costs.primary,
@@ -64,7 +64,7 @@ function createFormComponentFromJSON(json) {
 function createPathComponentFromJSON(json) {
     return new pathComponent(
         json.name,
-        json.description,
+        json.flavor,
         json.pathDescription,
         json.image,
         json.costs.primary,
@@ -79,7 +79,7 @@ function createPathComponentFromJSON(json) {
 function createTriggerComponentFromJSON(json) {
     return new triggerComponent(
         json.name,
-        json.description,
+        json.flavor,
         json.triggerDescription,
         json.image,
         json.costs.primary,
@@ -92,7 +92,7 @@ function createTriggerComponentFromJSON(json) {
 function createEnhancementComponentFromJSON(json) {
     return new enhancementComponent(
         json.name,
-        json.description,
+        json.flavor,
         json.enhancementDescription,
         json.image,
         json.costs.primary,
@@ -108,7 +108,7 @@ function createEnhancementComponentFromJSON(json) {
 function createPurposeComponentFromJSON(json) {
     return new purposeComponent(
         json.name,
-        json.description,
+        json.flavor,
         json.purposeDescriptions,
         json.effects,
         json.image,
@@ -126,7 +126,7 @@ function createMiscComponentFromJSON(json) {
     return new spellComponent(
         json.name,
         json.type,
-        json.description,
+        json.flavor,
         json.image,
         json.costs.primary,
         json.vis.primary,
@@ -140,6 +140,7 @@ function createMiscComponentFromJSON(json) {
 function createWandFromJSON(json){
     return new wand(
         json.name,
+        json.flavor,
         json.image,
         json.slots
     );

@@ -3,8 +3,9 @@ import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID } from "./buttons.js";
 import { componentList, detectComponentByName } from "../main.js";
 export class wand {
-    constructor(name, image, slots) {
+    constructor(name, flavor, image, slots) {
         this.name = name;
+        this.flavor = flavor;
         this.image = image;
         this.slots = slots;
 

@@ -1,7 +1,7 @@
 import { spellComponent } from "./spellComponent.js";
 export class pathComponent extends spellComponent {
-    constructor(name, description, pathDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, range, lifetime) {
-      super(name, "Path", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
+    constructor(name, flavor, pathDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, range, lifetime) {
+      super(name, "Path", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
       this.pathDescription = pathDescription;
       this.range = range;
       this.lifetime = lifetime;

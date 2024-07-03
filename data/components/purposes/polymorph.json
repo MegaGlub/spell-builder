@@ -1,7 +1,7 @@
 {
     "type": "Purpose",
     "name": "Polymorph",
-    "description": "Assume the form of a new creature.",
+    "flavor": "Assume the form of a new creature.",
     "purposeDescriptions": {
         "low": "energy that converts the target creature into a random new creature that you have knowledge of. The target maintains their size, mass, intelligence, and casting ability. ",
         "mid": "energy that converts the target creature into a new creature of your choice for a time. The target maintains their size, mass, intelligence, and casting ability. ",

@@ -1,7 +1,7 @@
 import { spellComponent } from "./spellComponent.js";
 export class formComponent extends spellComponent {
-    constructor(name, description, formDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, size) {
-        super(name, "Form", description, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
+    constructor(name, flavor, formDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, size) {
+        super(name, "Form", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
         this.formDescription = formDescription;
         this.size = size;
         this.buildFormVisuals();

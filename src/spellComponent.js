@@ -1,10 +1,10 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 export class spellComponent {
-    constructor(name, type, description, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier) {
+    constructor(name, type, flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier) {
         this.name = name;
         this.type = type;
-        this.description = description;
+        this.flavor = flavor;
         this.image = image;
         this.primaryCost = primaryCost;
         this.primaryType = primaryType;
@@ -79,7 +79,7 @@ export class spellComponent {
     fillInnerHTML() {
         this.spellTitleElement.innerHTML = this.name;
         this.spellTypeElement.innerHTML = this.type;
-        this.spellDescriptionElement.innerHTML = this.description;
+        this.spellDescriptionElement.innerHTML = this.flavor;
 
         this.#fillStatTable();
     }
