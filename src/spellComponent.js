@@ -32,7 +32,7 @@ export class spellComponent {
         this.descriptionElement = document.createElement("span");
         this.spellTitleElement = document.createElement("div");
         this.spellTypeElement = document.createElement("div");
-        this.spellDescriptionElement = document.createElement("div");
+        this.spellFlavorElement = document.createElement("div");
         this.componentElement = document.createElement("span");
         this.imageElement = document.createElement("img");
         this.statTableElement = document.createElement("div");
@@ -46,7 +46,7 @@ export class spellComponent {
         this.toolTipButtonElement.className = "toolTipButton";
         this.spellTitleElement.className = "spellTitle";
         this.spellTypeElement.className = "spellType";
-        this.spellDescriptionElement.className = "spellDescription";
+        this.spellFlavorElement.className = "spellFlavor";
         this.componentElement.className = "spellComponent";
         this.statTableElement.className = "componentStatTable";
         this.primaryCellElement.className = "componentStatCell";
@@ -63,7 +63,7 @@ export class spellComponent {
         this.toolTipButtonElement.appendChild(this.componentElement);
         this.descriptionElement.appendChild(this.spellTitleElement);
         this.descriptionElement.appendChild(this.spellTypeElement);
-        this.descriptionElement.appendChild(this.spellDescriptionElement);
+        this.descriptionElement.appendChild(this.spellFlavorElement);
         this.descriptionElement.appendChild(this.statTableElement);
         this.statTableElement.appendChild(this.primaryCellElement);
         this.statTableElement.appendChild(this.secondaryCellElement);
@@ -79,7 +79,7 @@ export class spellComponent {
     fillInnerHTML() {
         this.spellTitleElement.innerHTML = this.name;
         this.spellTypeElement.innerHTML = this.type;
-        this.spellDescriptionElement.innerHTML = this.flavor;
+        this.spellFlavorElement.innerHTML = this.flavor;
 
         this.#fillStatTable();
     }

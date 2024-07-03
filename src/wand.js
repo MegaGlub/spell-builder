@@ -30,15 +30,18 @@ export class wand {
 
     #createEmptyElements() {
         this.toolTipButtonElement = document.createElement("div");
+        this.descriptionElement = document.createElement("span");this.spellTitleElement = document.createElement("div");
+        this.spellTypeElement = document.createElement("div");
+        this.spellFlavorElement = document.createElement("div");
         this.imageElement = document.createElement("img");
-        this.descriptionElement = document.createElement("span");
         this.componentDisplayElement = document.createElement("div");
-        this.titleElement = document.createElement("div");
     }
 
     #assignElementClasses() {
         this.toolTipButtonElement.className = "toolTipButton";
         this.descriptionElement.className = "wandDescription";
+        this.spellTitleElement.className = "spellTitle";
+        this.spellFlavorElement.className = "spellFlavor";
         this.componentDisplayElement.className = "wandComponentDisplay";
         this.titleElement.className = "wandTitle";
     }
@@ -54,7 +57,8 @@ export class wand {
 
     #relateElements() {
         this.toolTipButtonElement.appendChild(this.imageElement);
-        this.descriptionElement.appendChild(this.titleElement);
+        this.descriptionElement.appendChild(this.spellTitleElementitleElement);
+        this.descriptionElement.appendChild(this.spellFlavorElement);
         this.descriptionElement.appendChild(this.componentDisplayElement);
     }
 
