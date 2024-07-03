@@ -43,7 +43,6 @@ export class wand {
         this.spellTitleElement.className = "spellTitle";
         this.spellFlavorElement.className = "spellFlavor";
         this.componentDisplayElement.className = "wandComponentDisplay";
-        this.titleElement.className = "wandTitle";
     }
 
     #assignElementIds() {
@@ -57,13 +56,14 @@ export class wand {
 
     #relateElements() {
         this.toolTipButtonElement.appendChild(this.imageElement);
-        this.descriptionElement.appendChild(this.spellTitleElementitleElement);
+        this.descriptionElement.appendChild(this.spellTitleElement);
         this.descriptionElement.appendChild(this.spellFlavorElement);
         this.descriptionElement.appendChild(this.componentDisplayElement);
     }
 
     #fillInnerHTML() {
-        this.titleElement.innerHTML = "\"" + this.name + "\"";
+        this.spellTitleElement.innerHTML = "\"" + this.name + "\"";
+        this.spellFlavorElement.innerHTML = this.flavor;
         this.componentDisplayElement;
     }
 
