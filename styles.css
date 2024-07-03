@@ -110,10 +110,6 @@ img {
     width: auto;
 }
 
-.toolTipButton:hover .toolTip {
-    display: block;
-}
-
 .toolTip {
     background-color: #000000;
     color: #FFFFF0;

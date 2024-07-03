@@ -5,10 +5,9 @@ import { wand } from "./src/wand.js";
 import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
-//how to fill wands
-//build descriptions
-//fix tooltips up!
+//allow wands to change components
 //show errors with the wand
+//allow wands to be renamed
 //bake some cookies (or json files)
 //work on the martial arts
 //add more spellComponents

@@ -14,7 +14,7 @@ export class spellComponent {
         this.potencyModifier = potencyModifier;
 
         this.buildComponentVisuals();
-        assignToolTip(this.toolTipButtonElement);
+        assignToolTip(this.toolTipButtonElement, this.descriptionElement);
     }
 
     buildComponentVisuals() {
@@ -29,7 +29,7 @@ export class spellComponent {
 
     #createEmptyElements() {
         this.toolTipButtonElement = document.createElement("div");
-        this.toolTipElement = document.createElement("div");
+        this.descriptionElement = document.createElement("span");
         this.spellTitleElement = document.createElement("div");
         this.spellTypeElement = document.createElement("div");
         this.spellDescriptionElement = document.createElement("div");
@@ -44,7 +44,6 @@ export class spellComponent {
 
     #assignElementClasses() {
         this.toolTipButtonElement.className = "toolTipButton";
-        this.toolTipElement.className = "toolTip";
         this.spellTitleElement.className = "spellTitle";
         this.spellTypeElement.className = "spellType";
         this.spellDescriptionElement.className = "spellDescription";
@@ -62,11 +61,10 @@ export class spellComponent {
 
     #relateElements() {
         this.toolTipButtonElement.appendChild(this.componentElement);
-        this.toolTipButtonElement.appendChild(this.toolTipElement);
-        this.toolTipElement.appendChild(this.spellTitleElement);
-        this.toolTipElement.appendChild(this.spellTypeElement);
-        this.toolTipElement.appendChild(this.spellDescriptionElement);
-        this.toolTipElement.appendChild(this.statTableElement);
+        this.descriptionElement.appendChild(this.spellTitleElement);
+        this.descriptionElement.appendChild(this.spellTypeElement);
+        this.descriptionElement.appendChild(this.spellDescriptionElement);
+        this.descriptionElement.appendChild(this.statTableElement);
         this.statTableElement.appendChild(this.primaryCellElement);
         this.statTableElement.appendChild(this.secondaryCellElement);
         this.statTableElement.appendChild(this.energyCellElement);

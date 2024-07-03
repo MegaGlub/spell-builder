@@ -11,7 +11,7 @@ export class wand {
         console.log(this.slots);
 
         this.buildWandVisuals();
-        assignToolTip(this.toolTipButtonElement);
+        assignToolTip(this.toolTipButtonElement, this.descriptionElement);
         this.drawElement(document.getElementById("wandSelector"));
         assignClickableButtonByID("wand" + this.name, this.selectWand.bind(this)); //the bind is stupid ahhh hell, but it keeps "this" in the right scope
         logText("Wand built: " + this.name);
@@ -29,7 +29,6 @@ export class wand {
 
     #createEmptyElements() {
         this.toolTipButtonElement = document.createElement("div");
-        this.toolTipElement = document.createElement("div");
         this.imageElement = document.createElement("img");
         this.descriptionElement = document.createElement("span");
         this.componentDisplayElement = document.createElement("div");
@@ -38,7 +37,6 @@ export class wand {
 
     #assignElementClasses() {
         this.toolTipButtonElement.className = "toolTipButton";
-        this.toolTipElement.className = "toolTip";
         this.descriptionElement.className = "wandDescription";
         this.componentDisplayElement.className = "wandComponentDisplay";
         this.titleElement.className = "wandTitle";
@@ -55,8 +53,6 @@ export class wand {
 
     #relateElements() {
         this.toolTipButtonElement.appendChild(this.imageElement);
-        this.toolTipButtonElement.appendChild(this.toolTipElement);
-        this.toolTipElement.appendChild(this.descriptionElement);
         this.descriptionElement.appendChild(this.titleElement);
         this.descriptionElement.appendChild(this.componentDisplayElement);
     }
@@ -77,16 +73,6 @@ export class wand {
         }
         descriptionBox.appendChild(this.descriptionElement.cloneNode(true));
     }
-
-    // #formatSlots(jsonSlots) {
-    //     console.log(jsonSlots);
-    //     this.slots = [];
-    //     for (let property in jsonSlots) { //loop through values in jsonEffects
-    //         if (typeof jsonSlots[property] == "string") { //if the value exists
-    //             this.slots.push(jsonSlots[property]);
-    //         }
-    //     }
-    // }
 
     #updateComponentDisplay() { //remember to change the slots first!
         while (this.componentDisplayElement.firstChild) { //clear old components
