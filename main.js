@@ -7,10 +7,10 @@ import { fetchCookies } from "./src/cookies.js";
 
 //allow components to be dragged around
 //allow wands to change components
+//allow wands to be saved and loaded
 //show errors with the wand
 //build all of the spellDescriptions into a complete picture
 //allow wands to be renamed
-//allow wands to be saved and loaded
 //allow spell components to be saved and loaded
 //bake some cookies (or json files)
 //work on the martial arts
