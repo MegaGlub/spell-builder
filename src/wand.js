@@ -94,11 +94,23 @@ export class wand {
         if (detectComponentByName(componentName)){
             const clonableComponent = document.getElementById("spellComponent" + componentName);
             const clone = clonableComponent.cloneNode(true);
-            clone.id = "wandComponent" + index;
+            clone.id = clone.id + index;
             this.componentDisplayElement.appendChild(clonableComponent.cloneNode(true));
         } else{
             logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
         }
+    }
+
+    handleHoldingElement(){
+        this.componentDisplayElement.style.backgroundColor = "#B0C4DE";
+    }
+
+    handleElementDrop(event){
+        const droppedElementId = event.dataTransfer.getData("text/plain");
+        const positionInWand = 0; //FIX ME!!!!!!
+        this.slots[positionInWand] = droppedElementId;
+        this.#updateComponentDisplay();
+        this.componentDisplayElement.style.backgroundColor = "#333333";
     }
 }
 

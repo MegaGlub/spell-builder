@@ -10,6 +10,23 @@ export function assignClickableButtonByID(elementId, funct) {
     element.addEventListener("click", funct);
 }
 
+export function assignDraggableElementByID(elementId, funct){
+    const element = document.getElementById(elementId);
+    element.addEventListener("dragstart", funct);
+}
+
+export function assignDroppableAreaByID(elementId, dragOverFunct, dropFunct) {
+    const element = document.getElementById(elementId);
+    element.addEventListener("dragover", (event) => {
+        event.preventDefault;
+        dragOverFunct;
+    });
+    element.addEventListener("drop", (event) => {
+        event.preventDefault;
+        dropFunct(event);
+    });
+}
+
 export function assignStaticButtons() {
     assignClickableButtonByID("mainMenuSpellsButton", mainMenuSpellsButtonPress);
     assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress);

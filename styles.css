@@ -275,6 +275,11 @@ img {
     width: calc(100% - (1em + 128px + 20px));
 }
 
+.wandComponentDisplay {
+    background-color: #333333;
+    padding: 0.5em;
+}
+
 .bottomToolBar {
     background-color: #333333;
     bottom: 0px;
