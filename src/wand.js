@@ -83,14 +83,21 @@ export class wand {
         while (this.componentDisplayElement.firstChild) { //clear old components
             this.componentDisplayElement.removeChild(this.componentDisplayElement.firstChild);
         }
+        var i = 0;
         for (let componentName of this.slots) {
-            console.log(componentList);
-            if (detectComponentByName(componentName)){
-                const clonableComponent = document.getElementById("spellComponent" + componentName);
-                this.componentDisplayElement.appendChild(clonableComponent.cloneNode(true));
-            } else{
-                logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
-            }
+            this.#fetchComponentFromList(componentName, i);
+            i++;
+        }
+    }
+
+    #fetchComponentFromList(componentName, index){
+        if (detectComponentByName(componentName)){
+            const clonableComponent = document.getElementById("spellComponent" + componentName);
+            const clone = clonableComponent.cloneNode(true);
+            clone.id = "wandComponent" + index;
+            this.componentDisplayElement.appendChild(clonableComponent.cloneNode(true));
+        } else{
+            logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
         }
     }
 }
