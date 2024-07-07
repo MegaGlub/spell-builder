@@ -195,4 +195,19 @@ export class spellComponent {
 
         return result;
     }
+
+    clone(){
+        return new spellComponent(
+            this.name,
+            this.type,
+            this.flavor,
+            this.image,
+            this.primaryCost,
+            this.primaryType,
+            this.secondaryCost,
+            this.secondaryType,
+            this.energyCost,
+            this.potencyModifier
+        );
+    }
 }

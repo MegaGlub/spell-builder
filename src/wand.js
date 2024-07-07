@@ -1,15 +1,17 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID, assignDroppableAreaByElement } from "./buttons.js";
-import { detectComponentByName } from "../main.js";
+import { findComponentByName, componentList } from "../main.js";
 export class wand {
-    constructor(name, flavor, image, slots) {
+    constructor(name, flavor, image, slotsByName) {
         this.name = name;
         this.flavor = flavor;
         this.image = image;
-        this.slots = slots;
+        this.slotsByName = slotsByName;
+        
+        this.slotsByObject = [];
 
-        console.log(this.slots);
+        console.log(this.slotsByName);
 
         this.buildWandVisuals();
         this.drawElement(document.getElementById("wandSelector"));
@@ -81,38 +83,39 @@ export class wand {
         while (descriptionBox.firstChild) {
             descriptionBox.removeChild(descriptionBox.firstChild);
         }
-        const clone = this.descriptionElement.cloneNode(true);
-        descriptionBox.appendChild(clone);
-        const children = clone.childNodes;
-        for (let i in children){
-            const child = children[i]
-            console.log(child);
-            if (child.className == "wandComponentDisplay"){
-                child.addEventListeners();
-            }
+        const descriptionClone = this.descriptionElement.cloneNode(true);
+        descriptionBox.appendChild(descriptionClone);
+        const clonedComponentDisplayElement = descriptionClone.querySelector(".wandComponentDisplay");
+        while(clonedComponentDisplayElement.firstChild) {
+            clonedComponentDisplayElement.removeChild(clonedComponentDisplayElement.firstChild);
+        }
+        for(spellComponent in this.slotsByObject){
+            const componentClone = structuredClone(spellComponent);
+            spellComponent.drawElement(clonedComponentDisplayElement);
+            assignDroppableAreaByElement(componentClone.toolTipButtonElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
         }
     }
 
-    updateComponentDisplay() { //remember to change the slots first!
+    updateComponentDisplay() { //remember to change the slotsByName first!
         while (this.componentDisplayElement.firstChild) { //clear old components
             this.componentDisplayElement.removeChild(this.componentDisplayElement.firstChild);
         }
         var i = 0;
-        for (let componentName of this.slots) {
+        for (let componentName of this.slotsByName) {
             this.fetchComponentFromList(componentName, i);
             i++;
         }
     }
 
     fetchComponentFromList(componentName, index){
-        if (detectComponentByName(componentName)){
-            const clonableComponent = document.getElementById("spellComponent" + componentName);
-            const clone = clonableComponent.cloneNode(true);
-            clone.id = clone.id + index;
-            this.componentDisplayElement.appendChild(clone);
-            assignDroppableAreaByElement(clone, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
-        } else{
+        const indexOfComponent = findComponentByName(componentName);
+        if (indexOfComponent < 0){
             logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
+        }
+        else {
+            const componentClone = structuredClone(componentList[indexOfComponent]);
+            this.slotsByObject[index] = componentClone;
+            componentClone.drawElement(this.componentDisplayElement);
         }
     }
 
@@ -125,7 +128,7 @@ export class wand {
         logText("component drop detected!");
         const droppedElementId = event.dataTransfer.getData("text/plain");
         const positionInWand = 0; //FIX ME!!!!!!
-        this.slots[positionInWand] = droppedElementId;
+        this.slotsByName[positionInWand] = droppedElementId;
         this.updateComponentDisplay();
         this.selectWand();
         this.componentDisplayElement.style.backgroundColor = "#333333";

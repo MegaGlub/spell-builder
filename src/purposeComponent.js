@@ -4,6 +4,7 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
   constructor(name, flavor, purposeDescriptions, effects, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, targetType, invertible) {
     super(name, "Purpose", flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, 0);
     this.purposeDescriptions = purposeDescriptions;
+    this.unformattedEffects = effects;
     this.#formatEffects(effects);
     this.targetType = targetType;
     this.invertible = invertible;
@@ -39,10 +40,27 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
   #formatEffects(jsonEffects) {
     console.log(jsonEffects);
     this.effects = [];
-    for (let property in jsonEffects){ //loop through values in jsonEffects
-      if (typeof jsonEffects[property] == "string"){ //if the value exists
+    for (let property in jsonEffects) { //loop through values in jsonEffects
+      if (typeof jsonEffects[property] == "string") { //if the value exists
         this.effects.push(jsonEffects[property]);
       }
     }
   }
+
+  clone(){
+    return new purposeComponent(
+        this.name,
+        this.flavor,
+        this.purposeDescriptions,
+        this.unformattedEffects,
+        this.image,
+        this.primaryCost,
+        this.primaryType,
+        this.secondaryCost,
+        this.secondaryType,
+        this.energyCost,
+        this.targetType,
+        this.invertible
+    );
+}
 }

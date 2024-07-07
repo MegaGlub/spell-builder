@@ -54,4 +54,19 @@ export class pathComponent extends spellComponent {
     roundTo2(num) {
       return Math.round(num * 100) / 100;
     }
+
+    clone(){
+      return new pathComponent(
+          this.name,
+          this.flavor,
+          this.pathDescription,
+          this.image,
+          this.primaryCost,
+          this.secondaryCost,
+          this.energyCost,
+          this.potencyModifier,
+          this.range,
+          this.lifetime
+      );
+  }
   }

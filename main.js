@@ -39,11 +39,11 @@ await buildComponentsFromFiles();
 logText("--Sorting spell components...");
 quickSort(componentList);
 
-logText("--Drawing spell components...");
-drawAll(componentList);
-
 logText("--Tring to build wands...");
 buildWands();
+
+logText("--Drawing spell components...");
+drawAll(componentList);
 
 logText("--Complete!");
 finishLoading();
@@ -82,11 +82,13 @@ function finishLoading() {
     loadingScreen.style.display = "none";
 }
 
-export function detectComponentByName(name){
+export function findComponentByName(name){
+    const i = 0;
     for (let component of componentList){
         if (component.name = name){
-            return true;
+            return i; //return index of the element in the list
         }
+        i++;
     }
-    return false;
+    return -1; //return -1 if not in the list
 }

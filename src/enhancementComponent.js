@@ -34,4 +34,20 @@ export class enhancementComponent extends spellComponent {
       }
       this.enhancementCellElement.innerHTML = formattedEnhancementCell;
     }
+
+    clone(){
+      return new enhancementComponent(
+          this.name,
+          this.flavor,
+          this.enhancementDescription,
+          this.image,
+          this.primaryCost,
+          this.secondaryCost,
+          this.energyCost,
+          this.enhancementType,
+          this.enhancementModifier,
+          this.enhancementMultiplier,
+          this.showStats
+      );
+  }
   }

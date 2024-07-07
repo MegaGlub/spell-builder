@@ -25,4 +25,18 @@ export class formComponent extends spellComponent {
     #fillInnerHTML() {
         this.sizeCellElement.innerHTML = "Size: " + this.size;
     }
+
+    clone(){
+        return new formComponent(
+            this.name,
+            this.flavor,
+            this.formDescription,
+            this.image,
+            this.primaryCost,
+            this.secondaryCost,
+            this.energyCost,
+            this.potencyModifier,
+            this.size
+        );
+    }
 }
