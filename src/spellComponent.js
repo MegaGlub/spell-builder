@@ -1,5 +1,6 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
+import { assignDraggableElementByID } from "./buttons.js";
 export class spellComponent {
     constructor(name, type, flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier) {
         this.name = name;
@@ -98,6 +99,7 @@ export class spellComponent {
 
     drawElement(parentElement) {
         parentElement.appendChild(this.toolTipButtonElement);
+        assignDraggableElementByID("spellComponent" + this.name);
     }
 
     formattedDataCell(num, descriptor) {

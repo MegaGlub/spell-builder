@@ -95,8 +95,10 @@ export class wand {
             const clonableComponent = document.getElementById("spellComponent" + componentName);
             const clone = clonableComponent.cloneNode(true);
             clone.id = clone.id + index;
-            assignDroppableAreaByID(clone, this.handleHoldingElement.bind(this), this.handleElementDrop.bind(this));
-            this.componentDisplayElement.appendChild(clonableComponent.cloneNode(true));
+            this.componentDisplayElement.appendChild(clone);
+            setTimeout(function(){
+                assignDroppableAreaByID(clone.id, this.handleHoldingElement().bind(this), this.handleElementDrop().bind(this));
+            }, 10);
         } else{
             logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
         }

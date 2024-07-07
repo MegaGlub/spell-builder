@@ -10,13 +10,17 @@ export function assignClickableButtonByID(elementId, funct) {
     element.addEventListener("click", funct);
 }
 
-export function assignDraggableElementByID(elementId, funct){
+export function assignDraggableElementByID(elementId){
     const element = document.getElementById(elementId);
-    element.addEventListener("dragstart", funct);
+    element.addEventListener("dragstart", (event) => {
+        event.dataTransfer.setData("text/plain", elementId);
+    });
 }
 
 export function assignDroppableAreaByID(elementId, dragOverFunct, dropFunct) {
+    console.log(elementId);
     const element = document.getElementById(elementId);
+    console.log(element);
     element.addEventListener("dragover", (event) => {
         event.preventDefault;
         dragOverFunct;
