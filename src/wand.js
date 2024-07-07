@@ -1,6 +1,6 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
-import { assignClickableButtonByID } from "./buttons.js";
+import { assignClickableButtonByID, assignDroppableAreaByID } from "./buttons.js";
 import { componentList, detectComponentByName } from "../main.js";
 export class wand {
     constructor(name, flavor, image, slots) {
@@ -95,6 +95,7 @@ export class wand {
             const clonableComponent = document.getElementById("spellComponent" + componentName);
             const clone = clonableComponent.cloneNode(true);
             clone.id = clone.id + index;
+            assignDroppableAreaByID(clone, this.handleHoldingElement.bind(this), this.handleElementDrop.bind(this));
             this.componentDisplayElement.appendChild(clonableComponent.cloneNode(true));
         } else{
             logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
