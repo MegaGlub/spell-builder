@@ -15,7 +15,6 @@ export class spellComponent {
         this.potencyModifier = potencyModifier;
 
         this.buildComponentVisuals();
-        assignToolTip(this.toolTipButtonElement, this.descriptionElement);
     }
 
     buildComponentVisuals() {
@@ -99,6 +98,11 @@ export class spellComponent {
 
     drawElement(parentElement) {
         parentElement.appendChild(this.toolTipButtonElement);
+        this.addEventListeners(); //drag and drop doesn't like being applied to elements without parents
+    }
+
+    addEventListeners() {
+        assignToolTip(this.toolTipButtonElement, this.descriptionElement);
         assignDraggableElementByID("spellComponent" + this.name);
     }
 

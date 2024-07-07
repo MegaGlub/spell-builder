@@ -12,9 +12,8 @@ export class wand {
         console.log(this.slots);
 
         this.buildWandVisuals();
-        assignToolTip(this.toolTipButtonElement, this.descriptionElement);
         this.drawElement(document.getElementById("wandSelector"));
-        assignClickableButtonByID("wand" + this.name, this.selectWand.bind(this)); //the bind is stupid ahhh hell, but it keeps "this" in the right scope
+        this.addEventListeners();
         logText("Wand built: " + this.name);
     }
 
@@ -71,12 +70,27 @@ export class wand {
         parentElement.appendChild(this.toolTipButtonElement);
     }
 
+    addEventListeners(){
+        assignToolTip(this.toolTipButtonElement, this.descriptionElement);
+        assignClickableButtonByID("wand" + this.name, this.selectWand.bind(this)); //the bind is stupid ahhh hell, but it keeps "this" in the right scope
+    }
+
     selectWand() {
+        logText("Selected wand " + this.name + ".");
         const descriptionBox = document.getElementById("wandWorkbench");
         while (descriptionBox.firstChild) {
             descriptionBox.removeChild(descriptionBox.firstChild);
         }
-        descriptionBox.appendChild(this.descriptionElement.cloneNode(true));
+        const clone = this.descriptionElement.cloneNode(true);
+        descriptionBox.appendChild(clone);
+        const children = clone.childNodes;
+        for (let i in children){
+            const child = children[i]
+            console.log(child);
+            if (child.className == "wandComponentDisplay"){
+                child.addEventListeners();
+            }
+        }
     }
 
     updateComponentDisplay() { //remember to change the slots first!

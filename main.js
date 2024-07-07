@@ -5,6 +5,8 @@ import { wand } from "./src/wand.js";
 import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
+//rework wands to use spellComponent's drawElement(parent) instead of cloning from the list
+    //this will require redoing detectComponentByName into grabComponentByName
 //allow components to be dragged around
 //allow wands to change components
 //allow wands to be saved and loaded
