@@ -17,9 +17,7 @@ export function assignDraggableElementByID(elementId){
     });
 }
 
-export function assignDroppableAreaByID(elementId, dragOverFunct, dropFunct) {
-    console.log(elementId);
-    const element = document.getElementById(elementId);
+export function assignDroppableAreaByElement(element, dragOverFunct, dropFunct) {
     console.log(element);
     element.addEventListener("dragover", (event) => {
         event.preventDefault;

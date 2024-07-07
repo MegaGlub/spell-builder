@@ -1,7 +1,7 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
-import { assignClickableButtonByID, assignDroppableAreaByID } from "./buttons.js";
-import { componentList, detectComponentByName } from "../main.js";
+import { assignClickableButtonByID, assignDroppableAreaByElement } from "./buttons.js";
+import { detectComponentByName } from "../main.js";
 export class wand {
     constructor(name, flavor, image, slots) {
         this.name = name;
@@ -25,7 +25,7 @@ export class wand {
         this.#assignImage();
         this.#relateElements();
         this.#fillInnerHTML();
-        this.#updateComponentDisplay();
+        this.updateComponentDisplay();
     }
 
     #createEmptyElements() {
@@ -79,40 +79,41 @@ export class wand {
         descriptionBox.appendChild(this.descriptionElement.cloneNode(true));
     }
 
-    #updateComponentDisplay() { //remember to change the slots first!
+    updateComponentDisplay() { //remember to change the slots first!
         while (this.componentDisplayElement.firstChild) { //clear old components
             this.componentDisplayElement.removeChild(this.componentDisplayElement.firstChild);
         }
         var i = 0;
         for (let componentName of this.slots) {
-            this.#fetchComponentFromList(componentName, i);
+            this.fetchComponentFromList(componentName, i);
             i++;
         }
     }
 
-    #fetchComponentFromList(componentName, index){
+    fetchComponentFromList(componentName, index){
         if (detectComponentByName(componentName)){
             const clonableComponent = document.getElementById("spellComponent" + componentName);
             const clone = clonableComponent.cloneNode(true);
             clone.id = clone.id + index;
             this.componentDisplayElement.appendChild(clone);
-            setTimeout(function(){
-                assignDroppableAreaByID(clone.id, this.handleHoldingElement().bind(this), this.handleElementDrop().bind(this));
-            }, 10);
+            assignDroppableAreaByElement(clone, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
         } else{
             logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
         }
     }
 
-    handleHoldingElement(){
+    handleElementHold(){
+        logText("component hold detected!");
         this.componentDisplayElement.style.backgroundColor = "#B0C4DE";
     }
 
     handleElementDrop(event){
+        logText("component drop detected!");
         const droppedElementId = event.dataTransfer.getData("text/plain");
         const positionInWand = 0; //FIX ME!!!!!!
         this.slots[positionInWand] = droppedElementId;
-        this.#updateComponentDisplay();
+        this.updateComponentDisplay();
+        this.selectWand();
         this.componentDisplayElement.style.backgroundColor = "#333333";
     }
 }
