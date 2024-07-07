@@ -11,7 +11,6 @@ export function assignToolTip(toolTipButton, elementDescription) {
 }
 
 const toolTip = document.getElementById("toolTip");
-console.log(toolTip);
 
 function updateToolTipPosition(mouseEvent, toolTipButton) {
     // const toolTip = toolTipButton.getElementsByClassName("toolTip")[0];

@@ -281,6 +281,16 @@ img {
     width: fit-content;
 }
 
+.wandTitle { /* Only applies to the currently selected wand */
+    color: #FFFFF0;
+    font-size: 2em;
+}
+
+.wandFlavor { /* Only applies to the currently selected wand */
+    color: #D3D3D3;
+    font-size: 1em;
+}
+
 .bottomToolBar {
     background-color: #333333;
     bottom: 0px;

@@ -35,10 +35,8 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
   #fillStatTable() {
     this.targetCellElement.innerHTML = "Targets: " + this.targetType;
     this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.effects[1]; //Choose the mid effect, how to show voided effects?
-    console.log(this.effects);
   }
   #formatEffects(jsonEffects) {
-    console.log(jsonEffects);
     this.effects = [];
     for (let property in jsonEffects) { //loop through values in jsonEffects
       if (typeof jsonEffects[property] == "string") { //if the value exists

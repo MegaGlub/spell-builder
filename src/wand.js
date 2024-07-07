@@ -11,8 +11,6 @@ export class wand {
         
         this.slotsByObject = [];
 
-        console.log(this.slotsByName);
-
         this.buildWandVisuals();
         this.drawElement(document.getElementById("wandSelector"));
         this.addEventListeners();
@@ -85,12 +83,15 @@ export class wand {
         }
         const descriptionClone = this.descriptionElement.cloneNode(true);
         descriptionBox.appendChild(descriptionClone);
+
+        descriptionClone.querySelector(".spellTitle").classList.replace("spellTitle", "wandTitle");
+        descriptionClone.querySelector(".spellFlavor").classList.replace("spellFlavor", "wandFlavor");
+
         const clonedComponentDisplayElement = descriptionClone.querySelector(".wandComponentDisplay");
         while(clonedComponentDisplayElement.firstChild) {
             clonedComponentDisplayElement.removeChild(clonedComponentDisplayElement.firstChild);
         }
         for(let componentIndex in this.slotsByObject){
-            console.log(this.slotsByObject[componentIndex]);
             const componentClone = this.slotsByObject[componentIndex].clone();
             componentClone.drawElement(clonedComponentDisplayElement);
             assignDroppableAreaByElement(componentClone.toolTipButtonElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
