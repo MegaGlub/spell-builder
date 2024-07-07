@@ -278,6 +278,7 @@ img {
 .wandComponentDisplay {
     background-color: #333333;
     padding: 0.5em;
+    width: fit-content;
 }
 
 .bottomToolBar {

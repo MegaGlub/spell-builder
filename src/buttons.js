@@ -26,7 +26,6 @@ export function assignDraggableElementByID(elementId){
 }
 
 export function assignDroppableAreaByElement(element, dragOverFunct, dropFunct) {
-    console.log(element);
     element.addEventListener("dragover", (event) => {
         logText("dragged over");
         event.preventDefault();

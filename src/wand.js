@@ -89,9 +89,10 @@ export class wand {
         while(clonedComponentDisplayElement.firstChild) {
             clonedComponentDisplayElement.removeChild(clonedComponentDisplayElement.firstChild);
         }
-        for(spellComponent in this.slotsByObject){
-            const componentClone = structuredClone(spellComponent);
-            spellComponent.drawElement(clonedComponentDisplayElement);
+        for(let componentIndex in this.slotsByObject){
+            console.log(this.slotsByObject[componentIndex]);
+            const componentClone = this.slotsByObject[componentIndex].clone();
+            componentClone.drawElement(clonedComponentDisplayElement);
             assignDroppableAreaByElement(componentClone.toolTipButtonElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
         }
     }
@@ -113,7 +114,7 @@ export class wand {
             logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
         }
         else {
-            const componentClone = structuredClone(componentList[indexOfComponent]);
+            const componentClone = componentList[indexOfComponent].clone();
             this.slotsByObject[index] = componentClone;
             componentClone.drawElement(this.componentDisplayElement);
         }
