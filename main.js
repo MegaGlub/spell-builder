@@ -81,9 +81,9 @@ function finishLoading() {
 }
 
 export function findComponentByName(name){
-    const i = 0;
+    let i = 0;
     for (let component of componentList){
-        if (component.name = name){
+        if (component.name == name){
             return i; //return index of the element in the list
         }
         i++;

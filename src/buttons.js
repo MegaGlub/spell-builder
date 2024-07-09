@@ -16,23 +16,19 @@ export function assignDraggableElementByID(elementId){
     element.style.cursor = "move";
     element.addEventListener("dragstart", (event) => {
         element.style.opacity = "0.5";
-        logText("picked up object.");
         event.dataTransfer.setData("text/plain", elementId);
     });
     element.addEventListener("dragend", () => {
         element.style.opacity = "1.0";
-        logText("dropped object");
     })
 }
 
 export function assignDroppableAreaByElement(element, dragOverFunct, dropFunct) {
     element.addEventListener("dragover", (event) => {
-        logText("dragged over");
         event.preventDefault();
         dragOverFunct;
     });
     element.addEventListener("drop", (event) => {
-        logText("dropped over");
         event.preventDefault();
         dropFunct(event);
     });

@@ -122,15 +122,13 @@ export class wand {
     }
 
     handleElementHold(){
-        logText("component hold detected!");
         this.componentDisplayElement.style.backgroundColor = "#B0C4DE";
     }
 
     handleElementDrop(event){
-        logText("component drop detected!");
         const droppedElementId = event.dataTransfer.getData("text/plain");
         const positionInWand = 0; //FIX ME!!!!!!
-        this.slotsByName[positionInWand] = droppedElementId;
+        this.slotsByName[positionInWand] = droppedElementId.substr(14);
         this.updateComponentDisplay();
         this.selectWand();
         this.componentDisplayElement.style.backgroundColor = "#333333";
