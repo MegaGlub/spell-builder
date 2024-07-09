@@ -84,15 +84,18 @@ export class wand {
         const descriptionClone = this.descriptionElement.cloneNode(true);
         descriptionBox.appendChild(descriptionClone);
 
-        descriptionClone.querySelector(".spellTitle").classList.replace("spellTitle", "wandTitle");
-        descriptionClone.querySelector(".spellFlavor").classList.replace("spellFlavor", "wandFlavor");
+        descriptionClone.querySelector(".spellTitle").classList.replace("spellTitle", "wandActiveTitle");
+        descriptionClone.querySelector(".spellFlavor").classList.replace("spellFlavor", "wandActiveFlavor");
 
         const clonedComponentDisplayElement = descriptionClone.querySelector(".wandComponentDisplay");
+        clonedComponentDisplayElement.classList.add("wandActiveComponentDisplay");
+        clonedComponentDisplayElement.id = "wandActiveComponentDisplay";
         while(clonedComponentDisplayElement.firstChild) {
             clonedComponentDisplayElement.removeChild(clonedComponentDisplayElement.firstChild);
-        }
+        } //reclone the components so that they get new toolTip listeners
         for(let componentIndex in this.slotsByObject){
             const componentClone = this.slotsByObject[componentIndex].clone();
+            componentClone.toolTipButtonElement.classList.add("wandActiveComponent");
             componentClone.drawElement(clonedComponentDisplayElement);
             assignDroppableAreaByElement(componentClone.toolTipButtonElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
         }
@@ -122,16 +125,39 @@ export class wand {
     }
 
     handleElementHold(){
-        this.componentDisplayElement.style.backgroundColor = "#B0C4DE";
+        const descriptionBox = document.getElementById("wandWorkbench");
+        const activeComponentDisplayElement = descriptionBox.querySelector(".wandComponentDisplay");
+        console.log(activeComponentDisplayElement);
+        activeComponentDisplayElement.style.backgroundColor = "#B0C4DE";
     }
 
     handleElementDrop(event){
         const droppedElementId = event.dataTransfer.getData("text/plain");
-        const positionInWand = 0; //FIX ME!!!!!!
+        const positionInWand = this.findDroppedPositionInWand(event.clientX);
         this.slotsByName[positionInWand] = droppedElementId.substr(14);
         this.updateComponentDisplay();
         this.selectWand();
         this.componentDisplayElement.style.backgroundColor = "#333333";
+    }
+
+    findDroppedPositionInWand(clientX){ //finds the element by looking at the x coordinate of the drop action
+        const descriptionBox = document.getElementById("wandActiveComponentDisplay");
+        const availableComponents = [...descriptionBox.querySelectorAll(".wandActiveComponent")]; //converts the array-like into an array after grabbing
+        const nearestElement = availableComponents.reduce((nearest, child) => {
+            const componentPosition = child.getBoundingClientRect();
+            const offset = clientX - componentPosition.left - (componentPosition.width / 2);
+            if (offset < (componentPosition.width / 2) && offset > -(componentPosition.width / 2)){ //finds the element that is within 64 px of the drop position
+                return child;
+            } else{
+                return nearest;
+            }
+        }, { offset: Number.POSITIVE_INFINITY});
+        for (let i = 0; i < availableComponents.length; i++){ //turns that element into an index in the list
+            if (availableComponents[i] == nearestElement){
+                return i;
+            }
+        }
+        return -1;
     }
 }
 

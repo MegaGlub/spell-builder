@@ -281,12 +281,19 @@ img {
     width: fit-content;
 }
 
-.wandTitle { /* Only applies to the currently selected wand */
+.wandActiveComponentDisplay {
+    margin: 1em;
+}
+
+/* .wandActiveComponent {
+} */
+
+.wandActiveTitle {
     color: #FFFFF0;
     font-size: 2em;
 }
 
-.wandFlavor { /* Only applies to the currently selected wand */
+.wandActiveFlavor {
     color: #D3D3D3;
     font-size: 1em;
 }
