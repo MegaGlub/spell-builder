@@ -5,13 +5,15 @@ import { wand } from "./src/wand.js";
 import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
-//allow components to be dragged around
-//allow wands to change components
+//allow new wands to be built on runtime
+//allow wands to be renamed
+
 //allow wands to be saved and loaded
+//allow spell components to be saved and loaded
+
 //show errors with the wand
 //build all of the spellDescriptions into a complete picture
-//allow wands to be renamed
-//allow spell components to be saved and loaded
+
 //bake some cookies (or json files)
 //work on the martial arts
 //add more spellComponents
@@ -84,7 +86,7 @@ export function findComponentByName(name){
     let i = 0;
     for (let component of componentList){
         if (component.name == name){
-            return i; //return index of the element in the list
+            return i;
         }
         i++;
     }

@@ -76,7 +76,7 @@ export class wand {
     }
 
     selectWand() {
-        logText("Selected wand " + this.name + ".");
+        // logText("Selected wand " + this.name + ".");
         const descriptionBox = document.getElementById("wandWorkbench");
         while (descriptionBox.firstChild) {
             descriptionBox.removeChild(descriptionBox.firstChild);
@@ -125,10 +125,7 @@ export class wand {
     }
 
     handleElementHold(){
-        const descriptionBox = document.getElementById("wandWorkbench");
-        const activeComponentDisplayElement = descriptionBox.querySelector(".wandComponentDisplay");
-        console.log(activeComponentDisplayElement);
-        activeComponentDisplayElement.style.backgroundColor = "#B0C4DE";
+        document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#B0C4DE";
     }
 
     handleElementDrop(event){
@@ -137,7 +134,7 @@ export class wand {
         this.slotsByName[positionInWand] = droppedElementId.substr(14);
         this.updateComponentDisplay();
         this.selectWand();
-        this.componentDisplayElement.style.backgroundColor = "#333333";
+        document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#333333";
     }
 
     findDroppedPositionInWand(clientX){ //finds the element by looking at the x coordinate of the drop action
