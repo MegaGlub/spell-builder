@@ -1,25 +1,22 @@
 import { logText } from "./logging.js";
 
 export function assignToolTip(toolTipButton, elementDescription) {
-    toolTipButton.addEventListener('mouseover', function (event) {
+    toolTipButton.addEventListener('mouseover', function () {
         updateToolTipContents(elementDescription);
     });
     toolTipButton.addEventListener('mousemove', function (event) {
-        updateToolTipPosition(event, toolTipButton);
+        updateToolTipPosition(event);
     });
     toolTipButton.addEventListener('mouseout', clearToolTipContents);
 }
 
 const toolTip = document.getElementById("toolTip");
 
-function updateToolTipPosition(mouseEvent, toolTipButton) {
-    // const toolTip = toolTipButton.getElementsByClassName("toolTip")[0];
+function updateToolTipPosition(mouseEvent) {
     const clientX = mouseEvent.clientX;
     const clientY = mouseEvent.clientY;
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    // const parentOffsetWidth = toolTipButton.getBoundingClientRect().left;
-    // const parentOffsetHeight = toolTipButton.parentElement.getBoundingClientRect().top;
     const toolTipWidth = toolTip.offsetWidth;
     const toolTipHeight = toolTip.offsetHeight;
 
