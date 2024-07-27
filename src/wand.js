@@ -12,8 +12,6 @@ export class wand {
         this.slotsByObject = [];
 
         this.buildWandVisuals();
-        this.drawElement(document.getElementById("wandSelector"));
-        this.addEventListeners();
         logText("Wand built: " + this.name);
     }
 
@@ -67,7 +65,9 @@ export class wand {
     }
 
     drawElement(parentElement) {
+        console.log(parentElement);
         parentElement.appendChild(this.toolTipButtonElement);
+        this.addEventListeners();
     }
 
     addEventListeners(){

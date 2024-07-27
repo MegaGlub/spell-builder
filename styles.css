@@ -267,6 +267,12 @@ img {
     width: 128px;
 }
 
+.wandAddButton {
+    display: inline;
+    height: 64px;
+    width: 64px;
+}
+
 .wandWorkbench {
     height: 100%;
     left: 0;
@@ -282,7 +288,7 @@ img {
 }
 
 .wandActiveComponentDisplay {
-    margin: 1em;
+    margin: 1.5em;
 }
 
 /* .wandActiveComponent {

@@ -38,11 +38,14 @@ await buildComponentsFromFiles();
 logText("--Sorting spell components...");
 quickSort(componentList);
 
-logText("--Tring to build wands...");
-buildWands();
-
 logText("--Drawing spell components...");
-drawAll(componentList);
+drawAll(componentList, document.getElementById("spellBox"));
+
+logText("--Tring to build wands...");
+await buildWands();
+
+logText("--Drawing wands...");
+drawAll(wandList, document.getElementById("wandSelector"));
 
 logText("--Complete!");
 finishLoading();
@@ -64,17 +67,20 @@ async function buildComponentsFromFiles() {
     }
 }
 
-function drawAll(components) {
-    for (const component of components) {
-        logText("Drawing " + component.name + "...");
-        component.drawElement(spellBox);
-    }
-}
-
 async function buildWands(){
     const dir = "data/wands";
     logText("Exploring: " + dir);
-    await readJSONDirectory(dir);
+    const freshWands = await readJSONDirectory(dir);
+    for (const wand of freshWands) {
+        wandList.push(wand);
+    }
+}
+
+function drawAll(drawableElements, destination) {
+    for (const drawable of drawableElements) {
+        logText("Drawing " + drawable.name + "...");
+        drawable.drawElement(destination);
+    }
 }
 
 function finishLoading() {
