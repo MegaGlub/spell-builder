@@ -34,6 +34,11 @@ export function assignDroppableAreaByElement(element, dragOverFunct, dropFunct) 
     });
 }
 
+export function assignEditableTextByElement(element, funct){
+    element.contentEditable = "plaintext-only";
+    element.addEventListener("keyup", funct);
+}
+
 export function assignStaticButtons() {
     assignClickableButtonByID("mainMenuSpellsButton", mainMenuSpellsButtonPress);
     assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress);

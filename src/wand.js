@@ -1,6 +1,6 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
-import { assignClickableButtonByID, assignDroppableAreaByElement } from "./buttons.js";
+import { assignClickableButtonByID, assignDroppableAreaByElement, assignEditableTextByElement } from "./buttons.js";
 import { findComponentByName, componentList } from "../main.js";
 export class wand {
     constructor(name, flavor, image, slotsByName) {
@@ -61,7 +61,7 @@ export class wand {
     }
 
     #fillInnerHTML() {
-        this.spellTitleElement.innerHTML = "\"" + this.name + "\"";
+        this.spellTitleElement.innerHTML = this.name;
         this.spellFlavorElement.innerHTML = this.flavor;
         this.componentDisplayElement;
     }
@@ -84,8 +84,12 @@ export class wand {
         const descriptionClone = this.descriptionElement.cloneNode(true);
         descriptionBox.appendChild(descriptionClone);
 
-        descriptionClone.querySelector(".spellTitle").classList.replace("spellTitle", "wandActiveTitle");
-        descriptionClone.querySelector(".spellFlavor").classList.replace("spellFlavor", "wandActiveFlavor");
+        const activeTitle = descriptionClone.querySelector(".spellTitle");
+        activeTitle.classList.replace("spellTitle", "wandActiveTitle");
+        assignEditableTextByElement(activeTitle, this.handleNameEdit.bind(this));
+        const activeFlavor = descriptionClone.querySelector(".spellFlavor");
+        activeFlavor.classList.replace("spellFlavor", "wandActiveFlavor");
+        assignEditableTextByElement(activeFlavor, this.handleFlavorEdit.bind(this));
 
         const clonedComponentDisplayElement = descriptionClone.querySelector(".wandComponentDisplay");
         clonedComponentDisplayElement.classList.add("wandActiveComponentDisplay");
@@ -155,6 +159,22 @@ export class wand {
             }
         }
         return -1;
+    }
+
+    handleNameEdit(){
+        const activeTitle = document.getElementsByClassName("wandActiveTitle")[0];
+        const newText = activeTitle.innerHTML;
+        this.name = newText;
+        this.spellTitleElement.innerHTML = newText;
+        this.toolTipButtonElement.id = "wand" + newText;
+        this.descriptionElement.id = "wandDescription" + newText;
+    }
+
+    handleFlavorEdit(){
+        const activeFlavor = document.getElementsByClassName("wandActiveFlavor")[0];
+        const newText = activeFlavor.innerHTML;
+        this.flavor = newText;
+        this.spellFlavorElement.innerHTML = newText;
     }
 }
 
