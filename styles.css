@@ -57,6 +57,7 @@ img {
 
 .mainMenuButtons {
     background-color: #2F4F4F;
+    border-radius: 0.5em;
     display: block;
     margin: auto;
     padding: 10px;
@@ -105,13 +106,14 @@ img {
     /*background-color: #2F4F4F;*/
     cursor: pointer;
     display: inline-block;
-    height: auto;
+    height: fit-content;
     margin: 16px;
-    width: auto;
+    width: fit-content;
 }
 
 .toolTip {
     background-color: #000000;
+    border-radius: 0em 0.5em 0.5em 0.5em;
     color: #FFFFF0;
     display: none;
     font-size: 1em;
@@ -139,6 +141,7 @@ img {
 .modal {
     background-color: #D3D3D3;
     border: 0.25em solid #808080;
+    border-radius: 0.5em;
     margin: 3% auto;
     padding-bottom: 0.25em;
     padding-left: 1em;
@@ -168,6 +171,7 @@ img {
 }
 
 .spellComponent {
+    border-radius: 1.5em;
     display: block;
     height: 128px;
     margin: 0;
@@ -271,6 +275,7 @@ img {
     display: inline;
     height: 64px;
     width: 64px;
+    bottom: 0;
 }
 
 .wandWorkbench {
@@ -283,25 +288,43 @@ img {
 
 .wandComponentDisplay {
     background-color: #333333;
-    padding: 0.5em;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    padding: 0.25em;
     width: fit-content;
 }
 
 .wandActiveComponentDisplay {
-    margin: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
 }
+
 
 /* .wandActiveComponent {
 } */
 
 .wandActiveTitle {
+    border-radius: 0.2em;
     color: #FFFFF0;
     font-size: 2em;
+    width: fit-content;
+}
+.wandActiveTitle:hover{
+    box-shadow: 0 0 10px 100px #FFFFF0 inset;
+    color: #000000;
+    cursor: text;
 }
 
 .wandActiveFlavor {
+    border-radius: 0.2em;
     color: #D3D3D3;
     font-size: 1em;
+    width: fit-content;
+}
+.wandActiveFlavor:hover{
+    box-shadow: 0 0 10px 100px #FFFFF0 inset;
+    color: #000000;
+    cursor: text;
 }
 
 .bottomToolBar {

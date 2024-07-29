@@ -1,0 +1,20 @@
+{
+    "type": "Wand",
+    "name": "New Wand2",
+    "flavor": "Destroys the universe twice or whatever.",
+    "image": "images/wands/wand-draft.png",
+    "slots": [
+        "Nothing",
+        "Nothing",
+        "Nothing",
+        "Nothing",
+        "Nothing",
+        "Nothing",
+        "Nothing",
+        "Nothing",
+        "Nothing",
+        "Nothing",
+        "Nothing",
+        "Nothing"
+    ]
+}
