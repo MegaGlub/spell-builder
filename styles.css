@@ -143,6 +143,7 @@ img {
     border: 0.25em solid #808080;
     border-radius: 0.5em;
     margin: 3% auto;
+    min-height: 5%;
     padding-bottom: 0.25em;
     padding-left: 1em;
     padding-right: 1em;
@@ -272,10 +273,16 @@ img {
 }
 
 .wandAddButton {
-    display: inline;
-    height: 64px;
-    width: 64px;
     bottom: 0;
+    display: block;
+    height: 64px;
+    margin-bottom: 1em;
+    margin-left: calc(((1em + 128px + 20px) / 2) - 32px);
+    position: absolute;
+    width: 64px;
+}
+.wandAddButton:hover {
+    cursor: pointer;
 }
 
 .wandWorkbench {

@@ -5,7 +5,7 @@ const modalBackground = document.getElementById("modalBackground");
 var logs = "";
 
 export function showLog() {
-    console.log("Showing log...");
+    console.log("Showing log.");
     modalBackground.style.display = "block";
     modalContent.innerHTML = logs;
 }

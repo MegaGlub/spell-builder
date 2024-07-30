@@ -2,6 +2,7 @@ import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID, assignDroppableAreaByElement, assignEditableTextByElement } from "./buttons.js";
 import { findComponentByName, componentList } from "../main.js";
+
 export class wand {
     constructor(name, flavor, image, slotsByName) {
         this.name = name;
@@ -178,3 +179,17 @@ export class wand {
     }
 }
 
+const modalContent = document.getElementById("modalContent");
+const modalBackground = document.getElementById("modalBackground");
+
+export function createWandAddButton() {
+    const wandAddButton = document.getElementById("wandAddButton");
+    wandAddButton.src = "images/ui/add.png";
+    assignClickableButtonByID("wandAddButton", handleAddPress);
+}
+
+function handleAddPress(){
+    logText("Preparing to add new wand.");
+    modalBackground.style.display = "block";
+    modalContent.innerHTML = "wand form here (eventually)";
+}

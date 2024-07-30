@@ -1,4 +1,5 @@
 import { logText, showLog } from "./logging.js";
+import { createWandAddButton } from "./wand.js";
 
 const mainMenuScreen = document.getElementById("mainMenuScreen");
 const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
@@ -46,6 +47,8 @@ export function assignStaticButtons() {
     assignClickableButtonByID("logButton", showLog);
     assignClickableButtonByID("modalBackground", hideModal);
     assignClickableButtonByID("modalCloser", hideModal);
+    
+    createWandAddButton();
 }
 
 function mainMenuSpellsButtonPress() {

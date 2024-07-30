@@ -13,6 +13,8 @@ import { fetchCookies } from "./src/cookies.js";
 //show errors with the wand
 //build all of the spellDescriptions into a complete picture
 
+//make voidable components glow purple when hovering/holding the void spell (css dropshadow)
+
 //bake some cookies (or json files)
 //work on the martial arts
 //add more spellComponents
