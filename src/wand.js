@@ -135,20 +135,21 @@ export class wand {
 
     handleElementDrop(event){
         const droppedElementId = event.dataTransfer.getData("text/plain");
-        const positionInWand = this.findDroppedPositionInWand(event.clientX);
+        const positionInWand = this.findDroppedPositionInWand(event.clientX, event.clientY);
         this.slotsByName[positionInWand] = droppedElementId.substr(14);
         this.updateComponentDisplay();
         this.selectWand();
         document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#333333";
     }
 
-    findDroppedPositionInWand(clientX){ //finds the element by looking at the x coordinate of the drop action
+    findDroppedPositionInWand(clientX, clientY){ //finds the element by looking at the x coordinate of the drop action
         const descriptionBox = document.getElementById("wandActiveComponentDisplay");
         const availableComponents = [...descriptionBox.querySelectorAll(".wandActiveComponent")]; //converts the array-like into an array after grabbing
         const nearestElement = availableComponents.reduce((nearest, child) => {
             const componentPosition = child.getBoundingClientRect();
-            const offset = clientX - componentPosition.left - (componentPosition.width / 2);
-            if (offset < (componentPosition.width / 2) && offset > -(componentPosition.width / 2)){ //finds the element that is within 64 px of the drop position
+            const offsetX = clientX - componentPosition.left - (componentPosition.width / 2);
+            const offsetY = clientY - componentPosition.top - (componentPosition.height / 2);
+            if (this.isWithinBounds(offsetX, componentPosition.width) && this.isWithinBounds(offsetY, componentPosition.height)){ //finds the element that is within 64 px of the drop position
                 return child;
             } else{
                 return nearest;
@@ -160,6 +161,10 @@ export class wand {
             }
         }
         return -1;
+    }
+
+    isWithinBounds(offset, elementSize){
+        return (offset < elementSize / 2 && offset > -(elementSize / 2));
     }
 
     handleNameEdit(){
