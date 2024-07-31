@@ -67,7 +67,6 @@ export class wand {
     }
 
     drawElement(parentElement) {
-        console.log(parentElement);
         parentElement.appendChild(this.toolTipButtonElement);
         this.addEventListeners();
     }

@@ -8,7 +8,15 @@ const modalBackground = document.getElementById("modalBackground");
 
 export function assignClickableButtonByID(elementId, funct) {
     const element = document.getElementById(elementId);
-    element.addEventListener("click", funct);
+    element.addEventListener("click", (event) => {
+        funct(event);
+    });
+}
+
+export function assignClickableButtonByElement(element, funct) {
+    element.addEventListener("click", (event) => {
+        funct(event);
+    });
 }
 
 export function assignDraggableElementByID(elementId){
@@ -45,7 +53,7 @@ export function assignStaticButtons() {
     assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress);
     assignClickableButtonByID("mainMenuButton", unhideMainMenu);
     assignClickableButtonByID("logButton", showLog);
-    assignClickableButtonByID("modalBackground", hideModal);
+    assignClickableButtonByElement(window, clickOutOfModal);
     assignClickableButtonByID("modalCloser", hideModal);
     
     createWandAddButton();
@@ -69,6 +77,12 @@ function unhideMainMenu() {
     mainMenuScreen.style.display = "flex";
     mainMenuSpellsButton.disabled = false;
     mainMenuMartialsButton.disabled = false;
+}
+
+function clickOutOfModal(event) {
+    if (event.target == modalBackground){
+        hideModal();
+    }
 }
 
 function hideModal() {
