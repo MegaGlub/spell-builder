@@ -78,20 +78,31 @@ export class wand {
 
     selectWand() {
         // logText("Selected wand " + this.name + ".");
+        const descriptionClone = this.duplicateSelectedDescription();
+        this.beautifySelectedTitle(descriptionClone);
+        this.replaceComponentsInClonedDescription(descriptionClone);
+    }
+
+    duplicateSelectedDescription(){
         const descriptionBox = document.getElementById("wandWorkbench");
         while (descriptionBox.firstChild) {
             descriptionBox.removeChild(descriptionBox.firstChild);
         }
         const descriptionClone = this.descriptionElement.cloneNode(true);
         descriptionBox.appendChild(descriptionClone);
+        return descriptionClone;
+    }
 
+    beautifySelectedTitle(descriptionClone){
         const activeTitle = descriptionClone.querySelector(".spellTitle");
         activeTitle.classList.replace("spellTitle", "wandActiveTitle");
         assignEditableTextByElement(activeTitle, this.handleNameEdit.bind(this));
         const activeFlavor = descriptionClone.querySelector(".spellFlavor");
         activeFlavor.classList.replace("spellFlavor", "wandActiveFlavor");
         assignEditableTextByElement(activeFlavor, this.handleFlavorEdit.bind(this));
+    }
 
+    replaceComponentsInClonedDescription(descriptionClone){
         const clonedComponentDisplayElement = descriptionClone.querySelector(".wandComponentDisplay");
         clonedComponentDisplayElement.classList.add("wandActiveComponentDisplay");
         clonedComponentDisplayElement.id = "wandActiveComponentDisplay";
@@ -149,7 +160,7 @@ export class wand {
             const componentPosition = child.getBoundingClientRect();
             const offsetX = clientX - componentPosition.left - (componentPosition.width / 2);
             const offsetY = clientY - componentPosition.top - (componentPosition.height / 2);
-            if (this.isWithinBounds(offsetX, componentPosition.width) && this.isWithinBounds(offsetY, componentPosition.height)){ //finds the element that is within 64 px of the drop position
+            if (this.isWithinBounds(offsetX, componentPosition.width) && this.isWithinBounds(offsetY, componentPosition.height)){
                 return child;
             } else{
                 return nearest;
@@ -163,7 +174,7 @@ export class wand {
         return -1;
     }
 
-    isWithinBounds(offset, elementSize){
+    isWithinBounds(offset, elementSize){ //finds the element that is within 64 px of the drop position
         return (offset < elementSize / 2 && offset > -(elementSize / 2));
     }
 
