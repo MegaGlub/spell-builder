@@ -1,5 +1,5 @@
 import { logText, showLog } from "./logging.js";
-import { createWandAddButton } from "./wand.js";
+import { createWandAddButton } from "./addNewWand.js";
 
 const mainMenuScreen = document.getElementById("mainMenuScreen");
 const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");

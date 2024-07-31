@@ -23,8 +23,6 @@ logText("--Starting...");
 
 logText("--Retrieving element IDs...");
 
-const loadingScreen = document.getElementById("loadingScreen");
-const spellBox = document.getElementById("spellBox");
 export const componentList = [];
 const wandList = [];
 
@@ -86,6 +84,7 @@ function drawAll(drawableElements, destination) {
 }
 
 function finishLoading() {
+    const loadingScreen = document.getElementById("loadingScreen");
     loadingScreen.style.display = "none";
 }
 

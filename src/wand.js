@@ -28,7 +28,8 @@ export class wand {
 
     #createEmptyElements() {
         this.toolTipButtonElement = document.createElement("div");
-        this.descriptionElement = document.createElement("span");this.spellTitleElement = document.createElement("div");
+        this.descriptionElement = document.createElement("span");
+        this.spellTitleElement = document.createElement("div");
         this.spellTypeElement = document.createElement("div");
         this.spellFlavorElement = document.createElement("div");
         this.imageElement = document.createElement("img");
@@ -193,19 +194,4 @@ export class wand {
         this.flavor = newText;
         this.spellFlavorElement.innerHTML = newText;
     }
-}
-
-const modalContent = document.getElementById("modalContent");
-const modalBackground = document.getElementById("modalBackground");
-
-export function createWandAddButton() {
-    const wandAddButton = document.getElementById("wandAddButton");
-    wandAddButton.src = "images/ui/add.png";
-    assignClickableButtonByID("wandAddButton", handleAddPress);
-}
-
-function handleAddPress(){
-    logText("Preparing to add new wand.");
-    modalBackground.style.display = "block";
-    modalContent.innerHTML = "wand form here (eventually)";
 }
