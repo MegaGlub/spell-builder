@@ -23,7 +23,7 @@ function handleOpenAddPress(){
 
 class wandFormCreator {
     constructor(){
-        this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png"]; //make a method for this later
+        this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png",  "images/wands/wood-orbit.png", "images/wands/wood-blood.png",  "images/wands/wood-orbit.png", "images/wands/wood-blood.png",  "images/wands/wood-orbit.png", "images/wands/wood-blood.png",  "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png"]; //make a method for this later
 
         this.#createEmptyFormElements();
         this.#assignFormElementClasses();
@@ -58,10 +58,11 @@ class wandFormCreator {
 
     #createImageOptions(){
         let index = 0;
-        for (let image in this.availableImages){
-            optionContainer = document.createElement("label");
-            clickableBits = document.createElement("input");
-            imageElement = document.createElement("img");
+        for (let image of this.availableImages){
+            console.log("[" + index + "]: " + image);
+            const optionContainer = document.createElement("label");
+            const clickableBits = document.createElement("input");
+            const imageElement = document.createElement("img");
             optionContainer.className = "wandImageSelectionContainer";
             clickableBits.className = "wandImageSelectionInput";
             imageElement.className = "wandIcon";
@@ -70,6 +71,8 @@ class wandFormCreator {
             clickableBits.value = index;
             imageElement.src = image;
             this.imageField.appendChild(optionContainer);
+            optionContainer.appendChild(clickableBits);
+            optionContainer.appendChild(imageElement);
             index++;
         }
     }
@@ -87,7 +90,7 @@ class wandFormCreator {
         this.slotsCell.className = "modalFormCell";
         this.slotsLabel.className = "modalFormLabel";
         this.slotsField.className = "modalFormNumberField";
-        this.imageCell.className = "modalFormCell";
+        this.imageCell.className = "modalFormRow";
         this.imageLabel.className = "modalFormLabel";
         this.imageField.className = "modalFormImageField";
         this.customImageField.className = "modalFormCustomImageField";
@@ -116,7 +119,7 @@ class wandFormCreator {
             reader.readAsDataURL(file);
         });
         reader.onload = (event) => {
-            /* IMAGE PREVIEW HERE */ = event.target.result;
+            this.imageField = event.target.result;
         }
     }
     
@@ -144,7 +147,7 @@ class wandFormCreator {
         this.titleElement.innerHTML = "Create New Wand";
         this.nameLabel.innerHTML = "Name";
         this.flavorLabel.innerHTML = "Subtitle";
-        this.slotsLabel.innerHTML = "Number of Slots";
+        this.slotsLabel.innerHTML = "Slots";
         this.imageLabel.innerHTML = "Image (or custom 128x64)";
     }
 
