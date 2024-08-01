@@ -23,62 +23,121 @@ function handleOpenAddPress(){
 
 class wandFormCreator {
     constructor(){
+        this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png"]; //make a method for this later
+
         this.#createEmptyFormElements();
         this.#assignFormElementClasses();
         this.#assignFormElementIds();
+        this.#assignInputTypes();
+        this.#addFileSelection();
         this.#relateFormElements();
         this.#fillFormInnerHTML();
     }
 
     #createEmptyFormElements(){
-        this.formElement = document.createElement("div");
+        this.formContainerElement = document.createElement("div");
         this.titleElement = document.createElement("div");
-        this.fieldContainerElement = document.createElement("form"); //flexbox?
+        this.formElement = document.createElement("form"); //flexbox?
+        this.nameCell = document.createElement("span");
         this.nameLabel = document.createElement("label");
         this.nameField = document.createElement("input");
+        this.flavorCell = document.createElement("span");
         this.flavorLabel = document.createElement("label");
         this.flavorField = document.createElement("input");
+        this.slotsCell = document.createElement("span");
         this.slotsLabel = document.createElement("label");
         this.slotsField = document.createElement("input");
+        this.imageCell = document.createElement("span");
         this.imageLabel = document.createElement("label");
-        this.imageField = document.createElement("input");
+        this.imageField = document.createElement("form");
+        this.#createImageOptions();
         this.customImageField = document.createElement("input");
+        this.submitRow = document.createElement("span");
         this.submitButton = document.createElement("input");
+    }
+
+    #createImageOptions(){
+        let index = 0;
+        for (let image in this.availableImages){
+            optionContainer = document.createElement("label");
+            clickableBits = document.createElement("input");
+            imageElement = document.createElement("img");
+            optionContainer.className = "wandImageSelectionContainer";
+            clickableBits.className = "wandImageSelectionInput";
+            imageElement.className = "wandIcon";
+            clickableBits.type = "radio";
+            clickableBits.name = "line-style";
+            clickableBits.value = index;
+            imageElement.src = image;
+            this.imageField.appendChild(optionContainer);
+            index++;
+        }
     }
     
     #assignFormElementClasses(){
-        this.formElement.className = "modalForm";
+        this.formContainerElement.className = "modalFormContainer";
         this.titleElement.className = "modalFormTitle";
-        this.fieldContainerElement.className = "modalFormFieldContainer";
+        this.formElement.className = "modalForm";
+        this.nameCell.className = "modalFormCell";
         this.nameLabel.className = "modalFormLabel";
-        this.flavorLabel.className = "modalFormLabel";
-        this.slotsLabel.className = "modalFormLabel";
-        this.imageLabel.className = "modalFormLabel";
         this.nameField.className = "modalFormTextField";
+        this.flavorCell.className = "modalFormCell";
+        this.flavorLabel.className = "modalFormLabel";
         this.flavorField.className = "modalFormTextField";
+        this.slotsCell.className = "modalFormCell";
+        this.slotsLabel.className = "modalFormLabel";
         this.slotsField.className = "modalFormNumberField";
+        this.imageCell.className = "modalFormCell";
+        this.imageLabel.className = "modalFormLabel";
         this.imageField.className = "modalFormImageField";
-        this.customImageField.className = "modalFormImageField";
+        this.customImageField.className = "modalFormCustomImageField";
+        this.submitRow.className = "modalFormRow";
         this.submitButton.className = "modalFormSubmitButton";
     }
     
     #assignFormElementIds(){
-        this.formElement.id = "wandAddForm";
+        this.formContainerElement.id = "wandAddForm";
+    }
+
+    #assignInputTypes(){
+        this.nameField.type = "text";
+        this.flavorField.type = "text";
+        this.slotsField.type = "number";
+        this.imageField.type = "radio"; //Figure out image inputting
+        this.customImageField.type = "file";
+        this.submitButton.type = "submit";
+    }
+
+    #addFileSelection() {
+        this.customImageField.accept = "image/*";
+        const reader = new FileReader();
+        this.customImageField.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            reader.readAsDataURL(file);
+        });
+        reader.onload = (event) => {
+            /* IMAGE PREVIEW HERE */ = event.target.result;
+        }
     }
     
     #relateFormElements(){
-        this.formElement.appendChild(this.titleElement);
-        this.formElement.appendChild(this.fieldContainerElement);
-        this.fieldContainerElement.appendChild(this.nameLabel);
-        this.fieldContainerElement.appendChild(this.nameField);
-        this.fieldContainerElement.appendChild(this.flavorLabel);
-        this.fieldContainerElement.appendChild(this.flavorField);
-        this.fieldContainerElement.appendChild(this.slotsLabel);
-        this.fieldContainerElement.appendChild(this.slotsField);
-        this.fieldContainerElement.appendChild(this.imageLabel);
-        this.fieldContainerElement.appendChild(this.imageField);
-        this.fieldContainerElement.appendChild(this.customImageField);
-        this.fieldContainerElement.appendChild(this.submitButton);
+        this.formContainerElement.appendChild(this.titleElement);
+        this.formContainerElement.appendChild(this.formElement);
+        this.formElement.appendChild(this.nameCell);
+        this.nameCell.appendChild(this.nameLabel);
+        this.nameCell.appendChild(this.nameField);
+        this.formElement.appendChild(this.flavorCell);
+        this.flavorCell.appendChild(this.flavorLabel);
+        this.flavorCell.appendChild(this.flavorField);
+        this.formElement.appendChild(this.slotsCell);
+        this.slotsCell.appendChild(this.slotsLabel);
+        this.slotsCell.appendChild(this.slotsField);
+        this.formElement.appendChild(this.imageCell);
+        this.imageCell.appendChild(this.imageLabel);
+        this.imageCell.appendChild(this.imageField);
+        this.imageCell.appendChild(this.customImageField);
+        this.formElement.appendChild(this.submitRow);
+        this.submitRow.appendChild(this.submitButton);
     }
     
     #fillFormInnerHTML(){
@@ -86,11 +145,11 @@ class wandFormCreator {
         this.nameLabel.innerHTML = "Name";
         this.flavorLabel.innerHTML = "Subtitle";
         this.slotsLabel.innerHTML = "Number of Slots";
-        this.imageLabel.innerHTML = "Image (or custom)";
+        this.imageLabel.innerHTML = "Image (or custom 128x64)";
     }
 
     drawElement(parentElement){
-        parentElement.appendChild(this.formElement);
+        parentElement.appendChild(this.formContainerElement);
         this.#addEventListeners();
     }
 

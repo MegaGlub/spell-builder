@@ -171,6 +171,79 @@ img {
     white-space: pre-wrap;
 }
 
+.modalFormContainer {
+    color: #000000;
+}
+
+.modalFormTitle {
+    color: #000000;
+    font-size: 3em;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-decoration: underline;
+    width: 100%;
+}
+
+.modalForm {
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    margin: 5%;
+    width: 90%;
+}
+
+.modalFormRow {
+    display: block;
+    flex-basis: auto;
+    flex-grow: 1;
+    margin: auto;
+    padding: 0.5em;
+    width: 90%; /* Once again, should theoretically be 100% but oh well. */
+}
+
+.modalFormCell {
+    display: block;
+    flex-basis: auto;
+    flex-grow: 1;
+    margin: auto;
+    padding: 4px;
+    text-align: center;
+    width: calc(40% - 6px); /* Theoretically this should work with 50%, but flexbox is strange. */
+}
+
+.modalFormLabel {
+    display: block;
+    color: #000000;
+    font-size: 1.5em;
+    margin: auto;
+}
+
+.modalFormTextField {
+    background-color: #FFFFF0;
+    color: #2F4F4F;
+    display: block;
+    margin: auto;
+    width: 15em;
+}
+
+.modalFormNumberField {
+    background-color: #FFFFF0;
+    color: #2F4F4F;
+    display: block;
+    margin: auto;
+    width: 3em;
+}
+
+.modalFormImageField {
+
+}
+
+.modalFormCustomImageField {
+
+}
+
 .spellComponent {
     border-radius: 1.5em;
     display: block;
