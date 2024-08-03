@@ -1,5 +1,7 @@
-import { assignClickableButtonByID } from "./buttons.js";
+import { assignClickableButtonByElement, assignClickableButtonByID, hideModal } from "./buttons.js";
 import { logText } from "./logging.js";
+import { wandList } from "../main.js";
+import { wand } from "./wand.js";
 
 const modalContent = document.getElementById("modalContent");
 const modalBackground = document.getElementById("modalBackground");
@@ -54,7 +56,7 @@ class wandFormCreator {
         this.#createImageOptions();
         this.customImageField = document.createElement("input");
         this.submitRow = document.createElement("span");
-        this.submitButton = document.createElement("input");
+        this.submitButton = document.createElement("div");
     }
 
     #createImageOptions(){
@@ -75,7 +77,13 @@ class wandFormCreator {
             optionContainer.appendChild(clickableBits);
             optionContainer.appendChild(imageElement);
             // index++;
+            assignClickableButtonByElement(clickableBits, this.#handleImageOptionPress.bind(this));
         }
+    }
+    #handleImageOptionPress(event){
+        const pressedImage = event.srcElement;
+        console.log(pressedImage);
+        this.imageField.value = pressedImage.value;
     }
     
     #assignFormElementClasses(){
@@ -102,6 +110,7 @@ class wandFormCreator {
     
     #assignFormElementIds(){
         this.formContainerElement.id = "wandAddForm";
+        this.imageField.id = "wandAddFormImageField";
     }
 
     #assignInputTypes(){
@@ -109,10 +118,9 @@ class wandFormCreator {
         this.flavorField.type = "text";
         this.slotsField.type = "number";
         this.imageField.type = "text";
-        this.imageField.style.display = "hidden";
+        this.imageField.style.display = "none";
         this.imageSelectionField.type = "radio"; //Figure out image inputting
         this.customImageField.type = "file";
-        this.submitButton.type = "submit";
     }
 
     #addFileSelection() {
@@ -141,6 +149,7 @@ class wandFormCreator {
         this.slotsCell.appendChild(this.slotsField);
         this.formElement.appendChild(this.imageCell);
         this.imageCell.appendChild(this.imageLabel);
+        this.imageCell.appendChild(this.imageField);
         this.imageCell.appendChild(this.imageSelectionField);
         this.imageCell.appendChild(this.customImageField);
         this.formElement.appendChild(this.submitRow);
@@ -153,6 +162,7 @@ class wandFormCreator {
         this.flavorLabel.innerHTML = "Subtitle";
         this.slotsLabel.innerHTML = "Slots";
         this.imageLabel.innerHTML = "Image (or custom 128x64)";
+        this.submitButton.innerHTML = "Create Wand"
     }
 
     drawElement(parentElement){
@@ -161,7 +171,22 @@ class wandFormCreator {
     }
 
     #addEventListeners(){
-        logText("Someday this will do something.");
+        assignClickableButtonByElement(this.submitButton, this.#handleSubmission.bind(this));
+    }
+
+    #handleSubmission(){
+        const slots = [];
+        for (let i = 0; i < this.slotsField.value; i++){
+            slots.push("Nothing");
+        }
+        wandList.push(new wand(
+            this.nameField.value,
+            this.flavorField.value,
+            this.imageField.value,
+            slots
+        ));
+        wandList[wandList.length - 1].drawElement(document.getElementById("wandSelector"));
+        hideModal();
     }
 }
 

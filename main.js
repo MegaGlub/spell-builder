@@ -6,6 +6,7 @@ import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
 //allow new wands to be built on runtime
+//disallow submitting the form without checking for reasonable stuff
 
 //allow wands to be saved and loaded
 //allow spell components to be saved and loaded
@@ -24,7 +25,7 @@ logText("--Starting...");
 logText("--Retrieving element IDs...");
 
 export const componentList = [];
-const wandList = [];
+export const wandList = [];
 
 logText("--Assigning buttons...");
 assignStaticButtons();
