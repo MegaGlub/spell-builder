@@ -247,7 +247,7 @@ class wandFormCreator {
             minorErrors = true;
             this.#addError(false, "Wand does not have flavor text, which may cause it to display strangely. Click again to create anyways.");
         }
-        if (this.slotsField.value > 30){
+        if (this.slotsField.value > 15){
             minorErrors = true;
             this.#addError(false, "Wand has too many slots, and may not display properly. Click again to create anyways.");
         }
