@@ -23,7 +23,7 @@ function handleOpenAddPress(){
 
 class wandFormCreator {
     constructor(){
-        this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png",  "images/wands/wood-orbit.png", "images/wands/wood-blood.png",  "images/wands/wood-orbit.png", "images/wands/wood-blood.png",  "images/wands/wood-orbit.png", "images/wands/wood-blood.png",  "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png"]; //make a method for this later
+        this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png"]; //make a method for this later
 
         this.#createEmptyFormElements();
         this.#assignFormElementClasses();
@@ -49,7 +49,8 @@ class wandFormCreator {
         this.slotsField = document.createElement("input");
         this.imageCell = document.createElement("span");
         this.imageLabel = document.createElement("label");
-        this.imageField = document.createElement("form");
+        this.imageField = document.createElement("input");
+        this.imageSelectionField = document.createElement("form");
         this.#createImageOptions();
         this.customImageField = document.createElement("input");
         this.submitRow = document.createElement("span");
@@ -57,9 +58,8 @@ class wandFormCreator {
     }
 
     #createImageOptions(){
-        let index = 0;
+        // let index = 0;
         for (let image of this.availableImages){
-            console.log("[" + index + "]: " + image);
             const optionContainer = document.createElement("label");
             const clickableBits = document.createElement("input");
             const imageElement = document.createElement("img");
@@ -68,12 +68,13 @@ class wandFormCreator {
             imageElement.className = "wandIcon";
             clickableBits.type = "radio";
             clickableBits.name = "line-style";
-            clickableBits.value = index;
+            // clickableBits.value = index;
+            clickableBits.value = image;
             imageElement.src = image;
-            this.imageField.appendChild(optionContainer);
+            this.imageSelectionField.appendChild(optionContainer);
             optionContainer.appendChild(clickableBits);
             optionContainer.appendChild(imageElement);
-            index++;
+            // index++;
         }
     }
     
@@ -92,7 +93,8 @@ class wandFormCreator {
         this.slotsField.className = "modalFormNumberField";
         this.imageCell.className = "modalFormRow";
         this.imageLabel.className = "modalFormLabel";
-        this.imageField.className = "modalFormImageField";
+        this.imageField.className = "modalFormTextField";
+        this.imageSelectionField.className = "modalFormImageField";
         this.customImageField.className = "modalFormCustomImageField";
         this.submitRow.className = "modalFormRow";
         this.submitButton.className = "modalFormSubmitButton";
@@ -106,7 +108,9 @@ class wandFormCreator {
         this.nameField.type = "text";
         this.flavorField.type = "text";
         this.slotsField.type = "number";
-        this.imageField.type = "radio"; //Figure out image inputting
+        this.imageField.type = "text";
+        this.imageField.style.display = "hidden";
+        this.imageSelectionField.type = "radio"; //Figure out image inputting
         this.customImageField.type = "file";
         this.submitButton.type = "submit";
     }
@@ -119,7 +123,7 @@ class wandFormCreator {
             reader.readAsDataURL(file);
         });
         reader.onload = (event) => {
-            this.imageField = event.target.result;
+            this.imageSelectionField = event.target.result;
         }
     }
     
@@ -137,7 +141,7 @@ class wandFormCreator {
         this.slotsCell.appendChild(this.slotsField);
         this.formElement.appendChild(this.imageCell);
         this.imageCell.appendChild(this.imageLabel);
-        this.imageCell.appendChild(this.imageField);
+        this.imageCell.appendChild(this.imageSelectionField);
         this.imageCell.appendChild(this.customImageField);
         this.formElement.appendChild(this.submitRow);
         this.submitRow.appendChild(this.submitButton);

@@ -296,6 +296,9 @@ img {
 .wandImageSelectionContainer {
     flex-basis: 0;
 }
+.wandImageSelectionContainer:hover {
+    cursor: pointer;
+}
 
 .modalFormCustomImageField {
     display: block;
