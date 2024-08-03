@@ -249,7 +249,7 @@ class wandFormCreator {
         }
         if (this.slotsField.value > 15){
             minorErrors = true;
-            this.#addError(false, "Wand has too many slots, and may not display properly. Click again to create anyways.");
+            this.#addError(false, "Wand has too many slots and may not display properly. Click again to create anyways.");
         }
         if (this.slotsField.value < 3){
             fatalErrors = true;
