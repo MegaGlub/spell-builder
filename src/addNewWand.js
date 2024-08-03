@@ -27,11 +27,13 @@ function handleOpenAddPress() {
 class wandFormCreator {
     constructor() {
         this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png"]; //make a method for this later
+        this.acceptedMinorErrors = false;
 
         this.#createEmptyFormElements();
         this.#assignFormElementClasses();
         this.#assignFormElementIds();
         this.#assignInputTypes();
+        this.#fillDefaultValues();
         this.#relateFormElements();
         this.#fillFormInnerHTML();
     }
@@ -58,6 +60,7 @@ class wandFormCreator {
         this.customImageDisplay = document.createElement("img");
         this.submitRow = document.createElement("span");
         this.submitButton = document.createElement("div");
+        this.errorBox = document.createElement("div");
     }
 
     #createImageOptions() {
@@ -112,6 +115,7 @@ class wandFormCreator {
         this.customImageDisplay.className = "modalFormCustomImageDisplay";
         this.submitRow.className = "modalFormRow";
         this.submitButton.className = "modalFormSubmitButton";
+        this.errorBox.className = "modalFormErrorBox";
     }
 
     #assignFormElementIds() {
@@ -127,6 +131,15 @@ class wandFormCreator {
         this.imageField.style.display = "none";
         this.imageSelectionField.type = "radio";
         this.customImageField.type = "file";
+    }
+
+    #fillDefaultValues() {
+        this.nameField.value = "New Wand";
+        this.flavorField.value = "What does it do?";
+        this.slotsField.value = 3;
+        const imageOptions = this.imageSelectionField.querySelectorAll(".wandImageSelectionInput");
+        imageOptions[0].checked = "true";
+        this.imageField.value = this.availableImages[0];
     }
 
     #relateFormElements() {
@@ -149,6 +162,7 @@ class wandFormCreator {
         this.imageCell.appendChild(this.customImageDisplay);
         this.formElement.appendChild(this.submitRow);
         this.submitRow.appendChild(this.submitButton);
+        this.formContainerElement.appendChild(this.errorBox);
     }
 
     #fillFormInnerHTML() {
@@ -156,7 +170,7 @@ class wandFormCreator {
         this.nameLabel.innerHTML = "Name";
         this.flavorLabel.innerHTML = "Subtitle";
         this.slotsLabel.innerHTML = "Slots";
-        this.imageLabel.innerHTML = "Image";
+        this.imageLabel.innerHTML = "Icon";
         this.customImageField.innerHTML = "Custom (128x64)";
         this.submitButton.innerHTML = "Create Wand";
     }
@@ -184,7 +198,74 @@ class wandFormCreator {
         });
     }
 
+    #isWandNameUnique(){
+        for (let wand of wandList){
+            if (wand.name == this.nameField.value){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    #addError(fatal, text){
+        const error = document.createElement("div");
+        const icon = document.createElement("img");
+        const errorMsg = document.createElement("div");
+        error.className = "modalFormError";
+        icon.className = "errorIcon";
+        errorMsg.className = "modalFormErrorMessage";
+        if (fatal){
+            icon.src = "images/ui/red-error.png";
+        } else{
+            icon.src = "images/ui/yellow-error.png";
+        }
+        errorMsg.innerHTML = text;
+        error.appendChild(icon);
+        error.appendChild(errorMsg);
+        this.errorBox.appendChild(error);
+    }
+
+    #clearErrors(){
+        while (this.errorBox.firstChild) {
+            this.errorBox.removeChild(this.errorBox.firstChild);
+        }
+    }
+
     #handleSubmission() {
+        this.#clearErrors();
+        let fatalErrors = false;
+        let minorErrors = false;
+        if (!this.nameField.value){
+            fatalErrors = true;
+            this.#addError(true, "You must have a wand name!");
+        }
+        if (!this.#isWandNameUnique()){
+            fatalErrors = true;
+            this.#addError(true, "Wand name must be unique!");
+        }
+        if (!this.flavorField.value){
+            minorErrors = true;
+            this.#addError(false, "Wand does not have flavor text, which may cause it to display strangely. Click again to create anyways.");
+        }
+        if (this.slotsField.value > 30){
+            minorErrors = true;
+            this.#addError(false, "Wand has too many slots, and may not display properly. Click again to create anyways.");
+        }
+        if (this.slotsField.value < 3){
+            fatalErrors = true;
+            this.#addError(true, "You do not have enough available slots to even build a spell (minimum 3)!")
+        }
+        if (!this.imageField.value){
+            fatalErrors = true;
+            this.#addError(true, "You must select an icon for the wand!");
+        }
+        if (!fatalErrors && ((!minorErrors) || (minorErrors && this.acceptedMinorErrors))){
+            this.#actuallySubmitTheDamnThing();
+        } else if (minorErrors){
+            this.acceptedMinorErrors = true;
+        }
+    }
+    #actuallySubmitTheDamnThing() {
         const slots = [];
         for (let i = 0; i < this.slotsField.value; i++) {
             slots.push("Nothing");
@@ -196,6 +277,7 @@ class wandFormCreator {
             slots
         ));
         wandList[wandList.length - 1].drawElement(document.getElementById("wandSelector"));
+        this.#clearErrors();
         hideModal();
     }
 }

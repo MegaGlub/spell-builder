@@ -324,6 +324,24 @@ img {
     cursor: pointer;
 }
 
+.modalFormError {
+    background-color: #B0C4DE;
+    border: 3px thick #000000;
+    color: #000000;
+    font-size: 1.5em;
+    margin-top: 0.75em;
+    padding: 0.25em;
+}
+
+.modalFormErrorMessage {
+    display: inline-block;
+    padding: 0.1em;
+    position: relative;
+    text-align: center;
+    top: -0.75em;
+    width: calc(100% - (128px + 0.25em));
+}
+
 .spellComponent {
     border-radius: 1.5em;
     display: block;
@@ -399,6 +417,7 @@ img {
     height: 57%;
     left: 0;
     margin: 0;
+    overflow-y: scroll;
     padding: 0;
     position: absolute;
     width: 100%;
