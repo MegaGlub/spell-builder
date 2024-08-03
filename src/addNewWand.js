@@ -1,3 +1,4 @@
+var fs = module.require('fs');
 import { assignClickableButtonByElement, assignClickableButtonByID, hideModal } from "./buttons.js";
 import { logText } from "./logging.js";
 import { wandList } from "../main.js";
@@ -14,29 +15,28 @@ export function createWandAddButton() {
     wandFormHelper = new wandFormCreator();
 }
 
-function handleOpenAddPress(){
+function handleOpenAddPress() {
     logText("Preparing to add new wand.");
     modalBackground.style.display = "block";
-    while(modalContent.firstChild) {
+    while (modalContent.firstChild) {
         modalContent.removeChild(modalContent.firstChild);
     }
     wandFormHelper.drawElement(modalContent);
 }
 
 class wandFormCreator {
-    constructor(){
+    constructor() {
         this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png"]; //make a method for this later
 
         this.#createEmptyFormElements();
         this.#assignFormElementClasses();
         this.#assignFormElementIds();
         this.#assignInputTypes();
-        this.#addFileSelection();
         this.#relateFormElements();
         this.#fillFormInnerHTML();
     }
 
-    #createEmptyFormElements(){
+    #createEmptyFormElements() {
         this.formContainerElement = document.createElement("div");
         this.titleElement = document.createElement("div");
         this.formElement = document.createElement("form"); //flexbox?
@@ -55,38 +55,43 @@ class wandFormCreator {
         this.imageSelectionField = document.createElement("form");
         this.#createImageOptions();
         this.customImageField = document.createElement("input");
+        this.customImageDisplay = document.createElement("img");
         this.submitRow = document.createElement("span");
         this.submitButton = document.createElement("div");
     }
 
-    #createImageOptions(){
+    #createImageOptions() {
         // let index = 0;
-        for (let image of this.availableImages){
-            const optionContainer = document.createElement("label");
-            const clickableBits = document.createElement("input");
-            const imageElement = document.createElement("img");
-            optionContainer.className = "wandImageSelectionContainer";
-            clickableBits.className = "wandImageSelectionInput";
-            imageElement.className = "wandIcon";
-            clickableBits.type = "radio";
-            clickableBits.name = "line-style";
-            // clickableBits.value = index;
-            clickableBits.value = image;
-            imageElement.src = image;
-            this.imageSelectionField.appendChild(optionContainer);
-            optionContainer.appendChild(clickableBits);
-            optionContainer.appendChild(imageElement);
-            // index++;
-            assignClickableButtonByElement(clickableBits, this.#handleImageOptionPress.bind(this));
+        for (let image of this.availableImages) {
+            this.#addImageOption(image);
         }
     }
-    #handleImageOptionPress(event){
+
+    #addImageOption(image) {
+        const optionContainer = document.createElement("label");
+        const clickableBits = document.createElement("input");
+        const imageElement = document.createElement("img");
+        optionContainer.className = "wandImageSelectionContainer";
+        clickableBits.className = "wandImageSelectionInput";
+        imageElement.className = "wandIcon";
+        clickableBits.type = "radio";
+        clickableBits.name = "line-style";
+        // clickableBits.value = index;
+        clickableBits.value = image;
+        imageElement.src = image;
+        this.imageSelectionField.appendChild(optionContainer);
+        optionContainer.appendChild(clickableBits);
+        optionContainer.appendChild(imageElement);
+        // index++;
+        assignClickableButtonByElement(clickableBits, this.#handleImageOptionPress.bind(this));
+    }
+
+    #handleImageOptionPress(event) {
         const pressedImage = event.srcElement;
-        console.log(pressedImage);
         this.imageField.value = pressedImage.value;
     }
-    
-    #assignFormElementClasses(){
+
+    #assignFormElementClasses() {
         this.formContainerElement.className = "modalFormContainer";
         this.titleElement.className = "modalFormTitle";
         this.formElement.className = "modalForm";
@@ -104,38 +109,27 @@ class wandFormCreator {
         this.imageField.className = "modalFormTextField";
         this.imageSelectionField.className = "modalFormImageField";
         this.customImageField.className = "modalFormCustomImageField";
+        this.customImageDisplay.className = "modalFormCustomImageDisplay";
         this.submitRow.className = "modalFormRow";
         this.submitButton.className = "modalFormSubmitButton";
     }
-    
-    #assignFormElementIds(){
+
+    #assignFormElementIds() {
         this.formContainerElement.id = "wandAddForm";
         this.imageField.id = "wandAddFormImageField";
     }
 
-    #assignInputTypes(){
+    #assignInputTypes() {
         this.nameField.type = "text";
         this.flavorField.type = "text";
         this.slotsField.type = "number";
         this.imageField.type = "text";
         this.imageField.style.display = "none";
-        this.imageSelectionField.type = "radio"; //Figure out image inputting
+        this.imageSelectionField.type = "radio";
         this.customImageField.type = "file";
     }
 
-    #addFileSelection() {
-        this.customImageField.accept = "image/*";
-        const reader = new FileReader();
-        this.customImageField.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            reader.readAsDataURL(file);
-        });
-        reader.onload = (event) => {
-            this.imageSelectionField = event.target.result;
-        }
-    }
-    
-    #relateFormElements(){
+    #relateFormElements() {
         this.formContainerElement.appendChild(this.titleElement);
         this.formContainerElement.appendChild(this.formElement);
         this.formElement.appendChild(this.nameCell);
@@ -152,31 +146,47 @@ class wandFormCreator {
         this.imageCell.appendChild(this.imageField);
         this.imageCell.appendChild(this.imageSelectionField);
         this.imageCell.appendChild(this.customImageField);
+        this.imageCell.appendChild(this.customImageDisplay);
         this.formElement.appendChild(this.submitRow);
         this.submitRow.appendChild(this.submitButton);
     }
-    
-    #fillFormInnerHTML(){
+
+    #fillFormInnerHTML() {
         this.titleElement.innerHTML = "Create New Wand";
         this.nameLabel.innerHTML = "Name";
         this.flavorLabel.innerHTML = "Subtitle";
         this.slotsLabel.innerHTML = "Slots";
-        this.imageLabel.innerHTML = "Image (or custom 128x64)";
-        this.submitButton.innerHTML = "Create Wand"
+        this.imageLabel.innerHTML = "Image";
+        this.customImageField.innerHTML = "Custom (128x64)";
+        this.submitButton.innerHTML = "Create Wand";
     }
 
-    drawElement(parentElement){
+    drawElement(parentElement) {
         parentElement.appendChild(this.formContainerElement);
         this.#addEventListeners();
     }
 
-    #addEventListeners(){
+    #addEventListeners() {
+        this.#addCustomImage();
         assignClickableButtonByElement(this.submitButton, this.#handleSubmission.bind(this));
     }
 
-    #handleSubmission(){
+    #addCustomImage() {
+        this.customImageField.accept = "image/*";
+        this.customImageField.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            console.log(event.target.files);
+            const path = file.path;
+            this.imageField.value = path;
+            this.#addImageOption(path);
+            const imageOptions = this.imageSelectionField.querySelectorAll(".wandImageSelectionInput");
+            imageOptions[imageOptions.length - 1].checked = "true";
+        });
+    }
+
+    #handleSubmission() {
         const slots = [];
-        for (let i = 0; i < this.slotsField.value; i++){
+        for (let i = 0; i < this.slotsField.value; i++) {
             slots.push("Nothing");
         }
         wandList.push(new wand(

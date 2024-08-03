@@ -301,10 +301,12 @@ img {
 }
 
 .modalFormCustomImageField {
-    display: block;
-    margin-right: auto;
     margin-left: auto;
+    margin-right: auto;
     margin-top: 0.25em;
+}
+.modalFormCustomImageField:hover {
+    cursor: pointer;
 }
 
 .modalFormSubmitButton {
@@ -317,6 +319,9 @@ img {
     margin-right: auto;
     margin-top: 0.5em;
     width: 6em;
+}
+.modalFormSubmitButton:hover {
+    cursor: pointer;
 }
 
 .spellComponent {
