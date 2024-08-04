@@ -26,7 +26,7 @@ function handleOpenAddPress() {
 
 class wandFormCreator {
     constructor() {
-        this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-orbit.png", "images/wands/wood-blood.png"]; //make a method for this later
+        this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-dual.png", "images/wands/brass-pipe.png", "images/wands/brass-short.png", "images/wands/brass-light.gif"]; //make a method for this later
         this.acceptedMinorErrors = false;
 
         this.#createEmptyFormElements();
