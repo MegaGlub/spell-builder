@@ -168,11 +168,13 @@ img {
 
 .modalContent {
     color: #000000;
+    font-size: 1.5em;
     white-space: pre-wrap;
 }
 
 .modalFormContainer {
     color: #000000;
+    text-align: center;
 }
 
 .modalFormTitle {
@@ -318,6 +320,7 @@ img {
     margin-left: auto;
     margin-right: auto;
     margin-top: 0.5em;
+    text-align: center;
     width: 6em;
 }
 .modalFormSubmitButton:hover {
@@ -479,6 +482,14 @@ img {
     margin-bottom: 1.5em;
 }
 
+.wandDeleteButton {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+}
+.wandDeleteButton:hover {
+    cursor: pointer;
+}
 
 /* .wandActiveComponent {
 } */

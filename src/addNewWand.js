@@ -24,6 +24,35 @@ function handleOpenAddPress() {
     wandFormHelper.drawElement(modalContent);
 }
 
+export function handleDeleteWandPress(wandName) {
+    logText("Preparing to delete wand: " + wandName + "...");
+    const wandDeleter = new wandDestroyer(wandName);
+    modalBackground.style.display = "block";
+    while (modalContent.firstChild) {
+        modalContent.removeChild(modalContent.firstChild);
+    }
+    wandDeleter.drawElement(modalContent);
+}
+
+function deleteWand(name) {
+    for (let i = 0; i < wandList.length; i++) {
+        if (wandList[i].name == name) {
+            for (let j = i; j < wandList.length - 1; j++) {
+                wandList[j] = wandList[j + 1];
+            }
+            const wandSelector = document.getElementById("wandSelector");
+            const removedWand = document.getElementById("wand" + name);
+            wandSelector.removeChild(removedWand);
+            const wandWorkbench = document.getElementById("wandWorkbench");
+            while (wandWorkbench.firstChild){
+                wandWorkbench.removeChild(wandWorkbench.firstChild);
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
 class wandFormCreator {
     constructor() {
         this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-dual.png", "images/wands/brass-pipe.png", "images/wands/brass-short.png", "images/wands/brass-light.gif"]; //make a method for this later
@@ -279,6 +308,38 @@ class wandFormCreator {
         wandList[wandList.length - 1].drawElement(document.getElementById("wandSelector"));
         this.#clearErrors();
         hideModal();
+    }
+}
+
+class wandDestroyer {
+    constructor(wandName) {
+        this.wandName = wandName;
+
+        this.container = document.createElement("span");
+        this.warningText = document.createElement("div");
+        this.deleteButton = document.createElement("div");
+
+        this.container.className = "modalFormContainer";
+        this.deleteButton.className = "modalFormSubmitButton";
+
+        this.warningText.innerHTML = "Are you sure you want to delete " + wandName + "? This cannot be undone!";
+        this.deleteButton.innerHTML = "Delete Wand";
+
+        this.container.appendChild(this.warningText);
+        this.container.appendChild(this.deleteButton);
+    }
+
+    drawElement(parentElement){
+        parentElement.appendChild(this.container);
+        this.#addEventListeners();
+    }
+
+    #addEventListeners(){
+        assignClickableButtonByElement(this.deleteButton, () => {
+            deleteWand(this.wandName);
+            logText("Deleting wand" + this.wandName);
+            hideModal();
+        });
     }
 }
 

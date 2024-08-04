@@ -1,7 +1,8 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
-import { assignClickableButtonByID, assignDroppableAreaByElement, assignEditableTextByElement } from "./buttons.js";
-import { findComponentByName, componentList } from "../main.js";
+import { assignClickableButtonByID, assignClickableButtonByElement, assignDroppableAreaByElement, assignEditableTextByElement } from "./buttons.js";
+import { findComponentByName, componentList} from "../main.js";
+import { handleDeleteWandPress } from "./addNewWand.js";
 
 export class wand {
     constructor(name, flavor, image, slotsByName) {
@@ -35,6 +36,7 @@ export class wand {
         this.spellFlavorElement = document.createElement("div");
         this.imageElement = document.createElement("img");
         this.componentDisplayElement = document.createElement("div");
+        this.deleteButton = document.createElement("img");
     }
 
     #assignElementClasses() {
@@ -44,6 +46,7 @@ export class wand {
         this.spellTitleElement.className = "spellTitle";
         this.spellFlavorElement.className = "spellFlavor";
         this.componentDisplayElement.className = "wandComponentDisplay";
+        this.deleteButton.className = "wandDeleteButton";
     }
 
     #assignElementIds() {
@@ -53,6 +56,7 @@ export class wand {
 
     #assignImage() {
         this.imageElement.src = this.image;
+        this.deleteButton.src = "images/ui/trash.png";
     }
 
     #relateElements() {
@@ -82,6 +86,7 @@ export class wand {
     selectWand() {
         // logText("Selected wand " + this.name + ".");
         const descriptionClone = this.duplicateSelectedDescription();
+        this.createDeleteButton(descriptionClone);
         this.beautifySelectedTitle(descriptionClone);
         this.replaceComponentsInClonedDescription(descriptionClone);
     }
@@ -94,6 +99,12 @@ export class wand {
         const descriptionClone = this.descriptionElement.cloneNode(true);
         descriptionBox.appendChild(descriptionClone);
         return descriptionClone;
+    }
+
+    createDeleteButton(descriptionClone){
+        descriptionClone.appendChild(this.deleteButton);
+        assignClickableButtonByElement(this.deleteButton, () => {
+            handleDeleteWandPress(this.name)});
     }
 
     beautifySelectedTitle(descriptionClone){
