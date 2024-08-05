@@ -328,21 +328,31 @@ img {
 }
 
 .modalFormError {
+    align-items: center;
     background-color: #B0C4DE;
     border: 3px thick #000000;
     border-radius: 1em;
     color: #000000;
-    font-size: 1.5em;
+    display: flex;
+    flex-direction: row;
+    height: calc(64px + 0.5em);
     margin-top: 0.75em;
-    padding: 0.25em;
+    padding: 0.5em;
+}
+
+.errorIcon {
+    flex-grow: 0;
+    margin-bottom: auto;
+    margin-top: auto;
+    min-height: 64px;
+    min-width: 64px;
 }
 
 .modalFormErrorMessage {
-    display: inline-block;
-    padding: 0.1em;
-    position: relative;
+    flex-grow: 1;
+    margin-bottom: auto;
+    margin-top: auto;
     text-align: center;
-    top: -0.75em;
     width: calc(100% - (128px + 0.25em));
 }
 
