@@ -2,7 +2,7 @@ import { logText } from "./src/logging.js";
 import { readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
 import { wand } from "./src/wand.js";
-import { assignStaticButtons } from "./src/buttons.js";
+import { assignClickableButtonByElement, assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
 //allow new wands to be built on runtime

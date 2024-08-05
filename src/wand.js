@@ -36,7 +36,10 @@ export class wand {
         this.spellFlavorElement = document.createElement("div");
         this.imageElement = document.createElement("img");
         this.componentDisplayElement = document.createElement("div");
-        this.deleteButton = document.createElement("img");
+        this.deleteButtonElement = document.createElement("img");
+        this.spellDescriptionElement = document.createElement("span");
+        this.wordyDescriptionElement = document.createElement("div");
+        this.statsyDescriptionElement = document.createElement("div");
     }
 
     #assignElementClasses() {
@@ -46,7 +49,7 @@ export class wand {
         this.spellTitleElement.className = "spellTitle";
         this.spellFlavorElement.className = "spellFlavor";
         this.componentDisplayElement.className = "wandComponentDisplay";
-        this.deleteButton.className = "wandDeleteButton";
+        this.deleteButtonElement.className = "wandDeleteButton";
     }
 
     #assignElementIds() {
@@ -56,7 +59,7 @@ export class wand {
 
     #assignImage() {
         this.imageElement.src = this.image;
-        this.deleteButton.src = "images/ui/trash.png";
+        this.deleteButtonElement.src = "images/ui/trash.png";
     }
 
     #relateElements() {
@@ -102,8 +105,8 @@ export class wand {
     }
 
     createDeleteButton(descriptionClone){
-        descriptionClone.appendChild(this.deleteButton);
-        assignClickableButtonByElement(this.deleteButton, () => {
+        descriptionClone.appendChild(this.deleteButtonElement);
+        assignClickableButtonByElement(this.deleteButtonElement, () => {
             handleDeleteWandPress(this.name)});
     }
 
@@ -206,5 +209,37 @@ export class wand {
         const newText = activeFlavor.innerHTML;
         this.flavor = newText;
         this.spellFlavorElement.innerHTML = newText;
+    }
+
+    #compileSpell(){
+        const spellBlocks = this.#detectSpellBlocks();
+        for (let spellBlock of spellBlocks){
+            const inverted = false;
+            this.#errorTestSpellBlock(spellBlock);
+            if (this.#findComponentByType(spellBlock, "Void")){
+                inverted = true;
+            }
+            const formComponent = this.#findComponentByType(spellBlock, "Form");
+            const pathComponent = this.#findComponentByType(spellBlock, "Path");
+            const purposeComponent = this.#findComponentByType(spellBlock, "Purpose");
+            const enhancementComponents = this.#findAllComponentsByType(spellBlock, "Enhancement");
+            const triggerComponents = this.#findAllComponentsByType(spellBlock, "Triggers");
+        }
+    }
+
+    #detectSpellBlocks(){ //TODO separates the spell into multiple blocks, returns an array of arrays with the split component at the front
+        return [this.slotsByObject];
+    }
+
+    #errorTestSpellBlock(spellBlock){ //TODO
+        return false;
+    }
+
+    #findComponentByType(spellBlock, type){ //TODO
+        return spellBlock[0];
+    }
+
+    #findAllComponentsByType(spellBlock, type){ //TODO, for enhancements
+        return spellBlock;
     }
 }
