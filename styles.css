@@ -248,18 +248,18 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: baseline;
-    height: 68px;
+    height: 80px; /* image height + image margins */
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0.25em;
     overflow: hidden;
-    width: 132px;
+    width: 144px; /* image width + image margins */
     transition: 
         height 0.1s,
         width 0.1s;
 }
 .modalFormImageField:hover {
-    height: 216px;
+    height: 240px; /* image height * 3 + image margins * 3 */
     justify-content: center;
     overflow-y: scroll;
     width: 100%;
@@ -279,15 +279,15 @@ img {
 }
 .modalFormImageField .wandImageSelectionContainer .wandImageSelectionInput ~ * {
     display: none;
-    margin: 2px;
-    opacity: 0.5;
+    margin: 8px;
+    opacity: 0.7;
 }
 .modalFormImageField:hover .wandImageSelectionContainer .wandImageSelectionInput ~ * {
     display: inline-block;
     flex-basis: 1;
 }
 .modalFormImageField .wandImageSelectionContainer:hover .wandImageSelectionInput ~ * {
-    opacity: 0.75;
+    opacity: 0.85;
 }
 .modalFormImageField .wandImageSelectionContainer .wandImageSelectionInput:checked ~ * {
     display: inline-block;
