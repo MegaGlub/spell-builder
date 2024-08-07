@@ -3,6 +3,7 @@ import { assignClickableButtonByElement, assignClickableButtonByID, hideModal } 
 import { logText } from "./logging.js";
 import { wandList } from "../main.js";
 import { wand } from "./wand.js";
+import { readImageDirectory } from "./fileMods.js";
 
 const modalContent = document.getElementById("modalContent");
 const modalBackground = document.getElementById("modalBackground");
@@ -55,7 +56,8 @@ function deleteWand(name) {
 
 class wandFormCreator {
     constructor() {
-        this.availableImages = ["images/wands/wood-orbit.png", "images/wands/wood-blood.png", "images/wands/wood-dual.png", "images/wands/brass-pipe.png", "images/wands/brass-short.png", "images/wands/brass-light.gif"]; //make a method for this later
+        this.availableImages = readImageDirectory("images/wands");
+        console.log(this.availableImages);
         this.acceptedMinorErrors = false;
 
         this.#createEmptyFormElements();
