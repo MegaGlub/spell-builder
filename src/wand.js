@@ -1,7 +1,7 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID, assignClickableButtonByElement, assignDroppableAreaByElement, assignEditableTextByElement } from "./buttons.js";
-import { findComponentByName, componentList} from "../main.js";
+import { findComponentByName, componentList } from "../main.js";
 import { handleDeleteWandPress } from "./addNewWand.js";
 
 export class wand {
@@ -10,7 +10,7 @@ export class wand {
         this.flavor = flavor;
         this.image = image;
         this.slotsByName = slotsByName;
-        
+
         this.slotsByObject = [];
 
         this.buildWandVisuals();
@@ -50,6 +50,9 @@ export class wand {
         this.spellFlavorElement.className = "spellFlavor";
         this.componentDisplayElement.className = "wandComponentDisplay";
         this.deleteButtonElement.className = "wandDeleteButton";
+        this.spellDescriptionElement.className = "wandSpellDescription";
+        this.wordyDescriptionElement.className = "wandSpellDescriptionWords";
+        this.statsyDescriptionElement.className = "componentStatTable";
     }
 
     #assignElementIds() {
@@ -68,6 +71,8 @@ export class wand {
         this.descriptionElement.appendChild(this.spellTitleElement);
         this.descriptionElement.appendChild(this.spellFlavorElement);
         this.descriptionElement.appendChild(this.componentDisplayElement);
+        this.spellDescriptionElement.appendChild(this.wordyDescriptionElement);
+        this.spellDescriptionElement.appendChild(this.statsyDescriptionElement);
     }
 
     #fillInnerHTML() {
@@ -81,7 +86,7 @@ export class wand {
         this.addEventListeners();
     }
 
-    addEventListeners(){
+    addEventListeners() {
         assignToolTip(this.toolTipButtonElement, this.descriptionElement);
         assignClickableButtonByID("wand" + this.name, this.selectWand.bind(this)); //the bind is stupid ahhh hell, but it keeps "this" in the right scope
     }
@@ -92,25 +97,28 @@ export class wand {
         this.createDeleteButton(descriptionClone);
         this.beautifySelectedTitle(descriptionClone);
         this.replaceComponentsInClonedDescription(descriptionClone);
+        this.#compileSpell();
     }
 
-    duplicateSelectedDescription(){
+    duplicateSelectedDescription() {
         const descriptionBox = document.getElementById("wandWorkbench");
         while (descriptionBox.firstChild) {
             descriptionBox.removeChild(descriptionBox.firstChild);
         }
         const descriptionClone = this.descriptionElement.cloneNode(true);
         descriptionBox.appendChild(descriptionClone);
+        descriptionClone.id = "descriptionBoxClone";
         return descriptionClone;
     }
 
-    createDeleteButton(descriptionClone){
+    createDeleteButton(descriptionClone) {
         descriptionClone.appendChild(this.deleteButtonElement);
         assignClickableButtonByElement(this.deleteButtonElement, () => {
-            handleDeleteWandPress(this.name)});
+            handleDeleteWandPress(this.name)
+        });
     }
 
-    beautifySelectedTitle(descriptionClone){
+    beautifySelectedTitle(descriptionClone) {
         const activeTitle = descriptionClone.querySelector(".spellTitle");
         activeTitle.classList.replace("spellTitle", "wandActiveTitle");
         assignEditableTextByElement(activeTitle, this.handleNameEdit.bind(this));
@@ -119,14 +127,14 @@ export class wand {
         assignEditableTextByElement(activeFlavor, this.handleFlavorEdit.bind(this));
     }
 
-    replaceComponentsInClonedDescription(descriptionClone){
+    replaceComponentsInClonedDescription(descriptionClone) {
         const clonedComponentDisplayElement = descriptionClone.querySelector(".wandComponentDisplay");
         clonedComponentDisplayElement.classList.add("wandActiveComponentDisplay");
         clonedComponentDisplayElement.id = "wandActiveComponentDisplay";
-        while(clonedComponentDisplayElement.firstChild) {
+        while (clonedComponentDisplayElement.firstChild) {
             clonedComponentDisplayElement.removeChild(clonedComponentDisplayElement.firstChild);
         } //reclone the components so that they get new toolTip listeners
-        for(let componentIndex in this.slotsByObject){
+        for (let componentIndex in this.slotsByObject) {
             const componentClone = this.slotsByObject[componentIndex].clone();
             componentClone.toolTipButtonElement.classList.add("wandActiveComponent");
             componentClone.drawElement(clonedComponentDisplayElement);
@@ -145,9 +153,9 @@ export class wand {
         }
     }
 
-    fetchComponentFromList(componentName, index){
+    fetchComponentFromList(componentName, index) {
         const indexOfComponent = findComponentByName(componentName);
-        if (indexOfComponent < 0){
+        if (indexOfComponent < 0) {
             logText("Failed to fetch " + componentName + " for wand " + this.name + "!");
         }
         else {
@@ -157,11 +165,11 @@ export class wand {
         }
     }
 
-    handleElementHold(){
+    handleElementHold() {
         document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#B0C4DE";
     }
 
-    handleElementDrop(event){
+    handleElementDrop(event) {
         const droppedElementId = event.dataTransfer.getData("text/plain");
         const positionInWand = this.findDroppedPositionInWand(event.clientX, event.clientY);
         this.slotsByName[positionInWand] = droppedElementId.substr(14);
@@ -170,32 +178,32 @@ export class wand {
         document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#333333";
     }
 
-    findDroppedPositionInWand(clientX, clientY){ //finds the element by looking at the x coordinate of the drop action
+    findDroppedPositionInWand(clientX, clientY) { //finds the element by looking at the x coordinate of the drop action
         const descriptionBox = document.getElementById("wandActiveComponentDisplay");
         const availableComponents = [...descriptionBox.querySelectorAll(".wandActiveComponent")]; //converts the array-like into an array after grabbing
         const nearestElement = availableComponents.reduce((nearest, child) => {
             const componentPosition = child.getBoundingClientRect();
             const offsetX = clientX - componentPosition.left - (componentPosition.width / 2);
             const offsetY = clientY - componentPosition.top - (componentPosition.height / 2);
-            if (this.isWithinBounds(offsetX, componentPosition.width) && this.isWithinBounds(offsetY, componentPosition.height)){
+            if (this.isWithinBounds(offsetX, componentPosition.width) && this.isWithinBounds(offsetY, componentPosition.height)) {
                 return child;
-            } else{
+            } else {
                 return nearest;
             }
-        }, { offset: Number.POSITIVE_INFINITY});
-        for (let i = 0; i < availableComponents.length; i++){ //turns that element into an index in the list
-            if (availableComponents[i] == nearestElement){
+        }, { offset: Number.POSITIVE_INFINITY });
+        for (let i = 0; i < availableComponents.length; i++) { //turns that element into an index in the list
+            if (availableComponents[i] == nearestElement) {
                 return i;
             }
         }
         return -1;
     }
 
-    isWithinBounds(offset, elementSize){ //finds the element that is within 64 px of the drop position
+    isWithinBounds(offset, elementSize) { //finds the element that is within 64 px of the drop position
         return (offset < elementSize / 2 && offset > -(elementSize / 2));
     }
 
-    handleNameEdit(){
+    handleNameEdit() {
         const activeTitle = document.getElementsByClassName("wandActiveTitle")[0];
         const newText = activeTitle.innerHTML;
         this.name = newText;
@@ -204,42 +212,94 @@ export class wand {
         this.descriptionElement.id = "wandDescription" + newText;
     }
 
-    handleFlavorEdit(){
+    handleFlavorEdit() {
         const activeFlavor = document.getElementsByClassName("wandActiveFlavor")[0];
         const newText = activeFlavor.innerHTML;
         this.flavor = newText;
         this.spellFlavorElement.innerHTML = newText;
     }
 
-    #compileSpell(){
+    #compileSpell() {
         const spellBlocks = this.#detectSpellBlocks();
-        for (let spellBlock of spellBlocks){
-            const inverted = false;
-            this.#errorTestSpellBlock(spellBlock);
-            if (this.#findComponentByType(spellBlock, "Void")){
-                inverted = true;
+        for (let spellBlock of spellBlocks) {
+            if (this.#errorTestSpellBlock(spellBlock)) {
+                return;
+            } else { //not terminating errors, just displaying user errors
+                let inverted = false;
+                const pathComponent = this.#findComponentByType(spellBlock, "Path");
+                const formComponent = this.#findComponentByType(spellBlock, "Form");
+                const enhancementComponents = this.#findAllComponentsByType(spellBlock, "Enhancement");
+                const purposeComponents = this.#findAllComponentsByType(spellBlock, "Purpose");
+                const triggerComponent = this.#findComponentByType(spellBlock, "Trigger");
+
+                if (this.#findComponentByType(spellBlock, "Void") && this.#allPurposeComponentsAreInvertible(purposeComponents)) {
+                    inverted = true;
+                }
+
+                let potency = 0;
+                for (let component of spellBlock) {
+                    potency += component.potencyModifier;
+                }
+
+                console.log(pathComponent);
+                this.wordyDescriptionElement.innerHTML = pathComponent.pathDescription;
+                console.log("path description: " + pathComponent.pathDescription); 
+                this.wordyDescriptionElement.innerHTML += formComponent.formDescription;
+                if (this.enhancementComponents) {
+                    for (let enhancement of enhancementComponents) {
+                        this.wordyDescriptionElement.innerHTML += enhancement.enhancementDescription;
+                    }
+                }
+                this.#fillPurposeText(purposeComponents, potency, inverted);
+                if (triggerComponent) {
+                    this.wordyDescriptionElement.innerHTML += triggerComponent.triggerDescription;
+                }
             }
-            const formComponent = this.#findComponentByType(spellBlock, "Form");
-            const pathComponent = this.#findComponentByType(spellBlock, "Path");
-            const purposeComponent = this.#findComponentByType(spellBlock, "Purpose");
-            const enhancementComponents = this.#findAllComponentsByType(spellBlock, "Enhancement");
-            const triggerComponents = this.#findAllComponentsByType(spellBlock, "Triggers");
         }
+        this.#removeOldCompiledSpell();
+        document.getElementById("descriptionBoxClone").appendChild(this.spellDescriptionElement);
     }
 
-    #detectSpellBlocks(){ //TODO separates the spell into multiple blocks, returns an array of arrays with the split component at the front
+    #detectSpellBlocks() { //TODO separates the spell into multiple blocks, returns an array of arrays with the split component at the front
         return [this.slotsByObject];
     }
 
-    #errorTestSpellBlock(spellBlock){ //TODO
+    #errorTestSpellBlock(spellBlock) { //TODO
         return false;
     }
 
-    #findComponentByType(spellBlock, type){ //TODO
-        return spellBlock[0];
+    #findComponentByType(spellBlock, type) { //TODO
+        for (let component of spellBlock) {
+            if (component.type == type) {
+                return component;
+            }
+        }
     }
 
-    #findAllComponentsByType(spellBlock, type){ //TODO, for enhancements
-        return spellBlock;
+    #findAllComponentsByType(spellBlock, type) { //TODO, for enhancements
+        const result = [];
+        for (let component of spellBlock){
+            if (component.type == type) {
+                result.push(component);
+            }
+        }
+        return result;
+    }
+
+    #allPurposeComponentsAreInvertible(purposeComponents) {
+        return true;
+    }
+
+    #fillPurposeText() {
+        this.wordyDescriptionElement.innerHTML += "purpose text here";
+        return;
+    }
+
+    #removeOldCompiledSpell() {
+        const descriptionClone = document.getElementById("descriptionBoxClone");
+        const preExistingCompiledSpell = descriptionClone.querySelector(".wandSpellDescription");
+        if (preExistingCompiledSpell) {
+            descriptionClone.removeChild(preExistingCompiledSpell);
+        }
     }
 }

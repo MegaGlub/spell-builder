@@ -5,9 +5,6 @@ import { wand } from "./src/wand.js";
 import { assignClickableButtonByElement, assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
-//allow new wands to be built on runtime
-//disallow submitting the form without checking for reasonable stuff
-
 //allow wands to be saved and loaded
 //allow spell components to be saved and loaded
 
