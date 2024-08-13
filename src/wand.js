@@ -40,6 +40,7 @@ export class wand {
         this.spellDescriptionElement = document.createElement("span");
         this.wordyDescriptionElement = document.createElement("div");
         this.statsyDescriptionElement = document.createElement("div");
+        this.errorBoxDescriptionElement = document.createElement("div");
     }
 
     #assignElementClasses() {
@@ -73,6 +74,7 @@ export class wand {
         this.descriptionElement.appendChild(this.componentDisplayElement);
         this.spellDescriptionElement.appendChild(this.wordyDescriptionElement);
         this.spellDescriptionElement.appendChild(this.statsyDescriptionElement);
+        this.spellDescriptionElement.appendChild(this.errorBoxDescriptionElement);
     }
 
     #fillInnerHTML() {
@@ -223,8 +225,9 @@ export class wand {
         const spellBlocks = this.#detectSpellBlocks();
         for (let spellBlock of spellBlocks) {
             if (this.#errorTestSpellBlock(spellBlock)) {
-                return;
+                this.wordyDescriptionElement.innerHTML = "Spell has one or more fatal errors and cannot be compiled.";
             } else { //not terminating errors, just displaying user errors
+
                 let inverted = false;
                 const pathComponent = this.#findComponentByType(spellBlock, "Path");
                 const formComponent = this.#findComponentByType(spellBlock, "Form");
@@ -241,17 +244,17 @@ export class wand {
                     potency += component.potencyModifier;
                 }
 
-                console.log(pathComponent);
                 this.wordyDescriptionElement.innerHTML = pathComponent.pathDescription;
-                console.log("path description: " + pathComponent.pathDescription); 
                 this.wordyDescriptionElement.innerHTML += formComponent.formDescription;
-                if (this.enhancementComponents) {
+                if (enhancementComponents.length > 0) {
                     for (let enhancement of enhancementComponents) {
+                        console.log(enhancement);
                         this.wordyDescriptionElement.innerHTML += enhancement.enhancementDescription;
                     }
                 }
                 this.#fillPurposeText(purposeComponents, potency, inverted);
                 if (triggerComponent) {
+                    console.log(triggerComponent);
                     this.wordyDescriptionElement.innerHTML += triggerComponent.triggerDescription;
                 }
             }
@@ -260,15 +263,78 @@ export class wand {
         document.getElementById("descriptionBoxClone").appendChild(this.spellDescriptionElement);
     }
 
-    #detectSpellBlocks() { //TODO separates the spell into multiple blocks, returns an array of arrays with the split component at the front
+    #detectSpellBlocks() { //TODO separates the spell into multiple blocks, returns an array of arrays with the split component at the front. may require a new component
         return [this.slotsByObject];
     }
 
-    #errorTestSpellBlock(spellBlock) { //TODO
-        return false;
+    #errorTestSpellBlock(spellBlock) {
+        this.#clearErrors();
+        const voidComponent = this.#findComponentByType(spellBlock, "Void");
+        const pathComponent = this.#findComponentByType(spellBlock, "Path");
+        const formComponent = this.#findComponentByType(spellBlock, "Form");
+        const purposeComponents = this.#findAllComponentsByType(spellBlock, "Purpose");
+
+        let fatalErrors = false;
+
+        if (!pathComponent){
+            this.#addError(true, "A spell block requires a Path component!");
+            fatalErrors = true;
+        }
+        if (!formComponent){
+            this.#addError(true, "A spell block requires a Form component!");
+            fatalErrors = true;
+        }
+        if (purposeComponents.length == 0){
+            this.#addError(true, "A spell block requires at least one Purpose component!");
+            fatalErrors = true;
+        }
+        if (!this.#allPurposeComponentsAreInvertible(purposeComponents) && voidComponent && purposeComponents.length != 0){
+            this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible and unaffected.");
+        }
+        if (spellBlock.length > 7) {
+            this.#addError(false, "One or more spell blocks are quite long. This may result in goofy displays or extremely high mana costs.");
+        }
+        if (this.#findAllComponentsByType(spellBlock, "Trigger").length > 1){
+            this.#addError(true, "A spell block may only contain up to one Trigger!");
+            fatalErrors = true;
+        }
+        if (this.#findAllComponentsByType(spellBlock, "Path").length > 1){
+            this.#addError(true, "A spell block may only contain up to one Path!");
+            fatalErrors = true;
+        }
+        if (this.#findAllComponentsByType(spellBlock, "Form").length > 1){
+            this.#addError(true, "A spell block may only contain up to one Form!");
+            fatalErrors = true;
+        }
+
+        return fatalErrors;
     }
 
-    #findComponentByType(spellBlock, type) { //TODO
+    #clearErrors(){
+        while (this.errorBoxDescriptionElement.firstChild) {
+            this.errorBoxDescriptionElement.removeChild(this.errorBoxDescriptionElement.firstChild);
+        }
+    }
+
+    #addError(fatal, text){
+        const error = document.createElement("div");
+        const icon = document.createElement("img");
+        const errorMsg = document.createElement("div");
+        error.className = "modalFormError";
+        icon.className = "errorIcon";
+        errorMsg.className = "modalFormErrorMessage";
+        if (fatal){
+            icon.src = "images/ui/red-error.png";
+        } else{
+            icon.src = "images/ui/yellow-error.png";
+        }
+        errorMsg.innerHTML = text;
+        error.appendChild(icon);
+        error.appendChild(errorMsg);
+        this.errorBoxDescriptionElement.appendChild(error);
+    }
+
+    #findComponentByType(spellBlock, type) {
         for (let component of spellBlock) {
             if (component.type == type) {
                 return component;
@@ -276,9 +342,9 @@ export class wand {
         }
     }
 
-    #findAllComponentsByType(spellBlock, type) { //TODO, for enhancements
+    #findAllComponentsByType(spellBlock, type) {
         const result = [];
-        for (let component of spellBlock){
+        for (let component of spellBlock) {
             if (component.type == type) {
                 result.push(component);
             }
@@ -286,12 +352,12 @@ export class wand {
         return result;
     }
 
-    #allPurposeComponentsAreInvertible(purposeComponents) {
-        return true;
+    #allPurposeComponentsAreInvertible(purposeComponents) { //TODO
+        return false;
     }
 
-    #fillPurposeText() {
-        this.wordyDescriptionElement.innerHTML += "purpose text here";
+    #fillPurposeText() { //TODO
+        this.wordyDescriptionElement.innerHTML += "(TODO: purpose text here)";
         return;
     }
 

@@ -529,6 +529,10 @@ img {
     cursor: text;
 }
 
+.wandSpellDescription{
+    font-size: 1.25em;
+}
+
 .bottomToolBar {
     background-color: #333333;
     bottom: 0px;
