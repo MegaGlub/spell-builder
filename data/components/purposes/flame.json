@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Flame",
+    "flavor": "Set the Form alight.",
+    "purposeDescriptions": {
+        "low": "weak, sputtering flames",
+        "mid": "intense, crackling flames",
+        "high": "ravenous, impossible to extinguish flames",
+        "invLow": "delicate ice crystals",
+        "invMid": "frigid, splintered ice crystals",
+        "invHigh": "creeping, inescapable ice shards"
+    },
+    "effects": {
+        "low": "Apply Burning (if vulnerable to fire)",
+        "mid": "Apply Burning",
+        "high": "Apply Burning, Apply Dazed",
+        "invLow": "Apply Weakened",
+        "invMid": "Apply Bleeding",
+        "invHigh": "Apply Stunned, Apply Bleeding"
+    },
+    "image": "images/purposes/purpose-frame.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 0,
+        "energy": 0
+    },
+    "types": {
+        "primary": "Heat",
+        "secondary": "Secondary"
+    },
+    "purpose": {
+        "target": "Any",
+        "invertible": "true"
+    }
+}

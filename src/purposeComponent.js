@@ -7,7 +7,7 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
     this.unformattedEffects = effects;
     this.#formatEffects(effects);
     this.targetType = targetType;
-    this.invertible = invertible;
+    this.invertible = invertible; //for some reason invertible is being passed as a string. what a nightmare of typeless languages
     this.buildPurposeVisuals();
   }
 

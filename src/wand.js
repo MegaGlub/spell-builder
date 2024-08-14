@@ -235,7 +235,7 @@ export class wand {
                 const purposeComponents = this.#findAllComponentsByType(spellBlock, "Purpose");
                 const triggerComponent = this.#findComponentByType(spellBlock, "Trigger");
 
-                if (this.#findComponentByType(spellBlock, "Void") && this.#allPurposeComponentsAreInvertible(purposeComponents)) {
+                if (this.#findComponentByType(spellBlock, "Void")) {
                     inverted = true;
                 }
 
@@ -252,7 +252,7 @@ export class wand {
                         this.wordyDescriptionElement.innerHTML += enhancement.enhancementDescription;
                     }
                 }
-                this.#fillPurposeText(purposeComponents, potency, inverted);
+                this.#fillPurposeText(purposeComponents, inverted, potency);
                 if (triggerComponent) {
                     console.log(triggerComponent);
                     this.wordyDescriptionElement.innerHTML += triggerComponent.triggerDescription;
@@ -352,13 +352,44 @@ export class wand {
         return result;
     }
 
-    #allPurposeComponentsAreInvertible(purposeComponents) { //TODO
-        return false;
+    #allPurposeComponentsAreInvertible(purposeComponents) {
+        let result = true;
+        for (let purpose of purposeComponents){
+            if (purpose.invertible == "false"){ //typeless (but not *actually* typeless) my beloathed
+                result = false;
+            }
+        }
+        return result;
     }
 
-    #fillPurposeText() { //TODO
-        this.wordyDescriptionElement.innerHTML += "(TODO: purpose text here)";
-        return;
+    #fillPurposeText(purposeComponents, inverted, potency) {
+        for (let i = 0; i < purposeComponents.length - 1; i++){
+            this.#addPurposeToText(purposeComponents[i], inverted, potency);
+            this.wordyDescriptionElement.innerHTML += " and ";
+        }
+        this.#addPurposeToText(purposeComponents[purposeComponents.length - 1], inverted, potency);
+        this.wordyDescriptionElement.innerHTML += ". ";
+    }
+
+    #addPurposeToText(purpose, inverted, potency){ //beautifying the text using colored spans might be a good idea. maybe change it from innerHTML?
+        if (purpose.invertible == "true" && inverted){ //purpose.invertible is being stored as a string
+            console.log("Inverted!!!!");
+            if (potency <= -2){
+                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["invHigh"];
+            } else if (potency <= 1){
+                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["invMid"];
+            } else{
+                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["invLow"];
+            }
+        } else{
+            if (potency >= 2){
+                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["high"];
+            } else if (potency >= -1){
+                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["mid"];
+            } else{
+                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["low"];
+            }
+        }
     }
 
     #removeOldCompiledSpell() {
