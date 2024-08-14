@@ -8,8 +8,7 @@ import { fetchCookies } from "./src/cookies.js";
 //allow wands to be saved and loaded
 //allow spell components to be saved and loaded
 
-//show errors with the wand
-//build all of the spellDescriptions into a complete picture
+//construct a stat block for complete spells
 
 //make voidable components glow purple when hovering/holding the void spell (css dropshadow)
 
