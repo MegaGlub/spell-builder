@@ -225,7 +225,7 @@ export class wand {
         const spellBlocks = this.#detectSpellBlocks();
         for (let spellBlock of spellBlocks) {
             if (this.#errorTestSpellBlock(spellBlock)) {
-                this.wordyDescriptionElement.innerHTML = "Spell has one or more fatal errors and cannot be compiled.";
+                this.#addDescriptionText("Spell has one or more fatal errors and cannot be compiled.");
             } else { //not terminating errors, just displaying user errors
 
                 let inverted = false;
@@ -244,16 +244,16 @@ export class wand {
                     potency += component.potencyModifier;
                 }
 
-                this.wordyDescriptionElement.innerHTML = pathComponent.pathDescription;
-                this.wordyDescriptionElement.innerHTML += formComponent.formDescription;
+                this.#addDescriptionText(pathComponent.pathDescription, pathComponent.type);
+                this.#addDescriptionText(formComponent.formDescription, formComponent.type);
                 if (enhancementComponents.length > 0) {
                     for (let enhancement of enhancementComponents) {
-                        this.wordyDescriptionElement.innerHTML += enhancement.enhancementDescription;
+                        this.#addDescriptionText(enhancement.enhancementDescription, enhancement.type);
                     }
                 }
                 this.#fillPurposeText(purposeComponents, inverted, potency);
                 if (triggerComponent) {
-                    this.wordyDescriptionElement.innerHTML += triggerComponent.triggerDescription;
+                    this.#addDescriptionText(triggerComponent.triggerDescription, triggerComponent.type);
                 }
             }
         }
@@ -363,29 +363,85 @@ export class wand {
     #fillPurposeText(purposeComponents, inverted, potency) {
         for (let i = 0; i < purposeComponents.length - 1; i++){
             this.#addPurposeToText(purposeComponents[i], inverted, potency);
-            this.wordyDescriptionElement.innerHTML += " and ";
+            this.#addDescriptionText(" and ");
         }
         this.#addPurposeToText(purposeComponents[purposeComponents.length - 1], inverted, potency);
-        this.wordyDescriptionElement.innerHTML += ". ";
+        this.#addDescriptionText(". ");
     }
 
     #addPurposeToText(purpose, inverted, potency){ //beautifying the text using colored spans might be a good idea. maybe change it from innerHTML?
         if (purpose.invertible == "true" && inverted){ //purpose.invertible is being stored as a string
             if (potency <= -2){
-                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["invHigh"];
+                this.#addDescriptionText(purpose.purposeDescriptions["invHigh"], purpose.type, purpose.primaryType);
             } else if (potency <= 1){
-                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["invMid"];
+                this.#addDescriptionText(purpose.purposeDescriptions["invMid"], purpose.type, purpose.primaryType);
             } else{
-                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["invLow"];
+                this.#addDescriptionText(purpose.purposeDescriptions["invLow"], purpose.type, purpose.primaryType);
             }
         } else{
             if (potency >= 2){
-                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["high"];
+                this.#addDescriptionText(purpose.purposeDescriptions["high"], purpose.type, purpose.primaryType);
             } else if (potency >= -1){
-                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["mid"];
+                this.#addDescriptionText(purpose.purposeDescriptions["mid"], purpose.type, purpose.primaryType);
             } else{
-                this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["low"];
+                this.#addDescriptionText(purpose.purposeDescriptions["low"], purpose.type, purpose.primaryType);
             }
+        }
+    }
+
+    #addDescriptionText(text, componentType, specifier){ //specifier is optional, -1 when not in use
+        const textElement = document.createElement("span");
+        if (componentType){
+            textElement.style.color = this.#getDescriptionColor(componentType);
+        }
+        if (specifier){
+            const underlineColor = this.#getDescriptionUnderlineColor(specifier);
+            textElement.style.textDecoration = "underline " + underlineColor;
+        }
+        textElement.innerHTML = text;
+        //textElement.className = "";
+
+        this.wordyDescriptionElement.appendChild(textElement);
+    }
+
+    #getDescriptionColor(type){
+        switch(type){
+            case "Void":
+                return "#8A2BE2";
+            case "Form":
+                return "#3CB371";
+            case "Path":
+                return "#DAA520";
+            case "Purpose":
+                return "#A0AECD";
+            case "Enhancement":
+                return "#6495ED";
+            case "Refund":
+                return "#BC8F8F";
+            case "Trigger":
+                return "#FA8072";
+            default:
+                return "#000000";
+        }
+    }
+
+    #getDescriptionUnderlineColor(vis){
+        switch(vis){
+            case "Design":
+                return "#DBA463";
+            case "Nature":
+                return "#3CB371";
+            case "Eath":
+                return "#5A4E44";
+            case "Flesh":
+                return "#E86A73";
+            case "Heat":
+                return "#B4202A";
+            case "Flow":
+                return "#588DBE";
+            default:
+                logText("Underline color for wand description failed, defaulting to black");
+                return "#000000";
         }
     }
 
