@@ -180,7 +180,7 @@ export class wand {
         this.slotsByName[positionInWand] = droppedElementId.substr(14);
         this.updateComponentDisplay();
         this.selectWand();
-        document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#333333";
+        document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#808080";
     }
 
     findDroppedPositionInWand(clientX, clientY) { //finds the element by looking at the x coordinate of the drop action
@@ -225,7 +225,7 @@ export class wand {
     }
 
     #compileSpell() {
-        clearChildren(this.wordyDescriptionElement);
+        clearChildren(this.wordyDescriptionElement); //clear old children
         const spellBlocks = this.#detectSpellBlocks();
         for (let spellBlock of spellBlocks) {
             if (this.#errorTestSpellBlock(spellBlock)) {

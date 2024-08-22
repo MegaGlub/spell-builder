@@ -89,7 +89,7 @@ img {
 }
 
 .spellBox {
-    background-color: #333333;
+    background-color: #808080;
     display: inline-block;
     height: 40%;
     left: 0;
@@ -426,7 +426,7 @@ img {
 }
 
 .wandBox {
-    background-color: #808080;
+    background-color: #333333;
     display: flex;
     height: 57%;
     left: 0;
@@ -481,7 +481,7 @@ img {
 }
 
 .wandComponentDisplay {
-    background-color: #333333;
+    background-color: #808080;
     border-radius: 0.5em;
     margin: 0.5em;
     padding: 0.25em;
@@ -489,6 +489,7 @@ img {
 }
 
 .wandActiveComponentDisplay {
+    background-color: #808080;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
 }
@@ -513,7 +514,7 @@ img {
 }
 .wandActiveTitle:hover{
     box-shadow: 0 0 10px 100px #FFFFF0 inset;
-    color: #000000;
+    color: #808080;
     cursor: text;
 }
 
@@ -525,7 +526,7 @@ img {
 }
 .wandActiveFlavor:hover{
     box-shadow: 0 0 10px 100px #FFFFF0 inset;
-    color: #000000;
+    color: #808080;
     cursor: text;
 }
 
