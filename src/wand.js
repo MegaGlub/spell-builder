@@ -3,6 +3,7 @@ import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID, assignClickableButtonByElement, assignDroppableAreaByElement, assignEditableTextByElement } from "./buttons.js";
 import { findComponentByName, componentList } from "../main.js";
 import { handleDeleteWandPress } from "./addNewWand.js";
+import { clearChildren } from "./elementHelpers.js";
 
 export class wand {
     constructor(name, flavor, image, slotsByName) {
@@ -37,7 +38,7 @@ export class wand {
         this.imageElement = document.createElement("img");
         this.componentDisplayElement = document.createElement("div");
         this.deleteButtonElement = document.createElement("img");
-        this.spellDescriptionElement = document.createElement("span");
+        this.spellDescriptionElement = document.createElement("div");
         this.wordyDescriptionElement = document.createElement("div");
         this.statsyDescriptionElement = document.createElement("div");
         this.errorBoxDescriptionElement = document.createElement("div");
@@ -59,6 +60,7 @@ export class wand {
     #assignElementIds() {
         this.toolTipButtonElement.id = "wand" + this.name;
         this.descriptionElement.id = "wandDescription" + this.name;
+        this.spellDescriptionElement.id = "wandSpellDescription";
     }
 
     #assignImage() {
@@ -257,7 +259,7 @@ export class wand {
                 }
             }
         }
-        this.#removeOldCompiledSpell();
+        this.#removeOldSpellDescription();
         document.getElementById("descriptionBoxClone").appendChild(this.spellDescriptionElement);
     }
 
@@ -309,9 +311,7 @@ export class wand {
     }
 
     #clearErrors(){
-        while (this.errorBoxDescriptionElement.firstChild) {
-            this.errorBoxDescriptionElement.removeChild(this.errorBoxDescriptionElement.firstChild);
-        }
+        clearChildren(this.errorBoxDescriptionElement);
     }
 
     #addError(fatal, text){
@@ -445,10 +445,12 @@ export class wand {
         }
     }
 
-    #removeOldCompiledSpell() {
+    #removeOldSpellDescription(){
         const descriptionClone = document.getElementById("descriptionBoxClone");
-        const preExistingCompiledSpell = descriptionClone.querySelector(".wandSpellDescription");
-        if (preExistingCompiledSpell) {
+        const preExistingCompiledSpell = document.getElementById("wandSpellDescription");
+        console.log(descriptionClone);
+        console.log(preExistingCompiledSpell);
+        if (preExistingCompiledSpell){
             descriptionClone.removeChild(preExistingCompiledSpell);
         }
     }
