@@ -248,13 +248,11 @@ export class wand {
                 this.wordyDescriptionElement.innerHTML += formComponent.formDescription;
                 if (enhancementComponents.length > 0) {
                     for (let enhancement of enhancementComponents) {
-                        console.log(enhancement);
                         this.wordyDescriptionElement.innerHTML += enhancement.enhancementDescription;
                     }
                 }
                 this.#fillPurposeText(purposeComponents, inverted, potency);
                 if (triggerComponent) {
-                    console.log(triggerComponent);
                     this.wordyDescriptionElement.innerHTML += triggerComponent.triggerDescription;
                 }
             }
@@ -373,7 +371,6 @@ export class wand {
 
     #addPurposeToText(purpose, inverted, potency){ //beautifying the text using colored spans might be a good idea. maybe change it from innerHTML?
         if (purpose.invertible == "true" && inverted){ //purpose.invertible is being stored as a string
-            console.log("Inverted!!!!");
             if (potency <= -2){
                 this.wordyDescriptionElement.innerHTML += purpose.purposeDescriptions["invHigh"];
             } else if (potency <= 1){
