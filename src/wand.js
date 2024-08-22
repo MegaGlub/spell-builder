@@ -144,6 +144,7 @@ export class wand {
             componentClone.drawElement(clonedComponentDisplayElement);
             assignDroppableAreaByElement(componentClone.toolTipButtonElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
         }
+        descriptionClone.appendChild(this.spellDescriptionElement);
     }
 
     updateComponentDisplay() { //remember to change the slotsByName first!
@@ -224,6 +225,7 @@ export class wand {
     }
 
     #compileSpell() {
+        clearChildren(this.wordyDescriptionElement);
         const spellBlocks = this.#detectSpellBlocks();
         for (let spellBlock of spellBlocks) {
             if (this.#errorTestSpellBlock(spellBlock)) {
@@ -259,8 +261,6 @@ export class wand {
                 }
             }
         }
-        this.#removeOldSpellDescription();
-        document.getElementById("descriptionBoxClone").appendChild(this.spellDescriptionElement);
     }
 
     #detectSpellBlocks() { //TODO separates the spell into multiple blocks, returns an array of arrays with the split component at the front. may require a new component
@@ -442,16 +442,6 @@ export class wand {
             default:
                 logText("Underline color for wand description failed, defaulting to black");
                 return "#000000";
-        }
-    }
-
-    #removeOldSpellDescription(){
-        const descriptionClone = document.getElementById("descriptionBoxClone");
-        const preExistingCompiledSpell = document.getElementById("wandSpellDescription");
-        console.log(descriptionClone);
-        console.log(preExistingCompiledSpell);
-        if (preExistingCompiledSpell){
-            descriptionClone.removeChild(preExistingCompiledSpell);
         }
     }
 }
