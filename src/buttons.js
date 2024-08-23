@@ -22,12 +22,16 @@ export function assignClickableButtonByElement(element, funct) {
 export function assignDraggableElementByID(elementId){
     const element = document.getElementById(elementId);
     element.draggable = true;
-    element.style.cursor = "move";
+    element.style.cursor = "grab";
     element.addEventListener("dragstart", (event) => {
+        // event.dataTransfer.dropEffect = "move";
+        // event.dataTransfer.effectAllowed = "move";
+        // element.style.cursor = "grabbing";
         element.style.opacity = "0.5";
         event.dataTransfer.setData("text/plain", elementId);
     });
     element.addEventListener("dragend", () => {
+        // element.style.cursor = "grab";
         element.style.opacity = "1.0";
     })
 }
