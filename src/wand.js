@@ -180,7 +180,7 @@ export class wand {
         this.slotsByName[positionInWand] = droppedElementId.substr(14);
         this.updateComponentDisplay();
         this.selectWand();
-        document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#808080";
+        document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#333333";
     }
 
     findDroppedPositionInWand(clientX, clientY) { //finds the element by looking at the x coordinate of the drop action
