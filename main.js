@@ -5,8 +5,10 @@ import { wand } from "./src/wand.js";
 import { assignClickableButtonByElement, assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
-//allow wands to be saved and loaded
+//allow wands to be saved as json files
 //allow spell components to be saved and loaded
+    //let componentList fetch them all, then only draw the ones in the saved list??
+        //or make a completeComponentList, then fill componentList with the saved ones. Saved ones would have to be sorted tho? idk
 
 //construct a stat block for complete spells
 
