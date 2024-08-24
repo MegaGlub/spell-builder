@@ -22,17 +22,20 @@ logText("--Starting...");
 
 logText("--Retrieving element IDs...");
 
+const completeComponentList = [];
 export const componentList = [];
+const savedComponentNames = [];
 export const wandList = [];
 
 logText("--Assigning buttons...");
 assignStaticButtons();
 
 logText("--Fetching cookies...");
-fetchCookies();
+fetchCookies(savedComponentNames);
 
 logText("--Trying to read spell components...");
 await buildComponentsFromFiles();
+separateChaffComponents();
 
 logText("--Sorting spell components...");
 quickSort(componentList);
@@ -61,6 +64,14 @@ async function buildComponentsFromFiles() {
         logText("Exploring: " + root + leaf);
         const freshComponents = await readJSONDirectory(root + leaf);
         for (const component of freshComponents) {
+            completeComponentList.push(component);
+        }
+    }
+}
+
+function separateChaffComponents(){
+    for (const component of completeComponentList){
+        if (savedComponentNames.includes(component.name)){
             componentList.push(component);
         }
     }
@@ -89,7 +100,7 @@ function finishLoading() {
 
 export function findComponentByName(name){
     let i = 0;
-    for (let component of componentList){
+    for (let component of completeComponentList){
         if (component.name == name){
             return i;
         }
