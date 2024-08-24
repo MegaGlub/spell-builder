@@ -8,7 +8,7 @@ import { fetchCookies } from "./src/cookies.js";
 //allow wands to be saved as json files
 //allow spell components to be saved and loaded
     //let componentList fetch them all, then only draw the ones in the saved list??
-        //or make a completeComponentList, then fill componentList with the saved ones. Saved ones would have to be sorted tho? idk
+        //or make a completeComponentList, then fill componentList with the saved ones. Then sort and draw componentList
 
 //construct a stat block for complete spells
 
