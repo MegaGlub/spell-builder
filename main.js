@@ -100,7 +100,7 @@ function finishLoading() {
 
 export function findComponentByName(name){
     let i = 0;
-    for (let component of completeComponentList){
+    for (let component of componentList){
         if (component.name == name){
             return i;
         }
