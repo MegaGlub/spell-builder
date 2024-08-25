@@ -1,5 +1,5 @@
 import { logText } from "./src/logging.js";
-import { readJSONDirectory } from "./src/json.js";
+import { createComponentFromJSON, createWandFromJSON, readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
 import { wand } from "./src/wand.js";
 import { assignClickableButtonByElement, assignStaticButtons } from "./src/buttons.js";
@@ -62,7 +62,7 @@ async function buildComponentsFromFiles() {
         "triggers"];
     for (const leaf of leaves) {
         logText("Exploring: " + root + leaf);
-        const freshComponents = await readJSONDirectory(root + leaf);
+        const freshComponents = await readJSONDirectory(root + leaf, createComponentFromJSON);
         for (const component of freshComponents) {
             completeComponentList.push(component);
         }
@@ -80,7 +80,7 @@ function separateChaffComponents(){
 async function buildWands(){
     const dir = "data/wands";
     logText("Exploring: " + dir);
-    const freshWands = await readJSONDirectory(dir);
+    const freshWands = await readJSONDirectory(dir, createWandFromJSON);
     for (const wand of freshWands) {
         wandList.push(wand);
     }

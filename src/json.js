@@ -8,27 +8,25 @@ import { enhancementComponent } from "./enhancementComponent.js";
 import { wand } from "./wand.js";
 import { logText } from "./logging.js";
 
-export async function readJSONDirectory(dirPath) {
-    const freshComponents = [];
+export async function readJSONDirectory(dirPath, processingFunct) {
+    const result = [];
     const files = fs.readdirSync(dirPath);
     for (const file of files){
-        logText("Found " + file + "...");
-        const component = await fetchRawJSON(dirPath + "/" + file);
-        // logText("Constructed " + component.name + "!");
-        freshComponents.push(component);
-    };
-    return freshComponents;
+        logText("Found" + file + "...");
+        result.push(await fetchRawJSON(file, processingFunct));
+    }
+    return result;
 }
 
-async function fetchRawJSON(fileName) { //Thanks Josh194 for helping me with async!
+async function fetchRawJSON(fileName, processingFunct) { //Thanks Josh194 for helping me with async!
     return fetch(fileName) //asynchronous bastard, ruining my perfectly synchronous code
         .then(response => response.json())
         .then(jsonResponse => {
-            return convertJSONToItem(jsonResponse);
+            return processingFunct(jsonResponse);
         });
 }
 
-function convertJSONToItem(json) {
+export function createComponentFromJSON(json) {
     switch (json.type) {
         case "Form":
             return createFormComponentFromJSON(json);
@@ -40,8 +38,6 @@ function convertJSONToItem(json) {
             return createEnhancementComponentFromJSON(json);
         case "Purpose":
             return createPurposeComponentFromJSON(json);
-        case "Wand":
-            return createWandFromJSON(json);
         default:
             return createMiscComponentFromJSON(json);
     }
@@ -137,7 +133,7 @@ function createMiscComponentFromJSON(json) {
     );
 }
 
-function createWandFromJSON(json){
+export function createWandFromJSON(json){
     return new wand(
         json.name,
         json.flavor,
