@@ -1,12 +1,11 @@
+import { savedComponentNames } from "../main.js";
+import { createArrayFromJSON, fetchRawJSON } from "./json.js";
 import { logText } from "./logging.js";
 
-export function fetchCookies(componentNames){
+export async function fetchCookies(){
     logText("Technically, these aren't cookies.\nDon't tell anyone that.");
-    componentNames.push("Nothing");
-    componentNames.push("Ball");
-    componentNames.push("Bolt");
-    componentNames.push("Polymorph");
-    componentNames.push("Arc");
-    //grab an array from a json file, then put it into componentNames
-    //may have to refactor json.js
+    const cookieComponents = await fetchRawJSON("data/save/availableComponents.json", createArrayFromJSON);
+    for (let componentName of cookieComponents){
+        savedComponentNames.push(componentName);
+    }
 }

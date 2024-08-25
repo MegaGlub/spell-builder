@@ -18,7 +18,7 @@ export async function readJSONDirectory(dirPath, processingFunct) {
     return result;
 }
 
-async function fetchRawJSON(fileName, processingFunct) { //Thanks Josh194 for helping me with async!
+export async function fetchRawJSON(fileName, processingFunct) { //Thanks Josh194 for helping me with async!
     return fetch(fileName) //asynchronous bastard, ruining my perfectly synchronous code
         .then(response => response.json())
         .then(jsonResponse => {
@@ -140,4 +140,8 @@ export function createWandFromJSON(json){
         json.image,
         json.slots
     );
+}
+
+export function createArrayFromJSON(json){
+    return json.arr;
 }

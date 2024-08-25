@@ -24,14 +24,15 @@ logText("--Retrieving element IDs...");
 
 const completeComponentList = [];
 export const componentList = [];
-const savedComponentNames = [];
+export const savedComponentNames = [];
 export const wandList = [];
 
 logText("--Assigning buttons...");
 assignStaticButtons();
 
 logText("--Fetching cookies...");
-fetchCookies(savedComponentNames);
+await fetchCookies();
+console.log(savedComponentNames);
 
 logText("--Trying to read spell components...");
 await buildComponentsFromFiles();
