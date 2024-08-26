@@ -12,7 +12,7 @@ export async function readJSONDirectory(dirPath, processingFunct) {
     const result = [];
     const files = fs.readdirSync(dirPath);
     for (const file of files){
-        logText("Found " + file + "...");
+        logText("\tFound " + file + ".");
         result.push(await fetchRawJSON(dirPath + "/" + file, processingFunct));
     }
     return result;

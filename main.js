@@ -30,39 +30,38 @@ import { fetchCookies } from "./src/cookies.js";
 //playtest
 //bug hunt
 
-logText("--Starting...");
+logText("Starting...");
 
-logText("--Retrieving element IDs...");
+logText("Retrieving element IDs...");
 
 const completeComponentList = []; //all components, built from json
 export const componentList = []; //just the components available to the user
 export const savedComponentNames = []; //names from availableComponents.json, used to build componentList
 export const wandList = []; //all wands, built from json. No such availability filtering.
 
-logText("--Assigning buttons...");
+logText("Assigning buttons...");
 assignStaticButtons();
 
-logText("--Fetching cookies...");
+logText("Fetching cookies...");
 await fetchCookies();
-console.log(savedComponentNames);
 
-logText("--Trying to read spell components...");
+logText("Trying to read spell components...");
 await buildComponentsFromFiles();
 separateChaffComponents();
 
-logText("--Sorting spell components...");
+logText("Sorting spell components...");
 quickSort(componentList);
 
-logText("--Drawing spell components...");
+logText("Drawing spell components...");
 drawAll(componentList, document.getElementById("spellBox"));
 
-logText("--Tring to build wands...");
+logText("Tring to build wands...");
 await buildWands();
 
-logText("--Drawing wands...");
+logText("Drawing wands...");
 drawAll(wandList, document.getElementById("wandSelector"));
 
-logText("--Complete!");
+logText("Complete!");
 finishLoading();
 
 async function buildComponentsFromFiles() {
@@ -74,7 +73,7 @@ async function buildComponentsFromFiles() {
         "purposes", 
         "triggers"];
     for (const leaf of leaves) {
-        logText("Exploring: " + root + leaf);
+        logText("\tExploring: " + root + leaf);
         const freshComponents = await readJSONDirectory(root + leaf, createComponentFromJSON);
         for (const component of freshComponents) {
             completeComponentList.push(component);
@@ -92,7 +91,7 @@ function separateChaffComponents(){
 
 async function buildWands(){
     const dir = "data/wands";
-    logText("Exploring: " + dir);
+    logText("\tExploring: " + dir);
     const freshWands = await readJSONDirectory(dir, createWandFromJSON);
     for (const wand of freshWands) {
         wandList.push(wand);
@@ -101,7 +100,7 @@ async function buildWands(){
 
 function drawAll(drawableElements, destination) {
     for (const drawable of drawableElements) {
-        logText("Drawing " + drawable.name + "...");
+        logText("\tDrawing " + drawable.name + ".");
         drawable.drawElement(destination);
     }
 }

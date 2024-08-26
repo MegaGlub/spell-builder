@@ -28,7 +28,7 @@ function handleOpenAddPress() {
 }
 
 export function handleDeleteWandPress(wandName) {
-    logText("Preparing to delete wand: " + wandName + "...");
+    logText("\tPreparing to delete wand: " + wandName + "...");
     const wandDeleter = new wandDestroyer(wandName);
     modalBackground.style.display = "block";
     while (modalContent.firstChild) {

@@ -16,7 +16,7 @@ export class wand {
         this.slotsByObject = [];
 
         this.buildWandVisuals();
-        logText("Wand built: " + this.name);
+        logText("\tWand built: " + this.name + ".");
     }
 
     buildWandVisuals() {
@@ -445,7 +445,7 @@ export class wand {
             case "Flow":
                 return "#588DBE";
             default:
-                logText("Underline color for wand description failed, defaulting to black");
+                logText("Underline color for wand description failed, defaulting to black.");
                 return "#000000";
         }
     }
@@ -465,7 +465,7 @@ export class wand {
         fileName = fileName.replaceAll(" ", "-");
         fileName = fileName.toLowerCase();
 
-        saveJSONFile("data/wands/" + fileName + ".json", wandJSON, () => {logText("Wand " + fileName + " saved!")});
+        saveJSONFile("data/wands/" + fileName + ".json", wandJSON, () => {logText("\tWand " + fileName + " saved!")});
     }
 
     #packageComponentsForSave(){

@@ -3,7 +3,7 @@ import { createArrayFromJSON, fetchRawJSON, saveJSONFile } from "./json.js";
 import { logText } from "./logging.js";
 
 export async function fetchCookies(){
-    logText("Technically, these aren't cookies.\nDon't tell anyone that.");
+    logText("\tTechnically, these aren't cookies.\n\tDon't tell anyone that.");
     const cookieComponents = await fetchRawJSON("data/save/availableComponents.json", createArrayFromJSON);
     for (let componentName of cookieComponents){
         savedComponentNames.push(componentName);
@@ -11,9 +11,9 @@ export async function fetchCookies(){
 }
 
 export async function saveCookies(){
-    logText("--Saving...");
+    logText("Saving...");
     const components = packageComponentsForSave();
-    saveJSONFile("data/save/availableComponents.json", components, () => {logText("Components saved!")});
+    saveJSONFile("data/save/availableComponents.json", components, () => {logText("\tComponents saved!")});
     for (let wand of wandList){
         wand.saveToFile();
     }
