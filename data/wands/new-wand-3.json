@@ -1,0 +1,11 @@
+{
+	"type": "Wand",
+	"name": "New Wand 3",
+	"flavor": "What does it do?",
+	"image": "images/wands/brass-light.gif",
+	"slots": [
+	"Nothing",
+	"Nothing",
+	"undefined"
+]
+}

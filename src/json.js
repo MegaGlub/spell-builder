@@ -149,3 +149,7 @@ export function createArrayFromJSON(json){
 export async function saveJSONFile(fileName, stringJSON, returnCallback){
     fs.writeFile(fileName, stringJSON, {}, returnCallback);
 }
+
+export async function destroyFile(fileName, returnCallback){
+    fs.unlink(fileName, returnCallback);
+}

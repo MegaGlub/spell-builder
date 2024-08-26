@@ -20,11 +20,12 @@ export async function saveCookies(){
 }
 
 function packageComponentsForSave(){
-    let result = "{\"arr\": [";
+    let result = "{ \n";
+    result += "\t\"arr\" : [";
     for (let i = 0; i < savedComponentNames.length - 1; i++){
-        result += "\n\"" + savedComponentNames[i] + "\",";
+        result += "\n\t\"" + savedComponentNames[i] + "\",";
     }
-    result += "\"" + savedComponentNames[savedComponentNames.length - 1] + "\"";
-    result += "]}";
+    result += "\t\"" + savedComponentNames[savedComponentNames.length - 1] + "\"";
+    result += "\n]\n}";
     return result;
 }

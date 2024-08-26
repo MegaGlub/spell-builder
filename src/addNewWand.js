@@ -58,7 +58,6 @@ function deleteWand(name) {
 class wandFormCreator {
     constructor() {
         this.availableImages = readImageDirectory("images/wands");
-        console.log(this.availableImages);
         this.acceptedMinorErrors = false;
 
         this.#createEmptyFormElements();
@@ -68,6 +67,7 @@ class wandFormCreator {
         this.#fillDefaultValues();
         this.#relateFormElements();
         this.#fillFormInnerHTML();
+        this.#addEventListeners();
     }
 
     #createEmptyFormElements() {
@@ -209,7 +209,6 @@ class wandFormCreator {
 
     drawElement(parentElement) {
         parentElement.appendChild(this.formContainerElement);
-        this.#addEventListeners();
     }
 
     #addEventListeners() {
