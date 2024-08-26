@@ -145,3 +145,7 @@ export function createWandFromJSON(json){
 export function createArrayFromJSON(json){
     return json.arr;
 }
+
+export async function saveJSONFile(stringJSON, fileName, returnCallback){
+    fs.writeFile(stringJSON, fileName, returnCallback);
+}

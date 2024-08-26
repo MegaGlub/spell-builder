@@ -6,9 +6,7 @@ import { assignClickableButtonByElement, assignStaticButtons } from "./src/butto
 import { fetchCookies } from "./src/cookies.js";
 
 //allow wands to be saved as json files
-//allow spell components to be saved and loaded
-    //let componentList fetch them all, then only draw the ones in the saved list??
-        //or make a completeComponentList, then fill componentList with the saved ones. Then sort and draw componentList
+//allow spell components to be saved as a json array
 
 //construct a stat block for complete spells
 

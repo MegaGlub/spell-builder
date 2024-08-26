@@ -1,6 +1,6 @@
 {
   "name": "spell-builder",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "\"GUI for building spells for a ttrpg campaign\"",
   "main": "run.js",
   "scripts": {

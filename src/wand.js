@@ -4,6 +4,7 @@ import { assignClickableButtonByID, assignClickableButtonByElement, assignDroppa
 import { findComponentByName, componentList } from "../main.js";
 import { handleDeleteWandPress } from "./addNewWand.js";
 import { clearChildren } from "./elementHelpers.js";
+import { saveJSONFile } from "./json.js";
 
 export class wand {
     constructor(name, flavor, image, slotsByName) {
@@ -443,5 +444,22 @@ export class wand {
                 logText("Underline color for wand description failed, defaulting to black");
                 return "#000000";
         }
+    }
+
+    saveToFile() {
+        let wandJSON = (
+            "{\"type\": \"Wand\","
+            + "\"name\": \"" + this.name + "\","
+            + "\"flavor\": \"" + this.flavor + "\","
+            + "\"image\": \"" + this.image + "\","
+            + "\"slots\": " + JSON.stringify(this.slotsByName)
+        );
+
+        let fileName = this.name;
+        fileName = fileName.replaceAll("[^A-Za-z0-9]", "");
+        fileName = fileName.replaceAll(" ", "-");
+        fileName = fileName.toLowerCase();
+
+        saveJSONFile(wandJSON, "data/wands/" + fileName, () => {logText("Wand " + fileName + " saved!")});
     }
 }

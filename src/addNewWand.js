@@ -4,6 +4,7 @@ import { logText } from "./logging.js";
 import { wandList } from "../main.js";
 import { wand } from "./wand.js";
 import { readImageDirectory } from "./fileMods.js";
+import { saveCookies } from "./cookies.js";
 
 const modalContent = document.getElementById("modalContent");
 const modalBackground = document.getElementById("modalBackground");
@@ -310,6 +311,7 @@ class wandFormCreator {
         wandList[wandList.length - 1].drawElement(document.getElementById("wandSelector"));
         this.#clearErrors();
         hideModal();
+        saveCookies();
     }
 }
 
