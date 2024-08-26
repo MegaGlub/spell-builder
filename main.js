@@ -5,12 +5,30 @@ import { wand } from "./src/wand.js";
 import { assignClickableButtonByElement, assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
+//importing and exporting via hash
+//select what to share via export
+
+//dev "god" code for import
+
+//rejig purposeComponents for robust statblocks (dmg, hit skill, hit mod, etc.)
+    //enums for dice?
+        //def easier than storing each situation in the purposeComponent
 //construct a stat block for complete spells
 
+//lock button for wands
+//"empowered" status effect switch for +potency (force highest strength?)
 //make voidable components glow purple when hovering/holding the void spell (css dropshadow)
 
 //work on the martial arts
+    //construct basic display screen
+    //import skills via json
+
 //add more spellComponents
+//add more martials (those still need to be written down!!!!)
+//css sweep for readability
+
+//playtest
+//bug hunt
 
 logText("--Starting...");
 
