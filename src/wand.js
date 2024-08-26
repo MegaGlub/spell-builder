@@ -182,6 +182,7 @@ export class wand {
         this.updateComponentDisplay();
         this.selectWand();
         document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#333333";
+        this.saveToFile();
     }
 
     findDroppedPositionInWand(clientX, clientY) { //finds the element by looking at the x coordinate of the drop action
@@ -216,6 +217,7 @@ export class wand {
         this.spellTitleElement.innerHTML = newText;
         this.toolTipButtonElement.id = "wand" + newText;
         this.descriptionElement.id = "wandDescription" + newText;
+        this.saveToFile();
     }
 
     handleFlavorEdit() {
@@ -223,6 +225,7 @@ export class wand {
         const newText = activeFlavor.innerHTML;
         this.flavor = newText;
         this.spellFlavorElement.innerHTML = newText;
+        this.saveToFile();
     }
 
     #compileSpell() {
@@ -262,6 +265,7 @@ export class wand {
                 }
             }
         }
+        this.saveToFile();
     }
 
     #detectSpellBlocks() { //TODO separates the spell into multiple blocks, returns an array of arrays with the split component at the front. may require a new component
@@ -469,7 +473,7 @@ export class wand {
         for (let i = 0; i < this.slotsByName.length - 1; i++){
             result += "\n\t\t\"" + this.slotsByName[i] + "\",";
         }
-        result += "\n\t\t\"" + this.slotsByName[-1] + "\"";
+        result += "\n\t\t\"" + this.slotsByName[this.slotsByName.length - 1] + "\"";
         result += "\n\t]";
         return result;
     }

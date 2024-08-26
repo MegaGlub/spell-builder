@@ -5,14 +5,10 @@ import { wand } from "./src/wand.js";
 import { assignClickableButtonByElement, assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
-//allow wands to be saved as json files
-//allow spell components to be saved as a json array
-
 //construct a stat block for complete spells
 
 //make voidable components glow purple when hovering/holding the void spell (css dropshadow)
 
-//bake some cookies (or json files)
 //work on the martial arts
 //add more spellComponents
 

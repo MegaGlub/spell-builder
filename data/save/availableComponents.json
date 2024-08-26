@@ -1,8 +1,10 @@
 { 
 	"arr" : [
-	"Nothing",
-	"Invisible",
-	"Ball",
-	"Arc",	"Flame"
-]
+		"Nothing",
+		"Invisible",
+		"Ball",
+		"Arc",
+		"Flame",
+        "Polymorph"
+	]
 }

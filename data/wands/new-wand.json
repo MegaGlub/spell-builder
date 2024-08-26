@@ -1,11 +1,12 @@
 {
 	"type": "Wand",
 	"name": "New Wand",
-	"flavor": "Destroys the universe or whatever.",
-	"image": "images/wands/wood-orbit.png",
+	"flavor": "What does it do?",
+	"image": "images/wands/brass-light.gif",
 	"slots": [
-	"Nothing",
-	"Nothing",
-	"undefined"
-]
+		"Ball",
+		"Arc",
+		"Invisible",
+		"Flame"
+	]
 }

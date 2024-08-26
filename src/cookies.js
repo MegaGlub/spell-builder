@@ -23,9 +23,9 @@ function packageComponentsForSave(){
     let result = "{ \n";
     result += "\t\"arr\" : [";
     for (let i = 0; i < savedComponentNames.length - 1; i++){
-        result += "\n\t\"" + savedComponentNames[i] + "\",";
+        result += "\n\t\t\"" + savedComponentNames[i] + "\",";
     }
-    result += "\t\"" + savedComponentNames[savedComponentNames.length - 1] + "\"";
-    result += "\n]\n}";
+    result += "\n\t\t\"" + savedComponentNames[savedComponentNames.length - 1] + "\"";
+    result += "\n\t]\n}";
     return result;
 }
