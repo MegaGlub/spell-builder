@@ -34,10 +34,10 @@ logText("--Starting...");
 
 logText("--Retrieving element IDs...");
 
-const completeComponentList = [];
-export const componentList = [];
-export const savedComponentNames = [];
-export const wandList = [];
+const completeComponentList = []; //all components, built from json
+export const componentList = []; //just the components available to the user
+export const savedComponentNames = []; //names from availableComponents.json, used to build componentList
+export const wandList = []; //all wands, built from json. No such availability filtering.
 
 logText("--Assigning buttons...");
 assignStaticButtons();
