@@ -467,10 +467,10 @@ export class wand {
     #packageComponentsForSave(){
         let result = "[";
         for (let i = 0; i < this.slotsByName.length - 1; i++){
-            result += "\n\t\"" + this.slotsByName[i] + "\",";
+            result += "\n\t\t\"" + this.slotsByName[i] + "\",";
         }
-        result += "\n\t\"" + this.slotsByName[-1] + "\"";
-        result += "\n]";
+        result += "\n\t\t\"" + this.slotsByName[-1] + "\"";
+        result += "\n\t]";
         return result;
     }
 }

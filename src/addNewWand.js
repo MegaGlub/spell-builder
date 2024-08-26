@@ -5,6 +5,7 @@ import { wandList } from "../main.js";
 import { wand } from "./wand.js";
 import { readImageDirectory } from "./fileMods.js";
 import { saveCookies } from "./cookies.js";
+import { destroyFile } from "./json.js";
 
 const modalContent = document.getElementById("modalContent");
 const modalBackground = document.getElementById("modalBackground");
@@ -34,6 +35,7 @@ export function handleDeleteWandPress(wandName) {
         modalContent.removeChild(modalContent.firstChild);
     }
     wandDeleter.drawElement(modalContent);
+
 }
 
 function deleteWand(name) {
@@ -49,6 +51,12 @@ function deleteWand(name) {
             while (wandWorkbench.firstChild){
                 wandWorkbench.removeChild(wandWorkbench.firstChild);
             }
+
+            let fileName = name;
+            fileName = fileName.replaceAll("\[^A-Za-z0-9\]", "");
+            fileName = fileName.replaceAll(" ", "-");
+            fileName = fileName.toLowerCase();
+            destroyFile("data/wands/" + fileName + ".json", () => {"Wand file deleted."});
             return true;
         }
     }
@@ -330,17 +338,18 @@ class wandDestroyer {
 
         this.container.appendChild(this.warningText);
         this.container.appendChild(this.deleteButton);
+
+        this.#addEventListeners();
     }
 
     drawElement(parentElement){
         parentElement.appendChild(this.container);
-        this.#addEventListeners();
     }
 
     #addEventListeners(){
         assignClickableButtonByElement(this.deleteButton, () => {
             deleteWand(this.wandName);
-            logText("Deleting wand" + this.wandName);
+            logText("Deleting wand " + this.wandName + ".");
             hideModal();
         });
     }
