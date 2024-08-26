@@ -13,7 +13,7 @@ export async function fetchCookies(){
 export async function saveCookies(){
     logText("--Saving...");
     const components = packageComponentsForSave();
-    saveJSONFile(components, "data/save/availableComponents.json", () => {logText("Components saved!")});
+    saveJSONFile("data/save/availableComponents.json", components, () => {logText("Components saved!")});
     for (let wand of wandList){
         wand.saveToFile();
     }
@@ -21,9 +21,10 @@ export async function saveCookies(){
 
 function packageComponentsForSave(){
     let result = "{\"arr\": [";
-    for (let component of savedComponentNames){
-        result += component;
+    for (let i = 0; i < savedComponentNames.length - 1; i++){
+        result += "\n\"" + savedComponentNames[i] + "\",";
     }
+    result += "\"" + savedComponentNames[savedComponentNames.length - 1] + "\"";
     result += "]}";
     return result;
 }

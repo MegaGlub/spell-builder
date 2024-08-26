@@ -146,6 +146,6 @@ export function createArrayFromJSON(json){
     return json.arr;
 }
 
-export async function saveJSONFile(stringJSON, fileName, returnCallback){
-    fs.writeFile(stringJSON, fileName, returnCallback);
+export async function saveJSONFile(fileName, stringJSON, returnCallback){
+    fs.writeFile(fileName, stringJSON, {}, returnCallback);
 }

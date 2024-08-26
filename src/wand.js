@@ -449,17 +449,18 @@ export class wand {
     saveToFile() {
         let wandJSON = (
             "{\"type\": \"Wand\","
-            + "\"name\": \"" + this.name + "\","
-            + "\"flavor\": \"" + this.flavor + "\","
-            + "\"image\": \"" + this.image + "\","
-            + "\"slots\": " + JSON.stringify(this.slotsByName)
+            + "\n\"name\": \"" + this.name + "\","
+            + "\n\"flavor\": \"" + this.flavor + "\","
+            + "\n\"image\": \"" + this.image + "\","
+            + "\n\"slots\": " + JSON.stringify(this.slotsByName)
+            + "}"
         );
 
         let fileName = this.name;
-        fileName = fileName.replaceAll("[^A-Za-z0-9]", "");
+        fileName = fileName.replaceAll("\[^A-Za-z0-9\]", "");
         fileName = fileName.replaceAll(" ", "-");
         fileName = fileName.toLowerCase();
 
-        saveJSONFile(wandJSON, "data/wands/" + fileName, () => {logText("Wand " + fileName + " saved!")});
+        saveJSONFile("data/wands/" + fileName + ".json", wandJSON, () => {logText("Wand " + fileName + " saved!")});
     }
 }
