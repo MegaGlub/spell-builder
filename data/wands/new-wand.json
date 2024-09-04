@@ -6,7 +6,7 @@
 	"slots": [
 		"Ball",
 		"Arc",
-		"Invisible",
+		"Nothing",
 		"Flame"
 	]
 }
