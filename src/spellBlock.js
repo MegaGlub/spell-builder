@@ -77,7 +77,7 @@ export class spellBlock {
     }
 
     #addPurposeToText(purpose){
-        if (purpose.invertible == "true" && this.inverted){ //purpose.invertible is being stored as a string
+        if (purpose.statBlock.invertible == "true" && this.inverted){ //purpose.invertible is being stored as a string
             if (this.potency <= -2){
                 this.#addDescriptionText(purpose.purposeDescriptions["invHigh"], purpose.type, purpose.primaryType);
             } else if (this.potency <= 1){
@@ -233,7 +233,7 @@ export class spellBlock {
     #areAllPurposesInvertible() {
         let result = true;
         for (let purpose of this.purposeComponents){
-            if (purpose.invertible == "false"){ //typeless (but not *actually* typeless) my beloathed
+            if (purpose.statBlock.invertible == "false"){ //typeless (but not *actually* typeless) my beloathed
                 result = false;
             }
         }
