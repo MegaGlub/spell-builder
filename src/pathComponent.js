@@ -1,10 +1,9 @@
 import { spellComponent } from "./spellComponent.js";
 export class pathComponent extends spellComponent {
-    constructor(name, flavor, pathDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, range, lifetime) {
-      super(name, "Path", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
+    constructor(name, flavor, pathDescription, image, primaryCost, secondaryCost, energyCost, statBlock) {
+      super(name, "Path", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, statBlock);
       this.pathDescription = pathDescription;
-      this.range = range;
-      this.lifetime = lifetime;
+      this.statBlock = statBlock;
       this.buildPathVisuals();
     }
 
@@ -27,8 +26,8 @@ export class pathComponent extends spellComponent {
       this.statTableElement.appendChild(this.lifetimeCellElement);
     }
     #fillInnerHTML() {
-      this.rangeCellElement.innerHTML = "Range: ~" + this.range;
-      this.lifetimeCellElement.innerHTML = "Proj. Life: " + this.timeFormat(this.lifetime);
+      this.rangeCellElement.innerHTML = "Range: ~" + this.statBlock["range"];
+      this.lifetimeCellElement.innerHTML = "Proj. Life: " + this.timeFormat(this.statBlock["lifetime"]);
     }
 
     timeFormat(seconds) {
@@ -65,8 +64,7 @@ export class pathComponent extends spellComponent {
           this.secondaryCost,
           this.energyCost,
           this.potencyModifier,
-          this.range,
-          this.lifetime
+          this.statBlock
       );
   }
   }

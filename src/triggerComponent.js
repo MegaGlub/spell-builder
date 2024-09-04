@@ -1,7 +1,7 @@
 import { spellComponent } from "./spellComponent.js";
 export class triggerComponent extends spellComponent {
-  constructor(name, flavor, triggerDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier) {
-    super(name, "Trigger", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
+  constructor(name, flavor, triggerDescription, image, primaryCost, secondaryCost, energyCost, statBlock) {
+    super(name, "Trigger", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, statBlock);
     this.triggerDescription = triggerDescription;
   }
 
@@ -14,7 +14,7 @@ export class triggerComponent extends spellComponent {
       this.primaryCost,
       this.secondaryCost,
       this.energyCost,
-      this.potencyModifier
+      this.statBlock
     );
   }
 }

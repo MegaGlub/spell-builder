@@ -1,12 +1,10 @@
 import { spellComponent } from "./spellComponent.js";
 export class enhancementComponent extends spellComponent {
-    constructor(name, flavor, enhancementDescription, image, primaryCost, secondaryCost, energyCost, enhancementType, enhancementModifier, enhancementMultiplier, showStats) {
-      super(name, "Enhancement", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, 0);
+    constructor(name, flavor, enhancementDescription, image, primaryCost, secondaryCost, energyCost, statBlock, showStats) {
+      super(name, "Enhancement", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, statBlock);
       this.enhancementDescription = enhancementDescription;
-      this.enhancementType = enhancementType;
-      this.enhancementModifier = enhancementModifier;
-      this.enhancementMultiplier = enhancementMultiplier;
-      this.showStats = showStats
+      this.statBlock = statBlock;
+      this.showStats = showStats;
       if (this.showStats) {
         this.buildEnhancementVisuals();
       }
@@ -28,9 +26,10 @@ export class enhancementComponent extends spellComponent {
       this.statTableElement.appendChild(this.enhancementCellElement);
     }
     #fillInnerHTML() {
-      var formattedEnhancementCell = this.enhancementType + ": " + this.getSign(this.enhancementModifier);
-      if (this.enhancementMultiplier != 1) {
-        formattedEnhancementCell += " (" + this.enhancementMultiplier + "x)"
+      var formattedEnhancementCell = this.statBlock[1] + ": " + this.getSign(this.statBlock[1]); //NEEDS REVIEW
+      console.log("THIS LINE NEEDS REVIEW!!!");
+      if (this.statBlock["enhancementMultiplier"] != 1) {
+        formattedEnhancementCell += " (" + this.statBlock["enhancementMultiplier"] + "x)"
       }
       this.enhancementCellElement.innerHTML = formattedEnhancementCell;
     }
@@ -44,9 +43,7 @@ export class enhancementComponent extends spellComponent {
           this.primaryCost,
           this.secondaryCost,
           this.energyCost,
-          this.enhancementType,
-          this.enhancementModifier,
-          this.enhancementMultiplier,
+          this.statBlock,
           this.showStats
       );
   }

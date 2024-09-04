@@ -2,7 +2,7 @@ import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignDraggableElementByID } from "./buttons.js";
 export class spellComponent {
-    constructor(name, type, flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, potencyModifier) {
+    constructor(name, type, flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, statBlock) {
         this.name = name;
         this.type = type;
         this.flavor = flavor;
@@ -12,7 +12,7 @@ export class spellComponent {
         this.secondaryCost = secondaryCost;
         this.secondaryType = secondaryType;
         this.energyCost = energyCost;
-        this.potencyModifier = potencyModifier;
+        this.statBlock = statBlock;
 
         this.buildComponentVisuals();
     }
@@ -89,7 +89,7 @@ export class spellComponent {
         this.secondaryCellElement.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
         this.energyCellElement.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
 
-        this.potencyCellElement.innerHTML = this.formattedDataCell(this.potencyModifier, "Potency");
+        this.potencyCellElement.innerHTML = this.formattedDataCell(this.statBlock["potencyModifier"], "Potency");
     }
 
     #colorizeText() {
@@ -207,7 +207,7 @@ export class spellComponent {
             this.secondaryCost,
             this.secondaryType,
             this.energyCost,
-            this.potencyModifier
+            this.statBlock
         );
     }
 }

@@ -1,9 +1,9 @@
 import { spellComponent } from "./spellComponent.js";
 export class formComponent extends spellComponent {
-    constructor(name, flavor, formDescription, image, primaryCost, secondaryCost, energyCost, potencyModifier, size) {
-        super(name, "Form", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, potencyModifier);
+    constructor(name, flavor, formDescription, image, primaryCost, secondaryCost, energyCost, statBlock) {
+        super(name, "Form", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, statBlock);
         this.formDescription = formDescription;
-        this.size = size;
+        this.statBlock = statBlock;
         this.buildFormVisuals();
     }
 
@@ -23,7 +23,7 @@ export class formComponent extends spellComponent {
         this.statTableElement.appendChild(this.sizeCellElement);
     }
     #fillInnerHTML() {
-        this.sizeCellElement.innerHTML = "Size: " + this.size;
+        this.sizeCellElement.innerHTML = "Size: " + this.statBlock["size"];
     }
 
     clone(){
@@ -36,7 +36,7 @@ export class formComponent extends spellComponent {
             this.secondaryCost,
             this.energyCost,
             this.potencyModifier,
-            this.size
+            this.statBlock
         );
     }
 }

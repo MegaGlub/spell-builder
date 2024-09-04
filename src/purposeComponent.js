@@ -1,13 +1,13 @@
 import { logText } from "./logging.js";
 import { spellComponent } from "./spellComponent.js";
 export class purposeComponent extends spellComponent { //This feels incomplete, but I'm pretty sure it's done.
-  constructor(name, flavor, purposeDescriptions, effects, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, targetType, invertible) {
-    super(name, "Purpose", flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, 0);
+  constructor(name, flavor, purposeDescriptions, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, targetType, statBlock) {
+    super(name, "Purpose", flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, statBlock);
     this.purposeDescriptions = purposeDescriptions;
-    this.unformattedEffects = effects;
+    this.unformattedEffects = statBlock["effects"];
     this.#formatEffects(effects);
     this.targetType = targetType;
-    this.invertible = invertible; //for some reason invertible is being passed as a string. what a nightmare of typeless languages
+    this.statBlock = statBlock;  //for some reason invertible is being passed as a string. what a nightmare of typeless languages
     this.buildPurposeVisuals();
   }
 
@@ -50,7 +50,6 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
         this.name,
         this.flavor,
         this.purposeDescriptions,
-        this.unformattedEffects,
         this.image,
         this.primaryCost,
         this.primaryType,
@@ -58,7 +57,7 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
         this.secondaryType,
         this.energyCost,
         this.targetType,
-        this.invertible
+        this.statBlock
     );
 }
 }
