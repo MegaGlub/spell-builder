@@ -63,7 +63,6 @@ export class pathComponent extends spellComponent {
           this.primaryCost,
           this.secondaryCost,
           this.energyCost,
-          this.potencyModifier,
           this.statBlock
       );
   }

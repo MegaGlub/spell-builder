@@ -10,7 +10,7 @@
         "energy": 0
     },
     "statBlock": {
-        "potency": 0,
+        "potency": 1,
         "size": "5cm"
     }
 }

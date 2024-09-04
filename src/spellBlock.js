@@ -29,7 +29,7 @@ export class spellBlock {
         }
         this.potency = 0;
         for (let component of this.spells) {
-            this.potency += component.potencyModifier;
+            this.potency += component.statBlock.potency;
         }
     }
 

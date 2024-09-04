@@ -35,7 +35,6 @@ export class formComponent extends spellComponent {
             this.primaryCost,
             this.secondaryCost,
             this.energyCost,
-            this.potencyModifier,
             this.statBlock
         );
     }

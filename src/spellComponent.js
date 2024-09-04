@@ -88,8 +88,7 @@ export class spellComponent {
         this.primaryCellElement.innerHTML = this.formattedDataCell(this.primaryCost, this.primaryType);
         this.secondaryCellElement.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
         this.energyCellElement.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
-
-        this.potencyCellElement.innerHTML = this.formattedDataCell(this.statBlock["potencyModifier"], "Potency");
+        this.potencyCellElement.innerHTML = this.formattedDataCell(this.statBlock["potency"], "Potency");
     }
 
     #colorizeText() {

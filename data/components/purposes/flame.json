@@ -30,6 +30,7 @@
             "invLow": "Apply Weakened",
             "invMid": "Apply Bleeding",
             "invHigh": "Apply Stunned, Apply Bleeding"
-        }
+        },
+        "potency": 0
     }
 }

@@ -24,6 +24,7 @@
             "low": "Apply Dazed",
             "mid": "Apply Dazed",
             "high": "Apply Dazed"
-        }
+        },
+        "potency": 0
     }
 }

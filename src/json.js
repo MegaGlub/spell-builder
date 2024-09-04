@@ -113,15 +113,16 @@ function createPurposeComponentFromJSON(json) {
 }
 
 function createMiscComponentFromJSON(json) {
+    console.log(json);
     return new spellComponent(
         json.name,
         json.type,
         json.flavor,
         json.image,
         json.costs.primary,
-        json.vis.primary,
+        json.types.primary,
         json.costs.secondary,
-        json.vis.secondary,
+        json.types.secondary,
         json.costs.energy,
         json.statBlock
     );
