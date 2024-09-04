@@ -1,8 +1,7 @@
 import { logText } from "./src/logging.js";
 import { createComponentFromJSON, createWandFromJSON, readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
-import { wand } from "./src/wand.js";
-import { assignClickableButtonByElement, assignStaticButtons } from "./src/buttons.js";
+import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 
 //importing and exporting via hash
@@ -11,8 +10,6 @@ import { fetchCookies } from "./src/cookies.js";
 //dev "god" code for import
 
 //rejig purposeComponents for robust statblocks (dmg, hit skill, hit mod, etc.)
-    //enums for dice?
-        //def easier than storing each situation in the purposeComponent
 //construct a stat block for complete spells
 
 //lock button for wands
