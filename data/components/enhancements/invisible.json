@@ -10,6 +10,7 @@
         "energy": 0
         },
     "statBlock": {
+        "potency": 0
     },
-    "showStats": true
+    "showStats": false
 }

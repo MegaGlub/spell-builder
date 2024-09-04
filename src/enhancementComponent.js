@@ -26,9 +26,8 @@ export class enhancementComponent extends spellComponent {
       this.statTableElement.appendChild(this.enhancementCellElement);
     }
     #fillInnerHTML() {
-      var formattedEnhancementCell = this.statBlock[1] + ": " + this.getSign(this.statBlock[1]); //NEEDS REVIEW
-      console.log("THIS LINE NEEDS REVIEW!!!");
-      if (this.statBlock["enhancementMultiplier"] != 1) {
+      var formattedEnhancementCell = this.statBlock[1] + ": " + this.getSign(this.statBlock[1]); //the first statBlock[1] should be the name of the key in the map (how?)
+      if (this.statBlock["enhancementMultiplier"] != 1) { //honestly this whole thing is a nightmare, need to make another example component... later
         formattedEnhancementCell += " (" + this.statBlock["enhancementMultiplier"] + "x)"
       }
       this.enhancementCellElement.innerHTML = formattedEnhancementCell;
