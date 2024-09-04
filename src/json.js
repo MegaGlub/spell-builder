@@ -52,8 +52,7 @@ function createFormComponentFromJSON(json) {
         json.costs.primary,
         json.costs.secondary,
         json.costs.energy,
-        json.potency,
-        json.size
+        json.statBlock
     );
 }
 
@@ -66,9 +65,7 @@ function createPathComponentFromJSON(json) {
         json.costs.primary,
         json.costs.secondary,
         json.costs.energy,
-        json.potency,
-        json.range,
-        json.lifetime
+        json.statBlock
     );
 }
 
@@ -81,7 +78,7 @@ function createTriggerComponentFromJSON(json) {
         json.costs.primary,
         json.costs.secondary,
         json.costs.energy,
-        json.potency
+        json.statBlock
     );
 }
 
@@ -94,10 +91,8 @@ function createEnhancementComponentFromJSON(json) {
         json.costs.primary,
         json.costs.secondary,
         json.costs.energy,
-        json.enhancement.type,
-        json.enhancement.modifier,
-        json.enhancement.multiplier,
-        json.enhancement.showStats
+        json.statBlock,
+        json.showStats
     );
 }
 
@@ -106,15 +101,14 @@ function createPurposeComponentFromJSON(json) {
         json.name,
         json.flavor,
         json.purposeDescriptions,
-        json.effects,
         json.image,
         json.costs.primary,
         json.types.primary,
         json.costs.secondary,
         json.types.secondary,
         json.costs.energy,
-        json.purpose.target,
-        json.purpose.invertible
+        json.target,
+        json.statBlock
     );
 }
 
@@ -129,7 +123,7 @@ function createMiscComponentFromJSON(json) {
         json.costs.secondary,
         json.vis.secondary,
         json.costs.energy,
-        json.potency
+        json.statBlock
     );
 }
 

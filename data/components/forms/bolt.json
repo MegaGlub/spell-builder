@@ -8,7 +8,9 @@
         "primary": 0,
         "secondary": 1,
         "energy": 0
-        },
-    "potency": 0,
-    "size": "200cm"
+    },
+    "statBlock": {
+        "potency": 0,
+        "size": "200cm"
+    }
 }

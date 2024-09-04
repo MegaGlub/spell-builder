@@ -5,7 +5,7 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
     super(name, "Purpose", flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, statBlock);
     this.purposeDescriptions = purposeDescriptions;
     this.unformattedEffects = statBlock["effects"];
-    this.#formatEffects(effects);
+    this.#formatEffects(this.unformattedEffects);
     this.targetType = targetType;
     this.statBlock = statBlock;  //for some reason invertible is being passed as a string. what a nightmare of typeless languages
     this.buildPurposeVisuals();

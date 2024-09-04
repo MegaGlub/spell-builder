@@ -7,11 +7,6 @@
         "mid": "energy that converts the target creature into a new creature of your choice for a time, which maintains their size, mass, intelligence, and casting ability",
         "high": "energy that converts the target creature into a new creature of your choice semi-permanently, which maintains their size, mass, intelligence, and casting ability"
     },
-    "effects": {
-        "low": "Apply Dazed",
-        "mid": "Apply Dazed",
-        "high": "Apply Dazed"
-    },
     "image": "images/purposes/purpose-frame.png",
     "costs": {
         "primary": 3,
@@ -22,8 +17,13 @@
         "primary": "Nature",
         "secondary": "Secondary"
     },
-    "purpose": {
-        "target": "Living Beings",
-        "invertible": "false"
+    "target": "Living Beings",
+    "statBlock": {
+        "invertible": "false",
+        "effects": {
+            "low": "Apply Dazed",
+            "mid": "Apply Dazed",
+            "high": "Apply Dazed"
+        }
     }
 }

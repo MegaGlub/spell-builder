@@ -10,14 +10,6 @@
         "invMid": "frigid, splintered ice crystals",
         "invHigh": "creeping, inescapable ice shards"
     },
-    "effects": {
-        "low": "Apply Burning (if vulnerable to fire)",
-        "mid": "Apply Burning",
-        "high": "Apply Burning, Apply Dazed",
-        "invLow": "Apply Weakened",
-        "invMid": "Apply Bleeding",
-        "invHigh": "Apply Stunned, Apply Bleeding"
-    },
     "image": "images/purposes/purpose-frame.png",
     "costs": {
         "primary": 2,
@@ -28,8 +20,16 @@
         "primary": "Heat",
         "secondary": "Secondary"
     },
-    "purpose": {
-        "target": "Any",
-        "invertible": "true"
+    "target": "Any",
+    "statBlock": {
+        "invertible": "true", 
+        "effects": {
+            "low": "Apply Burning (if vulnerable to fire)",
+            "mid": "Apply Burning",
+            "high": "Apply Burning, Apply Dazed",
+            "invLow": "Apply Weakened",
+            "invMid": "Apply Bleeding",
+            "invHigh": "Apply Stunned, Apply Bleeding"
+        }
     }
 }

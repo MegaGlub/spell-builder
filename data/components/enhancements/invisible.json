@@ -9,11 +9,7 @@
         "secondary": 1,
         "energy": 0
         },
-    "enhancement": {
-        "type": "Visual",
-        "modifier": 0,
-        "multiplier": 1,
-        "showStats": true
-    }
-    
+    "statBlock": {
+    },
+    "showStats": true
 }

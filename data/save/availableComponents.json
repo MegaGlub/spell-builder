@@ -3,8 +3,10 @@
 		"Nothing",
 		"Invisible",
 		"Ball",
+		"Bolt",
 		"Arc",
 		"Flame",
-        "Polymorph"
+        "Polymorph",
+		"On Water"
 	]
 }

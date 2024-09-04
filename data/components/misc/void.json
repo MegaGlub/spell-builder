@@ -12,5 +12,7 @@
         "primary": "Primary",
         "secondary": "Secondary"
     },
-    "potency": 0
+    "statBlock": {
+        "potency": 0
+    }
 }
