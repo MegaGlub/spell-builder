@@ -4,8 +4,9 @@ import { assignClickableButtonByID, assignClickableButtonByElement, assignDroppa
 import { findComponentByName, componentList } from "../main.js";
 import { handleDeleteWandPress } from "./addNewWand.js";
 import { clearChildren } from "./elementHelpers.js";
-import { saveJSONFile } from "./json.js";
+import { formatFileName, saveJSONFile } from "./json.js";
 import { spellBlock } from "./spellBlock.js";
+import { deleteWandCookie } from "./cookies.js";
 
 export class wand {
     constructor(name, flavor, image, slotsByName) {
@@ -214,10 +215,12 @@ export class wand {
     handleNameEdit() {
         const activeTitle = document.getElementsByClassName("wandActiveTitle")[0];
         const newText = activeTitle.innerHTML;
+        const oldText = this.name;
         this.name = newText;
         this.spellTitleElement.innerHTML = newText;
         this.toolTipButtonElement.id = "wand" + newText;
         this.descriptionElement.id = "wandDescription" + newText;
+        deleteWandCookie(oldText);
         this.saveToFile();
     }
 
@@ -233,7 +236,7 @@ export class wand {
         clearChildren(this.wordyDescriptionElement); //clear old children
         const nonCompiledSpellBlocks = this.#detectSpellBlocks();
         for (let spellCollection of nonCompiledSpellBlocks) {
-            const block = new spellBlock(spellCollection, 0, this.spellDescriptionElement);
+            const block = new spellBlock(spellCollection, 1, this.spellDescriptionElement);
             block.compileSpell();
         }
         this.saveToFile();
@@ -253,11 +256,7 @@ export class wand {
             + "\n}"
         );
 
-        let fileName = this.name;
-        fileName = fileName.replaceAll("\[^A-Za-z0-9\]", "");
-        fileName = fileName.replaceAll(" ", "-");
-        fileName = fileName.toLowerCase();
-
+        const fileName = formatFileName(this.name);
         saveJSONFile("data/wands/" + fileName + ".json", wandJSON, () => {logText("\tWand " + fileName + " saved!")});
     }
 

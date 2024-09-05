@@ -157,33 +157,37 @@ export class spellBlock {
         let fatalErrors = false;
 
         if (!this.pathComponent){
-            this.#addError(true, "A spell block requires a Path component!");
+            this.#addError(true, "A spell block requires a Path component! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
             fatalErrors = true;
         }
         if (!this.formComponent){
-            this.#addError(true, "A spell block requires a Form component!");
+            this.#addError(true, "A spell block requires a Form component! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
             fatalErrors = true;
         }
         if (this.purposeComponents.length == 0){
-            this.#addError(true, "A spell block requires at least one Purpose component!");
+            this.#addError(true, "A spell block requires at least one Purpose component! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
             fatalErrors = true;
         }
         if (!this.#areAllPurposesInvertible() && this.voidComponent && this.purposeComponents.length != 0){
-            this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible and unaffected.");
+            this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible and unaffected. (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
         }
         if (this.spells.length > 7) {
-            this.#addError(false, "One or more spell blocks are quite long. This may result in goofy displays or extremely high mana costs.");
+            this.#addError(false, "A spell block is quite long. This may result in goofy displays or extremely high mana costs. (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
         }
         if (this.#findAllComponentsByType("Trigger").length > 1){
-            this.#addError(true, "A spell block may only contain up to one Trigger!");
+            this.#addError(true, "A spell block may only contain up to one Trigger! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
             fatalErrors = true;
         }
         if (this.#findAllComponentsByType("Path").length > 1){
-            this.#addError(true, "A spell block may only contain up to one Path!");
+            this.#addError(true, "A spell block may only contain up to one Path! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
             fatalErrors = true;
         }
         if (this.#findAllComponentsByType("Form").length > 1){
-            this.#addError(true, "A spell block may only contain up to one Form!");
+            this.#addError(true, "A spell block may only contain up to one Form! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            fatalErrors = true;
+        }
+        if (this.#areThereDuplicatesInList(this.purposeComponents)){
+            this.#addError(true, "A spell block may not contain two of the same Purpose! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
             fatalErrors = true;
         }
 
@@ -238,5 +242,16 @@ export class spellBlock {
             }
         }
         return result;
+    }
+
+    #areThereDuplicatesInList(list) {
+        let result = false;
+        for (let i = 0; i < list.length; i++){
+            for (let j = i + 1; j < list.length; j++){
+                if (list[i].name == list[j].name){
+                    return true;
+                }
+            }
+        }
     }
 }

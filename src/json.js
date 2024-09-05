@@ -148,3 +148,11 @@ export async function saveJSONFile(fileName, stringJSON, returnCallback){
 export async function destroyFile(fileName, returnCallback){
     fs.unlink(fileName, returnCallback);
 }
+
+export function formatFileName(name){
+    let fileName = name;
+    fileName = fileName.replaceAll("\[^A-Za-z0-9\]", "");
+    fileName = fileName.replaceAll(" ", "-");
+    fileName = fileName.toLowerCase();
+    return fileName;
+}

@@ -1,5 +1,5 @@
 import { savedComponentNames, wandList } from "../main.js";
-import { createArrayFromJSON, fetchRawJSON, saveJSONFile } from "./json.js";
+import { createArrayFromJSON, destroyFile, fetchRawJSON, formatFileName, saveJSONFile } from "./json.js";
 import { logText } from "./logging.js";
 
 export async function fetchCookies(){
@@ -17,6 +17,11 @@ export async function saveCookies(){
     for (let wand of wandList){
         wand.saveToFile();
     }
+}
+
+export async function deleteWandCookie(wandName){
+    const fileName = formatFileName(wandName);
+    destroyFile("data/wands/" + fileName + ".json", () => {});
 }
 
 function packageComponentsForSave(){
