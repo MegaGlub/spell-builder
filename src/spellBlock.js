@@ -31,6 +31,11 @@ export class spellBlock {
         for (let component of this.spells) {
             this.potency += component.statBlock.potency;
         }
+        this.#discoverDamage();
+    }
+
+    #discoverDamage(){
+        
     }
 
     compileSpell(){
