@@ -10,8 +10,8 @@
         "energy": 0
         },
         "statBlock": {
-        "potency": 0,
-        "range": "30m",
-        "lifetime": 6
+            "potency": 0,
+            "range": "30m",
+            "lifetime": 6
     }
 }

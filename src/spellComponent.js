@@ -1,6 +1,7 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignDraggableElementByID } from "./buttons.js";
+import { Dice, findDiceByString } from "./dice.js";
 export class spellComponent {
     constructor(name, type, flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, statBlock) {
         this.name = name;
@@ -14,6 +15,7 @@ export class spellComponent {
         this.energyCost = energyCost;
         this.statBlock = statBlock;
 
+        this.#discoverStats();
         this.buildComponentVisuals();
     }
 
@@ -88,7 +90,17 @@ export class spellComponent {
         this.primaryCellElement.innerHTML = this.formattedDataCell(this.primaryCost, this.primaryType);
         this.secondaryCellElement.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
         this.energyCellElement.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
-        this.potencyCellElement.innerHTML = this.formattedDataCell(this.statBlock["potency"], "Potency");
+        this.potencyCellElement.innerHTML = this.formattedDataCell(this.potency, "Potency");
+    }
+
+    #discoverStats(){
+        this.damageDice = findDiceByString(this.statBlock["damageDice"]);
+        this.hitModifier = this.statBlock["hitModifier"];
+        this.hitSkill = this.statBlock["hitSkill"];
+        this.lifetime = this.statBlock["lifetime"];
+        this.potency = this.statBlock["potency"];
+        this.range = this.statBlock["range"];
+        this.size = this.statBlock["size"];
     }
 
     #colorizeText() {
