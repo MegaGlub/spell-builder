@@ -1,6 +1,7 @@
 import { logText } from "./logging.js";
 
 export const Dice = Object.freeze({
+    D0: { val: "d0", sides: 0, avg: 0},
     D2: { val: "d2", sides: 2, avg: 1.5 },
     D3: { val: "d3", sides: 3, avg: 2 },
     D4: { val: "d4", sides: 4, avg: 2.5 },

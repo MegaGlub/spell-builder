@@ -1,5 +1,6 @@
 import { logText } from "./logging.js";
 import { clearChildren } from "./elementHelpers.js";
+import { Dice } from "./dice.js";
 
 export class spellBlock {
     constructor(spellsByComponent, positionInWand, descriptionElement) {
@@ -22,20 +23,54 @@ export class spellBlock {
         this.#discoverBasicStats();
     }
 
-    #discoverBasicStats(){ //more stats to be add: dmg, dice type, hit type, hit mod, etc.
+    #discoverBasicStats(){ 
         this.inverted = false;
         if (this.voidComponent) {
             this.inverted = true;
         }
         this.potency = 0;
+        this.range = 0;
+        this.size = 0;
+        this.hitModifier = 0;
+        this.lifetime = 0;
         for (let component of this.spells) {
             this.potency += component.statBlock.potency;
+            if (component.range){
+                this.range += component.range;
+            }
+            if (component.size){
+                this.size += component.size;
+            }
+            if (component.hitModifier){
+                this.hitModifier += component.hitModifier;
+            }
+            if (component.lifetime){
+                this.lifetime += component.lifetime;
+            }
         }
+        this.hitSkill = this.pathComponent.hitSkill;
         this.#discoverDamage();
     }
 
     #discoverDamage(){
-        
+        this.damageCount = 0;
+        this.damageDice = Dice.D0;
+        for (let component of this.spells){
+            let newDmg = component.damageDice;
+            if (newDmg){
+                if (newDmg.sides > this.damageDice.sides){
+                    this.damageDice = newDmg;
+                }
+            }
+        }
+        if (this.damageDice != Dice.D0){
+            for (let component of this.spells){
+                let newCnt = component.damageCount;
+                if (newCnt){
+                    this.damageCount += newCnt * (component.damageDice.sides / this.damageDice.sides);
+                }
+            }
+        }
     }
 
     compileSpell(){
