@@ -1,3 +1,4 @@
+import { formatSize } from "./elementHelpers.js";
 import { spellComponent } from "./spellComponent.js";
 export class formComponent extends spellComponent {
     constructor(name, flavor, formDescription, image, primaryCost, secondaryCost, energyCost, statBlock) {
@@ -23,15 +24,7 @@ export class formComponent extends spellComponent {
         this.statTableElement.appendChild(this.sizeCellElement);
     }
     #fillInnerHTML() {
-        this.sizeCellElement.innerHTML = "Size: " + this.formatSize(this.size);
-    }
-
-    formatSize(size) {
-        if (size > 1000){
-            return Math.round(size / 1000) + "m";
-        } else{
-            return size + "cm";
-        }
+        this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
     }
 
     clone(){

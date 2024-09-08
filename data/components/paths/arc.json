@@ -10,8 +10,9 @@
         "energy": 0
         },
         "statBlock": {
+            "hitSkill": "Throwing",
+            "lifetime": 6,
             "potency": 0,
-            "range": "30m",
-            "lifetime": 6
+            "range": 30000
     }
 }

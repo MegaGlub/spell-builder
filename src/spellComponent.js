@@ -2,6 +2,7 @@ import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignDraggableElementByID } from "./buttons.js";
 import { findDiceByString } from "./dice.js";
+import { getSign } from "./elementHelpers.js";
 export class spellComponent {
     constructor(name, type, flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, statBlock) {
         this.name = name;
@@ -25,7 +26,7 @@ export class spellComponent {
         this.#assignElementIds();
         this.#assignImage();
         this.#relateElements();
-        this.fillInnerHTML();
+        this.#fillInnerHTML();
         this.#colorizeText();
     }
 
@@ -78,7 +79,7 @@ export class spellComponent {
         this.imageElement.src = this.image;
     }
 
-    fillInnerHTML() {
+    #fillInnerHTML() {
         this.spellTitleElement.innerHTML = this.name;
         this.spellTypeElement.innerHTML = this.type;
         this.spellFlavorElement.innerHTML = this.flavor;
@@ -126,15 +127,7 @@ export class spellComponent {
                 return "Inverted " + descriptor;
             }
         } else {
-            return this.getSign(num) + " " + descriptor;
-        }
-    }
-
-    getSign(num) {
-        if (num < 0) {
-            return num; // negative numbers already have the "-" character
-        } else {
-            return "+" + num;
+            return getSign(num) + " " + descriptor;
         }
     }
 

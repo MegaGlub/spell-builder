@@ -1,3 +1,4 @@
+import { formatSize, timeFormat } from "./elementHelpers.js";
 import { spellComponent } from "./spellComponent.js";
 export class pathComponent extends spellComponent {
     constructor(name, flavor, pathDescription, image, primaryCost, secondaryCost, energyCost, statBlock) {
@@ -26,28 +27,8 @@ export class pathComponent extends spellComponent {
       this.statTableElement.appendChild(this.lifetimeCellElement);
     }
     #fillInnerHTML() {
-      this.rangeCellElement.innerHTML = "Range: ~" + this.statBlock["range"];
-      this.lifetimeCellElement.innerHTML = "Proj. Life: " + this.timeFormat(this.statBlock["lifetime"]);
-    }
-
-    timeFormat(seconds) {
-      if (seconds == 3600) {
-        return "1 hour";
-      }
-      else if (seconds / 3600 > 1) {
-        return this.roundTo2(seconds / 3600) + " hours";
-      }
-      else if (seconds == 60) {
-        return "1 minute";
-      }
-      else if (seconds / 60 > 1) {
-        return this.roundTo2(seconds / 60) + " minutes";
-      }
-      else if (seconds == 1) {
-        return "1 second";
-      } else {
-        return seconds + " seconds";
-      }
+      this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.statBlock["range"]);
+      this.lifetimeCellElement.innerHTML = "Proj. Life: " + timeFormat(this.statBlock["lifetime"]);
     }
 
     roundTo2(num) {
