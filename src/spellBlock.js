@@ -19,8 +19,22 @@ export class spellBlock {
         this.formComponent = this.#findComponentByType("Form");
         this.purposeComponents = this.#findAllComponentsByType("Purpose");
         this.triggerComponent = this.#findComponentByType("Trigger");
+    }
 
-        this.#discoverBasicStats();
+    compileSpell(){
+        if (this.#errorTest()) {
+            this.#addDescriptionText("Spell has one or more fatal errors and cannot be compiled!");
+        } else {
+            this.#discoverBasicStats();
+
+            this.#fillPathText();
+            this.#fillFormText();
+            this.#fillEnhancementText();
+            this.#fillPurposeText();
+            this.#fillTriggerText();
+
+            this.#generateStatTable();
+        }
     }
 
     #discoverBasicStats(){ 
@@ -74,19 +88,6 @@ export class spellBlock {
         }
     }
 
-    compileSpell(){
-        if (this.#errorTest()) {
-            this.#addDescriptionText("Spell has one or more fatal errors and cannot be compiled!");
-        } else {
-            this.#fillPathText();
-            this.#fillFormText();
-            this.#fillEnhancementText();
-            this.#fillPurposeText();
-            this.#fillTriggerText();
-            this.#generateStatTable();
-        }
-    }
-
     #fillPathText(){
         this.#addDescriptionText(this.pathComponent.pathDescription, this.pathComponent.type);
     }
@@ -116,58 +117,6 @@ export class spellBlock {
         if (this.triggerComponent) {
             this.#addDescriptionText(this.triggerComponent.triggerDescription, this.triggerComponent.type);
         }
-    }
-
-    #generateStatTable(){
-        clearChildren(this.statBox);
-        this.#createEmptyElements();
-        this.#assignElementClasses();
-        this.#assignElementIds();
-        this.#relateElements();
-        this.#fillInnerHTML();
-    }
-
-    #createEmptyElements(){
-        this.statTableElement = document.createElement("div");
-        this.damageCellElement = document.createElement("span");
-        this.hitCellElement = document.createElement("span");
-        this.effectsRowElement = document.createElement("span");
-        this.rangeCellElement = document.createElement("span");
-        this.sizeCellElement = document.createElement("span");
-        this.lifetimeCellElement = document.createElement("span");
-    }
-
-    #assignElementClasses(){
-        this.statTableElement.className = "componentStatTable";
-        this.damageCellElement.className = "componentStatCell";
-        this.hitCellElement.className = "componentStatCell";
-        this.effectsRowElement.className = "componentStatRow";
-        this.rangeCellElement.className = "componentStatCell";
-        this.sizeCellElement.className = "componentStatCell";
-        this.lifetimeCellElement.className = "componentStatCell";
-    }
-
-    #assignElementIds(){
-        //Nope!
-    }
-
-    #relateElements(){
-        this.statBox.appendChild(this.statTableElement);
-        this.statTableElement.appendChild(this.damageCellElement);
-        this.statTableElement.appendChild(this.hitCellElement);
-        this.statTableElement.appendChild(this.effectsRowElement);
-        this.statTableElement.appendChild(this.rangeCellElement);
-        this.statTableElement.appendChild(this.sizeCellElement);
-        this.statTableElement.appendChild(this.lifetimeCellElement);
-    }
-
-    #fillInnerHTML(){
-        this.damageCellElement.innerHTML = "Damage: " + this.damageCount + this.damageDice.val; //ex: 2d6
-        this.hitCellElement.innerHTML = "To-Hit: " + this.hitSkill + " " + getSign(this.hitModifier);
-        this.effectsRowElement.innerHTML = this.effects;
-        this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.range);
-        this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
-        this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(this.lifetime);  
     }
 
     #addPurposeToText(purpose){
@@ -258,6 +207,58 @@ export class spellBlock {
         } else{
             this.effects += ", " + effect;
         }
+    }
+
+    #generateStatTable(){
+        clearChildren(this.statBox);
+        this.#createEmptyElements();
+        this.#assignElementClasses();
+        this.#assignElementIds();
+        this.#relateElements();
+        this.#fillInnerHTML();
+    }
+
+    #createEmptyElements(){
+        this.statTableElement = document.createElement("div");
+        this.damageCellElement = document.createElement("span");
+        this.hitCellElement = document.createElement("span");
+        this.effectsRowElement = document.createElement("span");
+        this.rangeCellElement = document.createElement("span");
+        this.sizeCellElement = document.createElement("span");
+        this.lifetimeCellElement = document.createElement("span");
+    }
+
+    #assignElementClasses(){
+        this.statTableElement.className = "componentStatTable";
+        this.damageCellElement.className = "componentStatCell";
+        this.hitCellElement.className = "componentStatCell";
+        this.effectsRowElement.className = "componentStatRow";
+        this.rangeCellElement.className = "componentStatCell";
+        this.sizeCellElement.className = "componentStatCell";
+        this.lifetimeCellElement.className = "componentStatCell";
+    }
+
+    #assignElementIds(){
+        //Nope!
+    }
+
+    #relateElements(){
+        this.statBox.appendChild(this.statTableElement);
+        this.statTableElement.appendChild(this.damageCellElement);
+        this.statTableElement.appendChild(this.hitCellElement);
+        this.statTableElement.appendChild(this.effectsRowElement);
+        this.statTableElement.appendChild(this.rangeCellElement);
+        this.statTableElement.appendChild(this.sizeCellElement);
+        this.statTableElement.appendChild(this.lifetimeCellElement);
+    }
+
+    #fillInnerHTML(){
+        this.damageCellElement.innerHTML = "Damage: " + this.damageCount + this.damageDice.val; //ex: 2d6
+        this.hitCellElement.innerHTML = "To-Hit: " + this.hitSkill + " " + getSign(this.hitModifier);
+        this.effectsRowElement.innerHTML = "Effects: " + this.effects;
+        this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.range);
+        this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
+        this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(this.lifetime);  
     }
 
     #errorTest() {
