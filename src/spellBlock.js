@@ -38,8 +38,8 @@ export class spellBlock {
             this.#addDescriptionText("Spell has one or more fatal errors and cannot be compiled!");
         } else {
             this.#fillPathText();
-            this.#fillFormText();
             this.#fillEnhancementText();
+            this.#fillFormText();
             this.#fillPurposeText();
             this.#fillTriggerText();
         }
