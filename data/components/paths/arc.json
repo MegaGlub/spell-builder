@@ -2,7 +2,7 @@
     "type": "Path",
     "name": "Arc",
     "flavor": "As if thrown.",
-    "pathDescription": "Throw in an arc ",
+    "pathDescription": "In an arc, throw a ",
     "image": "images/paths/arc.png",
     "costs": {
         "primary": 0,

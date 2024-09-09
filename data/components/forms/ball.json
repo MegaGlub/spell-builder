@@ -2,7 +2,7 @@
     "type": "Form",
     "name": "Ball",
     "flavor": "In the shape of a fist sized ball.",
-    "formDescription": "a fist sized ball of ",
+    "formDescription": " fist sized ball of ",
     "image": "images/forms/form-frame.png",
     "costs": {
         "primary": 0,

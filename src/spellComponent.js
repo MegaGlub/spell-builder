@@ -4,16 +4,12 @@ import { assignDraggableElementByID } from "./buttons.js";
 import { findDiceByString } from "./dice.js";
 import { getSign } from "./elementHelpers.js";
 export class spellComponent {
-    constructor(name, type, flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, statBlock) {
+    constructor(name, type, flavor, image, costs, statBlock) {
         this.name = name;
         this.type = type;
         this.flavor = flavor;
         this.image = image;
-        this.primaryCost = primaryCost;
-        this.primaryType = primaryType;
-        this.secondaryCost = secondaryCost;
-        this.secondaryType = secondaryType;
-        this.energyCost = energyCost;
+        this.costs = costs;
         this.statBlock = statBlock;
 
         this.#discoverStats();
@@ -94,7 +90,7 @@ export class spellComponent {
         this.potencyCellElement.innerHTML = this.formattedDataCell(this.potency, "Potency");
     }
 
-    #discoverStats(){
+    #discoverStats() {
         this.damageDice = findDiceByString(this.statBlock["damageDice"]);
         this.damageCount = this.statBlock["damageCount"];
         this.hitModifier = this.statBlock["hitModifier"];
@@ -103,6 +99,18 @@ export class spellComponent {
         this.potency = this.statBlock["potency"];
         this.range = this.statBlock["range"];
         this.size = this.statBlock["size"];
+
+        this.primaryCost = this.costs["primary"];
+        this.primaryType = "Primary";
+        if (this.costs["primaryType"]) {
+            this.primaryType = this.costs["primaryType"];
+        }
+        this.secondaryCost = this.costs["secondary"];
+        this.secondaryType = "Secondary";
+        if (this.costs["secondaryType"]) {
+            this.secondaryType = this.costs["secondaryType"];
+        }
+        this.energyCost = this.costs["energy"];
     }
 
     #colorizeText() {
@@ -143,7 +151,7 @@ export class spellComponent {
                 return "#A0AECD";
             case "Enhancement":
                 return "#6495ED";
-            case "Refund":
+            case "Branch":
                 return "#BC8F8F";
             case "Trigger":
                 return "#FA8072";
@@ -164,9 +172,9 @@ export class spellComponent {
                 return 300;
             case "Enhancement":
                 return 400;
-            case "Refund":
-                return 500;
             case "Trigger":
+                return 500;
+            case "Branch":
                 return 600;
             default:
                 return 700;
@@ -201,17 +209,13 @@ export class spellComponent {
         return result;
     }
 
-    clone(){
+    clone() {
         return new spellComponent(
             this.name,
             this.type,
             this.flavor,
             this.image,
-            this.primaryCost,
-            this.primaryType,
-            this.secondaryCost,
-            this.secondaryType,
-            this.energyCost,
+            this.costs,
             this.statBlock
         );
     }

@@ -1,8 +1,8 @@
 import { formatSize } from "./elementHelpers.js";
 import { spellComponent } from "./spellComponent.js";
 export class formComponent extends spellComponent {
-    constructor(name, flavor, formDescription, image, primaryCost, secondaryCost, energyCost, statBlock) {
-        super(name, "Form", flavor, image, primaryCost, "Primary", secondaryCost, "Secondary", energyCost, statBlock);
+    constructor(name, flavor, formDescription, image, costs, statBlock) {
+        super(name, "Form", flavor, image, costs, statBlock);
         this.formDescription = formDescription;
         this.statBlock = statBlock;
         this.buildFormVisuals();
@@ -27,15 +27,13 @@ export class formComponent extends spellComponent {
         this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
     }
 
-    clone(){
+    clone() {
         return new formComponent(
             this.name,
             this.flavor,
             this.formDescription,
             this.image,
-            this.primaryCost,
-            this.secondaryCost,
-            this.energyCost,
+            this.costs,
             this.statBlock
         );
     }

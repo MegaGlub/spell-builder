@@ -1,8 +1,8 @@
 import { logText } from "./logging.js";
 import { spellComponent } from "./spellComponent.js";
-export class purposeComponent extends spellComponent { //This feels incomplete, but I'm pretty sure it's done.
-  constructor(name, flavor, purposeDescriptions, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, targetType, statBlock) {
-    super(name, "Purpose", flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, statBlock);
+export class purposeComponent extends spellComponent {
+  constructor(name, flavor, purposeDescriptions, image, costs, targetType, statBlock) {
+    super(name, "Purpose", flavor, image, costs, statBlock);
     this.purposeDescriptions = purposeDescriptions;
     this.unformattedEffects = statBlock["effects"];
     this.#formatEffects(this.unformattedEffects);
@@ -34,7 +34,7 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
   }
   #fillStatTable() {
     this.targetCellElement.innerHTML = "Targets: " + this.targetType;
-    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.effects[1]; //Choose the mid effect, how to show voided effects?
+    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.effects[1];
   }
   #formatEffects(jsonEffects) {
     this.effects = [];
@@ -45,19 +45,15 @@ export class purposeComponent extends spellComponent { //This feels incomplete, 
     }
   }
 
-  clone(){
+  clone() {
     return new purposeComponent(
-        this.name,
-        this.flavor,
-        this.purposeDescriptions,
-        this.image,
-        this.primaryCost,
-        this.primaryType,
-        this.secondaryCost,
-        this.secondaryType,
-        this.energyCost,
-        this.targetType,
-        this.statBlock
+      this.name,
+      this.flavor,
+      this.purposeDescriptions,
+      this.image,
+      this.costs,
+      this.targetType,
+      this.statBlock
     );
-}
+  }
 }

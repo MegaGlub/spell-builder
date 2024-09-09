@@ -14,17 +14,15 @@
     "costs": {
         "primary": 2,
         "secondary": 0,
-        "energy": 0
-    },
-    "types": {
-        "primary": "Heat",
-        "secondary": "Secondary"
+        "energy": 0,
+        "primaryType": "Heat",
+        "secondaryType": "Secondary"
     },
     "target": "Any",
     "statBlock": {
         "invertible": "true", 
         "effects": {
-            "low": "Apply Burning (if vulnerable to fire)",
+            "low": "Apply Burning (if Vulnerable)",
             "mid": "Apply Burning",
             "high": "Apply Burning, Apply Dazed",
             "invLow": "Apply Weakened",

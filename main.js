@@ -60,7 +60,9 @@ finishLoading();
 
 async function buildComponentsFromFiles() {
     const root = "data/components/";
-    const leaves = ["enhancements", 
+    const leaves = [
+        "branches", 
+        "enhancements", 
         "forms", 
         "misc", 
         "paths", 
