@@ -6,7 +6,6 @@ export class spellBlock {
     constructor(spellsByComponent, positionInWand, descriptionElement) {
         this.spells = spellsByComponent;
         this.positionInWand = positionInWand;
-        this.errorBox = "";
         this.descriptionElement = descriptionElement;
 
         this.textBox = this.descriptionElement.children[0];

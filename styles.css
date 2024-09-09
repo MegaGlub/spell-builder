@@ -533,12 +533,36 @@ img {
 .wandSpellDescription{
     background-color: #000000;
     border-radius: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
     font-size: 1.25em;
     padding: 0.5em;
 }
 
 .wandSpellDescriptionWords{
-    margin-bottom: 0.25em;
+    display: inline;
+    flex-basis: auto;
+    flex-grow: 1;
+    margin: auto;
+    padding: 4px;
+    text-align: center;
+    width: calc(40% - 8px);
+}
+
+.wandSpellDescriptionStats{
+    display: inline;
+    flex-basis: auto;
+    flex-grow: 1;
+    margin: auto;
+    padding: 4px;
+    width: calc(40% - 8px);
+}
+
+.wandSpellDescriptionErrors{
+    display: block;
+    margin: auto;
+    padding: 4px;
+    width: calc(90% - 8px);
 }
 
 .bottomToolBar {

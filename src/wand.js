@@ -42,8 +42,8 @@ export class wand {
         this.componentDisplayElement = document.createElement("div");
         this.deleteButtonElement = document.createElement("img");
         this.spellDescriptionElement = document.createElement("div");
-        this.wordyDescriptionElement = document.createElement("div");
-        this.statsyDescriptionElement = document.createElement("div");
+        this.wordyDescriptionElement = document.createElement("span");
+        this.statsyDescriptionElement = document.createElement("span");
         this.errorBoxDescriptionElement = document.createElement("div");
     }
 
@@ -57,7 +57,8 @@ export class wand {
         this.deleteButtonElement.className = "wandDeleteButton";
         this.spellDescriptionElement.className = "wandSpellDescription";
         this.wordyDescriptionElement.className = "wandSpellDescriptionWords";
-        this.statsyDescriptionElement.className = "componentStatTable";
+        this.statsyDescriptionElement.classList.add("componentStatTable", "wandSpellDescriptionStats");
+        this.errorBoxDescriptionElement.className = "wandSpellDescriptionErrors";
     }
 
     #assignElementIds() {
