@@ -1,6 +1,8 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignDraggableElementByID } from "./buttons.js";
+import { findDiceByString } from "./dice.js";
+import { getSign } from "./elementHelpers.js";
 export class spellComponent {
     constructor(name, type, flavor, image, primaryCost, primaryType, secondaryCost, secondaryType, energyCost, statBlock) {
         this.name = name;
@@ -14,6 +16,7 @@ export class spellComponent {
         this.energyCost = energyCost;
         this.statBlock = statBlock;
 
+        this.#discoverStats();
         this.buildComponentVisuals();
     }
 
@@ -23,7 +26,7 @@ export class spellComponent {
         this.#assignElementIds();
         this.#assignImage();
         this.#relateElements();
-        this.fillInnerHTML();
+        this.#fillInnerHTML();
         this.#colorizeText();
     }
 
@@ -76,7 +79,7 @@ export class spellComponent {
         this.imageElement.src = this.image;
     }
 
-    fillInnerHTML() {
+    #fillInnerHTML() {
         this.spellTitleElement.innerHTML = this.name;
         this.spellTypeElement.innerHTML = this.type;
         this.spellFlavorElement.innerHTML = this.flavor;
@@ -88,7 +91,18 @@ export class spellComponent {
         this.primaryCellElement.innerHTML = this.formattedDataCell(this.primaryCost, this.primaryType);
         this.secondaryCellElement.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
         this.energyCellElement.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
-        this.potencyCellElement.innerHTML = this.formattedDataCell(this.statBlock["potency"], "Potency");
+        this.potencyCellElement.innerHTML = this.formattedDataCell(this.potency, "Potency");
+    }
+
+    #discoverStats(){
+        this.damageDice = findDiceByString(this.statBlock["damageDice"]);
+        this.damageCount = this.statBlock["damageCount"];
+        this.hitModifier = this.statBlock["hitModifier"];
+        this.hitSkill = this.statBlock["hitSkill"];
+        this.lifetime = this.statBlock["lifetime"];
+        this.potency = this.statBlock["potency"];
+        this.range = this.statBlock["range"];
+        this.size = this.statBlock["size"];
     }
 
     #colorizeText() {
@@ -113,15 +127,7 @@ export class spellComponent {
                 return "Inverted " + descriptor;
             }
         } else {
-            return this.getSign(num) + " " + descriptor;
-        }
-    }
-
-    getSign(num) {
-        if (num < 0) {
-            return num; // negative numbers already have the "-" character
-        } else {
-            return "+" + num;
+            return getSign(num) + " " + descriptor;
         }
     }
 

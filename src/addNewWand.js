@@ -207,8 +207,8 @@ class wandFormCreator {
         this.nameLabel.innerHTML = "Name";
         this.flavorLabel.innerHTML = "Subtitle";
         this.slotsLabel.innerHTML = "Slots";
-        this.imageLabel.innerHTML = "Icon";
-        this.customImageField.innerHTML = "Custom (128x64)";
+        this.imageLabel.innerHTML = "Icon (or custom 128x64)";
+        // this.customImageField.innerHTML = "Custom (128x64)";
         this.submitButton.innerHTML = "Create Wand";
     }
 
@@ -225,8 +225,13 @@ class wandFormCreator {
         this.customImageField.accept = "image/*";
         this.customImageField.addEventListener('change', (event) => {
             const file = event.target.files[0];
-            console.log(event.target.files);
-            const path = file.path;
+            var path = file.path;
+            const splitPath = path.split("\\");
+            path = "";
+            for (let i = 0; i < splitPath.length - 1; i++){
+                path += splitPath[i] + "/";
+            }
+            path += splitPath[splitPath.length - 1];
             this.imageField.value = path;
             this.#addImageOption(path);
             const imageOptions = this.imageSelectionField.querySelectorAll(".wandImageSelectionInput");

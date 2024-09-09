@@ -9,9 +9,6 @@ import { fetchCookies } from "./src/cookies.js";
 
 //dev "god" code for import
 
-//rejig purposeComponents for robust statblocks (dmg, hit skill, hit mod, etc.)
-//construct a stat block for complete spells
-
 //lock button for wands
 //"empowered" status effect switch for +potency (force highest strength?)
 //make voidable components glow purple when hovering/holding the void spell (css dropshadow)

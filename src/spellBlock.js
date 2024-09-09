@@ -1,5 +1,6 @@
 import { logText } from "./logging.js";
-import { clearChildren } from "./elementHelpers.js";
+import { clearChildren, formatSize, getSign, timeFormat } from "./elementHelpers.js";
+import { Dice } from "./dice.js";
 
 export class spellBlock {
     constructor(spellsByComponent, positionInWand, descriptionElement) {
@@ -18,30 +19,72 @@ export class spellBlock {
         this.formComponent = this.#findComponentByType("Form");
         this.purposeComponents = this.#findAllComponentsByType("Purpose");
         this.triggerComponent = this.#findComponentByType("Trigger");
-
-        this.#discoverBasicStats();
-    }
-
-    #discoverBasicStats(){ //more stats to be add: dmg, dice type, hit type, hit mod, etc.
-        this.inverted = false;
-        if (this.voidComponent) {
-            this.inverted = true;
-        }
-        this.potency = 0;
-        for (let component of this.spells) {
-            this.potency += component.statBlock.potency;
-        }
     }
 
     compileSpell(){
         if (this.#errorTest()) {
             this.#addDescriptionText("Spell has one or more fatal errors and cannot be compiled!");
         } else {
+            this.#discoverBasicStats();
+
             this.#fillPathText();
-            this.#fillEnhancementText();
             this.#fillFormText();
+            this.#fillEnhancementText();
             this.#fillPurposeText();
             this.#fillTriggerText();
+
+            this.#generateStatTable();
+        }
+    }
+
+    #discoverBasicStats(){ 
+        this.inverted = false;
+        if (this.voidComponent) {
+            this.inverted = true;
+        }
+        this.potency = 0;
+        this.range = 0;
+        this.size = 0;
+        this.hitModifier = 0;
+        this.lifetime = 0;
+        for (let component of this.spells) {
+            this.potency += component.statBlock.potency;
+            if (component.range){
+                this.range += component.range;
+            }
+            if (component.size){
+                this.size += component.size;
+            }
+            if (component.hitModifier){
+                this.hitModifier += component.hitModifier;
+            }
+            if (component.lifetime){
+                this.lifetime += component.lifetime;
+            }
+        }
+        this.hitSkill = this.pathComponent.hitSkill;
+        this.#discoverDamage();
+        this.effects = "None!"; //effects are discovered in this.addPurposeToText() for convenience, maybe redo later
+    }
+
+    #discoverDamage(){
+        this.damageCount = 0;
+        this.damageDice = Dice.D0;
+        for (let component of this.spells){
+            let newDmg = component.damageDice;
+            if (newDmg){
+                if (newDmg.sides > this.damageDice.sides){
+                    this.damageDice = newDmg;
+                }
+            }
+        }
+        if (this.damageDice != Dice.D0){
+            for (let component of this.spells){
+                let newCnt = component.damageCount;
+                if (newCnt){
+                    this.damageCount += newCnt * (component.damageDice.sides / this.damageDice.sides);
+                }
+            }
         }
     }
 
@@ -80,18 +123,24 @@ export class spellBlock {
         if (purpose.statBlock.invertible == "true" && this.inverted){ //purpose.invertible is being stored as a string
             if (this.potency <= -2){
                 this.#addDescriptionText(purpose.purposeDescriptions["invHigh"], purpose.type, purpose.primaryType);
+                this.#addNewEffect(purpose.statBlock.effects["invHigh"]);
             } else if (this.potency <= 1){
                 this.#addDescriptionText(purpose.purposeDescriptions["invMid"], purpose.type, purpose.primaryType);
+                this.#addNewEffect(purpose.statBlock.effects["invMid"]);
             } else{
                 this.#addDescriptionText(purpose.purposeDescriptions["invLow"], purpose.type, purpose.primaryType);
+                this.#addNewEffect(purpose.statBlock.effects["invLow"]);
             }
         } else{
             if (this.potency >= 2){
                 this.#addDescriptionText(purpose.purposeDescriptions["high"], purpose.type, purpose.primaryType);
+                this.#addNewEffect(purpose.statBlock.effects["high"]);
             } else if (this.potency >= -1){
                 this.#addDescriptionText(purpose.purposeDescriptions["mid"], purpose.type, purpose.primaryType);
+                this.#addNewEffect(purpose.statBlock.effects["mid"]);
             } else{
                 this.#addDescriptionText(purpose.purposeDescriptions["low"], purpose.type, purpose.primaryType);
+                this.#addNewEffect(purpose.statBlock.effects["low"]);
             }
         }
     }
@@ -150,6 +199,66 @@ export class spellBlock {
                 logText("Underline color for wand description failed, defaulting to black.");
                 return "#000000";
         }
+    }
+
+    #addNewEffect(effect){
+        if (this.effects == "None!"){
+            this.effects = effect;
+        } else{
+            this.effects += ", " + effect;
+        }
+    }
+
+    #generateStatTable(){
+        clearChildren(this.statBox);
+        this.#createEmptyElements();
+        this.#assignElementClasses();
+        this.#assignElementIds();
+        this.#relateElements();
+        this.#fillInnerHTML();
+    }
+
+    #createEmptyElements(){
+        this.statTableElement = document.createElement("div");
+        this.damageCellElement = document.createElement("span");
+        this.hitCellElement = document.createElement("span");
+        this.effectsRowElement = document.createElement("span");
+        this.rangeCellElement = document.createElement("span");
+        this.sizeCellElement = document.createElement("span");
+        this.lifetimeCellElement = document.createElement("span");
+    }
+
+    #assignElementClasses(){
+        this.statTableElement.className = "componentStatTable";
+        this.damageCellElement.className = "componentStatCell";
+        this.hitCellElement.className = "componentStatCell";
+        this.effectsRowElement.className = "componentStatRow";
+        this.rangeCellElement.className = "componentStatCell";
+        this.sizeCellElement.className = "componentStatCell";
+        this.lifetimeCellElement.className = "componentStatCell";
+    }
+
+    #assignElementIds(){
+        //Nope!
+    }
+
+    #relateElements(){
+        this.statBox.appendChild(this.statTableElement);
+        this.statTableElement.appendChild(this.damageCellElement);
+        this.statTableElement.appendChild(this.hitCellElement);
+        this.statTableElement.appendChild(this.effectsRowElement);
+        this.statTableElement.appendChild(this.rangeCellElement);
+        this.statTableElement.appendChild(this.sizeCellElement);
+        this.statTableElement.appendChild(this.lifetimeCellElement);
+    }
+
+    #fillInnerHTML(){
+        this.damageCellElement.innerHTML = "Damage: " + this.damageCount + this.damageDice.val; //ex: 2d6
+        this.hitCellElement.innerHTML = "To-Hit: " + this.hitSkill + " " + getSign(this.hitModifier);
+        this.effectsRowElement.innerHTML = "Effects: " + this.effects;
+        this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.range);
+        this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
+        this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(this.lifetime);  
     }
 
     #errorTest() {
