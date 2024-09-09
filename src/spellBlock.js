@@ -21,6 +21,7 @@ export class spellBlock {
     }
 
     compileSpell(){
+        this.statBox.style.display = "none";
         if (this.#errorTest()) {
             this.#addDescriptionText("Spell has one or more fatal errors and cannot be compiled!");
         } else {
@@ -210,6 +211,7 @@ export class spellBlock {
 
     #generateStatTable(){
         clearChildren(this.statBox);
+        this.statBox.style.display = "inline";
         this.#createEmptyElements();
         this.#assignElementClasses();
         this.#assignElementIds();
