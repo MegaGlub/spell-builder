@@ -460,11 +460,10 @@ img {
 
 .wandAddButton {
     bottom: 0;
-    display: block;
+    display: inline-block;
     height: 64px;
-    margin-bottom: 1em;
+    margin-top: 16px;
     margin-left: calc(((1em + 128px + 20px) / 2) - 32px);
-    position: absolute;
     width: 64px;
 }
 .wandAddButton:hover {
