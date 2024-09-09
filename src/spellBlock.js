@@ -265,38 +265,41 @@ export class spellBlock {
         this.#clearErrors();
         let fatalErrors = false;
 
+        if (!this.spells.length < 3){
+            this.#addError(true, "A spell block has less than 3 slots!")
+        }
         if (!this.pathComponent){
-            this.#addError(true, "A spell block requires a Path component! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            this.#addError(true, "A spell block requires a Path component!");
             fatalErrors = true;
         }
         if (!this.formComponent){
-            this.#addError(true, "A spell block requires a Form component! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            this.#addError(true, "A spell block requires a Form component!");
             fatalErrors = true;
         }
         if (this.purposeComponents.length == 0){
-            this.#addError(true, "A spell block requires at least one Purpose component! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            this.#addError(true, "A spell block requires at least one Purpose component!");
             fatalErrors = true;
         }
         if (!this.#areAllPurposesInvertible() && this.voidComponent && this.purposeComponents.length != 0){
-            this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible and unaffected. (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible and unaffected.");
         }
         if (this.spells.length > 7) {
-            this.#addError(false, "A spell block is quite long. This may result in goofy displays or extremely high mana costs. (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            this.#addError(false, "A spell block is quite long. This may result in goofy displays or extremely high mana costs.");
         }
         if (this.#findAllComponentsByType("Trigger").length > 1){
-            this.#addError(true, "A spell block may only contain up to one Trigger! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            this.#addError(true, "A spell block may only contain up to one Trigger!");
             fatalErrors = true;
         }
         if (this.#findAllComponentsByType("Path").length > 1){
-            this.#addError(true, "A spell block may only contain up to one Path! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            this.#addError(true, "A spell block may only contain up to one Path!");
             fatalErrors = true;
         }
         if (this.#findAllComponentsByType("Form").length > 1){
-            this.#addError(true, "A spell block may only contain up to one Form! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            this.#addError(true, "A spell block may only contain up to one Form!");
             fatalErrors = true;
         }
         if (this.#areThereDuplicatesInList(this.purposeComponents)){
-            this.#addError(true, "A spell block may not contain two of the same Purpose! (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")");
+            this.#addError(true, "A spell block may not contain two of the same Purpose!");
             fatalErrors = true;
         }
 
@@ -320,6 +323,7 @@ export class spellBlock {
             icon.src = "images/ui/yellow-error.png";
         }
         errorMsg.innerHTML = text;
+        errorMsg.innerHTML +=  "(Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")"
         error.appendChild(icon);
         error.appendChild(errorMsg);
         this.errorBox.appendChild(error);
