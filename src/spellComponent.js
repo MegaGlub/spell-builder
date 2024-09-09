@@ -93,6 +93,7 @@ export class spellComponent {
     #discoverStats() {
         this.damageDice = findDiceByString(this.statBlock["damageDice"]);
         this.damageCount = this.statBlock["damageCount"];
+        this.damageModifier = this.statBlock["damageModifier"];
         this.hitModifier = this.statBlock["hitModifier"];
         this.hitSkill = this.statBlock["hitSkill"];
         this.lifetime = this.statBlock["lifetime"];

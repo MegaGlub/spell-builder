@@ -30,7 +30,7 @@
             "invHigh": "Apply Stunned, Apply Bleeding"
         },
         "potency": 0,
-        "damageDice": "d4",
-        "damageCount": 2
+        "damageCount": 2,
+        "damageDice": "d4"
     }
 }

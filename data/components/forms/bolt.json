@@ -10,6 +10,9 @@
         "energy": 0
     },
     "statBlock": {
+        "damageCount": 0.75,
+        "damageDice": "d6",
+        "damageModifier": -2,
         "potency": 0,
         "size": 200
     }

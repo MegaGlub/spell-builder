@@ -45,6 +45,7 @@ export class spellBlock {
         this.potency = 0;
         this.range = 0;
         this.size = 0;
+        this.damageModifier = 0;
         this.hitModifier = 0;
         this.lifetime = 0;
         for (let component of this.spells) {
@@ -54,6 +55,9 @@ export class spellBlock {
             }
             if (component.size){
                 this.size += component.size;
+            }
+            if (component.damageModifier){
+                this.damageModifier += component.damageModifier;
             }
             if (component.hitModifier){
                 this.hitModifier += component.hitModifier;
@@ -86,6 +90,8 @@ export class spellBlock {
                 }
             }
         }
+        this.damageCount = Math.floor(this.damageCount);
+        //damage modifier is found in the normal stat blocks.
     }
 
     #fillPathText(){
@@ -254,12 +260,24 @@ export class spellBlock {
     }
 
     #fillInnerHTML(){
-        this.damageCellElement.innerHTML = "Damage: " + this.damageCount + this.damageDice.val; //ex: 2d6
+        this.damageCellElement.innerHTML = "Damage: " + this.#formatDamage(); //ex: 2d6 + 2
         this.hitCellElement.innerHTML = "To-Hit: " + this.hitSkill + " " + getSign(this.hitModifier);
         this.effectsRowElement.innerHTML = "Effects: " + this.effects;
         this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.range);
         this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
         this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(this.lifetime);  
+    }
+
+    #formatDamage (){
+        console.log(this.damageModifier);
+        let result = "";
+        result += this.damageCount;
+        result += this.damageDice.val;
+        if (this.damageModifier != 0){
+            result += " ";
+            result += getSign(this.damageModifier);
+        }
+        return result;
     }
 
     #errorTest() {
