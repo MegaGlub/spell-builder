@@ -6,8 +6,8 @@
 	"slots": [
 		"Bolt",
 		"Arc",
-		"Nothing",
-		"Nothing",
-		"Flame"
+		"Flame",
+		"Caster",
+		"Nothing"
 	]
 }

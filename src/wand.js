@@ -235,15 +235,27 @@ export class wand {
     #compileSpell() {
         clearChildren(this.wordyDescriptionElement); //clear old children
         const nonCompiledSpellBlocks = this.#detectSpellBlocks();
+        let positionInWand = 1;
         for (let spellCollection of nonCompiledSpellBlocks) {
-            const block = new spellBlock(spellCollection, 1, this.spellDescriptionElement);
+            const block = new spellBlock(spellCollection, positionInWand, this.spellDescriptionElement);
+            positionInWand += spellCollection.length;
             block.compileSpell();
         }
         this.saveToFile();
     }
 
     #detectSpellBlocks() { //TODO separates the spell into multiple blocks, returns an array of arrays with the split component at the front. may require a new component
-        return [this.slotsByObject];
+        const result = [];
+        let tempArr = [];
+        for (let i = 0; i < this.slotsByObject.length; i++){
+            if (this.slotsByObject[i].type == "Branch"){
+                result.push(tempArr);
+                tempArr = [];
+            }
+            tempArr.push(this.slotsByObject[i]);
+        }
+        result.push(tempArr);
+        return result;
     }
 
     saveToFile() {
