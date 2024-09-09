@@ -28,8 +28,8 @@ export class spellBlock {
             this.#discoverBasicStats();
 
             this.#fillPathText();
-            this.#fillFormText();
             this.#fillEnhancementText();
+            this.#fillFormText();
             this.#fillPurposeText();
             this.#fillTriggerText();
 
