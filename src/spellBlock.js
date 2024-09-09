@@ -265,8 +265,10 @@ export class spellBlock {
         this.#clearErrors();
         let fatalErrors = false;
 
-        if (!this.spells.length < 3){
+        if (this.spells.length < 3){
             this.#addError(true, "A spell block has less than 3 slots!")
+            fatalErrors = true;
+            return fatalErrors;
         }
         if (!this.pathComponent){
             this.#addError(true, "A spell block requires a Path component!");
