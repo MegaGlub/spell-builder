@@ -3,6 +3,7 @@ import { createComponentFromJSON, createWandFromJSON, readJSONDirectory } from "
 import { quickSort } from "./src/sorting.js";
 import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
+import { clearChildren } from "./src/elementHelpers.js";
 
 //importing and exporting via hash
 //select what to share via export
@@ -11,6 +12,7 @@ import { fetchCookies } from "./src/cookies.js";
 
 //lock button for wands
 //"empowered" status effect switch for +potency (force highest strength?)
+    //"weakened" status effect too
 //make voidable components glow purple when hovering/holding the void spell (css dropshadow)
 
 //work on the martial arts
@@ -95,8 +97,9 @@ async function buildWands(){
 }
 
 function drawAll(drawableElements, destination) {
+    clearChildren(destination);
     for (const drawable of drawableElements) {
-        logText("\tDrawing " + drawable.name + ".");
+        // logText("\tDrawing " + drawable.name + ".");
         drawable.drawElement(destination);
     }
 }

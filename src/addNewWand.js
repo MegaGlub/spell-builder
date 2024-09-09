@@ -1,4 +1,3 @@
-var fs = module.require('fs');
 import { assignClickableButtonByElement, assignClickableButtonByID, hideModal } from "./buttons.js";
 import { logText } from "./logging.js";
 import { wandList } from "../main.js";
@@ -6,6 +5,7 @@ import { wand } from "./wand.js";
 import { readImageDirectory } from "./fileMods.js";
 import { saveCookies } from "./cookies.js";
 import { destroyFile, formatFileName } from "./json.js";
+import { clearChildren } from "./elementHelpers.js";
 
 const modalContent = document.getElementById("modalContent");
 const modalBackground = document.getElementById("modalBackground");
@@ -21,9 +21,7 @@ export function createWandAddButton() {
 function handleOpenAddPress() {
     logText("Preparing to add new wand.");
     modalBackground.style.display = "block";
-    while (modalContent.firstChild) {
-        modalContent.removeChild(modalContent.firstChild);
-    }
+    clearChildren(modalContent);
     wandFormHelper.drawElement(modalContent);
 }
 
