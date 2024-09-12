@@ -3,7 +3,7 @@
     "name": "Invisible",
     "flavor": "Hides the spell from regular sight.",
     "enhancementDescription": "invisible ",
-    "image": "images/enhancements/enhancement-frame.png",
+    "image": "images/enhancements/invisible.png",
     "costs": {
         "primary": 1,
         "secondary": 1,

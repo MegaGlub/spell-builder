@@ -2,8 +2,8 @@
     "type": "Form",
     "name": "Bolt",
     "flavor": "In the shape of a lightning bolt.",
-    "formDescription": " splintering bolt of ",
-    "image": "images/forms/form-frame.png",
+    "formDescription": " bolt of ",
+    "image": "images/forms/bolt.png",
     "costs": {
         "primary": 0,
         "secondary": 1,
