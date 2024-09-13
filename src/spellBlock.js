@@ -77,35 +77,46 @@ export class spellBlock {
         this.damageCount = 0;
         this.damageDice = Dice.D0;
         for (let component of this.spells) {
-            let newDmg;
-            if (component.damageDice) {
-                if (component.type == "Purpose") {
-                    const potencyEnum = this.#getPurposeEnumFromPotency(component);
-                    newDmg = component.damageDice[potencyEnum];
-                }
-                else {
-                    newDmg = component.damageDice;
-                }
-                newDmg = findDiceByString(newDmg);
-                console.log(newDmg);
-                if (newDmg.sides > this.damageDice.sides) {
-                    this.damageDice = newDmg;
-                }
+            const newDmg = this.#getComponentDamageDice(component);
+            console.log(component.name + " :");
+            console.log("\t" + newDmg.val);
+            if (newDmg.sides > this.damageDice.sides) {
+                this.damageDice = newDmg;
             }
-            if (component.damageCount) {
-                let newCnt;
-                if (component.type == "Purpose") {
-                    const potencyEnum = this.#getPurposeEnumFromPotency(component);
-                    newCnt = component.damageCount[potencyEnum];
-                } else {
-                    newCnt = component.damageCount;
-                }
-                this.damageCount += newCnt * (newDmg.sides / this.damageDice.sides);
-            }
+        }
+        for (let component of this.spells) {
+            const newCnt = this.#getComponentDamageCount(component);
+            this.damageCount += newCnt * (this.#getComponentDamageDice(component).sides / this.damageDice.sides);
         }
         this.damageCount = Math.floor(this.damageCount);
         //damage modifier is found in the normal stat blocks.
     }
+
+#getComponentDamageDice(component){
+    let result = "d0";
+    if (component.damageDice) {
+        if (component.type == "Purpose") {
+            const potencyEnum = this.#getPurposeEnumFromPotency(component);
+            result = component.damageDice[potencyEnum];
+        } else {
+            result = component.damageDice;
+        }
+    }
+    return findDiceByString(result);
+}
+
+#getComponentDamageCount(component){
+    let result = 0;
+    if (component.damageCount){
+        if (component.type == "Purpose") {
+            const potencyEnum = this.#getPurposeEnumFromPotency(component);
+            result = component.damageCount[potencyEnum];
+        } else {
+            result = component.damageCount;
+        }
+    }
+    return result;
+}
 
 #getPurposeEnumFromPotency(purpose) {
     if (purpose.statBlock.invertible == "true" && this.inverted) { //purpose.invertible is being stored as a string
@@ -169,7 +180,6 @@ export class spellBlock {
     if (componentType) {
         textElement.style.color = this.#getDescriptionColor(componentType);
     }
-    console.log(text + " : " + componentType + " : " + specifier);
     if (specifier) {
         const underlineColor = this.#getDescriptionUnderlineColor(specifier);
         textElement.style.textDecoration = "underline " + underlineColor;
@@ -286,10 +296,10 @@ export class spellBlock {
     if (this.damageDice.val == 0) {
         return "0";
     }
-    if (this.damageCount == 0){
-        if (this.damageModifier > 0){
+    if (this.damageCount == 0) {
+        if (this.damageModifier > 0) {
             return "" + this.damageModifier;
-        } else{
+        } else {
             return "0";
         }
     }

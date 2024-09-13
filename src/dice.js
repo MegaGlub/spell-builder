@@ -16,6 +16,8 @@ export const Dice = Object.freeze({
 
 export function findDiceByString(str){
     switch(str){
+        case ("d0"):
+            return Dice.D0;
         case("d2"):
             return Dice.D2;
         case("d3"):
