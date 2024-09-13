@@ -11,11 +11,9 @@
     "costs": {
         "primary": 3,
         "secondary": 0,
-        "energy": 1
-    },
-    "types": {
-        "primary": "Nature",
-        "secondary": "Secondary"
+        "energy": 1,
+        "primaryType": "Nature",
+        "secondaryType": "Secondary"
     },
     "target": "Living Beings",
     "statBlock": {

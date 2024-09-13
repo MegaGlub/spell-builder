@@ -128,24 +128,24 @@ export class spellBlock {
     #addPurposeToText(purpose){
         if (purpose.statBlock.invertible == "true" && this.inverted){ //purpose.invertible is being stored as a string
             if (this.potency <= -2){
-                this.#addDescriptionText(purpose.purposeDescriptions["invHigh"], purpose.type, purpose.primaryType);
+                this.#addDescriptionText(purpose.purposeDescriptions["invHigh"], purpose.type, purpose.costs["primaryType"]);
                 this.#addNewEffect(purpose.statBlock.effects["invHigh"]);
             } else if (this.potency <= 1){
-                this.#addDescriptionText(purpose.purposeDescriptions["invMid"], purpose.type, purpose.primaryType);
+                this.#addDescriptionText(purpose.purposeDescriptions["invMid"], purpose.type, purpose.costs["primaryType"]);
                 this.#addNewEffect(purpose.statBlock.effects["invMid"]);
             } else{
-                this.#addDescriptionText(purpose.purposeDescriptions["invLow"], purpose.type, purpose.primaryType);
+                this.#addDescriptionText(purpose.purposeDescriptions["invLow"], purpose.type, purpose.costs["primaryType"]);
                 this.#addNewEffect(purpose.statBlock.effects["invLow"]);
             }
         } else{
             if (this.potency >= 2){
-                this.#addDescriptionText(purpose.purposeDescriptions["high"], purpose.type, purpose.primaryType);
+                this.#addDescriptionText(purpose.purposeDescriptions["high"], purpose.type, purpose.costs["primaryType"]);
                 this.#addNewEffect(purpose.statBlock.effects["high"]);
             } else if (this.potency >= -1){
-                this.#addDescriptionText(purpose.purposeDescriptions["mid"], purpose.type, purpose.primaryType);
+                this.#addDescriptionText(purpose.purposeDescriptions["mid"], purpose.type, purpose.costs["primaryType"]);
                 this.#addNewEffect(purpose.statBlock.effects["mid"]);
             } else{
-                this.#addDescriptionText(purpose.purposeDescriptions["low"], purpose.type, purpose.primaryType);
+                this.#addDescriptionText(purpose.purposeDescriptions["low"], purpose.type, purpose.costs["primaryType"]);
                 this.#addNewEffect(purpose.statBlock.effects["low"]);
             }
         }
@@ -156,6 +156,7 @@ export class spellBlock {
         if (componentType){
             textElement.style.color = this.#getDescriptionColor(componentType);
         }
+        console.log(text + " : " + componentType + " : " + specifier);
         if (specifier){
             const underlineColor = this.#getDescriptionUnderlineColor(specifier);
             textElement.style.textDecoration = "underline " + underlineColor;
@@ -269,7 +270,10 @@ export class spellBlock {
     }
 
     #formatDamage (){
-        console.log(this.damageModifier);
+        if (this.damageDice.val == 0){
+            return "0";
+        }
+
         let result = "";
         result += this.damageCount;
         result += this.damageDice.val;
