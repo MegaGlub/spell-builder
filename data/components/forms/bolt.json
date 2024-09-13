@@ -2,7 +2,7 @@
     "type": "Form",
     "name": "Bolt",
     "flavor": "In the shape of a lightning bolt.",
-    "formDescription": " bolt of ",
+    "formDescription": " chaotic bolt of ",
     "image": "images/forms/bolt.png",
     "costs": {
         "primary": 0,

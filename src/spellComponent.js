@@ -1,7 +1,6 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignDraggableElementByID } from "./buttons.js";
-import { findDiceByString } from "./dice.js";
 import { getSign } from "./elementHelpers.js";
 export class spellComponent {
     constructor(name, type, flavor, image, costs, statBlock) {
@@ -91,7 +90,7 @@ export class spellComponent {
     }
 
     #discoverStats() {
-        this.damageDice = findDiceByString(this.statBlock["damageDice"]);
+        this.damageDice = this.statBlock["damageDice"];
         this.damageCount = this.statBlock["damageCount"];
         this.damageModifier = this.statBlock["damageModifier"];
         this.hitModifier = this.statBlock["hitModifier"];

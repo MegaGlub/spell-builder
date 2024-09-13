@@ -25,12 +25,26 @@
             "low": "Apply Burning (if Vulnerable)",
             "mid": "Apply Burning",
             "high": "Apply Burning, Apply Dazed",
-            "invLow": "Apply Weakened",
+            "invLow": "",
             "invMid": "Apply Bleeding",
             "invHigh": "Apply Stunned, Apply Bleeding"
         },
         "potency": 0,
-        "damageCount": 2,
-        "damageDice": "d4"
+        "damageCount": {
+            "low": 1,
+            "mid": 2,
+            "high": 2,
+            "invLow": 1,
+            "invMid": 1,
+            "invHigh": 1
+        },
+        "damageDice": {
+            "low": "D0",
+            "mid": "D4",
+            "high": "D6",
+            "invLow": "D6",
+            "invMid": "D8",
+            "invHigh": "D12"
+        }
     }
 }
