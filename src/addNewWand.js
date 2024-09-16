@@ -14,6 +14,8 @@ let wandFormHelper;
 export function createWandAddButton() {
     const wandAddButton = document.getElementById("wandAddButton");
     wandAddButton.src = "images/ui/add.png";
+    console.log(wandAddButton);
+    console.log(wandAddButton.parentElement);
     assignClickableButtonByID("wandAddButton", handleOpenAddPress);
     wandFormHelper = new wandFormCreator();
 }

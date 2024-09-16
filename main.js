@@ -55,7 +55,11 @@ logText("Tring to build wands...");
 await buildWands();
 
 logText("Drawing wands...");
-drawAll(wandList, document.getElementById("wandSelector"));
+const addWandButton = document.getElementById("wandAddButton");
+const wandSelector = document.getElementById("wandSelector");
+drawAll(wandList, wandSelector);
+wandSelector.appendChild(addWandButton);
+
 
 logText("Complete!");
 finishLoading();

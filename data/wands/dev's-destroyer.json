@@ -4,8 +4,8 @@
 	"flavor": "Immensely helpful with testing.",
 	"image": "images/wands/brass-light.gif",
 	"slots": [
+		"Ball",
 		"Arc",
-		"Bolt",
 		"Invisible",
 		"On Water",
 		"Flame"
