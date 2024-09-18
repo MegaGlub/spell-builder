@@ -29,23 +29,46 @@ class ImportCreator {
     }
 
     #createEmptyFormElements(){
-
+        this.formContainerElement = document.createElement("div");
+        this.titleElement = document.createElement("div");
+        this.formElement = document.createElement("form");
+        this.importCell = document.createElement("span");
+        this.importName = document.createElement("label");
+        this.importField = document.createElement("input");
+        this.submitRow = document.createElement("span");
+        this.submitButton = document.createElement("div");
+        this.errorBox = document.createElement("div");
     }
 
     #assignFormElementClasses(){
-
+        this.formContainerElement.className = "modalFormContainer";
+        this.titleElement.className = "modalFormTitle";
+        this.formElement.className = "modalForm";
+        this.importCell.className = "modalFormCell";
+        this.importName.className = "modalFormLabel";
+        this.importField.className = "modalFormBulkTextField";
+        this.submitRow.className = "modalFormRow";
+        this.submitButton.className = "modalFormSubmitButton";
+        this.errorBox.className = "modalFormErrorBox";
     }
 
     #assignFormElementIds(){
-
+        this.formContainerElement.id = "importForm";
     }
 
     #assignInputTypes(){
-
+        this.importField.type = "text";
     }
 
     #relateFormElements(){
-
+        this.formContainerElement.appendChild(this.titleElement);
+        this.formContainerElement.appendChild(this.formElement);
+        this.formElement.appendChild(this.importCell);
+        this.importCell.appendChild(this.importName);
+        this.importCell.appendChild(this.importField);
+        this.formElement.appendChild(this.submitRow);
+        this.submitRow.appendChild(this.submitButton);
+        this.formContainerElement.appendChild(this.errorBox);
     }
 
     #fillFormInnerHTML(){
