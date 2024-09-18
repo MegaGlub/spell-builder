@@ -1,6 +1,7 @@
 import { logText, showLog } from "./logging.js";
 import { createWandAddButton } from "./addNewWand.js";
 import { createImportButton } from "./importing.js";
+import { createExportButton } from "./exporting.js";
 
 const mainMenuScreen = document.getElementById("mainMenuScreen");
 const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
@@ -70,6 +71,7 @@ export function assignStaticButtons() {
     
     createWandAddButton();
     createImportButton();
+    createExportButton();
 }
 
 function mainMenuSpellsButtonPress() {

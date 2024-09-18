@@ -5,9 +5,6 @@ import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 import { clearChildren, emptyArray } from "./src/elementHelpers.js";
 
-//importing and exporting via hash
-//select what to share via export
-
 //dev "god" code for import
 
 //lock button for wands

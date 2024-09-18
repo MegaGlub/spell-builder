@@ -240,6 +240,7 @@ img {
     display: block;
     height: 30em;
     margin: auto;
+    text-wrap: wrap;
     width: 40em;
 }
 
