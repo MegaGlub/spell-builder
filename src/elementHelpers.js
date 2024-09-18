@@ -39,3 +39,16 @@ export function formatSize(size) {
         return size + "cm";
     }
 }
+
+export function sewArrays(arr1, arr2) {
+    for (let i = 0; i < arr2.length; i++){
+        if (!arr1.includes(arr2[i])){
+            arr1.push(arr2[i]);
+        }
+    }
+    return arr1;
+}
+
+export function emptyArray(arr){
+    arr.splice(0, arr.length);
+}

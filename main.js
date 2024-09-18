@@ -3,7 +3,7 @@ import { createComponentFromJSON, createWandFromJSON, readJSONDirectory } from "
 import { quickSort } from "./src/sorting.js";
 import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
-import { clearChildren } from "./src/elementHelpers.js";
+import { clearChildren, emptyArray } from "./src/elementHelpers.js";
 
 //importing and exporting via hash
 //select what to share via export
@@ -34,6 +34,8 @@ const completeComponentList = []; //all components, built from json
 export const componentList = []; //just the components available to the user
 export const savedComponentNames = []; //names from availableComponents.json, used to build componentList
 export const wandList = []; //all wands, built from json. No such availability filtering.
+export const encryption_key = "ballfish_wuz_here"; //doesn't need to be secure.
+export const valid_crypto_sign = "valid_crypto"; //used to confirm that it worked.
 
 logText("Assigning buttons...");
 assignStaticButtons();
@@ -81,6 +83,19 @@ async function buildComponentsFromFiles() {
             completeComponentList.push(component);
         }
     }
+}
+
+export async function reloadComponents(){
+    logText("Reloading components...");
+    emptyArray(completeComponentList);
+    await buildComponentsFromFiles();
+    emptyArray(componentList);
+    separateChaffComponents();
+    quickSort(componentList);
+    const spellBox = document.getElementById("spellBox");
+    clearChildren(spellBox);
+    drawAll(componentList, spellBox);
+    logText("Rebuild complete!");
 }
 
 function separateChaffComponents(){

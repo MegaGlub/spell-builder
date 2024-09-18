@@ -234,6 +234,15 @@ img {
     width: 15em;
 }
 
+.modalFormBulkTextField {
+    background-color: #FFFFF0;
+    color: #2F4F4F;
+    display: block;
+    height: 30em;
+    margin: auto;
+    width: 40em;
+}
+
 .modalFormNumberField {
     background-color: #FFFFF0;
     color: #2F4F4F;

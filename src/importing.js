@@ -1,17 +1,21 @@
-import { assignClickableButtonByID, assignClickableButtonByElement } from "./buttons.js";
-import { clearChildren } from "./elementHelpers.js";
+import { assignClickableButtonByID, assignClickableButtonByElement, hideModal } from "./buttons.js";
+import { clearChildren, sewArrays } from "./elementHelpers.js";
 import { logText } from "./logging.js";
+import { encryption_key, reloadComponents, savedComponentNames, valid_crypto_sign } from "../main.js";
+import { saveCookies } from "./cookies.js";
+
+const SimpleCrypto = require("simple-crypto-js").default;
 
 const modalContent = document.getElementById("modalContent");
 const modalBackground = document.getElementById("modalBackground");
 
 let importFormHelper;
-export function createImportButton(){
+export function createImportButton() {
     assignClickableButtonByID("importButton", handleImportPress);
     importFormHelper = new ImportCreator();
 }
 
-function handleImportPress(){
+function handleImportPress() {
     logText("Preparing to import.");
     modalBackground.style.display = "block";
     clearChildren(modalContent);
@@ -28,7 +32,7 @@ class ImportCreator {
         this.#addEventListeners();
     }
 
-    #createEmptyFormElements(){
+    #createEmptyFormElements() {
         this.formContainerElement = document.createElement("div");
         this.titleElement = document.createElement("div");
         this.formElement = document.createElement("form");
@@ -40,7 +44,7 @@ class ImportCreator {
         this.errorBox = document.createElement("div");
     }
 
-    #assignFormElementClasses(){
+    #assignFormElementClasses() {
         this.formContainerElement.className = "modalFormContainer";
         this.titleElement.className = "modalFormTitle";
         this.formElement.className = "modalForm";
@@ -52,15 +56,15 @@ class ImportCreator {
         this.errorBox.className = "modalFormErrorBox";
     }
 
-    #assignFormElementIds(){
+    #assignFormElementIds() {
         this.formContainerElement.id = "importForm";
     }
 
-    #assignInputTypes(){
+    #assignInputTypes() {
         this.importField.type = "text";
     }
 
-    #relateFormElements(){
+    #relateFormElements() {
         this.formContainerElement.appendChild(this.titleElement);
         this.formContainerElement.appendChild(this.formElement);
         this.formElement.appendChild(this.importCell);
@@ -71,24 +75,30 @@ class ImportCreator {
         this.formContainerElement.appendChild(this.errorBox);
     }
 
-    #fillFormInnerHTML(){
-        this.importName.innerHTML = "Import Hash:";
+    #fillFormInnerHTML() {
+        this.titleElement.innerHTML = "Import New Components";
+        this.importName.innerHTML = "Code";
+        this.submitButton.innerHTML = "Import";
     }
 
-    #addEventListeners(){
+    #addEventListeners() {
         assignClickableButtonByElement(this.submitButton, this.#handleSubmission.bind(this));
     }
 
-    #addError(fatal, text){
+    drawElement(parentElement){
+        parentElement.appendChild(this.formContainerElement);
+    }
+
+    #addError(fatal, text) {
         const error = document.createElement("div");
         const icon = document.createElement("img");
         const errorMsg = document.createElement("div");
         error.className = "modalFormError";
         icon.className = "errorIcon";
         errorMsg.className = "modalFormErrorMessage";
-        if (fatal){
+        if (fatal) {
             icon.src = "images/ui/red-error.png";
-        } else{
+        } else {
             icon.src = "images/ui/yellow-error.png";
         }
         errorMsg.innerHTML = text;
@@ -97,11 +107,33 @@ class ImportCreator {
         this.errorBox.appendChild(error);
     }
 
-    #handleSubmission(){
-
+    #handleSubmission() {
+        let decryptedHash;
+        try{
+            decryptedHash = this.#decryptHash();
+        } catch (error){
+            decryptedHash = ["lolno"]; //automagically failing decrypted hash
+        }
+        if (decryptedHash[0] != valid_crypto_sign){
+            clearChildren(this.errorBox);
+            this.#addError(true, "Invalid hash!");
+        } else{
+            const newComponents = [];
+            for (let i = 1; i < decryptedHash.length; i++){
+                newComponents.push(decryptedHash[i]);
+            }
+            savedComponentNames = sewArrays(savedComponentNames, newComponents);
+            reloadComponents();
+            clearChildren(this.errorBox);
+            hideModal();
+            saveCookies();
+        }
     }
 
-    #decryptHash(){
-        
+    #decryptHash() {
+        const encryptedMsg = this.importField.value;
+        const sCrypto = new SimpleCrypto(encryption_key);
+        const msg = sCrypto.decrypt(encryptedMsg);
+        return msg.split('|');
     }
 }
