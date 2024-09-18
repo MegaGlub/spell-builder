@@ -39,7 +39,7 @@ class ExportCreator {
         this.formElement = document.createElement("form");
         this.exportCell = document.createElement("span");
         this.exportName = document.createElement("label");
-        this.exportField = document.createElement("input");
+        this.exportField = document.createElement("textarea");
         this.submitRow = document.createElement("span");
         this.submitButton = document.createElement("div");
         this.errorBox = document.createElement("div");
@@ -62,7 +62,7 @@ class ExportCreator {
     }
 
     #assignInputTypes() {
-        this.exportField.type = "text";
+        // this.exportField.type = "textarea";
     }
 
     #relateFormElements() {

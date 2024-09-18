@@ -39,7 +39,7 @@ class ImportCreator {
         this.formElement = document.createElement("form");
         this.importCell = document.createElement("span");
         this.importName = document.createElement("label");
-        this.importField = document.createElement("input");
+        this.importField = document.createElement("textarea");
         this.submitRow = document.createElement("span");
         this.submitButton = document.createElement("div");
         this.errorBox = document.createElement("div");
@@ -62,7 +62,7 @@ class ImportCreator {
     }
 
     #assignInputTypes() {
-        this.importField.type = "text";
+        //this.importField.type = "textarea";
     }
 
     #relateFormElements() {
