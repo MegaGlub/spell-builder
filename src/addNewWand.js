@@ -317,7 +317,11 @@ class wandFormCreator {
             this.imageField.value,
             slots
         ));
+        const addWandButton = document.getElementById("wandAddButton");
+        const wandSelector = document.getElementById("wandSelector");
+        wandSelector.removeChild(addWandButton);
         wandList[wandList.length - 1].drawElement(document.getElementById("wandSelector"));
+        wandSelector.appendChild(addWandButton);
         this.#clearErrors();
         hideModal();
         saveCookies();
