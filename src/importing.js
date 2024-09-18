@@ -1,4 +1,4 @@
-import { assignClickableButtonByID } from "./buttons.js";
+import { assignClickableButtonByID, assignClickableButtonByElement } from "./buttons.js";
 import { clearChildren } from "./elementHelpers.js";
 import { logText } from "./logging.js";
 
@@ -72,10 +72,36 @@ class ImportCreator {
     }
 
     #fillFormInnerHTML(){
-
+        this.importName.innerHTML = "Import Hash:";
     }
 
     #addEventListeners(){
+        assignClickableButtonByElement(this.submitButton, this.#handleSubmission.bind(this));
+    }
+
+    #addError(fatal, text){
+        const error = document.createElement("div");
+        const icon = document.createElement("img");
+        const errorMsg = document.createElement("div");
+        error.className = "modalFormError";
+        icon.className = "errorIcon";
+        errorMsg.className = "modalFormErrorMessage";
+        if (fatal){
+            icon.src = "images/ui/red-error.png";
+        } else{
+            icon.src = "images/ui/yellow-error.png";
+        }
+        errorMsg.innerHTML = text;
+        error.appendChild(icon);
+        error.appendChild(errorMsg);
+        this.errorBox.appendChild(error);
+    }
+
+    #handleSubmission(){
+
+    }
+
+    #decryptHash(){
         
     }
 }

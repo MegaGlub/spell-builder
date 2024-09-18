@@ -266,14 +266,8 @@ class wandFormCreator {
         this.errorBox.appendChild(error);
     }
 
-    #clearErrors(){
-        while (this.errorBox.firstChild) {
-            this.errorBox.removeChild(this.errorBox.firstChild);
-        }
-    }
-
     #handleSubmission() {
-        this.#clearErrors();
+        clearChildren(this.errorBox);
         let fatalErrors = false;
         let minorErrors = false;
         if (!this.nameField.value){
@@ -322,7 +316,7 @@ class wandFormCreator {
         wandSelector.removeChild(addWandButton);
         wandList[wandList.length - 1].drawElement(document.getElementById("wandSelector"));
         wandSelector.appendChild(addWandButton);
-        this.#clearErrors();
+        clearChildren(this.errorBox);
         hideModal();
         saveCookies();
     }
