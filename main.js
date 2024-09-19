@@ -9,7 +9,6 @@ import { clearChildren, emptyArray } from "./src/elementHelpers.js";
 
 //spellBlocks need to collate costs
     //spellBlock cost inversion
-//spellBlock "complexity" stat to inform time costs
 
 //lock button for wands
 //"empowered" status effect switch for +potency (force highest strength?)
