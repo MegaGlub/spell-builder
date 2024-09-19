@@ -83,7 +83,7 @@ class ExportCreator {
     }
 
     #fillDefualtValues() {
-        this.exportField.value = "Press the button below to generate a new import code, then copy it and send it to somebody else to share your known components.";
+        this.exportField.value = " Press the button below to generate a new import code, then copy it and send it to somebody else to share your known components.\n Please only so with explicit DM approval.";
     }
 
     #addEventListeners() {
