@@ -90,6 +90,7 @@ export class spellComponent {
     }
 
     #discoverStats() {
+        this.complexity = this.statBlock["complexity"];
         this.damageDice = this.statBlock["damageDice"];
         this.damageCount = this.statBlock["damageCount"];
         this.damageModifier = this.statBlock["damageModifier"];

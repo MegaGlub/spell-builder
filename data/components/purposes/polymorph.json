@@ -17,6 +17,7 @@
     },
     "target": "Living Beings",
     "statBlock": {
+        "complexity": 1,
         "invertible": "false",
         "effects": {
             "low": "Apply Dazed",

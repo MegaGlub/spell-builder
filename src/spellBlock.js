@@ -70,6 +70,7 @@ export class spellBlock {
         }
         this.hitSkill = this.pathComponent.hitSkill;
         this.#discoverDamage();
+        this.#discoverComplexity();
         this.effects = "None!"; //effects are discovered in this.addPurposeToText() for convenience, maybe redo later
     }
 
@@ -90,6 +91,22 @@ export class spellBlock {
         }
         this.damageCount = Math.floor(this.damageCount);
         //damage modifier is found in the normal stat blocks.
+    }
+
+    #discoverComplexity() {
+        this.complexity = 2;
+        for (let component of this.spells) {
+            if (component.complexity){
+                this.complexity += component.complexity;
+            }
+        }
+        if (this.spells.length > 7){
+            this.complexity++;
+        }
+
+        if (this.complexity <= 0){ //just as error catching.
+            this.complexity = 1;
+        }
     }
 
     #getComponentDamageDice(component) {
@@ -253,6 +270,7 @@ export class spellBlock {
         this.statTableElement = document.createElement("div");
         this.damageCellElement = document.createElement("span");
         this.hitCellElement = document.createElement("span");
+        this.actionPointCellElement = document.createElement("span");
         this.effectsRowElement = document.createElement("span");
         this.rangeCellElement = document.createElement("span");
         this.sizeCellElement = document.createElement("span");
@@ -263,6 +281,7 @@ export class spellBlock {
         this.statTableElement.className = "componentStatTable";
         this.damageCellElement.className = "componentStatCell";
         this.hitCellElement.className = "componentStatCell";
+        this.actionPointCellElement.className = "componentStatCell";
         this.effectsRowElement.className = "componentStatRow";
         this.rangeCellElement.className = "componentStatCell";
         this.sizeCellElement.className = "componentStatCell";
@@ -277,6 +296,7 @@ export class spellBlock {
         this.statBox.appendChild(this.statTableElement);
         this.statTableElement.appendChild(this.damageCellElement);
         this.statTableElement.appendChild(this.hitCellElement);
+        this.statTableElement.appendChild(this.actionPointCellElement);
         this.statTableElement.appendChild(this.effectsRowElement);
         this.statTableElement.appendChild(this.rangeCellElement);
         this.statTableElement.appendChild(this.sizeCellElement);
@@ -286,6 +306,7 @@ export class spellBlock {
     #fillInnerHTML() {
         this.damageCellElement.innerHTML = "Damage: " + this.#formatDamage(); //ex: 2d6 + 2
         this.hitCellElement.innerHTML = "To-Hit: " + this.hitSkill + " " + getSign(this.hitModifier);
+        this.actionPointCellElement.innerHTML = "AP cost: " + this.#formatAP();
         this.effectsRowElement.innerHTML = "Effects: " + this.effects;
         this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.range);
         this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
@@ -314,8 +335,33 @@ export class spellBlock {
         return result;
     }
 
+    #formatAP(){
+        let remainingComplexity = this.complexity;
+        let primaryAP = 0;
+        let secondaryAP = 0;
+        let result = "";
+        console.log(this.complexity);
+        while (remainingComplexity > 0){
+            if (remainingComplexity >= 2 && primaryAP < 2){
+                primaryAP++;
+                result += "\u25c9";
+                remainingComplexity -= 2;
+            }
+            if (remainingComplexity >= 1){
+                secondaryAP++;
+                result += "\u25cb";
+                remainingComplexity--;
+            }
+            if (secondaryAP == 2){
+                remainingComplexity = 0;
+            }
+        }
+        console.log(result);
+        return result;
+    }
+
     #errorTest() {
-        this.#clearErrors();
+        clearChildren(this.errorBox);
         let fatalErrors = false;
 
         if (this.spells.length < 3) {
@@ -359,10 +405,6 @@ export class spellBlock {
         }
 
         return fatalErrors;
-    }
-
-    #clearErrors() {
-        clearChildren(this.errorBox);
     }
 
     #addError(fatal, text) {

@@ -1,0 +1,13 @@
+{
+	"type": "Wand",
+	"name": "Dev's Destroyer",
+	"flavor": "Immensely helpful with testing.",
+	"image": "images/wands/brass-light.gif",
+	"slots": [
+		"Ball",
+		"Arc",
+		"Nothing",
+		"Polymorph",
+		"On Water"
+	]
+}
