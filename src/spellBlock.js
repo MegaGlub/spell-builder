@@ -79,15 +79,17 @@ export class spellBlock {
         this.damageDice = Dice.D0;
         for (let component of this.spells) {
             const newDmg = this.#getComponentDamageDice(component);
-            console.log(component.name + " :");
-            console.log("\t" + newDmg.val);
             if (newDmg.sides > this.damageDice.sides) {
                 this.damageDice = newDmg;
             }
         }
-        for (let component of this.spells) {
-            const newCnt = this.#getComponentDamageCount(component);
-            this.damageCount += newCnt * (this.#getComponentDamageDice(component).sides / this.damageDice.sides);
+        if (this.damageDice != Dice.D0) {
+            for (let component of this.spells) {
+                console.log(component.name + ": ");
+                console.log(this.damageCount);
+                const newCnt = this.#getComponentDamageCount(component);
+                this.damageCount += newCnt * (this.#getComponentDamageDice(component).sides / this.damageDice.sides);
+            }
         }
         this.damageCount = Math.floor(this.damageCount);
         //damage modifier is found in the normal stat blocks.
@@ -96,15 +98,15 @@ export class spellBlock {
     #discoverComplexity() {
         this.complexity = 2;
         for (let component of this.spells) {
-            if (component.complexity){
+            if (component.complexity) {
                 this.complexity += component.complexity;
             }
         }
-        if (this.spells.length > 7){
+        if (this.spells.length > 7) {
             this.complexity++;
         }
 
-        if (this.complexity <= 0){ //just as error catching.
+        if (this.complexity <= 0) { //just as error catching.
             this.complexity = 1;
         }
     }
@@ -335,28 +337,26 @@ export class spellBlock {
         return result;
     }
 
-    #formatAP(){
+    #formatAP() {
         let remainingComplexity = this.complexity;
         let primaryAP = 0;
         let secondaryAP = 0;
         let result = "";
-        console.log(this.complexity);
-        while (remainingComplexity > 0){
-            if (remainingComplexity >= 2 && primaryAP < 2){
+        while (remainingComplexity > 0) {
+            if (remainingComplexity >= 2 && primaryAP < 2) {
                 primaryAP++;
                 result += "\u25c9";
                 remainingComplexity -= 2;
             }
-            if (remainingComplexity >= 1){
+            if (remainingComplexity >= 1) {
                 secondaryAP++;
                 result += "\u25cb";
                 remainingComplexity--;
             }
-            if (secondaryAP == 2){
+            if (secondaryAP == 2) {
                 remainingComplexity = 0;
             }
         }
-        console.log(result);
         return result;
     }
 
