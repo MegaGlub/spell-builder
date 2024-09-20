@@ -27,7 +27,7 @@ logText("Starting...");
 
 logText("Retrieving element IDs...");
 
-const completeComponentList = []; //all components, built from json
+export const completeComponentList = []; //all components, built from json
 export const componentList = []; //just the components available to the user
 export const savedComponentNames = []; //names from availableComponents.json, used to build componentList
 export const wandList = []; //all wands, built from json. No such availability filtering.

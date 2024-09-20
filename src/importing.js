@@ -1,7 +1,7 @@
 import { assignClickableButtonByID, assignClickableButtonByElement, hideModal } from "./buttons.js";
 import { clearChildren, sewArrays } from "./elementHelpers.js";
 import { logText } from "./logging.js";
-import { encryption_key, reloadComponents, savedComponentNames, valid_crypto_sign } from "../main.js";
+import { completeComponentList, componentList, encryption_key, reloadComponents, savedComponentNames, valid_crypto_sign } from "../main.js";
 import { saveCookies } from "./cookies.js";
 
 const SimpleCrypto = require("simple-crypto-js").default;
@@ -109,25 +109,36 @@ class ImportCreator {
     }
 
     #handleSubmission() {
-        let decryptedHash;
-        try {
-            decryptedHash = this.#decryptHash();
-        } catch (error) {
-            decryptedHash = ["skill difference"]; //automagically failing decrypted hash
-        }
-        if (decryptedHash[0] != valid_crypto_sign) {
-            clearChildren(this.errorBox);
-            this.#addError(true, "Invalid hash!");
-        } else {
-            const newComponents = [];
-            for (let i = 1; i < decryptedHash.length; i++) {
-                newComponents.push(decryptedHash[i]);
+        if (this.importField.value == "goopbert") { //dev "god" import
+            const allComps = [];
+            for (let component of completeComponentList){
+                allComps.push(component.name);
             }
-            sewArrays(savedComponentNames, newComponents);
+            sewArrays(savedComponentNames, allComps);
             reloadComponents();
             clearChildren(this.errorBox);
             hideModal();
-            saveCookies();
+        } else {
+            let decryptedHash;
+            try {
+                decryptedHash = this.#decryptHash();
+            } catch (error) {
+                decryptedHash = ["skill difference"]; //automagically failing decrypted hash
+            }
+            if (decryptedHash[0] != valid_crypto_sign) {
+                clearChildren(this.errorBox);
+                this.#addError(true, "Invalid hash!");
+            } else {
+                const newComponents = [];
+                for (let i = 1; i < decryptedHash.length; i++) {
+                    newComponents.push(decryptedHash[i]);
+                }
+                sewArrays(savedComponentNames, newComponents);
+                reloadComponents();
+                clearChildren(this.errorBox);
+                hideModal();
+                saveCookies();
+            }
         }
     }
 

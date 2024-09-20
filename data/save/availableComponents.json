@@ -4,10 +4,10 @@
 		"Invisible",
 		"Ball",
 		"Bolt",
+		"Caster",
 		"Arc",
 		"Flame",
 		"Polymorph",
-		"On Water",
-		"Caster"
+		"On Water"
 	]
 }

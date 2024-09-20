@@ -1,8 +1,8 @@
 {
 	"type": "Wand",
 	"name": "Dev's Destroyer 2.0",
-	"flavor": "Helps test longer spells.",
-	"image": "images/wands/wood-orbit.png",
+	"flavor": "What does it do?",
+	"image": "images/wands/brass-light.gif",
 	"slots": [
 		"Ball",
 		"Arc",
@@ -10,10 +10,10 @@
 		"Caster",
 		"Bolt",
 		"Arc",
+		"Polymorph",
 		"Nothing",
 		"Nothing",
 		"Nothing",
-		"Nothing",
-		"Polymorph"
+		"Nothing"
 	]
 }
