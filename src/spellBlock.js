@@ -48,7 +48,11 @@ export class spellBlock {
         this.damageModifier = 0;
         this.hitModifier = 0;
         this.lifetime = 0;
-
+        this.primaryCost = 0;
+        this.secondaryCost = 0;
+        this.energyCost = 0;
+        this.primaryTypes = [];
+        this.secondaryTypes = [];
 
         for (let component of this.spells) {
             this.potency += component.statBlock.potency;
@@ -66,6 +70,21 @@ export class spellBlock {
             }
             if (component.lifetime) {
                 this.lifetime += component.lifetime;
+            }
+            this.primaryCost += component.primaryCost;
+            this.secondaryCost += component.secondaryCost;
+            this.energyCost += component.energyCost;
+            if (component.primaryType != "Primary"){
+                if (!this.primaryTypes.includes(component.primaryType)){
+                    this.primaryTypes.push(component.primaryType);
+                    console.log("Including Primary type" + component.primaryType + " for component " + component.name + ".");
+                }
+            }
+            if (component.secondaryType != "Secondary"){
+                if (!this.primaryTypes.includes(component.secondaryType) && !this.secondaryTypes.includes(component.secondaryType)){
+                    this.secondaryTypes.push(component.secondaryType);
+                    console.log("Including Secondary type" + component.secondaryType + " for component " + component.name + ".");
+                }
             }
         }
         this.hitSkill = this.pathComponent.hitSkill;
@@ -85,8 +104,6 @@ export class spellBlock {
         }
         if (this.damageDice != Dice.D0) {
             for (let component of this.spells) {
-                console.log(component.name + ": ");
-                console.log(this.damageCount);
                 const newCnt = this.#getComponentDamageCount(component);
                 this.damageCount += newCnt * (this.#getComponentDamageDice(component).sides / this.damageDice.sides);
             }
@@ -277,6 +294,14 @@ export class spellBlock {
         this.rangeCellElement = document.createElement("span");
         this.sizeCellElement = document.createElement("span");
         this.lifetimeCellElement = document.createElement("span");
+        this.costCellElements = [];
+        for (let type of this.primaryTypes){
+            this.costCellElements.push(document.createElement("span"));
+        }
+        for (let type of this.secondaryTypes){
+            this.costCellElements.push(document.createElement("span"));
+        }
+        this.energyCostCellElement = document.createElement("span");
     }
 
     #assignElementClasses() {
@@ -288,6 +313,10 @@ export class spellBlock {
         this.rangeCellElement.className = "componentStatCell";
         this.sizeCellElement.className = "componentStatCell";
         this.lifetimeCellElement.className = "componentStatCell";
+        for (let costCellElement of this.costCellElements){
+            costCellElement.className = "componentStatCell";
+        }
+        this.energyCostCellElement.className = "componentStatCell";
     }
 
     #assignElementIds() {
@@ -303,6 +332,10 @@ export class spellBlock {
         this.statTableElement.appendChild(this.rangeCellElement);
         this.statTableElement.appendChild(this.sizeCellElement);
         this.statTableElement.appendChild(this.lifetimeCellElement);
+        for (let costCellElement of this.costCellElements){
+            this.statTableElement.appendChild(costCellElement);
+        }
+        this.statTableElement.appendChild(this.energyCostCellElement);
     }
 
     #fillInnerHTML() {
@@ -313,6 +346,16 @@ export class spellBlock {
         this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.range);
         this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
         this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(this.lifetime);
+        let costIndex = 0;
+        for (let type of this.primaryTypes){
+            this.costCellElements[costIndex].innerHTML = this.#formatCost("Primary", type);
+            costIndex++;
+        }
+        for (let type of this.secondaryTypes){
+            this.costCellElements[costIndex].innerHTML = this.#formatCost("Secondary", type);
+            costIndex++;
+        }
+        this.energyCostCellElement.innerHTML = "Energy: " + this.energyCost;
     }
 
     #formatDamage() {
@@ -358,6 +401,18 @@ export class spellBlock {
             }
         }
         return result;
+    }
+
+    #formatCost(costType, type){
+        switch(costType){
+            case "Primary":
+                return type + ": " + getSign(this.primaryCost);
+            case "Secondary":
+                return type + ": " + getSign(this.secondaryCost);
+            default:
+                logText("Table failed to get cost for costType: " + costType + " and type: " + type);
+                return "Error!";
+        }
     }
 
     #errorTest() {
