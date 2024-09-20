@@ -7,9 +7,6 @@ import { clearChildren, emptyArray } from "./src/elementHelpers.js";
 
 //dev "god" code for import
 
-//spellBlocks need to collate costs
-    //spellBlock cost inversion
-
 //lock button for wands
 //"empowered" status effect switch for +potency (force highest strength?)
     //"weakened" status effect too

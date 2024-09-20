@@ -39,7 +39,7 @@ export class spellBlock {
 
     #discoverBasicStats() {
         this.inverted = false;
-        if (this.voidComponent) {
+        if (this.voidComponent && this.#areAllPurposesInvertible()) {
             this.inverted = true;
         }
         this.potency = 0;
@@ -77,13 +77,11 @@ export class spellBlock {
             if (component.primaryType != "Primary"){
                 if (!this.primaryTypes.includes(component.primaryType)){
                     this.primaryTypes.push(component.primaryType);
-                    console.log("Including Primary type" + component.primaryType + " for component " + component.name + ".");
                 }
             }
             if (component.secondaryType != "Secondary"){
                 if (!this.primaryTypes.includes(component.secondaryType) && !this.secondaryTypes.includes(component.secondaryType)){
                     this.secondaryTypes.push(component.secondaryType);
-                    console.log("Including Secondary type" + component.secondaryType + " for component " + component.name + ".");
                 }
             }
         }
@@ -355,7 +353,11 @@ export class spellBlock {
             this.costCellElements[costIndex].innerHTML = this.#formatCost("Secondary", type);
             costIndex++;
         }
-        this.energyCostCellElement.innerHTML = "Energy: " + this.energyCost;
+        if (this.inverted){
+            this.energyCostCellElement.innerHTML = "Void: -1";
+        } else{
+            this.energyCostCellElement.innerHTML = "Energy: " + getSign(this.energyCost);
+        }
     }
 
     #formatDamage() {
@@ -406,9 +408,17 @@ export class spellBlock {
     #formatCost(costType, type){
         switch(costType){
             case "Primary":
-                return type + ": " + getSign(this.primaryCost);
+                if (this.inverted){
+                    return type + ": " + getSign(this.primaryCost);
+                } else{
+                    return type + ": " + getSign(-this.primaryCost);
+                }
             case "Secondary":
-                return type + ": " + getSign(this.secondaryCost);
+                if (this.inverted){
+                    return type + ": " + getSign(this.secondaryCost);
+                } else{
+                    return type + ": " + getSign(-this.secondaryCost);
+                }
             default:
                 logText("Table failed to get cost for costType: " + costType + " and type: " + type);
                 return "Error!";
@@ -437,7 +447,7 @@ export class spellBlock {
             fatalErrors = true;
         }
         if (!this.#areAllPurposesInvertible() && this.voidComponent && this.purposeComponents.length != 0) {
-            this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible and unaffected.");
+            this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible and are cancelling the effect.");
         }
         if (this.spells.length > 7) {
             this.#addError(false, "A spell block is quite long. This may result in goofy displays or extremely high mana costs.");
