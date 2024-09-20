@@ -3,16 +3,17 @@ import { clearChildren, formatSize, getSign, timeFormat } from "./elementHelpers
 import { Dice, findDiceByString } from "./dice.js";
 
 export class spellBlock {
-    constructor(spellsByComponent, positionInWand, descriptionElement) {
+    constructor(spellsByComponent, positionInWand, branchBox, textBox, statBox, errorBox) {
         this.spells = spellsByComponent;
         this.positionInWand = positionInWand;
-        this.descriptionElement = descriptionElement;
 
-        this.textBox = this.descriptionElement.children[0];
-        this.statBox = this.descriptionElement.children[1];
-        this.errorBox = this.descriptionElement.children[2];
+        this.branchBox = branchBox;
+        this.textBox = textBox;
+        this.statBox = statBox;
+        this.errorBox = errorBox;
 
         this.voidComponent = this.#findComponentByType("Void");
+        this.branchComponent = this.#findComponentByType("Branch");
         this.pathComponent = this.#findComponentByType("Path");
         this.enhancementComponents = this.#findAllComponentsByType("Enhancement");
         this.formComponent = this.#findComponentByType("Form");
@@ -358,6 +359,9 @@ export class spellBlock {
         } else{
             this.energyCostCellElement.innerHTML = "Energy: " + getSign(this.energyCost);
         }
+        if (this.branchBox){
+            this.branchBox.innerHTML = this.branchComponent.branchDescription;
+        }
     }
 
     #formatDamage() {
@@ -450,7 +454,7 @@ export class spellBlock {
             this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible and are cancelling the effect.");
         }
         if (this.spells.length > 7) {
-            this.#addError(false, "A spell block is quite long. This may result in goofy displays or extremely high mana costs.");
+            this.#addError(false, "A spell block is quite long. This may result in goofy displays and high casting times.");
         }
         if (this.#findAllComponentsByType("Trigger").length > 1) {
             this.#addError(true, "A spell block may only contain up to one Trigger!");
@@ -485,7 +489,7 @@ export class spellBlock {
             icon.src = "images/ui/yellow-error.png";
         }
         errorMsg.innerHTML = text;
-        errorMsg.innerHTML += "(Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")"
+        errorMsg.innerHTML += " (Block position: " + this.positionInWand + "-" + (this.positionInWand + this.spells.length - 1) + ")"
         error.appendChild(icon);
         error.appendChild(errorMsg);
         this.errorBox.appendChild(error);

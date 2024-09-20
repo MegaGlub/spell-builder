@@ -14,6 +14,7 @@ export class wand {
         this.flavor = flavor;
         this.image = image;
         this.slotsByName = slotsByName;
+        this.spellBlockCount = 0;
 
         this.slotsByObject = [];
 
@@ -42,8 +43,6 @@ export class wand {
         this.componentDisplayElement = document.createElement("div");
         this.deleteButtonElement = document.createElement("img");
         this.spellDescriptionElement = document.createElement("div");
-        this.wordyDescriptionElement = document.createElement("span");
-        this.statsyDescriptionElement = document.createElement("span");
         this.errorBoxDescriptionElement = document.createElement("div");
     }
 
@@ -56,8 +55,6 @@ export class wand {
         this.componentDisplayElement.className = "wandComponentDisplay";
         this.deleteButtonElement.className = "wandDeleteButton";
         this.spellDescriptionElement.className = "wandSpellDescription";
-        this.wordyDescriptionElement.className = "wandSpellDescriptionWords";
-        this.statsyDescriptionElement.classList.add("componentStatTable", "wandSpellDescriptionStats");
         this.errorBoxDescriptionElement.className = "wandSpellDescriptionErrors";
     }
 
@@ -78,8 +75,6 @@ export class wand {
         this.descriptionElement.appendChild(this.spellTitleElement);
         this.descriptionElement.appendChild(this.spellFlavorElement);
         this.descriptionElement.appendChild(this.componentDisplayElement);
-        this.spellDescriptionElement.appendChild(this.wordyDescriptionElement);
-        this.spellDescriptionElement.appendChild(this.statsyDescriptionElement);
         this.spellDescriptionElement.appendChild(this.errorBoxDescriptionElement);
     }
 
@@ -234,14 +229,25 @@ export class wand {
     }
 
     #compileSpell() {
-        clearChildren(this.wordyDescriptionElement); //clear old children
+        clearChildren(this.spellDescriptionElement);
         const nonCompiledSpellBlocks = this.#detectSpellBlocks();
         let positionInWand = 1;
         for (let spellCollection of nonCompiledSpellBlocks) {
-            const block = new spellBlock(spellCollection, positionInWand, this.spellDescriptionElement);
+            let blockBranch;
+            if (this.spellBlockCount >= 1){
+                blockBranch = this.#generateDescriptionElement("wandSpellDescriptionBranch");
+            }
+            console.log(blockBranch);
+            const blockDescription = this.#generateDescriptionElement("wandSpellDescriptionWords"); //just the container
+            const blockStats = this.#generateDescriptionElement("componentStatTable"); //just generates the container, not the table itself
+            blockStats.classList.add("wandSpellDescriptionStats");
+            const block = new spellBlock(spellCollection, positionInWand, blockBranch, blockDescription, blockStats, this.errorBoxDescriptionElement);
             positionInWand += spellCollection.length;
             block.compileSpell();
+            this.spellBlockCount++;
         }
+        this.spellDescriptionElement.appendChild(this.errorBoxDescriptionElement);
+        this.spellBlockCount = 0;
         this.saveToFile();
     }
 
@@ -256,6 +262,13 @@ export class wand {
             tempArr.push(this.slotsByObject[i]);
         }
         result.push(tempArr);
+        return result;
+    }
+
+    #generateDescriptionElement(cssClass){
+        const result = document.createElement("span");
+        result.className = cssClass;
+        this.spellDescriptionElement.appendChild(result);
         return result;
     }
 

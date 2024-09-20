@@ -1,0 +1,19 @@
+{
+	"type": "Wand",
+	"name": "Dev's Destroyer 2.0",
+	"flavor": "Helps test longer spells.",
+	"image": "images/wands/wood-orbit.png",
+	"slots": [
+		"Ball",
+		"Arc",
+		"Flame",
+		"Caster",
+		"Bolt",
+		"Arc",
+		"Nothing",
+		"Nothing",
+		"Nothing",
+		"Nothing",
+		"Polymorph"
+	]
+}

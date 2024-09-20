@@ -2,7 +2,7 @@
     "type": "Branch",
     "name": "Caster",
     "flavor": "A new spell, originating from the caster.",
-    "branchDescription": ", originating from the caster:",
+    "branchDescription": "Then, originating from the caster:",
     "image": "images/branches/caster.png",
     "costs": {
         "primary": 0,
