@@ -100,6 +100,7 @@ export class spellComponent {
         this.potency = this.statBlock["potency"];
         this.range = this.statBlock["range"];
         this.size = this.statBlock["size"];
+        this.sizeMultiplier = this.statBlock["sizeMultiplier"];
 
         this.primaryCost = this.costs["primary"];
         this.primaryType = "Primary";

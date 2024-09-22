@@ -31,10 +31,6 @@ export class pathComponent extends spellComponent {
     this.lifetimeCellElement.innerHTML = "Proj. Life: " + timeFormat(this.statBlock["lifetime"]);
   }
 
-  roundTo2(num) {
-    return Math.round(num * 100) / 100;
-  }
-
   clone() {
     return new pathComponent(
       this.name,

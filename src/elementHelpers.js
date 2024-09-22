@@ -17,13 +17,13 @@ export function timeFormat(seconds) {
         return "1 hour";
     }
     else if (seconds / 3600 > 1) {
-        return this.roundTo2(seconds / 3600) + " hours";
+        return roundTo2(seconds / 3600) + " hours";
     }
     else if (seconds == 60) {
         return "1 minute";
     }
     else if (seconds / 60 > 1) {
-        return this.roundTo2(seconds / 60) + " minutes";
+        return roundTo2(seconds / 60) + " minutes";
     }
     else if (seconds == 1) {
         return "1 second";
@@ -31,6 +31,10 @@ export function timeFormat(seconds) {
         return seconds + " seconds";
     }
 }
+
+function roundTo2(num) {
+    return Math.round(num * 100) / 100;
+  }
 
 export function formatSize(size) {
     if (size > 1000) {
