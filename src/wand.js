@@ -237,7 +237,6 @@ export class wand {
             if (this.spellBlockCount >= 1){
                 blockBranch = this.#generateDescriptionElement("wandSpellDescriptionBranch");
             }
-            console.log(blockBranch);
             const blockDescription = this.#generateDescriptionElement("wandSpellDescriptionWords"); //just the container
             const blockStats = this.#generateDescriptionElement("componentStatTable"); //just generates the container, not the table itself
             blockStats.classList.add("wandSpellDescriptionStats");

@@ -8,6 +8,12 @@
 		"Arc",
 		"Flame",
 		"Polymorph",
-		"On Water"
+		"On Water",
+		"Arrow",
+		"Missile",
+		"Point",
+		"Powder",
+		"Ray",
+		"Tracer"
 	]
 }

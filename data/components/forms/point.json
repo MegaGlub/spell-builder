@@ -1,0 +1,17 @@
+{
+    "type": "Form",
+    "name": "Point",
+    "flavor": "In a single, infinitesimal point.",
+    "formDescription": " a single, tiny point of ",
+    "image": "images/forms/point.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 1
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": 2,
+        "size": 0
+    }
+}

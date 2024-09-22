@@ -1,0 +1,16 @@
+{
+    "type": "Form",
+    "name": "Tracer",
+    "flavor": "In a line, following the path after a short delay.",
+    "formDescription": " perfect, delayed line of ",
+    "image": "images/forms/tracer.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "potency": 0,
+        "size": 4000
+    }
+}

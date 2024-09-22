@@ -1,0 +1,15 @@
+{
+	"type": "Wand",
+	"name": "Too Big Wand",
+	"flavor": "Tests the AP limits.",
+	"image": "images/wands/wood-orbit.png",
+	"slots": [
+		"Point",
+		"Arc",
+		"Flame",
+		"Caster",
+		"Ball",
+		"Arc",
+		"Flame"
+	]
+}

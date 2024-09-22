@@ -1,0 +1,16 @@
+{
+    "type": "Form",
+    "name": "Arrow",
+    "flavor": "In the shape of an arrow.",
+    "formDescription": " long arrow of ",
+    "image": "images/forms/arrow.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 0
+    },
+    "statBlock": {
+        "potency": 1,
+        "size": 40
+    }
+}

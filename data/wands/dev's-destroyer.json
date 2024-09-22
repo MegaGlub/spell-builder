@@ -4,10 +4,10 @@
 	"flavor": "It does your mom.",
 	"image": "images/wands/brass-light.gif",
 	"slots": [
-		"Nothing",
-		"Nothing",
-		"Nothing",
-		"Nothing",
-		"Nothing"
+		"Missile",
+		"Arc",
+		"Invisible",
+		"Invisible",
+		"Flame"
 	]
 }

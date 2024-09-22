@@ -1,0 +1,17 @@
+{
+    "type": "Form",
+    "name": "Powder",
+    "flavor": "In a pile of colorful powder.",
+    "formDescription": " colorful powdery puff of ",
+    "image": "images/forms/powder.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 0,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": -1,
+        "size": 30
+    }
+}
