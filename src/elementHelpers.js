@@ -28,7 +28,7 @@ export function timeFormat(seconds) {
     else if (seconds == 1) {
         return "1 second";
     } else {
-        return seconds + " seconds";
+        return Math.round(seconds) + " seconds";
     }
 }
 
@@ -40,7 +40,7 @@ export function formatSize(size) {
     if (size > 1000) {
         return Math.round(size / 1000) + "m";
     } else {
-        return size + "cm";
+        return Math.round(size) + "cm";
     }
 }
 
