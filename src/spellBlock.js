@@ -39,10 +39,21 @@ export class spellBlock {
     }
 
     #discoverBasicStats() {
+        this.#discoverEarlyStats();
+        this.#discoverDamage();
+        this.#discoverComplexity();
+        this.#discoverStatMultipliers();
+        this.effects = "None!"; //effects are discovered in this.addPurposeToText() for convenience, maybe redo later
+    }
+
+    #discoverInversion() {
         this.inverted = false;
         if (this.voidComponent && this.#areAllPurposesInvertible()) {
             this.inverted = true;
         }
+    }
+
+    #discoverEarlyStats() {
         this.potency = 0;
         this.range = 0;
         this.size = 0;
@@ -87,9 +98,14 @@ export class spellBlock {
             }
         }
         this.hitSkill = this.pathComponent.hitSkill;
-        this.#discoverDamage();
-        this.#discoverComplexity();
-        this.effects = "None!"; //effects are discovered in this.addPurposeToText() for convenience, maybe redo later
+    }
+
+    #discoverStatMultipliers(){
+        for (let component of this.spells){
+            if (component.sizeMultiplier){
+                this.size *= component.sizeMultiplier;
+            }
+        }
     }
 
     #discoverDamage() {
