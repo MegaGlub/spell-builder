@@ -410,7 +410,7 @@ export class spellBlock {
         while (remainingComplexity > 0) {
             if (remainingComplexity >= 2 && primaryAP < 2) {
                 primaryAP++;
-                result += "\u25c9";
+                result = "\u25c9" + result;
                 remainingComplexity -= 2;
             }
             if (remainingComplexity >= 1) {

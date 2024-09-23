@@ -23,6 +23,16 @@
 		"Precipitate",
 		"Room",
 		"Sphere",
-		"Wall"
+		"Wall",
+		"Boomerang",
+		"Guided",
+		"Line",
+		"Mole",
+		"Orbit",
+		"Roll",
+		"Stick",
+		"Teleport",
+		"Touch",
+		"Wisp"
 	]
 }
