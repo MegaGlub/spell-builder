@@ -1,0 +1,19 @@
+{
+    "type": "Path",
+    "name": "Stick",
+    "flavor": "As if glued to another object.",
+    "pathDescription": "Attaching it to another object, create a ",
+    "image": "images/paths/stick.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 2
+    },
+    "statBlock": {
+        "complexity": 1,
+        "hitSkill": "-",
+        "lifetime": 1800,
+        "potency": 0,
+        "range": 1
+    }
+}

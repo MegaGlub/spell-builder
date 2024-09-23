@@ -8,13 +8,13 @@
         "primary": 2,
         "secondary": 1,
         "energy": 1
-        },
-        "statBlock": {
-            "complexity": 2,
-            "hitSkill": "Dexterity",
-            "hitModifier": 6,
-            "lifetime": 18,
-            "potency": 0,
-            "range": 3000
+    },
+    "statBlock": {
+        "complexity": 2,
+        "hitSkill": "Dexterity",
+        "hitModifier": 6,
+        "lifetime": 18,
+        "potency": 0,
+        "range": 3000
     }
 }

@@ -1,0 +1,20 @@
+{
+    "type": "Path",
+    "name": "Mole",
+    "flavor": "As if thrown into the ground, then left to float back to the surface.",
+    "pathDescription": "Targeting a point above ground ahead of you, send into the earth a ",
+    "image": "images/paths/mole.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": -1,
+        "hitSkill": "Stealth",
+        "hitModifier": -1,
+        "lifetime": 6,
+        "potency": 0,
+        "range": 2500
+    }
+}

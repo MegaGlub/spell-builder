@@ -1,0 +1,19 @@
+{
+    "type": "Path",
+    "name": "Orbit",
+    "flavor": "In an orbit around the caster.",
+    "pathDescription": "Create an orbiting ",
+    "image": "images/paths/orbit.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 1
+    },
+    "statBlock": {
+        "complexity": 1,
+        "hitSkill": "Arcana",
+        "lifetime": 24,
+        "potency": 0,
+        "range": 100
+    }
+}

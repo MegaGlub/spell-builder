@@ -5,7 +5,7 @@
 	"image": "images/wands/brass-pipe.png",
 	"slots": [
 		"Ball",
-		"Arc",
+		"Teleport",
 		"Nothing",
 		"Nothing",
 		"Nothing",

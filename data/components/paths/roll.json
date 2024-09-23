@@ -1,0 +1,20 @@
+{
+    "type": "Path",
+    "name": "Roll",
+    "flavor": "As if rolled across the floor.",
+    "pathDescription": "Roll an incline ignoring ",
+    "image": "images/paths/roll.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 1
+    },
+    "statBlock": {
+        "complexity": 1,
+        "hitSkill": "Perception",
+        "hitModifier": -5,
+        "lifetime": 30,
+        "potency": 0,
+        "range": 5000
+    }
+}

@@ -8,11 +8,12 @@
         "primary": 1,
         "secondary": 0,
         "energy": 0
-        },
-        "statBlock": {
-            "hitSkill": "Throwing",
-            "lifetime": 3,
-            "potency": 0,
-            "range": 4000
+    },
+    "statBlock": {
+        "hitSkill": "Perception",
+        "hitModifier": 1,
+        "lifetime": 3,
+        "potency": 0,
+        "range": 4000
     }
 }

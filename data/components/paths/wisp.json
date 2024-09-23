@@ -1,0 +1,19 @@
+{
+    "type": "Path",
+    "name": "Wisp",
+    "flavor": "As a circling pest.",
+    "pathDescription": "Circling near your head, animate a ",
+    "image": "images/paths/wisp.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 0,
+        "energy": 1
+    },
+    "statBlock": {
+        "complexity": 2,
+        "hitSkill": "Throwing",
+        "lifetime": 1800,
+        "potency": 1,
+        "range": 100
+    }
+}

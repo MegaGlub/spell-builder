@@ -37,8 +37,8 @@ function roundTo2(num) {
   }
 
 export function formatSize(size) {
-    if (size > 1000) {
-        return Math.round(size / 1000) + "m";
+    if (size >= 100) {
+        return Math.round(size / 100) + "m";
     } else {
         return Math.round(size) + "cm";
     }

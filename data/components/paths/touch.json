@@ -1,0 +1,20 @@
+{
+    "type": "Path",
+    "name": "Touch",
+    "flavor": "Point blank.",
+    "pathDescription": "Orginating from yourself, create a ",
+    "image": "images/paths/touch.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": -1,
+        "hitSkill": "Strength",
+        "hitModifier": 1,
+        "lifetime": 6,
+        "potency": 1,
+        "range": 3000
+    }
+}
