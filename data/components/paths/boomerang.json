@@ -1,0 +1,20 @@
+{
+    "type": "Path",
+    "name": "Boomerang",
+    "flavor": "As if thrown, then returning after a few moments.",
+    "pathDescription": "In an arc, throw a slow returning ",
+    "image": "images/paths/boomerang.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 0
+        },
+        "statBlock": {
+            "complexity": 1,
+            "hitSkill": "Throwing",
+            "hitModifier": -3,
+            "lifetime": 12,
+            "potency": 0,
+            "range": 2000
+    }
+}

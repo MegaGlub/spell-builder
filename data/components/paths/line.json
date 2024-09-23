@@ -1,0 +1,18 @@
+{
+    "type": "Path",
+    "name": "Line",
+    "flavor": "As if travelling perfectly straight.",
+    "pathDescription": "In an straight line, release a ",
+    "image": "images/paths/line.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 0
+        },
+        "statBlock": {
+            "hitSkill": "Throwing",
+            "lifetime": 3,
+            "potency": 0,
+            "range": 4000
+    }
+}
