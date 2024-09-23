@@ -1,0 +1,17 @@
+{
+    "type": "Form",
+    "name": "Cloud",
+    "flavor": "In a thick, misty cloud.",
+    "formDescription": " thick cloud of ",
+    "image": "images/forms/cloud.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": 2,
+        "potency": -1,
+        "size": 2000
+    }
+}

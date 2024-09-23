@@ -1,0 +1,17 @@
+{
+    "type": "Form",
+    "name": "Room",
+    "flavor": "In the shape of the room that the Path ends in.",
+    "formDescription": " room-filling area of ",
+    "image": "images/forms/room.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 2,
+        "energy": 1
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": -2,
+        "size": 2000
+    }
+}

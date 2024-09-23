@@ -1,0 +1,17 @@
+{
+    "type": "Form",
+    "name": "Wall",
+    "flavor": "In the shape wide, planular wall.",
+    "formDescription": " wide, flat wall of ",
+    "image": "images/forms/wall.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": 0,
+        "size": 600
+    }
+}

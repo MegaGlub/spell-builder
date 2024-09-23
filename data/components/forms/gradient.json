@@ -1,0 +1,17 @@
+{
+    "type": "Form",
+    "name": "Gradient",
+    "flavor": "In a single point, which radiates the effect outwards.",
+    "formDescription": " a circular, gradient area of ",
+    "image": "images/forms/gradient.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 1
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": 1,
+        "size": 1000
+    }
+}

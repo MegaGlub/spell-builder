@@ -1,0 +1,16 @@
+{
+	"type": "Wand",
+	"name": "Too Big Wand 2",
+	"flavor": "Tests AP limits.",
+	"image": "images/wands/brass-pipe.png",
+	"slots": [
+		"Ball",
+		"Arc",
+		"Nothing",
+		"Nothing",
+		"Nothing",
+		"Nothing",
+		"Nothing",
+		"Flame"
+	]
+}

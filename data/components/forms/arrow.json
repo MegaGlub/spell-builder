@@ -2,7 +2,7 @@
     "type": "Form",
     "name": "Arrow",
     "flavor": "In the shape of an arrow.",
-    "formDescription": " long arrow of ",
+    "formDescription": " a long arrow of ",
     "image": "images/forms/arrow.png",
     "costs": {
         "primary": 1,

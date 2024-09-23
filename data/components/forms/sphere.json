@@ -1,0 +1,16 @@
+{
+    "type": "Form",
+    "name": "Sphere",
+    "flavor": "In the shape of a large sphere.",
+    "formDescription": " large sphere of ",
+    "image": "images/forms/sphere.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "potency": -1,
+        "size": 100
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "type": "Form",
+    "name": "Cone",
+    "flavor": "In the shape of wide cone.",
+    "formDescription": " wide cone of ",
+    "image": "images/forms/cone.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "damageCount": 1.25,
+        "damageDice": "d6",
+        "damageModifier": -2,
+        "potency": 0,
+        "size": 1200
+    }
+}

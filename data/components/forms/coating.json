@@ -1,0 +1,17 @@
+{
+    "type": "Form",
+    "name": "Coating",
+    "flavor": "As a coating on another object.",
+    "formDescription": " thin, goopy ball that completely coats whatever it lands on with ",
+    "image": "images/forms/coating.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 1
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": -1,
+        "size": 400
+    }
+}

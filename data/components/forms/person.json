@@ -1,0 +1,17 @@
+{
+    "type": "Form",
+    "name": "Person",
+    "flavor": "In the rough shape of a person.",
+    "formDescription": " approximately person shaped area of ",
+    "image": "images/forms/person.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 2,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": 2,
+        "potency": 0,
+        "size": 200
+    }
+}

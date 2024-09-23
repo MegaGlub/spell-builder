@@ -1,0 +1,20 @@
+{
+    "type": "Form",
+    "name": "Precipitate",
+    "flavor": "In the form of a showering precipitate.",
+    "formDescription": " dense rain of ",
+    "image": "images/forms/precipitate.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 2,
+        "energy": 2
+    },
+    "statBlock": {
+        "complexity": 3,
+        "damageCount": 5,
+        "damageDice": "d3",
+        "damageModifier": -5,
+        "potency": -1,
+        "size": 3000
+    }
+}
