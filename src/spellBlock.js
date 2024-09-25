@@ -488,6 +488,10 @@ export class spellBlock {
             this.#addError(true, "A spell block may not contain two of the same Purpose!");
             fatalErrors = true;
         }
+        if (this.#areThereDuplicatesInList(this.enhancementComponents)){
+            this.#addError(true, "A spell block may not contain two of the same Enhancement!");
+            fatalErrors = true;
+        }
 
         return fatalErrors;
     }
