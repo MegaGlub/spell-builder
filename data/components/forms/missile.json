@@ -2,7 +2,7 @@
     "type": "Form",
     "name": "Missile",
     "flavor": "In the form of a large, slow projectile.",
-    "formDescription": " a pointed missile of ",
+    "formDescription": " pointed missile of ",
     "image": "images/forms/missile.png",
     "costs": {
         "primary": 1,

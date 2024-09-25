@@ -11,7 +11,7 @@
     },
     "statBlock": {
         "complexity": -1,
-        "hitSkill": "Strength",
+        "hitSkill": "Perception",
         "hitModifier": 1,
         "lifetime": 6,
         "potency": 1,

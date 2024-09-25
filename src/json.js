@@ -64,8 +64,7 @@ function createEnhancementComponentFromJSON(json) {
         json.enhancementDescription,
         json.image,
         json.costs,
-        json.statBlock,
-        json.showStats
+        json.statBlock
     );
 }
 

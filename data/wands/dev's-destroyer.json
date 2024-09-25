@@ -1,12 +1,12 @@
 {
 	"type": "Wand",
 	"name": "Dev's Destroyer",
-	"flavor": "It does your mom.",
+	"flavor": "Helpful with testing.",
 	"image": "images/wands/brass-light.gif",
 	"slots": [
 		"Missile",
 		"Arc",
-		"Invisible",
+		"Nothing",
 		"Invisible",
 		"Flame"
 	]

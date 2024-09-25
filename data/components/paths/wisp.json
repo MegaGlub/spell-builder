@@ -11,7 +11,7 @@
     },
     "statBlock": {
         "complexity": 2,
-        "hitSkill": "Throwing",
+        "hitSkill": "Arcana",
         "lifetime": 1800,
         "potency": 1,
         "range": 100
