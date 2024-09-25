@@ -1,0 +1,18 @@
+{
+    "type": "Enhancement",
+    "name": "Quadruplicate",
+    "flavor": "Creates three additional forms!",
+    "enhancementDescription": "quartet of ",
+    "image": "images/enhancements/quadruplicate.png",
+    "costs": {
+        "primary": 4,
+        "secondary": 3,
+        "energy": 2
+        },
+    "statBlock": {
+        "complexity": 3,
+        "hitModifier": -3,
+        "damageCountMultiplier": 4,
+        "potency": -2
+    }
+}

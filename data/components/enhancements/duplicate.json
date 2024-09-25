@@ -1,0 +1,18 @@
+{
+    "type": "Enhancement",
+    "name": "Duplicate",
+    "flavor": "Creates an additional form.",
+    "enhancementDescription": "pair of ",
+    "image": "images/enhancements/duplicate.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 2,
+        "energy": 0
+        },
+    "statBlock": {
+        "complexity": 1,
+        "hitModifier": -1,
+        "damageCountMultiplier": 2,
+        "potency": 0
+    }
+}

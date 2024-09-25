@@ -101,6 +101,7 @@ export class spellComponent {
         this.range = this.statBlock["range"];
         this.size = this.statBlock["size"];
         this.sizeMultiplier = this.statBlock["sizeMultiplier"];
+        this.damageCountMultiplier = this.statBlock["damageCountMultiplier"];
 
         this.primaryCost = this.costs["primary"];
         this.primaryType = "Primary";

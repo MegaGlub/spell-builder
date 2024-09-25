@@ -1,0 +1,15 @@
+{
+    "type": "Enhancement",
+    "name": "Indestructible",
+    "flavor": "Spell can only be destroyed by lifetime.",
+    "enhancementDescription": "indestructible ",
+    "image": "images/enhancements/indestructible.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 0
+        },
+    "statBlock": {
+        "potency": -2
+    }
+}

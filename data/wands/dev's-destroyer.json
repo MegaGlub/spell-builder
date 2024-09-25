@@ -4,10 +4,10 @@
 	"flavor": "Helpful with testing.",
 	"image": "images/wands/brass-light.gif",
 	"slots": [
-		"Missile",
+		"Ball",
 		"Arc",
-		"Nothing",
-		"Invisible",
+		"Quadruplicate",
+		"Bouncy",
 		"Flame"
 	]
 }

@@ -1,0 +1,18 @@
+{
+    "type": "Enhancement",
+    "name": "Triplicate",
+    "flavor": "Creates two additional forms!",
+    "enhancementDescription": "trio of ",
+    "image": "images/enhancements/triplicate.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 2,
+        "energy": 1
+        },
+    "statBlock": {
+        "complexity": 2,
+        "hitModifier": -2,
+        "damageCountMultiplier": 3,
+        "potency": -1
+    }
+}
