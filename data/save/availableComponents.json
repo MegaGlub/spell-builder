@@ -33,6 +33,15 @@
 		"Stick",
 		"Teleport",
 		"Touch",
-		"Wisp"
+		"Wisp",
+		"Bouncy",
+		"Duplicate",
+		"Focus",
+		"Homing",
+		"Indestructible",
+		"Piercing",
+		"Quadruplicate",
+		"Sparkling",
+		"Triplicate"
 	]
 }

@@ -27,6 +27,7 @@ export class spellBlock {
             this.#addDescriptionText("Spell has one or more fatal errors and cannot be compiled!");
         } else {
             this.#discoverBasicStats();
+            this.#discoverInversion();
 
             this.#fillPathText();
             this.#fillEnhancementText();
