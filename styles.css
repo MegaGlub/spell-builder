@@ -425,15 +425,19 @@ img {
 }
 
 /* I wish it was easier to use make zebra stripes, but oh well */
-.componentStatCell:nth-child(6n - 2) {
+.componentStatCell:nth-of-type(6n - 2) {
     background-color: #B0C4DE;
 }
 
-.componentStatCell:nth-child(6n - 1) {
+.componentStatCell:nth-of-type(6n - 1) {
     background-color: #B0C4DE;
 }
 
-.componentStatCell:nth-child(6n) {
+.componentStatCell:nth-of-type(6n) {
+    background-color: #B0C4DE;
+}
+
+.componentStatRow:nth-of-type(2n) {
     background-color: #B0C4DE;
 }
 

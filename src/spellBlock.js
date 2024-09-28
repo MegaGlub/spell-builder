@@ -353,6 +353,7 @@ export class spellBlock {
         this.statTableElement.appendChild(this.hitCellElement);
         this.statTableElement.appendChild(this.actionPointCellElement);
         this.statTableElement.appendChild(this.effectsRowElement);
+        this.#skewZebraStripes();
         this.statTableElement.appendChild(this.rangeCellElement);
         this.statTableElement.appendChild(this.sizeCellElement);
         this.statTableElement.appendChild(this.lifetimeCellElement);
@@ -360,6 +361,15 @@ export class spellBlock {
             this.statTableElement.appendChild(costCellElement);
         }
         this.statTableElement.appendChild(this.energyCostCellElement);
+    }
+
+    #skewZebraStripes(){
+        for (let i = 0; i < 2; i++){
+            const zebraSkewElement = document.createElement("span");
+            zebraSkewElement.className = "componentStatCell";
+            this.statTableElement.appendChild(zebraSkewElement);
+            zebraSkewElement.style.display = "none";
+        }
     }
 
     #fillInnerHTML() {

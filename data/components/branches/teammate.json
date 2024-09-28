@@ -11,6 +11,7 @@
     },
     "statBlock": {
         "complexity": 1,
-        "lifetime": -3
+        "lifetime": -3,
+        "potency": 0
     }
 }
