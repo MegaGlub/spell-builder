@@ -5,12 +5,12 @@
 	"image": "images/wands/brass-pipe.png",
 	"slots": [
 		"Ball",
-		"Guided",
+		"Orbit",
+		"Quadruplicate",
+		"Triplicate",
+		"Duplicate",
 		"Nothing",
-		"Nothing",
-		"Nothing",
-		"Nothing",
-		"Nothing",
-		"Polymorph"
+		"Homing",
+		"Flame"
 	]
 }

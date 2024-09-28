@@ -20,7 +20,6 @@
     },
     "target": "Any",
     "statBlock": {
-        "invertible": "true", 
         "effects": {
             "low": "Apply Burning (if Vulnerable)",
             "mid": "Apply Burning",
@@ -29,6 +28,7 @@
             "invMid": "Apply Bleeding",
             "invHigh": "Apply Stunned, Apply Bleeding"
         },
+        "invertible": true, 
         "potency": 0,
         "damageCount": {
             "low": 1,

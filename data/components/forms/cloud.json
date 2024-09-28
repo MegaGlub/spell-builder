@@ -2,7 +2,10 @@
     "type": "Form",
     "name": "Cloud",
     "flavor": "In a thick, misty cloud.",
-    "formDescription": " thick cloud of ",
+    "formDescription": {
+        "singular": " thick cloud of ",
+        "plural": " twisting clouds of "
+    },
     "image": "images/forms/cloud.png",
     "costs": {
         "primary": 2,

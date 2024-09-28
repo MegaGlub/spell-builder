@@ -2,7 +2,10 @@
     "type": "Form",
     "name": "Powder",
     "flavor": "In a pile of colorful powder.",
-    "formDescription": " colorful powdery puff of ",
+    "formDescription": {
+        "singular": " colorful powdery puff of ",
+        "plural": " mesmerizing powdery puffs of "
+    },
     "image": "images/forms/powder.png",
     "costs": {
         "primary": 0,

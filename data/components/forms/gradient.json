@@ -2,7 +2,10 @@
     "type": "Form",
     "name": "Gradient",
     "flavor": "In a single point which radiates the effect outwards.",
-    "formDescription": " circular, gradient area of ",
+    "formDescription": {
+        "singular": " circular, gradient area of ",
+        "plural": " creeping gradient areas of "
+    },
     "image": "images/forms/gradient.png",
     "costs": {
         "primary": 1,

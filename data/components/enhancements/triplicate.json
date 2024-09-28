@@ -12,7 +12,7 @@
     "statBlock": {
         "complexity": 2,
         "hitModifier": -2,
-        "damageCountMultiplier": 3,
-        "potency": -1
+        "potency": -1,
+        "projectileCount": 3
     }
 }

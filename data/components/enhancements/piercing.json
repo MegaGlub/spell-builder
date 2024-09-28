@@ -2,7 +2,7 @@
     "type": "Enhancement",
     "name": "Piercing",
     "flavor": "Passes through solid objects and can hit multiple targets.",
-    "enhancementDescription": "piercing ",
+    "enhancementDescription": "piercing, ",
     "image": "images/enhancements/piercing.png",
     "costs": {
         "primary": 2,

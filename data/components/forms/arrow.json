@@ -2,7 +2,10 @@
     "type": "Form",
     "name": "Arrow",
     "flavor": "In the shape of an arrow.",
-    "formDescription": " long arrow of ",
+    "formDescription": {
+        "singular": " arrow of ",
+        "plural" : " shafts of "
+    },
     "image": "images/forms/arrow.png",
     "costs": {
         "primary": 1,

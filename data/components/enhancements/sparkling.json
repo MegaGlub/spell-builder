@@ -2,7 +2,7 @@
     "type": "Enhancement",
     "name": "Sparkling",
     "flavor": "Causes colorful sparks to fly from the spell.",
-    "enhancementDescription": "sparkling ",
+    "enhancementDescription": "sparkling, ",
     "image": "images/enhancements/sparkling.png",
     "costs": {
         "primary": 0,

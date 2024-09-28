@@ -2,7 +2,10 @@
     "type": "Form",
     "name": "Ray",
     "flavor": "In a line, following the Path.",
-    "formDescription": " perfect line of ",
+    "formDescription": {
+        "singular": " perfect line of ",
+        "plural": " perfectly linear sprays of "
+    },
     "image": "images/forms/ray.png",
     "costs": {
         "primary": 2,

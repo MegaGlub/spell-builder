@@ -2,7 +2,10 @@
     "type": "Form",
     "name": "Room",
     "flavor": "In the shape of the room that the Path ends in.",
-    "formDescription": " room-filling area of ",
+    "formDescription": {
+        "singular": " room-filling area of ",
+        "plural": " room-filling areas of "
+    },
     "image": "images/forms/room.png",
     "costs": {
         "primary": 3,

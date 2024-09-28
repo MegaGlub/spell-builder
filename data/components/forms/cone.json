@@ -2,7 +2,10 @@
     "type": "Form",
     "name": "Cone",
     "flavor": "In the shape of wide cone.",
-    "formDescription": " wide cone of ",
+    "formDescription": {
+        "singular": " wide cone of ",
+        "plural": " long cones of "
+    },
     "image": "images/forms/cone.png",
     "costs": {
         "primary": 2,

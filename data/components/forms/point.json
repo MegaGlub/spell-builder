@@ -2,7 +2,10 @@
     "type": "Form",
     "name": "Point",
     "flavor": "In a single, infinitesimal point.",
-    "formDescription": " single, tiny point of ",
+    "formDescription": {
+        "singular": " single, tiny point of ",
+        "plural": " infinitesimal points of "
+    },
     "image": "images/forms/point.png",
     "costs": {
         "primary": 1,

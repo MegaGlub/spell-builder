@@ -66,6 +66,7 @@ export class spellBlock {
         this.energyCost = 0;
         this.primaryTypes = [];
         this.secondaryTypes = [];
+        this.projectileCount = 1;
 
         for (let component of this.spells) {
             this.potency += component.statBlock.potency;
@@ -83,6 +84,9 @@ export class spellBlock {
             }
             if (component.lifetime) {
                 this.lifetime += component.lifetime;
+            }
+            if (component.projectileCount) {
+                this.projectileCount *= component.projectileCount;
             }
             this.primaryCost += component.primaryCost;
             this.secondaryCost += component.secondaryCost;
@@ -171,7 +175,7 @@ export class spellBlock {
     }
 
     #getPurposeEnumFromPotency(purpose) {
-        if (purpose.statBlock.invertible == "true" && this.inverted) { //purpose.invertible is being stored as a string
+        if (purpose.statBlock.invertible == true && this.inverted) { //purpose.invertible is being stored as a string
             if (this.potency <= -2) {
                 return "invHigh";
             } else if (this.potency <= 1) {
@@ -195,7 +199,11 @@ export class spellBlock {
     }
 
     #fillFormText() {
-        this.#addDescriptionText(this.formComponent.formDescription, this.formComponent.type);
+        if (this.projectileCount > 1){
+            this.#addDescriptionText(this.formComponent.formDescription["plural"], this.formComponent.type);
+        } else{
+            this.#addDescriptionText(this.formComponent.formDescription["singular"], this.formComponent.type);
+        }
     }
 
     #fillEnhancementText() {
@@ -400,6 +408,10 @@ export class spellBlock {
             result += " ";
             result += getSign(this.damageModifier);
         }
+        if (this.projectileCount != 1){
+            result = this.projectileCount + "x (" + result;
+            result += ")";
+        }
         return result;
     }
 
@@ -409,7 +421,7 @@ export class spellBlock {
         let secondaryAP = 0;
         let result = "";
         while (remainingComplexity > 0) {
-            if (remainingComplexity >= 2 && primaryAP < 2) {
+            if (remainingComplexity >= 2 && primaryAP < 3) {
                 primaryAP++;
                 result = "\u25c9" + result;
                 remainingComplexity -= 2;

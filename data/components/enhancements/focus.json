@@ -2,7 +2,7 @@
     "type": "Enhancement",
     "name": "Focus",
     "flavor": "Makes a spell require focus to maintain.",
-    "enhancementDescription": "focus-required ",
+    "enhancementDescription": "focus-required, ",
     "image": "images/enhancements/focus.png",
     "costs": {
         "primary": 0,

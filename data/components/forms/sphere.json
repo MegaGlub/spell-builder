@@ -2,7 +2,10 @@
     "type": "Form",
     "name": "Sphere",
     "flavor": "In the shape of a large sphere.",
-    "formDescription": " large sphere of ",
+    "formDescription": {
+        "singular": " large sphere of ",
+        "plural": " huge orbs of "
+    },
     "image": "images/forms/sphere.png",
     "costs": {
         "primary": 1,
