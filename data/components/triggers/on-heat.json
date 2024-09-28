@@ -1,0 +1,16 @@
+{
+    "type": "Trigger",
+    "name": "On Heat",
+    "flavor": "Activate when the ambient temperature reaches a specified level.",
+    "triggerDescription": " The Purpose will lie dormant until the environment reaches a specified temperature.",
+    "image": "images/triggers/on-heat.png",
+    "costs": {
+        "primary": 0,
+        "secondary": -1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": -1,
+        "potency": 2
+    }
+}

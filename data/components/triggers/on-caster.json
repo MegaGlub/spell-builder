@@ -1,0 +1,16 @@
+{
+    "type": "Trigger",
+    "name": "On Caster",
+    "flavor": "Activate when another spell is cast nearby.",
+    "triggerDescription": " The Purpose will lie dormant until a nearby caster creates a spell.",
+    "image": "images/triggers/on-caster.png",
+    "costs": {
+        "primary": -1,
+        "secondary": -1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": 1
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "type": "Trigger",
+    "name": "On Movement",
+    "flavor": "Activate when anything nearby moves.",
+    "triggerDescription": " The Purpose will lie dormant until anything nearby moves.",
+    "image": "images/triggers/on-movement.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": 0
+    }
+}

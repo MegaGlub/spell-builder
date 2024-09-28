@@ -1,0 +1,16 @@
+{
+    "type": "Trigger",
+    "name": "On Codeword",
+    "flavor": "Activate when a specified word is spoken aloud nearby.",
+    "triggerDescription": " The Purpose will lie dormant until a specified word is spoken aloud within earshot.",
+    "image": "images/triggers/on-codeword.png",
+    "costs": {
+        "primary": 0,
+        "secondary": -1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": 1
+    }
+}

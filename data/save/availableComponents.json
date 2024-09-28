@@ -45,6 +45,14 @@
 		"Triplicate",
 		"Destination (Delayed)",
 		"Destination (Instant)",
-		"Teammate"
+		"Teammate",
+		"On Caster",
+		"On Codeword",
+		"On Heat",
+		"On Life",
+		"On Movement",
+		"On Sound",
+		"On Spark",
+		"On Touch"
 	]
 }

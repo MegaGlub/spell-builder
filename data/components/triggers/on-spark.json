@@ -1,0 +1,16 @@
+{
+    "type": "Trigger",
+    "name": "On Spark",
+    "flavor": "Activate on contact with sparks or flames.",
+    "triggerDescription": " The Purpose will lie dormant until sparked or lit aflame.",
+    "image": "images/triggers/on-spark.png",
+    "costs": {
+        "primary": -1,
+        "secondary": 0,
+        "energy": -1
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": 2
+    }
+}

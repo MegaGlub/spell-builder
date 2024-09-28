@@ -1,0 +1,16 @@
+{
+    "type": "Trigger",
+    "name": "On Sound",
+    "flavor": "Activate when a specified volume is reached in the environment.",
+    "triggerDescription": " The Purpose will lie dormant until a specified volume is reached.",
+    "image": "images/triggers/on-sound.png",
+    "costs": {
+        "primary": 0,
+        "secondary": -1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": -1,
+        "potency": 1
+    }
+}

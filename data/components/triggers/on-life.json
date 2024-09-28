@@ -1,0 +1,16 @@
+{
+    "type": "Trigger",
+    "name": "On Life",
+    "flavor": "Activate when there's a nearby creature.",
+    "triggerDescription": " The Purpose will lie dormant until a lifeform passes by.",
+    "image": "images/triggers/on-life.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": 0,
+        "potency": 0
+    }
+}

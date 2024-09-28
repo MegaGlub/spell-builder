@@ -1,0 +1,16 @@
+{
+    "type": "Trigger",
+    "name": "On Touch",
+    "flavor": "Activate when physical contact is made.",
+    "triggerDescription": " The Purpose will lie dormant until physically touched.",
+    "image": "images/triggers/on-touch.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": -1,
+        "potency": 0
+    }
+}
