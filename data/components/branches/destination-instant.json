@@ -1,0 +1,16 @@
+{
+    "type": "Branch",
+    "name": "Destination (Instant)",
+    "flavor": "A new spell, originating from the end of the last spell.",
+    "branchDescription": "Then, originating from the last spell:",
+    "image": "images/branches/destination-instant.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 0,
+        "energy": 1
+    },
+    "statBlock": {
+        "complexity": 1,
+        "potency": 0
+    }
+}

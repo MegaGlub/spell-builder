@@ -1,0 +1,16 @@
+{
+    "type": "Branch",
+    "name": "Teammate",
+    "flavor": "A new spell, originating the nearest teammate.",
+    "branchDescription": "Then, originating from a teammate close to the end of the last spell:",
+    "image": "images/branches/teammate.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "complexity": 1,
+        "lifetime": -3
+    }
+}

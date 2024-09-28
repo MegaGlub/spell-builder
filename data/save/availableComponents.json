@@ -42,6 +42,9 @@
 		"Piercing",
 		"Quadruplicate",
 		"Sparkling",
-		"Triplicate"
+		"Triplicate",
+		"Destination (Delayed)",
+		"Destination (Instant)",
+		"Teammate"
 	]
 }

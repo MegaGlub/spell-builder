@@ -1,0 +1,15 @@
+{
+    "type": "Branch",
+    "name": "Destination (Delayed)",
+    "flavor": "A new spell, originating from the end of the last spell after a delay.",
+    "branchDescription": "Then, after a delay, originating the last spell:",
+    "image": "images/branches/destination-delayed.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 1,
+        "energy": 0
+    },
+    "statBlock": {
+        "potency": 1
+    }
+}
