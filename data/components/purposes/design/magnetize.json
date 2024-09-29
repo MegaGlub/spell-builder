@@ -1,0 +1,50 @@
+{
+    "type": "Purpose",
+    "name": "Magnetize",
+    "flavor": "Attracting force for ferromagnetic objects.",
+    "purposeDescriptions": {
+        "low": "weak magnetization",
+        "mid": "TODO NOT COMPLETE",
+        "high": "suffocating density",
+        "invLow": "relieving weightlessness",
+        "invMid": "superhuman weightlessness",
+        "invHigh": "complete gravity immunity"
+    },
+    "image": "images/purposes/design/densify.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Design",
+        "secondaryType": "Secondary"
+    },
+    "target": "Material",
+    "statBlock": {
+        "effects": {
+            "low": "Unbalanced",
+            "mid": "Pinned",
+            "high": "Pinned",
+            "invLow": "Unbalanced, Fleet-Footed",
+            "invMid": "Fleet-Footed, +6 Dexterity",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0,
+        "damageCount": {
+            "low": 0,
+            "mid": 0,
+            "high": 3,
+            "invLow": 0,
+            "invMid": 0,
+            "invHigh": 0
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d0",
+            "high": "d6",
+            "invLow": "d0",
+            "invMid": "d0",
+            "invHigh": "d0"
+        }
+    }
+}

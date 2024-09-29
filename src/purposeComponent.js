@@ -48,7 +48,7 @@ export class purposeComponent extends spellComponent {
     if (effect == ""){
       return "None!";
     } else{
-      return effect;
+      return "Apply " + effect;
     }
   }
 

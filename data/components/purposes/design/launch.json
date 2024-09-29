@@ -1,0 +1,50 @@
+{
+    "type": "Purpose",
+    "name": "Launch",
+    "flavor": "An object in the rough shape of the Form at the casting location is forced to travel along the Path.",
+    "purposeDescriptions": {
+        "low": "delicate energy that sweeps up a nearby object of the caster's choice",
+        "mid": "rough energy that drags along a nearby object of the caster's choice",
+        "high": "energetic maelstrum that flings and shreds a nearby object of the caster's choice",
+        "invLow": "delicate force that gently swaps places with a faraway object",
+        "invMid": "tumultuous force that yanks at a distant object to trade places with it",
+        "invHigh": "unstable compressive force that launches all nearby objects towards its origin point"
+    },
+    "image": "images/purposes/design/launch.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Design",
+        "secondaryType": "Material"
+    },
+    "target": "Material",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "Unbalanced",
+            "high": "Unbalanced",
+            "invLow": "",
+            "invMid": "Unbalanced, Vulnerable",
+            "invHigh": "Unbalanced"
+        },
+        "invertible": true, 
+        "potency": -1,
+        "damageCount": {
+            "low": 0,
+            "mid": 1,
+            "high": 4,
+            "invLow": 0,
+            "invMid": 0,
+            "invHigh": 6
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d3",
+            "high": "d4",
+            "invLow": "d0",
+            "invMid": "d0",
+            "invHigh": "d4"
+        }
+    }
+}
