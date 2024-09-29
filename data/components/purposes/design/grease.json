@@ -1,0 +1,34 @@
+{
+    "type": "Purpose",
+    "name": "Grease",
+    "flavor": "Slippery, flammable, and gross.",
+    "purposeDescriptions": {
+        "low": "thick, slimy grease",
+        "mid": "highly flammable grease",
+        "high": "slick flammable fluid",
+        "invLow": "thick, noncombustible glue",
+        "invMid": "exceptionally strong adhesive",
+        "invHigh": "unbreakable adhesive"
+    },
+    "image": "images/purposes/design/grease.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 0,
+        "primaryType": "Design",
+        "secondaryType": "Secondary"
+    },
+    "target": "Any",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "Unbalanced",
+            "invLow": "",
+            "invMid": "Pinned",
+            "invHigh": "Pinned, Vulnerable"
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

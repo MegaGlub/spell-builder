@@ -1,0 +1,34 @@
+{
+    "type": "Purpose",
+    "name": "Inform",
+    "flavor": "Greatly improved tutoring of another creature.",
+    "purposeDescriptions": {
+        "low": "learning accelerating influence for a specific skill. The skill is chosen by the caster.",
+        "mid": "mastery accelerating influence for a specific skill. The skill is chosen by and must already be mastered by the caster.",
+        "high": "learning accelerating influence for almost all skills of the caster.",
+        "invLow": "skill draining influence for a specific skill. The skill must already be mastered by the caster.",
+        "invMid": "knowledge draining influence for a specific skill.",
+        "invHigh": "stupefying influence."
+    },
+    "image": "images/purposes/design/inform.png",
+    "costs": {
+        "primary": 5,
+        "secondary": 1,
+        "energy": 2,
+        "primaryType": "Design",
+        "secondaryType": "Secondary"
+    },
+    "target": "Living Beings",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "Distracted",
+            "high": "Stunned, Distracted, Dazed",
+            "invLow": "",
+            "invMid": "Dazed",
+            "invHigh": "Dazed, Distracted next turn, Stunned two turns from now"
+        },
+        "invertible": true, 
+        "potency": -2
+    }
+}

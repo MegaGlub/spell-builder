@@ -6,8 +6,8 @@
 	"slots": [
 		"Sphere",
 		"Arc",
-		"Quadruplicate",
 		"Nothing",
-		"Flame"
+		"Polymorph",
+		"Illusion"
 	]
 }

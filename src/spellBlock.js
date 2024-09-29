@@ -49,8 +49,12 @@ export class spellBlock {
 
     #discoverInversion() {
         this.inverted = false;
-        if (this.voidComponent && this.#areAllPurposesInvertible()) {
-            this.inverted = true;
+        if (this.voidComponent) {
+            if (this.#areAllPurposesInvertible()){
+                this.inverted = true;
+            } else{
+                this.complexity++;
+            }
         }
     }
 
@@ -91,13 +95,13 @@ export class spellBlock {
             this.primaryCost += component.primaryCost;
             this.secondaryCost += component.secondaryCost;
             this.energyCost += component.energyCost;
-            if (component.primaryType != "Primary"){
-                if (!this.primaryTypes.includes(component.primaryType)){
+            if (component.primaryType != "Primary") {
+                if (!this.primaryTypes.includes(component.primaryType)) {
                     this.primaryTypes.push(component.primaryType);
                 }
             }
-            if (component.secondaryType != "Secondary"){
-                if (!this.primaryTypes.includes(component.secondaryType) && !this.secondaryTypes.includes(component.secondaryType)){
+            if (component.secondaryType != "Secondary") {
+                if (!this.primaryTypes.includes(component.secondaryType) && !this.secondaryTypes.includes(component.secondaryType)) {
                     this.secondaryTypes.push(component.secondaryType);
                 }
             }
@@ -105,9 +109,9 @@ export class spellBlock {
         this.hitSkill = this.pathComponent.hitSkill;
     }
 
-    #discoverStatMultipliers(){
-        for (let component of this.spells){
-            if (component.sizeMultiplier){
+    #discoverStatMultipliers() {
+        for (let component of this.spells) {
+            if (component.sizeMultiplier) {
                 this.size *= component.sizeMultiplier;
             }
         }
@@ -199,9 +203,9 @@ export class spellBlock {
     }
 
     #fillFormText() {
-        if (this.projectileCount > 1){
+        if (this.projectileCount > 1) {
             this.#addDescriptionText(this.formComponent.formDescription["plural"], this.formComponent.type);
-        } else{
+        } else {
             this.#addDescriptionText(this.formComponent.formDescription["singular"], this.formComponent.type);
         }
     }
@@ -292,10 +296,12 @@ export class spellBlock {
     }
 
     #addNewEffect(effect) {
-        if (this.effects == "None!") {
-            this.effects = effect;
-        } else {
-            this.effects += ", " + effect;
+        if (effect != "") {
+            if (this.effects == "None!") {
+                this.effects = "Apply " + effect;
+            } else {
+                this.effects += ", " + effect;
+            }
         }
     }
 
@@ -319,10 +325,10 @@ export class spellBlock {
         this.sizeCellElement = document.createElement("span");
         this.lifetimeCellElement = document.createElement("span");
         this.costCellElements = [];
-        for (let type of this.primaryTypes){
+        for (let type of this.primaryTypes) {
             this.costCellElements.push(document.createElement("span"));
         }
-        for (let type of this.secondaryTypes){
+        for (let type of this.secondaryTypes) {
             this.costCellElements.push(document.createElement("span"));
         }
         this.energyCostCellElement = document.createElement("span");
@@ -337,7 +343,7 @@ export class spellBlock {
         this.rangeCellElement.className = "componentStatCell";
         this.sizeCellElement.className = "componentStatCell";
         this.lifetimeCellElement.className = "componentStatCell";
-        for (let costCellElement of this.costCellElements){
+        for (let costCellElement of this.costCellElements) {
             costCellElement.className = "componentStatCell";
         }
         this.energyCostCellElement.className = "componentStatCell";
@@ -357,14 +363,14 @@ export class spellBlock {
         this.statTableElement.appendChild(this.rangeCellElement);
         this.statTableElement.appendChild(this.sizeCellElement);
         this.statTableElement.appendChild(this.lifetimeCellElement);
-        for (let costCellElement of this.costCellElements){
+        for (let costCellElement of this.costCellElements) {
             this.statTableElement.appendChild(costCellElement);
         }
         this.statTableElement.appendChild(this.energyCostCellElement);
     }
 
-    #skewZebraStripes(){
-        for (let i = 0; i < 2; i++){
+    #skewZebraStripes() {
+        for (let i = 0; i < 2; i++) {
             const zebraSkewElement = document.createElement("span");
             zebraSkewElement.className = "componentStatCell";
             this.statTableElement.appendChild(zebraSkewElement);
@@ -381,20 +387,20 @@ export class spellBlock {
         this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
         this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(this.lifetime);
         let costIndex = 0;
-        for (let type of this.primaryTypes){
+        for (let type of this.primaryTypes) {
             this.costCellElements[costIndex].innerHTML = this.#formatCost("Primary", type);
             costIndex++;
         }
-        for (let type of this.secondaryTypes){
+        for (let type of this.secondaryTypes) {
             this.costCellElements[costIndex].innerHTML = this.#formatCost("Secondary", type);
             costIndex++;
         }
-        if (this.inverted){
+        if (this.inverted) {
             this.energyCostCellElement.innerHTML = "Void: -1";
-        } else{
+        } else {
             this.energyCostCellElement.innerHTML = "Energy: " + getSign(this.energyCost);
         }
-        if (this.branchBox){
+        if (this.branchBox) {
             this.branchBox.innerHTML = this.branchComponent.branchDescription;
         }
     }
@@ -418,7 +424,7 @@ export class spellBlock {
             result += " ";
             result += getSign(this.damageModifier);
         }
-        if (this.projectileCount != 1){
+        if (this.projectileCount != 1) {
             result = this.projectileCount + "x (" + result;
             result += ")";
         }
@@ -448,18 +454,18 @@ export class spellBlock {
         return result;
     }
 
-    #formatCost(costType, type){
-        switch(costType){
+    #formatCost(costType, type) {
+        switch (costType) {
             case "Primary":
-                if (this.inverted){
+                if (this.inverted) {
                     return type + ": " + getSign(this.primaryCost);
-                } else{
+                } else {
                     return type + ": " + getSign(-this.primaryCost);
                 }
             case "Secondary":
-                if (this.inverted){
+                if (this.inverted) {
                     return type + ": " + getSign(this.secondaryCost);
-                } else{
+                } else {
                     return type + ": " + getSign(-this.secondaryCost);
                 }
             default:
@@ -489,8 +495,8 @@ export class spellBlock {
             this.#addError(true, "A spell block requires at least one Purpose component!");
             fatalErrors = true;
         }
-        if (!this.#areAllPurposesInvertible() && this.voidComponent && this.purposeComponents.length != 0) {
-            this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible and are cancelling the effect.");
+        if (!this.#areAllPurposesInvertible() && this.voidComponent && this.purposeComponents.length > 0) {
+            this.#addError(false, "A spell block includes a \"Nothing\", but one or more of its Purposes are not invertible, cancelling the effect and increasing cast time.");
         }
         if (this.spells.length > 7) {
             this.#addError(false, "A spell block is quite long. This may result in goofy displays and high casting times.");
@@ -511,7 +517,7 @@ export class spellBlock {
             this.#addError(true, "A spell block may not contain two of the same Purpose!");
             fatalErrors = true;
         }
-        if (this.#areThereDuplicatesInList(this.enhancementComponents)){
+        if (this.#areThereDuplicatesInList(this.enhancementComponents)) {
             this.#addError(true, "A spell block may not contain two of the same Enhancement!");
             fatalErrors = true;
         }
@@ -559,7 +565,7 @@ export class spellBlock {
     #areAllPurposesInvertible() {
         let result = true;
         for (let purpose of this.purposeComponents) {
-            if (purpose.statBlock.invertible == "false") { //typeless (but not *actually* typeless) my beloathed
+            if (purpose.statBlock.invertible == false) {
                 result = false;
             }
         }

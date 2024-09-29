@@ -19,9 +19,9 @@
     "statBlock": {
         "complexity": 1,
         "effects": {
-            "low": "Apply Dazed",
-            "mid": "Apply Dazed",
-            "high": "Apply Dazed"
+            "low": "Dazed",
+            "mid": "Dazed",
+            "high": "Dazed"
         },
         "invertible": false,
         "potency": 0

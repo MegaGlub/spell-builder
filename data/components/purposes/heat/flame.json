@@ -21,12 +21,12 @@
     "target": "Any",
     "statBlock": {
         "effects": {
-            "low": "Apply Burning (if Vulnerable)",
-            "mid": "Apply Burning",
-            "high": "Apply Burning, Apply Dazed",
+            "low": "Burning (if Vulnerable)",
+            "mid": "Burning",
+            "high": "Burning, Dazed",
             "invLow": "",
-            "invMid": "Apply Bleeding",
-            "invHigh": "Apply Stunned, Apply Bleeding"
+            "invMid": "Bleeding",
+            "invHigh": "Stunned,Bleeding"
         },
         "invertible": true, 
         "potency": 0,

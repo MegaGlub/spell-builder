@@ -72,7 +72,12 @@ async function buildComponentsFromFiles() {
         "forms", 
         "misc", 
         "paths", 
-        "purposes", 
+        "purposes/design",
+        "purposes/earth",
+        "purposes/flesh",
+        "purposes/flow",
+        "purposes/heat",
+        "purposes/nature", 
         "triggers"];
     for (const leaf of leaves) {
         logText("\tExploring: " + root + leaf);

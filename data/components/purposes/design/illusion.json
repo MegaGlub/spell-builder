@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Illusion",
+    "flavor": "Create an illusory object in the approximate shape of the Form.",
+    "purposeDescriptions": {
+        "low": "illusory objects of the caster's choice. The objects are unconvincing up close.",
+        "mid": "intangible illusions of the caster's choice. The illusions are very near life-like.",
+        "high": "partially tangible illusions of the caster's choice."
+    },
+    "image": "images/purposes/design/illusion.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 0,
+        "primaryType": "Design",
+        "secondaryType": "Flow"
+    },
+    "target": "None",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false,
+        "potency": -1
+    }
+}

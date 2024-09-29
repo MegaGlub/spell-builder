@@ -34,7 +34,7 @@ export class purposeComponent extends spellComponent {
   }
   #fillStatTable() {
     this.targetCellElement.innerHTML = "Targets: " + this.targetType;
-    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.effects[1];
+    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.#formatEffectsForRealTho(this.effects[1]);
   }
   #formatEffects(jsonEffects) {
     this.effects = [];
@@ -42,6 +42,13 @@ export class purposeComponent extends spellComponent {
       if (typeof jsonEffects[property] == "string") { //if the value exists
         this.effects.push(jsonEffects[property]);
       }
+    }
+  }
+  #formatEffectsForRealTho(effect){
+    if (effect == ""){
+      return "None!";
+    } else{
+      return effect;
     }
   }
 
