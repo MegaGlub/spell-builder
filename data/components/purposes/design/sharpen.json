@@ -1,0 +1,34 @@
+{
+    "type": "Purpose",
+    "name": "Sharpen",
+    "flavor": "Sharpen the edge of a material.",
+    "purposeDescriptions": {
+        "low": "etching fluid that sharpens a target material as it evaporates",
+        "mid": "etching fluid that leaves a target material razor sharp as it evaporates",
+        "high": "etching fluid that leaves a target material nearly mono-molecularly sharp as it evaporates",
+        "invLow": "solvent that dulls blades into butter knives",
+        "invMid": "solvent that smooths and sands edges",
+        "invHigh": "solvent that renders any sharp edge cracked and dull as it evaporates"
+    },
+    "image": "images/purposes/design/sharpen.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 0,
+        "primaryType": "Design",
+        "secondaryType": "Material"
+    },
+    "target": "Material",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "Empowered",
+            "high": "Focused, next turn Focused",
+            "invLow": "Weakened",
+            "invMid": "Weakened, next turn Weakened",
+            "invHigh": "Weakened each turn"
+        },
+        "invertible": true, 
+        "potency": 1
+    }
+}
