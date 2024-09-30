@@ -98,6 +98,7 @@ export class spellComponent {
         this.hitSkill = this.statBlock["hitSkill"];
         this.lifetime = this.statBlock["lifetime"];
         this.potency = this.statBlock["potency"];
+        this.healing = this.statBlock["healing"];
         this.range = this.statBlock["range"];
         this.size = this.statBlock["size"];
         this.sizeMultiplier = this.statBlock["sizeMultiplier"];

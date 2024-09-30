@@ -42,6 +42,7 @@ export class spellBlock {
     #discoverBasicStats() {
         this.#discoverEarlyStats();
         this.#discoverDamage();
+        this.#discoverHealing();
         this.#discoverComplexity();
         this.#discoverStatMultipliers();
         this.effects = "None!"; //effects are discovered in this.addPurposeToText() for convenience, maybe redo later
@@ -149,6 +150,18 @@ export class spellBlock {
 
         if (this.complexity <= 0) { //just as error catching.
             this.complexity = 1;
+        }
+    }
+
+    #discoverHealing() {
+        this.healing = false;
+        for (let component of this.purposeComponents){
+            if (component.healing){
+                this.healing = true;
+            }
+        }
+        if (!this.healing && this.damageCount < 0){
+            this.damageCount = 0;
         }
     }
 
@@ -398,7 +411,7 @@ export class spellBlock {
         if (this.inverted) {
             this.energyCostCellElement.innerHTML = "Void: -1";
         } else {
-            this.energyCostCellElement.innerHTML = "Energy: " + getSign(this.energyCost);
+            this.energyCostCellElement.innerHTML = "Energy: " + getSign(-this.energyCost);
         }
         if (this.branchBox) {
             this.branchBox.innerHTML = this.branchComponent.branchDescription;
@@ -407,13 +420,15 @@ export class spellBlock {
 
     #formatDamage() {
         if (this.damageDice.val == 0) {
-            return "0";
+            return "-";
         }
         if (this.damageCount == 0) {
             if (this.damageModifier > 0) {
                 return "" + this.damageModifier;
-            } else {
-                return "0";
+            } else if (this.damageModifier < 0 && this.healing){
+                return "" + this.damageModifier;
+            }else {
+                return "-";
             }
         }
 

@@ -3,48 +3,48 @@
     "name": "Magnetize",
     "flavor": "Attracting force for ferromagnetic objects.",
     "purposeDescriptions": {
-        "low": "weak magnetization",
-        "mid": "TODO NOT COMPLETE",
-        "high": "suffocating density",
-        "invLow": "relieving weightlessness",
-        "invMid": "superhuman weightlessness",
-        "invHigh": "complete gravity immunity"
+        "low": "weak, attracting magnetization",
+        "mid": "strong, attracting magnetization",
+        "high": "crushingly strong magnetization",
+        "invLow": "gently repelling magnetization",
+        "invMid": "forcefully repelling magnetization",
+        "invHigh": "extreme, whiplash-inducing repelling magnetization"
     },
-    "image": "images/purposes/design/densify.png",
+    "image": "images/purposes/design/magnetize.png",
     "costs": {
-        "primary": 2,
-        "secondary": 0,
+        "primary": 1,
+        "secondary": 1,
         "energy": 1,
         "primaryType": "Design",
-        "secondaryType": "Secondary"
+        "secondaryType": "Earth"
     },
-    "target": "Material",
+    "target": "None",
     "statBlock": {
         "effects": {
-            "low": "Unbalanced",
-            "mid": "Pinned",
-            "high": "Pinned",
-            "invLow": "Unbalanced, Fleet-Footed",
-            "invMid": "Fleet-Footed, +6 Dexterity",
+            "low": "",
+            "mid": "",
+            "high": "",
+            "invLow": "",
+            "invMid": "",
             "invHigh": ""
         },
         "invertible": true, 
         "potency": 0,
         "damageCount": {
             "low": 0,
-            "mid": 0,
-            "high": 3,
+            "mid": 2,
+            "high": 4,
             "invLow": 0,
-            "invMid": 0,
-            "invHigh": 0
+            "invMid": 1,
+            "invHigh": 5
         },
         "damageDice": {
             "low": "d0",
-            "mid": "d0",
-            "high": "d6",
+            "mid": "d2",
+            "high": "d4",
             "invLow": "d0",
-            "invMid": "d0",
-            "invHigh": "d0"
+            "invMid": "d3",
+            "invHigh": "d3"
         }
     }
 }

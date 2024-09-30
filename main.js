@@ -5,6 +5,8 @@ import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 import { clearChildren, emptyArray } from "./src/elementHelpers.js";
 
+//healing support?
+
 //plural description for forms, disallow multiple duplicators
 //commas for enhancements?
 

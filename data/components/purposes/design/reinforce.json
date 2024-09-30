@@ -1,0 +1,51 @@
+{
+    "type": "Purpose",
+    "name": "Vitale's Reinforcement",
+    "flavor": "Greatly strengthen an area of target material.",
+    "purposeDescriptions": {
+        "low": "near intangible strings that sink into their target material and hold it together from within",
+        "mid": "weblike reinforcements that sink into their target material, vastly increasing its strength",
+        "high": "steely webs that mend and reinforce their target material",
+        "invLow": "material weakening solvent",
+        "invMid": "bubbling solvent that leaves the target material feeling hollow",
+        "invHigh": "voracious solvent that rapidly dissolves the target material"
+    },
+    "image": "images/purposes/design/reinforce.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 2,
+        "energy": 2,
+        "primaryType": "Design",
+        "secondaryType": "Material"
+    },
+    "target": "Material",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "(Steadfast or Braced)",
+            "high": "((Steadfast and Heal) or (Braced and cure Armor Broken))",
+            "invLow": "Vulnerable",
+            "invMid": "((Vulnerable and Weakened) or Armor Broken)",
+            "invHigh": "Armor Broken"
+        },
+        "invertible": true, 
+        "potency": 0,
+        "healing": true,
+        "damageCount": {
+            "low": 0,
+            "mid": 0,
+            "high": -2,
+            "invLow": 0,
+            "invMid": 0,
+            "invHigh": 2
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d0",
+            "high": "d6",
+            "invLow": "d0",
+            "invMid": "d0",
+            "invHigh": "d20"
+        }
+    }
+}
