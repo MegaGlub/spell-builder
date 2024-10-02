@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Petrify",
+    "flavor": "Turn flesh to stone.",
+    "purposeDescriptions": {
+        "low": "petrifying stone. Converts flesh to crumbly stone for a few short minutes",
+        "mid": "petrifying stone. Converts flesh to tough terracotta for about 10 minutes",
+        "high": "petrifying ore. Converts flesh to near-unbreakable metal for about 30 minutes"
+    },
+    "image": "images/purposes/nature/petrify.png",
+    "costs": {
+        "primary": 4,
+        "secondary": 2,
+        "energy": 0,
+        "primaryType": "Nature",
+        "secondaryType": "Earth"
+    },
+    "target": "Flesh",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "-2 Armor",
+            "mid": "+2 Armor, -2 Dodge",
+            "high": "+6 Armor, -4 Dodge"
+        },
+        "invertible": false,
+        "potency": 0
+    }
+}

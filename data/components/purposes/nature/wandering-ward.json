@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Wandering Ward",
+    "flavor": "A subtle nudge away from an area.",
+    "purposeDescriptions": {
+        "low": "gentle misdirection. Affected creatures will wander away from the Form, unless they have good reason to pass through",
+        "mid": "misdirection. Affected creatures will actively avoid the Form, sometimes becoming confused by the deflection",
+        "high": "psychic deflection. Affected creatures will experience mental pain and will attempt to avoid the Form however possible",
+        "invLow": "passive attraction. Creatures outside the Form will be subconciously encouraged into the Form",
+        "invMid": "attraction. Creatures outside the Form will feel an otherworldly encouragement to enter it",
+        "invHigh": "psychic honeypots. Creatures outside the Form will attack each other in an attempt to enter the Form at almost any cost"
+    },
+    "image": "images/purposes/nature/wandering-ward.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 2,
+        "energy": 1,
+        "primaryType": "Nature",
+        "secondaryType": "Flow"
+    },
+    "target": "Living Beings",
+    "statBlock": {
+        "complexity": 5,
+        "effects": {
+            "low": "",
+            "mid": "Distracted",
+            "high": "Stun",
+            "invLow": "",
+            "invMid": "Vulnerable",
+            "invHigh": "Distracted"
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

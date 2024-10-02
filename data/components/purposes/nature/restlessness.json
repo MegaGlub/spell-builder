@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Restlessness",
+    "flavor": "Help a human corpse return.",
+    "purposeDescriptions": {
+        "low": "weak necromantic will. The resulting undead can be loosely controlled with focus",
+        "mid": "necromantic will. The resulting undead can be directly controlled with focus, or vaguely controlled without focus",
+        "high": "unstoppable necromantic will, capable of animating any recently killed creature. The resulting undead can be controlled with focus"
+    },
+    "image": "images/purposes/nature/restlessness.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 2,
+        "energy": 0,
+        "primaryType": "Nature",
+        "secondaryType": "Flesh"
+    },
+    "target": "Flesh",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false,
+        "potency": 0
+    }
+}

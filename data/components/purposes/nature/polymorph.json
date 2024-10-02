@@ -7,23 +7,23 @@
         "mid": "energy that converts the target creature into a new creature of your choice for a time, which maintains their size, mass, intelligence, and casting ability",
         "high": "energy that converts the target creature into a new creature of your choice semi-permanently, which maintains their size, mass, intelligence, and casting ability"
     },
-    "image": "images/purposes/purpose-frame.png",
+    "image": "images/purposes/nature/polymorph.png",
     "costs": {
         "primary": 3,
-        "secondary": 0,
+        "secondary": 2,
         "energy": 1,
         "primaryType": "Nature",
         "secondaryType": "Flesh"
     },
     "target": "Living Beings",
     "statBlock": {
-        "complexity": 1,
+        "complexity": 3,
         "effects": {
             "low": "Dazed",
             "mid": "Dazed",
             "high": "Dazed"
         },
         "invertible": false,
-        "potency": 0
+        "potency": -1
     }
 }

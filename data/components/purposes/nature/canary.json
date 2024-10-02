@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Canary",
+    "flavor": "Draw an assessment from the land.",
+    "purposeDescriptions": {
+        "low": "vague understanding of the land's opinion of you",
+        "mid": "preternatural understanding of the land's opinion of you",
+        "high": "precise, complete understanding of the land's opinion of you"
+    },
+    "image": "images/purposes/nature/canary.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Nature",
+        "secondaryType": "Secondary"
+    },
+    "target": "Living Beings",
+    "statBlock": {
+        "complexity": 2,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false,
+        "potency": 0
+    }
+}

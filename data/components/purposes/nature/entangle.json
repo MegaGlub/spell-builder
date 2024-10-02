@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Entangle",
+    "flavor": "Trapped within binding weeds.",
+    "purposeDescriptions": {
+        "low": "creeping and twisting viney growths",
+        "mid": "rapidly sprouting, limb binding viney growths",
+        "high": "rapidly sprouting, caster-controlled viney growths",
+        "invLow": "weak herb-tropic barrier. Plants will gradully twist and bend away from the Form",
+        "invMid": "strong herb-tropic barrier. Plants will twist and jump away from the Form",
+        "invHigh": "extreme herbicide. Plants will attempt to avoid the Form, or die upon touching it"
+    },
+    "image": "images/purposes/nature/entangle.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Nature",
+        "secondaryType": "Secondary"
+    },
+    "target": "Living Beings",
+    "statBlock": {
+        "complexity": 3,
+        "effects": {
+            "low": "next turn Pinned",
+            "mid": "Pinned",
+            "high": "Pinned, Vulnerable",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

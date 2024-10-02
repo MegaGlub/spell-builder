@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Alliance",
+    "flavor": "Commune with an untamed creature.",
+    "purposeDescriptions": {
+        "low": "translation magic. Targetted wild creatures can communicate with the caster for a short time",
+        "mid": "translation magic. Targetted wild creatures can communicate and cooperate with the caster until they wish to return to the wilds",
+        "high": "long distance translation magic. Targetted wild creatures can psychically communicate and cooperate with the caster until they wish to return to the wilds",
+        "invLow": "mystical bad manners. Target wild creatures will become intensely annoyed by any nearby people or tamed creatures",
+        "invMid": "mystical slights and insults. Target wild creatures will feel an intense hatred for nearby people or tamed creatures",
+        "invHigh": "mystical insults and fury. Target wild creatures will relentlessly hunt and attack nearby people or tamed creatures"
+    },
+    "image": "images/purposes/nature/alliance.png",
+    "costs": {
+        "primary": 5,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Nature",
+        "secondaryType": "Secondary"
+    },
+    "target": "Living Beings",
+    "statBlock": {
+        "complexity": 3,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "Dazed, Self-Dazed",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": -1
+    }
+}
