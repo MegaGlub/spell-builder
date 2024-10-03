@@ -1,1 +1,29 @@
-images not yet complete
+{
+    "type": "Purpose",
+    "name": "Dismiss",
+    "flavor": "Deconstruct a spell.",
+    "purposeDescriptions": {
+        "low": "unweaving intent. Affected spells are destroyed, and their vis flows into the nearby environment",
+        "mid": "deconstructive intent. Affected spells are destroyed, and grant you half of their cost as vis",
+        "high": "voracious intent. Affected spells are destroyed, and you gain their entire casting cost as vis"
+    },
+    "image": "images/purposes/nature/dismiss.png",
+    "costs": {
+        "primary": 7,
+        "secondary": 0,
+        "energy": 0,
+        "primaryType": "Nature",
+        "secondaryType": "Secondary"
+    },
+    "target": "Spells",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false,
+        "potency": 0
+    }
+}
