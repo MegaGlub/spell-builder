@@ -1,1 +1,29 @@
-images are not yet complete
+{
+    "type": "Purpose",
+    "name": "Scry",
+    "flavor": "See through the eyes of a willing creature.",
+    "purposeDescriptions": {
+        "low": "linked sense. Targetted willing creatures may share short, messy fragments of their senses with you",
+        "mid": "linked sense. Targetted willing creatures may share any or all of their senses with you",
+        "high": "telepathic will. Targetted creatures share all of their senses with you, and their actions may be vaguely controlled by you"
+    },
+    "image": "images/purposes/nature/scry.png",
+    "costs": {
+        "primary": 4,
+        "secondary": 2,
+        "energy": 0,
+        "primaryType": "Nature",
+        "secondaryType": "Flow"
+    },
+    "target": "Living Beings",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "Dazed, Self-Dazed",
+            "mid": "Self-Stun",
+            "high": "Self-Stun"
+        },
+        "invertible": false,
+        "potency": -1
+    }
+}
