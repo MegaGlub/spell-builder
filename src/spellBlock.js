@@ -72,6 +72,7 @@ export class spellBlock {
         this.primaryTypes = [];
         this.secondaryTypes = [];
         this.projectileCount = 1;
+        this.targetTypes = [];
 
         for (let component of this.spells) {
             this.potency += component.statBlock.potency;
@@ -105,6 +106,9 @@ export class spellBlock {
                 if (!this.primaryTypes.includes(component.secondaryType) && !this.secondaryTypes.includes(component.secondaryType)) {
                     this.secondaryTypes.push(component.secondaryType);
                 }
+            }
+            if (component.targetType){
+                this.targetTypes.push(component.targetType);
             }
         }
         this.hitSkill = this.pathComponent.hitSkill;
@@ -345,6 +349,7 @@ export class spellBlock {
             this.costCellElements.push(document.createElement("span"));
         }
         this.energyCostCellElement = document.createElement("span");
+        this.targetRowElement = document.createElement("span");
     }
 
     #assignElementClasses() {
@@ -360,6 +365,7 @@ export class spellBlock {
             costCellElement.className = "componentStatCell";
         }
         this.energyCostCellElement.className = "componentStatCell";
+        this.targetRowElement.className = "componentStatRow";
     }
 
     #assignElementIds() {
@@ -372,18 +378,26 @@ export class spellBlock {
         this.statTableElement.appendChild(this.hitCellElement);
         this.statTableElement.appendChild(this.actionPointCellElement);
         this.statTableElement.appendChild(this.effectsRowElement);
-        this.#skewZebraStripes();
+        this.#skewZebraStripes(2);
         this.statTableElement.appendChild(this.rangeCellElement);
         this.statTableElement.appendChild(this.sizeCellElement);
         this.statTableElement.appendChild(this.lifetimeCellElement);
+        let requiredSkew = 2;
         for (let costCellElement of this.costCellElements) {
             this.statTableElement.appendChild(costCellElement);
+            requiredSkew--;
+        }
+        while (requiredSkew < 0){
+            requiredSkew += 3;
         }
         this.statTableElement.appendChild(this.energyCostCellElement);
+        this.#skewZebraStripes(requiredSkew);
+        this.statTableElement.appendChild(this.targetRowElement);
+        this.#skewZebraStripes(2);
     }
 
-    #skewZebraStripes() {
-        for (let i = 0; i < 2; i++) {
+    #skewZebraStripes(n) {
+        for (let i = 0; i < n; i++) {
             const zebraSkewElement = document.createElement("span");
             zebraSkewElement.className = "componentStatCell";
             this.statTableElement.appendChild(zebraSkewElement);
@@ -416,6 +430,7 @@ export class spellBlock {
         if (this.branchBox) {
             this.branchBox.innerHTML = this.branchComponent.branchDescription;
         }
+        this.targetRowElement.innerHTML = "Targets: " + this.#formatTargets();
     }
 
     #formatDamage() {
@@ -487,6 +502,15 @@ export class spellBlock {
                 logText("Table failed to get cost for costType: " + costType + " and type: " + type);
                 return "Error!";
         }
+    }
+
+    #formatTargets() {
+        let result = ""
+        for (let i = 0; i < this.targetTypes.length - 1; i++){
+            result += this.targetTypes[i] + ", ";
+        }
+        result += this.targetTypes[this.targetTypes.length - 1];
+        return result;
     }
 
     #errorTest() {

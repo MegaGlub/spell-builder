@@ -3,9 +3,9 @@
     "name": "Petrify",
     "flavor": "Turn flesh to stone.",
     "purposeDescriptions": {
-        "low": "petrifying stone. Converts flesh to crumbly stone for a few short minutes",
-        "mid": "petrifying stone. Converts flesh to tough terracotta for about 10 minutes",
-        "high": "petrifying ore. Converts flesh to near-unbreakable metal for about 30 minutes"
+        "low": "flesh petrification. Converts flesh to crumbly stone for a few short minutes",
+        "mid": "flesh petrification. Converts flesh to tough terracotta for about 10 minutes",
+        "high": "flesh petrification. Converts flesh to near-unbreakable metal for about 30 minutes"
     },
     "image": "images/purposes/nature/petrify.png",
     "costs": {
