@@ -2,7 +2,7 @@
     "type": "Path",
     "name": "Touch",
     "flavor": "Point blank.",
-    "pathDescription": "Orginating from yourself, create a ",
+    "pathDescription": "At point blank, create a ",
     "image": "images/paths/touch.png",
     "costs": {
         "primary": 0,

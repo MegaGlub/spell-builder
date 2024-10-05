@@ -2,7 +2,7 @@
     "type": "Enhancement",
     "name": "Bouncy",
     "flavor": "The spell will bouncy chaotically off of solid objects!",
-    "enhancementDescription": "chaotically ricocheting, ",
+    "enhancementDescription": "chaotically ricocheting ",
     "image": "images/enhancements/bouncy.png",
     "costs": {
         "primary": 1,

@@ -2,7 +2,7 @@
     "type": "Enhancement",
     "name": "Homing",
     "flavor": "Makes a spell home towards nearby valid targets.",
-    "enhancementDescription": "homing, ",
+    "enhancementDescription": "homing ",
     "image": "images/enhancements/homing.png",
     "costs": {
         "primary": 3,

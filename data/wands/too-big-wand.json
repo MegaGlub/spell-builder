@@ -4,12 +4,12 @@
 	"flavor": "Tests the AP limits.",
 	"image": "images/wands/wood-orbit.png",
 	"slots": [
+		"Sphere",
+		"Arc",
+		"Grease",
+		"Destination (Instant)",
 		"Point",
-		"Arc",
-		"Flame",
-		"Caster",
-		"Room",
-		"Arc",
+		"Touch",
 		"Flame"
 	]
 }

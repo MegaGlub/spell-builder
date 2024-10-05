@@ -38,6 +38,7 @@ export class spellComponent {
         this.secondaryCellElement = document.createElement("span");
         this.energyCellElement = document.createElement("span");
         this.potencyCellElement = document.createElement("span");
+        this.complexityCellElement = document.createElement("span");
     }
 
     #assignElementClasses() {
@@ -51,6 +52,7 @@ export class spellComponent {
         this.secondaryCellElement.className = "componentStatCell";
         this.energyCellElement.className = "componentStatCell";
         this.potencyCellElement.className = "componentStatCell";
+        this.complexityCellElement.className = "componentStatCell";
     }
 
     #assignElementIds() {
@@ -67,6 +69,7 @@ export class spellComponent {
         this.statTableElement.appendChild(this.secondaryCellElement);
         this.statTableElement.appendChild(this.energyCellElement);
         this.statTableElement.appendChild(this.potencyCellElement);
+        this.statTableElement.appendChild(this.complexityCellElement);
         this.componentElement.appendChild(this.imageElement);
     }
 
@@ -87,6 +90,7 @@ export class spellComponent {
         this.secondaryCellElement.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
         this.energyCellElement.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
         this.potencyCellElement.innerHTML = this.formattedDataCell(this.potency, "Potency");
+        this.complexityCellElement.innerHTML = this.formattedDataCell(this.complexity, "Complexity")
     }
 
     #discoverStats() {
@@ -132,6 +136,9 @@ export class spellComponent {
     }
 
     formattedDataCell(num, descriptor) {
+        if (num == undefined){
+            num = 0;
+        }
         if (this.type == "Void") {
             if (descriptor == "Energy") {
                 return "Nullified " + descriptor;
