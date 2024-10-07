@@ -3,9 +3,9 @@
     "name": "Aerosolize",
     "flavor": "Allow small particles of Earth to float on air.",
     "purposeDescriptions": {
-        "low": "a weak aerosolizing draft that can lift sand and dust",
-        "mid": "a strong aerosilizing draft that can lift sand and dust",
-        "high": "an extremely strong aerosilizing draft that can lift gravel and sand"
+        "low": "gently lifts sand and dust into a small, dense cloud",
+        "mid": "levitates sand and dust into a chaotic cloud",
+        "high": "pulls sand and gravel into the air to make a suffocating cloud of Earth"
     },
     "image": "images/purposes/earth/aerosolize.png",
     "costs": {
