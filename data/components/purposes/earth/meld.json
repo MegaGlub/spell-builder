@@ -1,0 +1,34 @@
+{
+    "type": "Purpose",
+    "name": "Meld",
+    "flavor": "Attach together pieces of Earth.",
+    "purposeDescriptions": {
+        "low": "seals small cracks on target Earth",
+        "mid": "melds target Earth into a single object",
+        "high": "seamlessly collapses nearby Earth into a single, smooth object",
+        "invLow": "creates small, weblike cracks on target Earth",
+        "invMid": "creates large crags and fissures on target Earth",
+        "invHigh": "tears deep ravines and builds jagged outcrops on target Earth"
+    },
+    "image": "images/purposes/earth/fissure.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 1,
+        "energy": 0,
+        "primaryType": "Earth",
+        "secondaryType": "Flow"
+    },
+    "target": "Earth",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

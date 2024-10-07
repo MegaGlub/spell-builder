@@ -1,0 +1,34 @@
+{
+    "type": "Purpose",
+    "name": "Shear",
+    "flavor": "Detach Earth from its superstructure.",
+    "purposeDescriptions": {
+        "low": "cleanly and gently detaches target Earth",
+        "mid": "cleaves Earth from its superstructure, leaving behind a rough seam",
+        "high": "jettisons a piece of Earth from its superstructure",
+        "invLow": "temporarily attach multiple disparate fragments of Earth",
+        "invMid": "permanently merge multiple fragments of Earth",
+        "invHigh": "combine multiple fragments of Earth into a single object, which has a homogeneous combination"
+    },
+    "image": "images/purposes/earth/shear.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 1,
+        "energy": 1,
+        "primaryType": "Earth",
+        "secondaryType": "Design"
+    },
+    "target": "Earth",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

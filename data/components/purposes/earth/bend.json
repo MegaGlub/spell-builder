@@ -12,9 +12,9 @@
     },
     "image": "images/purposes/earth/bend.png",
     "costs": {
-        "primary": 2,
-        "secondary": 0,
-        "energy": 1,
+        "primary": 4,
+        "secondary": 1,
+        "energy": 0,
         "primaryType": "Earth",
         "secondaryType": "Heat"
     },

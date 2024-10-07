@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Detonate",
+    "flavor": "Wet stone detonates, like river rocks in a campfire.",
+    "purposeDescriptions": {
+        "low": "shatters and cracks water-soaked Earth",
+        "mid": "violently detonates water-doused Earth",
+        "high": "violently detonates water-doused Earth, and causes chaining explosions in the shrapnel"
+    },
+    "image": "images/purposes/earth/detonate.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 2,
+        "primaryType": "Earth",
+        "secondaryType": "Heat"
+    },
+    "target": "Earth",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false,
+        "potency": 0
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "type": "Purpose",
+    "name": "Extrude",
+    "flavor": "Draw thin filaments from the Earth.",
+    "purposeDescriptions": {
+        "low": "grows thin, glassy filaments from nearby Earth",
+        "mid": "pulls finger-sized strips from nearby Earth",
+        "high": "causes intense bulging and warping in nearby Earth"
+    },
+    "image": "images/purposes/earth/extrude.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 1,
+        "energy": 0,
+        "primaryType": "Earth",
+        "secondaryType": "Design"
+    },
+    "target": "Earth",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false,
+        "potency": -1
+    }
+}

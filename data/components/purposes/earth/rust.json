@@ -1,0 +1,34 @@
+{
+    "type": "Purpose",
+    "name": "Rust",
+    "flavor": "Rot metal.",
+    "purposeDescriptions": {
+        "low": "creates a thin layer of rust on the surface of an object",
+        "mid": "causes rapid rusting of metal",
+        "high": "decays metal into jagged, rusty dust",
+        "invLow": "removes rust from the surface of an object",
+        "invMid": "removes and heals rust damage on an object",
+        "invHigh": "converts metal ores into their purified form"
+    },
+    "image": "images/purposes/earth/rust.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 1,
+        "energy": 1,
+        "primaryType": "Earth",
+        "secondaryType": "Nature"
+    },
+    "target": "Stone",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "Weakened",
+            "high": "Disarmed",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "type": "Purpose",
+    "name": "Perrier's Distillation",
+    "flavor": "Sort a substrate by weight.",
+    "purposeDescriptions": {
+        "low": "very slowly brings heavy objects to the bottom of a substrate",
+        "mid": "gently pulls the heaviest objects to the bottom of a substrate",
+        "high": "rapidly vibrates a substrate to rapidly drag the heaviest particles to the bottom of the substrate",
+        "invLow": "gently pulls the heaviest objects to the top of a substrate",
+        "invMid": "brings heavy and settled objects to the center of a substrate",
+        "invHigh": "rapidly vibrates a substrate, creating a nigh homogenous mixture of densities"
+    },
+    "image": "images/purposes/earth/perriers-distillation.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 0,
+        "primaryType": "Earth",
+        "secondaryType": "Flow"
+    },
+    "target": "Earth",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 1
+    }
+}
