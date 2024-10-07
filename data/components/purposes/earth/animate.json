@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Animate",
+    "flavor": "Split your conciousness with the Earth.",
+    "purposeDescriptions": {
+        "low": "animates any Earth that it contacts into a small, weak golem that lives as long as you can maintain focus",
+        "mid": "animates any Earth that it contacts into a stocky golem that lives as long as you can maintain focus",
+        "high": "animates any Earth that it contacts into an intelligent, indestructible golem powered by focus"
+    },
+    "image": "images/purposes/earth/animate.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 4,
+        "energy": 0,
+        "primaryType": "Earth",
+        "secondaryType": "Nature"
+    },
+    "target": "Earth",
+    "statBlock": {
+        "complexity": 2,
+        "effects": {
+            "low": "Self-Dazed",
+            "mid": "Self-Distracted",
+            "high": "Self-Stunned"
+        },
+        "invertible": false,
+        "potency": -1
+    }
+}

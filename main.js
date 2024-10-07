@@ -5,10 +5,9 @@ import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 import { clearChildren, emptyArray } from "./src/elementHelpers.js";
 
-//healing support?
+//update the forms and previously made purposes to have better flow ("[shape] of [purpose]" into "[shape] that [purpose]")
 
 //plural description for forms, disallow multiple duplicators
-//commas for enhancements?
 
 //lock button for wands
 //"empowered" status effect switch for +potency (force highest strength?)
