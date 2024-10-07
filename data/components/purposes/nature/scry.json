@@ -3,9 +3,9 @@
     "name": "Scry",
     "flavor": "See through the eyes of a willing creature.",
     "purposeDescriptions": {
-        "low": "linked sensation. Targetted willing creatures may share short, messy fragments of their senses with you",
-        "mid": "linked sensation. Targetted willing creatures may share any or all of their senses with you",
-        "high": "telepathic will. Targetted creatures share all of their senses with you, and their actions may be vaguely controlled by you"
+        "low": "links the caster's sensations with another willing creature, allowing them to trade vague feelings from their senses",
+        "mid": "links the caster's sensations with another willing creature, allowing them to trade any or all of their sense with each other",
+        "high": "forms a telepathic bond, allowing the caster to trade any or all senses with the target creature and vaguely control them with focus"
     },
     "image": "images/purposes/nature/scry.png",
     "costs": {

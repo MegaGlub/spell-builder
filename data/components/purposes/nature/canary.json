@@ -3,9 +3,9 @@
     "name": "Canary",
     "flavor": "Draw an assessment from the land.",
     "purposeDescriptions": {
-        "low": "vague understanding of the land's opinion of you",
-        "mid": "preternatural understanding of the land's opinion of you",
-        "high": "precise, complete understanding of the land's opinion of you"
+        "low": "grants a vague understanding of the land's opinion of you",
+        "mid": "grants a preternatural understanding of the land's opinion of you",
+        "high": "grants a precise, complete understanding of the land's opinion of you"
     },
     "image": "images/purposes/nature/canary.png",
     "costs": {

@@ -3,12 +3,12 @@
     "name": "Alliance",
     "flavor": "Commune with an untamed creature.",
     "purposeDescriptions": {
-        "low": "translation magic. Targetted wild creatures can communicate with the caster for a short time",
-        "mid": "translation magic. Targetted wild creatures can communicate and cooperate with the caster until they wish to return to the wilds",
-        "high": "long distance translation magic. Targetted wild creatures can psychically communicate and cooperate with the caster until they wish to return to the wilds",
-        "invLow": "mystical bad manners. Target wild creatures will become intensely annoyed by any nearby people or tamed creatures",
-        "invMid": "mystical slights and insults. Target wild creatures will feel an intense hatred for nearby people or tamed creatures",
-        "invHigh": "mystical insults and fury. Target wild creatures will relentlessly hunt and attack nearby people or tamed creatures"
+        "low": "allows target wild creatures to communicate with the caster for a short time",
+        "mid": "allows target wild creatures to communicate and cooperate with the caster until they wish to return to the wild",
+        "high": "allows target wild creatures to psychically communicate and cooperate with the caster until they wish to return to the wild",
+        "invLow": "annoys target wild creatures",
+        "invMid": "insults and slights target wild creatures, inciting anger",
+        "invHigh": "causes extreme fury and bloodlust in target wild creatures"
     },
     "image": "images/purposes/nature/alliance.png",
     "costs": {

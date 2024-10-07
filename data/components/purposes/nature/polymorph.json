@@ -3,14 +3,14 @@
     "name": "Polymorph",
     "flavor": "Assume the form of a new creature.",
     "purposeDescriptions": {
-        "low": "energy that converts the target creature into a random new creature that you have knowledge of, which maintains their size, mass, intelligence, and casting ability",
-        "mid": "energy that converts the target creature into a new creature of your choice for a time, which maintains their size, mass, intelligence, and casting ability",
-        "high": "energy that converts the target creature into a new creature of your choice semi-permanently, which maintains their size, mass, intelligence, and casting ability"
+        "low": "coaxes target creature into the form of a random new creature that you have knowledge of, which maintains their size, mass, intelligence, and casting ability",
+        "mid": "converts target creature into the form of a new creature of your choice for a time, which maintains their size, mass, intelligence, and casting ability",
+        "high": "forces target creature into the form of a new creature of your choice semi-permanently, which maintains their size, mass, intelligence, and casting ability"
     },
     "image": "images/purposes/nature/polymorph.png",
     "costs": {
-        "primary": 3,
-        "secondary": 2,
+        "primary": 5,
+        "secondary": 4,
         "energy": 1,
         "primaryType": "Nature",
         "secondaryType": "Flesh"
