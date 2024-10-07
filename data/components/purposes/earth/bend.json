@@ -1,0 +1,34 @@
+{
+    "type": "Purpose",
+    "name": "Bend",
+    "flavor": "Increase the flexibility of Earth, for a time.",
+    "purposeDescriptions": {
+        "low": "subtly increases flexibility of Earth for a short time",
+        "mid": "allows Earth to bend like rubber for a short time",
+        "high": "allows Earth to flow like honey for a short time",
+        "invLow": "subtly increases the rigidity of Earth for a short time",
+        "invMid": "greatly increases the rigidity of Earth, causing it to crumble under force",
+        "invHigh": "makes Earth so rigid that it crumbles to dust under its own forces"
+    },
+    "image": "images/purposes/earth/bend.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Earth",
+        "secondaryType": "Heat"
+    },
+    "target": "Earth",
+    "statBlock": {
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}
