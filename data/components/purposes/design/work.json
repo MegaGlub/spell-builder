@@ -3,9 +3,9 @@
     "name": "Work",
     "flavor": "Apply work to a mechanical object; turn a wheel, pull a lever, or apply leverage.",
     "purposeDescriptions": {
-        "low": "caster controlled work, capable of about 1/3 of a person's strength",
-        "mid": "caster controlled work with the approximate strength of a person",
-        "high": "caster controlled work with the approximate strength of three people"
+        "low": "applies a third of a person's strength as work to a mechanical object",
+        "mid": "applies a person's strength as work to a mechanical object",
+        "high": "applies three people's strength as work to a mechanical object"
     },
     "image": "images/purposes/design/work.png",
     "costs": {

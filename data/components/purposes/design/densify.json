@@ -3,12 +3,12 @@
     "name": "Densify",
     "flavor": "Greatly increase the effect of gravity on target material.",
     "purposeDescriptions": {
-        "low": "balance ruining weight",
-        "mid": "crushing weight",
-        "high": "suffocating density",
-        "invLow": "relieving weightlessness",
-        "invMid": "superhuman weightlessness",
-        "invHigh": "complete gravity immunity"
+        "low": "subtly increases the weight of the target",
+        "mid": "shackles the target by amplifying their weight",
+        "high": "crushes the target under their own weight",
+        "invLow": "subtly relieves the weight of the target",
+        "invMid": "almost entirely frees a target from the weight of gravity",
+        "invHigh": "frees the target from the shackles of gravity"
     },
     "image": "images/purposes/design/densify.png",
     "costs": {
@@ -16,7 +16,7 @@
         "secondary": 0,
         "energy": 1,
         "primaryType": "Design",
-        "secondaryType": "Secondary"
+        "secondaryType": "Material"
     },
     "target": "Material",
     "statBlock": {
@@ -32,7 +32,7 @@
         "potency": 0,
         "damageCount": {
             "low": 0,
-            "mid": 0,
+            "mid": 1,
             "high": 3,
             "invLow": 0,
             "invMid": 0,
@@ -40,7 +40,7 @@
         },
         "damageDice": {
             "low": "d0",
-            "mid": "d0",
+            "mid": "d4",
             "high": "d6",
             "invLow": "d0",
             "invMid": "d0",

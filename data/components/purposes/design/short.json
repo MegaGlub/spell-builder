@@ -3,12 +3,12 @@
     "name": "Short",
     "flavor": "Fizzle a caster.",
     "purposeDescriptions": {
-        "low": "magic interference. Hit casters collapse their current spell, if any",
-        "mid": "magic interference. Hit casters instantly fizzle if they attempt to cast anything for the next few seconds",
-        "high": "magic interference. Hit casters instantly burnout if they attempt to cast anything for the next few seconds",
-        "invLow": "vis lensing power. Hit casters gain two vis for each of their aspects",
-        "invMid": "vis lensing power. Hit casters become empowered and gain one vis in each of their aspects",
-        "invHigh": "vis lensing power. Hit casters become empowered and may cast spells for only one sAP for the next few seconds"
+        "low": "interrupts the current spell of any hit caster",
+        "mid": "interferes with magic, cancelling any current spells and fizzling any hit casters",
+        "high": "unwinds the threads of vis, cancelling any current spells and burning out any hit casters",
+        "invLow": "lenses vis to an area. Hit casters regain two vis in each pool",
+        "invMid": "strengthens the threads of vis. Hit casters become empowered and regain one vis in each pool",
+        "invHigh": "lenses and reinforces the threads of vis. Hit casters become empowered and may cast spells for only one sAP for the next few seconds"
     },
     "image": "images/purposes/design/short.png",
     "costs": {

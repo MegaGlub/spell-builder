@@ -3,12 +3,12 @@
     "name": "Launch",
     "flavor": "An object in the rough shape of the Form at the casting location is forced to travel along the Path.",
     "purposeDescriptions": {
-        "low": "delicate energy that sweeps up a nearby object of the caster's choice",
-        "mid": "rough energy that drags along a nearby object of the caster's choice",
-        "high": "energetic maelstrum that flings and shreds a nearby object of the caster's choice",
-        "invLow": "delicate force that gently swaps places with a faraway object",
-        "invMid": "tumultuous force that yanks at a distant object to trade places with it",
-        "invHigh": "unstable compressive force that launches all nearby objects towards its origin point"
+        "low": "gently sweeps up a nearby object of the caster's choice and sends it along the Path",
+        "mid": "drags along a nearby object of the caster's choice and flings it down the Path",
+        "high": "shreds a nearby object of the caster's choice as it catapults down the Path",
+        "invLow": "gently swaps places with a faraway object",
+        "invMid": "yanks at a distant object to trade places with it",
+        "invHigh": "launches all objects it touches towards its origin point"
     },
     "image": "images/purposes/design/launch.png",
     "costs": {

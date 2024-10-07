@@ -3,12 +3,12 @@
     "name": "Vitale's Reinforcement",
     "flavor": "Greatly strengthen an area of target material.",
     "purposeDescriptions": {
-        "low": "near intangible strings that sink into their target material and hold it together from within",
-        "mid": "weblike reinforcements that sink into their target material, vastly increasing its strength",
-        "high": "steely webs that mend and reinforce their target material",
-        "invLow": "material weakening solvent",
-        "invMid": "bubbling solvent that leaves the target material feeling hollow",
-        "invHigh": "voracious solvent that rapidly dissolves the target material"
+        "low": "sinks into its target material and holds it together from within",
+        "mid": "sinks into its target material, vastly increasing its strength",
+        "high": "mends and reinforces its target material",
+        "invLow": "weakens a material with a gentle solvent",
+        "invMid": "hollows a material with a bubbling solvent",
+        "invHigh": "dissolves a material with a voracious solvent"
     },
     "image": "images/purposes/design/reinforce.png",
     "costs": {

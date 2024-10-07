@@ -3,9 +3,9 @@
     "name": "Illusion",
     "flavor": "Create an illusory object in the approximate shape of the Form.",
     "purposeDescriptions": {
-        "low": "illusory objects of the caster's choice. The objects are unconvincing up close",
-        "mid": "intangible illusions of the caster's choice. The illusions are very near life-like",
-        "high": "partially tangible illusions of the caster's choice"
+        "low": "creates unconvincing illusions of the caster's choice",
+        "mid": "creates highly convincing illusions of the caster's choice",
+        "high": "creates partially tangible illusions of the caster's choice"
     },
     "image": "images/purposes/design/illusion.png",
     "costs": {

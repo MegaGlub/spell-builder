@@ -3,12 +3,12 @@
     "name": "Grease",
     "flavor": "Slippery, flammable, and gross.",
     "purposeDescriptions": {
-        "low": "thick, slimy grease",
-        "mid": "highly flammable grease",
-        "high": "slick flammable fluid",
-        "invLow": "thick, noncombustible glue",
-        "invMid": "exceptionally strong adhesive",
-        "invHigh": "unbreakable adhesive"
+        "low": "covers surfaces in thick, slimy grease",
+        "mid": "covers surfaces in highly flammable grease",
+        "high": "covers surfaces in slick flammable fluid",
+        "invLow": "covers surfaces in thick, noncombustible glue",
+        "invMid": "covers surfaces in exceptionally strong adhesive",
+        "invHigh": "covers surfaces in unbreakable adhesive"
     },
     "image": "images/purposes/design/grease.png",
     "costs": {

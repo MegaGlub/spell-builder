@@ -3,12 +3,12 @@
     "name": "Sharpen",
     "flavor": "Sharpen the edge of a material.",
     "purposeDescriptions": {
-        "low": "etching fluid that sharpens a target material as it evaporates",
-        "mid": "etching fluid that leaves a target material razor sharp as it evaporates",
-        "high": "etching fluid that leaves a target material nearly mono-molecularly sharp as it evaporates",
-        "invLow": "solvent that dulls blades into butter knives",
-        "invMid": "solvent that smooths and sands edges",
-        "invHigh": "solvent that renders any sharp edge cracked and dull as it evaporates"
+        "low": "etches a material into being slightly sharper",
+        "mid": "etches a material into razor sharpness",
+        "high": "etches a material into mono-molecular sharpness",
+        "invLow": "dulls a material into a butter knife",
+        "invMid": "smooths and sands edges",
+        "invHigh": "cracks and smooths edges into nothing"
     },
     "image": "images/purposes/design/sharpen.png",
     "costs": {

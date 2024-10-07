@@ -3,12 +3,12 @@
     "name": "Magnetize",
     "flavor": "Attracting force for ferromagnetic objects.",
     "purposeDescriptions": {
-        "low": "weak, attracting magnetization",
-        "mid": "strong, attracting magnetization",
-        "high": "crushingly strong magnetization",
-        "invLow": "gently repelling magnetization",
-        "invMid": "forcefully repelling magnetization",
-        "invHigh": "extreme, whiplash-inducing repelling magnetization"
+        "low": "radiates a weak magnetic field",
+        "mid": "radiates a strong, attractive magnetic field",
+        "high": "casts a crushingly strong magnetic field",
+        "invLow": "gently repels nearby magnetic objects",
+        "invMid": "forcefully displaces nearby magnetic objects",
+        "invHigh": "emits an extreme, whiplash-inducing repelling magnetic field"
     },
     "image": "images/purposes/design/magnetize.png",
     "costs": {

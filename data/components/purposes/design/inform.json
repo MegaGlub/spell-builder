@@ -3,12 +3,12 @@
     "name": "Inform",
     "flavor": "Greatly improved tutoring of another creature.",
     "purposeDescriptions": {
-        "low": "learning accelerating influence for a specific skill. The skill is chosen by the caster",
-        "mid": "mastery accelerating influence for a specific skill. The skill is chosen by and must already be mastered by the caster",
-        "high": "learning accelerating influence for almost all skills of the caster",
-        "invLow": "skill draining influence for a specific skill. The skill must already be mastered by the caster",
-        "invMid": "knowledge draining influence for a specific skill",
-        "invHigh": "stupefying influence"
+        "low": "accelerates the learning of a skill that the caster has mastered",
+        "mid": "accelerates the mastery of a skill that the caster has mastered",
+        "high": "accelerates the learning of all skills that the caster has mastered",
+        "invLow": "drains experience of a skill that the caster has mastered",
+        "invMid": "drains experience of a skill chosen by the caster",
+        "invHigh": "leaves targets stupefied and flummoxed"
     },
     "image": "images/purposes/design/inform.png",
     "costs": {
