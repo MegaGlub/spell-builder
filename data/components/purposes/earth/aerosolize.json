@@ -1,0 +1,30 @@
+{
+    "type": "Purpose",
+    "name": "Aerosolize",
+    "flavor": "Allow small particles of Earth to float on air.",
+    "purposeDescriptions": {
+        "low": "a weak aerosolizing draft that can lift sand and dust",
+        "mid": "a strong aerosilizing draft that can lift sand and dust",
+        "high": "an extremely strong aerosilizing draft that can lift gravel and sand"
+    },
+    "image": "images/purposes/earth/aerosolize.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 1,
+        "energy": 0,
+        "primaryType": "Earth",
+        "secondaryType": "Flow"
+    },
+    "target": "Earth",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false,
+        "potency": 0,
+        "sizeMultiplier": 1.5
+    }
+}
