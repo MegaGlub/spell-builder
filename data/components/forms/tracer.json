@@ -3,8 +3,8 @@
     "name": "Tracer",
     "flavor": "In a line, following the path after a short delay.",
     "formDescription": {
-        "singular": " perfect, delayed line of ",
-        "plural": " delayed, yet perfectly linear sprays of "
+        "singular": " perfect, delayed line that ",
+        "plural": " delayed, yet perfectly linear sprays that "
     },
     "image": "images/forms/tracer.png",
     "costs": {

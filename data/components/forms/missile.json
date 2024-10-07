@@ -3,8 +3,8 @@
     "name": "Missile",
     "flavor": "In the form of a large, slow projectile.",
     "formDescription": {
-        "singular": " pointed missile of ",
-        "plural": " flaking missiles of "
+        "singular": " pointed missile that ",
+        "plural": " flaking missiles that "
     },
     "image": "images/forms/missile.png",
     "costs": {

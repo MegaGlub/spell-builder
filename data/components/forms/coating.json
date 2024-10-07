@@ -3,8 +3,8 @@
     "name": "Coating",
     "flavor": "As a coating on another object.",
     "formDescription": {
-        "singular": " thin, goopy ball that completely coats whatever it lands on with ",
-        "plural": " slimy projectiles that completely coat whatever they land on with "
+        "singular": " thin, goopy ball that completely coats whatever it lands on with slime that ",
+        "plural": " slimy projectiles that completely coat whatever they land on with goop that "
     },
     "image": "images/forms/coating.png",
     "costs": {

@@ -3,8 +3,8 @@
     "name": "Ray",
     "flavor": "In a line, following the Path.",
     "formDescription": {
-        "singular": " perfect line of ",
-        "plural": " perfectly linear sprays of "
+        "singular": " perfect straight line that ",
+        "plural": " perfectly linear sprays that "
     },
     "image": "images/forms/ray.png",
     "costs": {

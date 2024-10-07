@@ -3,8 +3,8 @@
     "name": "Bolt",
     "flavor": "In the shape of a lightning bolt.",
     "formDescription": {
-        "singular": " chaotic bolt of ",
-        "plural": " splintering bolts of "
+        "singular": " chaotic bolt that ",
+        "plural": " splintering bolts that "
     },
     "image": "images/forms/bolt.png",
     "costs": {

@@ -3,8 +3,8 @@
     "name": "Wall",
     "flavor": "In the shape of a wide, planular wall.",
     "formDescription": {
-        "singular": " wide, flat wall of ",
-        "plural": " adjacent walls of "
+        "singular": " wide, flat wall that ",
+        "plural": " adjacent walls that "
     },
     "image": "images/forms/wall.png",
     "costs": {

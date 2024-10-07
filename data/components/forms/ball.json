@@ -3,8 +3,8 @@
     "name": "Ball",
     "flavor": "In the shape of a fist sized ball.",
     "formDescription": {
-        "singular": " fist sized ball of ",
-        "plural": " balls of "
+        "singular": " fist sized ball that ",
+        "plural": " balls that "
     },
     "image": "images/forms/ball.png",
     "costs": {

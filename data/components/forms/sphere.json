@@ -3,8 +3,8 @@
     "name": "Sphere",
     "flavor": "In the shape of a large sphere.",
     "formDescription": {
-        "singular": " large sphere of ",
-        "plural": " huge orbs of "
+        "singular": " large sphere that ",
+        "plural": " huge orbs that "
     },
     "image": "images/forms/sphere.png",
     "costs": {

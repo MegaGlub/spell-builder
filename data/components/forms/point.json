@@ -3,8 +3,8 @@
     "name": "Point",
     "flavor": "In a single, infinitesimal point.",
     "formDescription": {
-        "singular": " single, tiny point of ",
-        "plural": " infinitesimal points of "
+        "singular": " single, tiny point that ",
+        "plural": " infinitesimal points that "
     },
     "image": "images/forms/point.png",
     "costs": {

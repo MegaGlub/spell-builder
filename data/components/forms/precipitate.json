@@ -3,8 +3,8 @@
     "name": "Precipitate",
     "flavor": "In the form of a showering precipitate.",
     "formDescription": {
-        "singular": " dense rain of ",
-        "plural": " weeping clouds of "
+        "singular": " dense rain that ",
+        "plural": " weeping clouds that "
     },
     "image": "images/forms/precipitate.png",
     "costs": {

@@ -3,8 +3,8 @@
     "name": "Person",
     "flavor": "In the rough shape of a person.",
     "formDescription": {
-        "singular": " approximately person-shaped area of ",
-        "plural": " rough, person-shaped areas of "
+        "singular": " approximately person-shaped area that ",
+        "plural": " rough, person-shaped areas that "
     },
     "image": "images/forms/person.png",
     "costs": {
