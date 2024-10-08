@@ -5,6 +5,8 @@ import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 import { clearChildren, emptyArray } from "./src/elementHelpers.js";
 
+//you could totally invert extrude if you weren't a pussy
+
 //lock button for wands
 //"empowered" status effect switch for +potency (force highest strength?)
     //"weakened" status effect too
