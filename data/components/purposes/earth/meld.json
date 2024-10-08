@@ -10,7 +10,7 @@
         "invMid": "creates large crags and fissures on target Earth",
         "invHigh": "tears deep ravines and builds jagged outcrops on target Earth"
     },
-    "image": "images/purposes/earth/fissure.png",
+    "image": "images/purposes/earth/meld.png",
     "costs": {
         "primary": 3,
         "secondary": 1,
