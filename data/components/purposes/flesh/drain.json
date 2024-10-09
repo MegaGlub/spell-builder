@@ -1,0 +1,39 @@
+{
+    "type": "Purpose",
+    "name": "Drain",
+    "flavor": "Steal the life of another Flesh caster.",
+    "purposeDescriptions": {
+        "low": "skims a bit of energy of off target Flesh caster, granting it to another creature that is physically contacting the caster",
+        "mid": "steals some vital fluids and energy from target Flesh caster, granting it to another creature that is physically contacting the caster",
+        "high": "kills target Flesh caster, reviving another recently killed creature that is physically contacting the caster"
+    },
+    "image": "images/purposes/flesh/drain.png",
+    "costs": {
+        "primary": 5,
+        "secondary": 2,
+        "energy": 3,
+        "primaryType": "Flesh",
+        "secondaryType": "Flow"
+    },
+    "target": "Casters",
+    "statBlock": {
+        "complexity": 3,
+        "effects": {
+            "low": "Weakened",
+            "mid": "Weakened, Unbalanced",
+            "high": "next turn 12x(1d20) Damage"
+        },
+        "invertible": false, 
+        "potency": -2,
+        "damageCount": {
+            "low": 1,
+            "mid": 2,
+            "high": 3
+        },
+        "damageDice": {
+            "low": "d3",
+            "mid": "d6",
+            "high": "d50"
+        }
+    }
+}

@@ -18,7 +18,7 @@
         "primaryType": "Design",
         "secondaryType": "Secondary"
     },
-    "target": "Living Beings",
+    "target": "Casters",
     "statBlock": {
         "effects": {
             "low": "",

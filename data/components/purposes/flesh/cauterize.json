@@ -1,0 +1,39 @@
+{
+    "type": "Purpose",
+    "name": "Cauterize",
+    "flavor": "Painfully sear away bleeding.",
+    "purposeDescriptions": {
+        "low": "seals small wounds with only a short flash of pain",
+        "mid": "agonizingly sears messy wounds shut",
+        "high": "cooks and chars exposed flesh"
+    },
+    "image": "images/purposes/flesh/cauterize.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 1,
+        "energy": 0,
+        "primaryType": "Flesh",
+        "secondaryType": "Heat"
+    },
+    "target": "Flesh",
+    "statBlock": {
+        "complexity": -1,
+        "effects": {
+            "low": "Remove Bleeding",
+            "mid": "Remove Bleeding, +1 Exhaustion, +10 Temp Health",
+            "high": "Remove Bleeding, +2 Exhaustion"
+        },
+        "invertible": false,
+        "potency": -1,
+        "damageCount": {
+            "low": 0,
+            "mid": 0,
+            "high": 3
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d0",
+            "high": "d4"
+        }
+    }
+}

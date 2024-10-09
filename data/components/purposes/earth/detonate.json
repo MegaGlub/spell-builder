@@ -10,7 +10,7 @@
     "image": "images/purposes/earth/detonate.png",
     "costs": {
         "primary": 1,
-        "secondary": 1,
+        "secondary": 2,
         "energy": 2,
         "primaryType": "Earth",
         "secondaryType": "Heat"
@@ -24,6 +24,16 @@
             "high": ""
         },
         "invertible": false,
-        "potency": 0
+        "potency": 0,
+        "damageCount": {
+            "low": 0,
+            "mid": 2,
+            "high": 4
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d8",
+            "high": "d8"
+        }
     }
 }

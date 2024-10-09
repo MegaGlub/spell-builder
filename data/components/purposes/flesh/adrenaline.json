@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Adrenaline",
+    "flavor": "The heart pumps ever faster.",
+    "purposeDescriptions": {
+        "low": "increases bloodflow for a target, allowing them a short burst of speed",
+        "mid": "quickens the heartrate of a target, granting a burst of immense agility",
+        "high": "causes arrhythmia",
+        "invLow": "induces a calm serenity",
+        "invMid": "causes extreme lethargy",
+        "invHigh": "induces a deep sleep"
+    },
+    "image": "images/purposes/flesh/adrenaline.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Flesh",
+        "secondaryType": "Secondary"
+    },
+    "target": "Flesh",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "Fleet-Footed",
+            "mid": "Tightly Wound, Fleet-Footed",
+            "high": "Fizzled, Weakened, Unbalanced, Vulnerable",
+            "invLow": "(Focused or Precision)",
+            "invMid": "Vulnerable, Distracted",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": -1
+    }
+}
