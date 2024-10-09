@@ -21,7 +21,7 @@
         "effects": {
             "low": "Weakened",
             "mid": "Weakened, Unbalanced",
-            "high": "next turn 12x(1d20) Damage"
+            "high": ""
         },
         "invertible": false, 
         "potency": -2,
@@ -33,7 +33,7 @@
         "damageDice": {
             "low": "d3",
             "mid": "d6",
-            "high": "d50"
+            "high": "d20"
         }
     }
 }

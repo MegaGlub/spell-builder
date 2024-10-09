@@ -20,7 +20,7 @@
         "complexity": -1,
         "effects": {
             "low": "Remove Bleeding",
-            "mid": "Remove Bleeding, +1 Exhaustion, +10 Temp Health",
+            "mid": "Remove Bleeding, +1 Exhaustion, +1d12 Temp Health",
             "high": "Remove Bleeding, +2 Exhaustion"
         },
         "invertible": false,

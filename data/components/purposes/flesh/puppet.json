@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Puppet",
+    "flavor": "Gain direct control over another creature.",
+    "purposeDescriptions": {
+        "low": "asserts the caster's will over any hit creature, allowing them to be directly controlled with focus for a few minutes. Affected creatures will remember being controlled, and the caster is rendered effectively unconcious while controlling them",
+        "mid": "asserts the caster's will over any hit creature, allowing them to be directly controlled with focus for an hour. Affected creatures will not remember being controlled, and the caster is rendered effectively unconcious while controlling them",
+        "high": "asserts the caster's will over any hit creature, allowing them to be directly controlled until focus is lost. Affected creatures will not remember being controlled, and the caster is rendered effectively unconcious while controlling them"
+    },
+    "image": "images/purposes/flesh/puppet.png",
+    "costs": {
+        "primary": 8,
+        "secondary": 5,
+        "energy": 1,
+        "primaryType": "Flesh",
+        "secondaryType": "Design"
+    },
+    "target": "Living Beings",
+    "statBlock": {
+        "complexity": 3,
+        "effects": {
+            "low": "Dazed",
+            "mid": "Dazed",
+            "high": "Dazed"
+        },
+        "invertible": false, 
+        "potency": -1
+    }
+}

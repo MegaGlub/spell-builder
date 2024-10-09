@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Strengthen",
+    "flavor": "Reinforce muscles.",
+    "purposeDescriptions": {
+        "low": "envigorates affected muscles",
+        "mid": "improves the elasticity and strength of affected muscles",
+        "high": "grants superhuman strength to affected muscles, but causes stress",
+        "invLow": "relaxes and loosens affected muscles",
+        "invMid": "reduces the strength of affected muscles",
+        "invHigh": "turns affected muscles to jelly"
+    },
+    "image": "images/purposes/flesh/strengthen.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Flesh",
+        "secondaryType": "Secondary"
+    },
+    "target": "Flesh",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "Empowered",
+            "mid": "Empowered, Steadfast",
+            "high": "Empowered, Focused, +1 Exhaustion",
+            "invLow": "-1 Exhaustion, Weakened, Vulnerable",
+            "invMid": "Weakened",
+            "invHigh": "Weakened, Pinned"
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

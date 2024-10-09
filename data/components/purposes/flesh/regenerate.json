@@ -1,0 +1,52 @@
+{
+    "type": "Purpose",
+    "name": "Regenerate",
+    "flavor": "Force wounds to seal.",
+    "purposeDescriptions": {
+        "low": "encourages tissue growth, granting improved health the following day",
+        "mid": "forces lacerations closed, granting improved health the following day but stressing the body immediately",
+        "high": "stitches together all but the most extreme wounds, causing extreme shock",
+        "invLow": "stops natural tissue growth for up to a day",
+        "invMid": "reopens old scars and prevents healing for a short time",
+        "invHigh": "reopens old wounds and rebreaks healed bones"
+    },
+    "image": "images/purposes/flesh/regenerate.png",
+    "costs": {
+        "primary": 4,
+        "secondary": 1,
+        "energy": 2,
+        "primaryType": "Flesh",
+        "secondaryType": "Nature"
+    },
+    "target": "Flesh",
+    "statBlock": {
+        "complexity": 3,
+        "effects": {
+            "low": "Regenerating",
+            "mid": "Regenerating, Remove Bleeding, +1 Exhaustion",
+            "high": "Remove Bleeding, Unbalanced, Stunned, +3 Exhaustion",
+            "invLow": "Remove Temp Health",
+            "invMid": "Bleeding, Remove Temp Health",
+            "invHigh": "Bleeding, Unbalanced"
+        },
+        "invertible": true,
+        "healing": true,
+        "potency": 0,
+        "damageCount": {
+            "low": 0,
+            "mid": -1,
+            "high": -2,
+            "invLow": 0,
+            "invMid": 2,
+            "invHigh": 1
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d12",
+            "high": "d20",
+            "invLow": "d0",
+            "invMid": "d6",
+            "invHigh": "d50"
+        }
+    }
+}

@@ -5,7 +5,7 @@
     "purposeDescriptions": {
         "low": "increases bloodflow for a target, allowing them a short burst of speed",
         "mid": "quickens the heartrate of a target, granting a burst of immense agility",
-        "high": "causes arrhythmia",
+        "high": "causes arrhythmia in affected targets",
         "invLow": "induces a calm serenity",
         "invMid": "causes extreme lethargy",
         "invHigh": "induces a deep sleep"
@@ -27,7 +27,7 @@
             "high": "Fizzled, Weakened, Unbalanced, Vulnerable",
             "invLow": "(Focused or Precision)",
             "invMid": "Vulnerable, Distracted",
-            "invHigh": ""
+            "invHigh": "-1 Exhaustion"
         },
         "invertible": true, 
         "potency": -1

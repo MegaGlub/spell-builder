@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Hybridize",
+    "flavor": "Borrow a physical attribute.",
+    "purposeDescriptions": {
+        "low": "partially mitigates a physical attribute for target creature (sense of smell, sharp claws, etc), granting a weakened version of the same attribute to another creature that is physically contacting the caster",
+        "mid": "partially mitigates a physical attribute for target creature (sense of smell, sharp claws, etc), granting the same attribute to another creature that is physically contacting the caster",
+        "high": "completely mitigates a physical attribute for target creature (sense of smell, sharp claws, etc), granting a greatly enhanced version of the same attribute to another creature that is physically contacting the caster"
+    },
+    "image": "images/purposes/flesh/hybridize.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 2,
+        "energy": 1,
+        "primaryType": "Flesh",
+        "secondaryType": "Nature"
+    },
+    "target": "Living Beings",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "Weakened",
+            "high": "Weakened"
+        },
+        "invertible": false, 
+        "potency": 0
+    }
+}

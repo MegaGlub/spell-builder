@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Remould",
+    "flavor": "Reshape limbs as you see fit.",
+    "purposeDescriptions": {
+        "low": "allows the caster to make small temporary adjustments to the shape and properties of target Flesh of a Flesh caster, with focus",
+        "mid": "allows the caster to temporarily reshape target Flesh of a Flesh caster as if clay, with focus",
+        "high": "allows the caster to play god with target Flesh of a Flesh caster, up to and including extruding new temporary limbs, with focus"
+    },
+    "image": "images/purposes/flesh/remould.png",
+    "costs": {
+        "primary": 4,
+        "secondary": 1,
+        "energy": 0,
+        "primaryType": "Flesh",
+        "secondaryType": "Flow"
+    },
+    "target": "Casters",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false, 
+        "potency": -1
+    }
+}

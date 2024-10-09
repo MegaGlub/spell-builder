@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Numb",
+    "flavor": "Extinguish pain, for a time.",
+    "purposeDescriptions": {
+        "low": "reduces feelings of pain to a more managable state",
+        "mid": "reduces pain to a dull hum",
+        "high": "reduces all pain to nothing",
+        "invLow": "amplifies the pain of a scratch to a laceration",
+        "invMid": "amplifies the pain of a papercut to a stab wound",
+        "invHigh": "amplifies pain to overwhelm the brain"
+    },
+    "image": "images/purposes/flesh/adrenaline.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Flesh",
+        "secondaryType": "Secondary"
+    },
+    "target": "Flesh",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "Steadfast, +1d8 Temp Health",
+            "mid": "Steadfast, +1d20 Temp Health",
+            "high": "Indomitable, Vulnerable, next turn Vulnerable",
+            "invLow": "Vulnerable",
+            "invMid": "Vulnerable, +1 Exhaustion when damaged",
+            "invHigh": "Vulnerable, +2 Exhaustion when damaged"
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}
