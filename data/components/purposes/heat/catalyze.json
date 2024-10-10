@@ -1,0 +1,51 @@
+{
+    "type": "Purpose",
+    "name": "Catalyze",
+    "flavor": "Create a seed bomb.",
+    "purposeDescriptions": {
+        "low": "causes affected flammable objects to burst into rapidly sprouting seeds once ignited",
+        "mid": "causes affected flammable objects to violently explode into rapidly sprouting seeds once ignited once ignited",
+        "high": "causes affected flammable objects to violently explode into a fragmentation bomb of high-velocity seeds once ignited",
+        "invLow": "greatly reduces the detonation speed of nearby explosives for a short few minutes",
+        "invMid": "completely nullifies nearby explosive materials for about half an hour",
+        "invHigh": "permanently defuses nearby explosive materials, causing them to sprout wild viney growths"
+    },
+    "image": "images/purposes/heat/catalyze.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 3,
+        "energy": 1,
+        "primaryType": "Heat",
+        "secondaryType": "Nature"
+    },
+    "target": "Flammables",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "Bleeding",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0,
+        "damageCount": {
+            "low": 2,
+            "mid": 2,
+            "high": 2,
+            "invLow": 0,
+            "invMid": 0,
+            "invHigh": 0
+        },
+        "damageDice": {
+            "low": "d6",
+            "mid": "d8",
+            "high": "d10",
+            "invLow": "d0",
+            "invMid": "d0",
+            "invHigh": "d0"
+        }
+    }
+}

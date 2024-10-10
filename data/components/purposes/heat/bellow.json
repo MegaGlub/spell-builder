@@ -1,0 +1,51 @@
+{
+    "type": "Purpose",
+    "name": "Bellow",
+    "flavor": "Fan the flames.",
+    "purposeDescriptions": {
+        "low": "flares nearby flames for a short moment",
+        "mid": "forces nearby flames to burn twice as hot and twice as tall for a few minutes",
+        "high": "forces nearby flames to near instantly burn through their entire supply of fuel",
+        "invLow": "smothers nearby flames for a short moment",
+        "invMid": "reduces nearby flames to cool embers for a few minutes",
+        "invHigh": "completely extinguishes nearby flames"
+    },
+    "image": "images/purposes/heat/bellow.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Heat",
+        "secondaryType": "Secondary"
+    },
+    "target": "Flammables",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "",
+            "invLow": "",
+            "invMid": "Remove Burning",
+            "invHigh": "Remove Burning"
+        },
+        "invertible": true, 
+        "potency": 0,
+        "damageCount": {
+            "low": 2,
+            "mid": 2,
+            "high": 2,
+            "invLow": 0,
+            "invMid": 0,
+            "invHigh": 0
+        },
+        "damageDice": {
+            "low": "d4",
+            "mid": "d6",
+            "high": "d8",
+            "invLow": "d0",
+            "invMid": "d0",
+            "invHigh": "d0"
+        }
+    }
+}

@@ -3,14 +3,14 @@
     "name": "Flame",
     "flavor": "Set the Form alight.",
     "purposeDescriptions": {
-        "low": "weak, sputtering flames",
-        "mid": "intense, crackling flames",
-        "high": "ravenous, impossible to extinguish flames",
-        "invLow": "delicate ice crystals",
-        "invMid": "frigid, splintered ice crystals",
-        "invHigh": "creeping, inescapable ice shards"
+        "low": "is made of weak, sputtering flames",
+        "mid": "consists intense, crackling flames",
+        "high": "flashes into ravenous, impossible to extinguish flames",
+        "invLow": "is made of delicate ice crystals",
+        "invMid": "formed out of frigid, splintered ice crystals",
+        "invHigh": "spreads creeping, inescapable ice shards"
     },
-    "image": "images/purposes/purpose-frame.png",
+    "image": "images/purposes/heat/flame.png",
     "costs": {
         "primary": 2,
         "secondary": 0,
@@ -21,12 +21,12 @@
     "target": "Any",
     "statBlock": {
         "effects": {
-            "low": "Burning (if Vulnerable)",
+            "low": "Burning if Vulnerable",
             "mid": "Burning",
             "high": "Burning, Dazed",
             "invLow": "",
             "invMid": "Bleeding",
-            "invHigh": "Stunned,Bleeding"
+            "invHigh": "Stunned, Bleeding"
         },
         "invertible": true, 
         "potency": 0,
