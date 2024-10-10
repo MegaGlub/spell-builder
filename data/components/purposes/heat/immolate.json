@@ -1,0 +1,52 @@
+{
+    "type": "Purpose",
+    "name": "Immolate",
+    "flavor": "Cook Flesh.",
+    "purposeDescriptions": {
+        "low": "causes a first degree burn on affected Flesh",
+        "mid": "causes a second degree burn on affected Flesh",
+        "high": "causes a third degree burn on affected Flesh",
+        "invLow": "leaves affected Flesh cold and clammy",
+        "invMid": "leaves affected Flesh with frostbite",
+        "invHigh": "leaves affected Flesh punctured and split with icy spikes"
+    },
+    "image": "images/purposes/heat/immolate.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 2,
+        "energy": 2,
+        "primaryType": "Heat",
+        "secondaryType": "Flesh"
+    },
+    "target": "Flesh",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "+1 Exhaustion",
+            "mid": "+1 Exhaustion",
+            "high": "+2 Exhaustion",
+            "invLow": "",
+            "invMid": "+1 Exhaustion",
+            "invHigh": "+2 Exhaustion"
+        },
+        "invertible": true, 
+        "potency": 0,
+        "damageCount": {
+            "low": 1,
+            "mid": 3,
+            "high": 2,
+            "invLow": 0,
+            "invMid": 2,
+            "invHigh": 4
+        },
+        "damageDice": {
+            "low": "d2",
+            "mid": "d4",
+            "high": "d12",
+            "invLow": "d0",
+            "invMid": "d6",
+            "invHigh": "d8"
+        },
+        "damageModifier": 4
+    }
+}

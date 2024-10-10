@@ -1,0 +1,39 @@
+{
+    "type": "Purpose",
+    "name": "Maillard's Ignition",
+    "flavor": "A cool burn.",
+    "purposeDescriptions": {
+        "low": "toasts nearby objects, but produces no lasting heat",
+        "mid": "chars nearby objects, but produces no lasting heat",
+        "high": "scorches nearby objects, but produces no lasting heat"
+    },
+    "image": "images/purposes/heat/maillards-ignition.png",
+    "costs": {
+        "primary": 4,
+        "secondary": 2,
+        "energy": 0,
+        "primaryType": "Heat",
+        "secondaryType": "Design"
+    },
+    "target": "Flammables",
+    "statBlock": {
+        "complexity": 2,
+        "effects": {
+            "low": "",
+            "mid": "+1 Exhaustion",
+            "high": "+2 Exhaustion"
+        },
+        "invertible": false, 
+        "potency": 0,
+        "damageCount": {
+            "low": 1,
+            "mid": 2,
+            "high": 2
+        },
+        "damageDice": {
+            "low": "d4",
+            "mid": "d6",
+            "high": "d8"
+        }
+    }
+}

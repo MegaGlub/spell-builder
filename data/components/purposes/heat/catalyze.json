@@ -42,7 +42,7 @@
         "damageDice": {
             "low": "d6",
             "mid": "d8",
-            "high": "d10",
+            "high": "d12",
             "invLow": "d0",
             "invMid": "d0",
             "invHigh": "d0"

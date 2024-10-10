@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Flash",
+    "flavor": "Cause a watched pot to boil.",
+    "purposeDescriptions": {
+        "low": "causes affected water to gently boil",
+        "mid": "causes affected water to violently boil, splattering everywhere",
+        "high": "instantaneously converts water to steam",
+        "invLow": "turns affected water to cold slush",
+        "invMid": "turns affected water to ice",
+        "invHigh": "implodes affected water into a spray of super-cooled ice spikes"
+    },
+    "image": "images/purposes/heat/flash.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 0,
+        "energy": 2,
+        "primaryType": "Heat",
+        "secondaryType": "Secondary"
+    },
+    "target": "Water",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

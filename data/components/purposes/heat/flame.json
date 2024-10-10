@@ -4,10 +4,10 @@
     "flavor": "Set the Form alight.",
     "purposeDescriptions": {
         "low": "is made of weak, sputtering flames",
-        "mid": "consists intense, crackling flames",
+        "mid": "consists of intense, crackling flames",
         "high": "flashes into ravenous, impossible to extinguish flames",
         "invLow": "is made of delicate ice crystals",
-        "invMid": "formed out of frigid, splintered ice crystals",
+        "invMid": "is formed out of frigid, splintered ice crystals",
         "invHigh": "spreads creeping, inescapable ice shards"
     },
     "image": "images/purposes/heat/flame.png",

@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Melt",
+    "flavor": "Gooey.",
+    "purposeDescriptions": {
+        "low": "slowly melts the affected Earth into a thick, hot tar",
+        "mid": "rapidly melts the affected Earth into a honey-like lava",
+        "high": "instantly melts the affected Earth into a bright, spitting lava"
+    },
+    "image": "images/purposes/heat/melt.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 1,
+        "energy": 1,
+        "primaryType": "Heat",
+        "secondaryType": "Earth"
+    },
+    "target": "Earth",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false, 
+        "potency": -1
+    }
+}

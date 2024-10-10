@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Controlled Burn",
+    "flavor": "Gradually turn up the heat.",
+    "purposeDescriptions": {
+        "low": "very slowly increases the temperature of the affected area until it reaches a caster defined temperature",
+        "mid": "rapidly increases the temperature of the affected area until it reaches a caster defined temperature",
+        "high": "near-instantly spikes the temperature of the affected area to a caster defined temperature",
+        "invLow": "very slowly dencreases the temperature of the affected area until it reaches a caster defined temperature",
+        "invMid": "rapidly dencreases the temperature of the affected area until it drops a caster defined temperature",
+        "invHigh": "near-instantly freeze the affected area down to a caster defined temperature"
+    },
+    "image": "images/purposes/heat/controlled-burn.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 2,
+        "energy": 1,
+        "primaryType": "Heat",
+        "secondaryType": "Design"
+    },
+    "target": "Any",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

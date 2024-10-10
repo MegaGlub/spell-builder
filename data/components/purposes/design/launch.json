@@ -1,7 +1,7 @@
 {
     "type": "Purpose",
     "name": "Launch",
-    "flavor": "An object in the rough shape of the Form at the casting location is forced to travel along the Path.",
+    "flavor": "An object is forced to travel along the Path.",
     "purposeDescriptions": {
         "low": "gently sweeps up a nearby object of the caster's choice and sends it along the Path",
         "mid": "drags along a nearby object of the caster's choice and flings it down the Path",
