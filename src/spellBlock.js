@@ -604,7 +604,7 @@ export class spellBlock {
     #areAllPurposesInvertible() {
         let result = true;
         for (let purpose of this.purposeComponents) {
-            if (purpose.statBlock.invertible == false) {
+            if (!purpose.invertible) {
                 result = false;
             }
         }

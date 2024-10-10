@@ -1,7 +1,8 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
-import { assignDraggableElementByID } from "./buttons.js";
+import { assignDraggableElementByID, assignMouseOverVFX } from "./buttons.js";
 import { getSign } from "./elementHelpers.js";
+import { voidMouseOut, voidMouseOver } from "./voidVFX.js";
 export class spellComponent {
     constructor(name, type, flavor, image, costs, statBlock) {
         this.name = name;
@@ -94,6 +95,7 @@ export class spellComponent {
     }
 
     #discoverStats() {
+        this.invertible = this.statBlock["invertible"];
         this.complexity = this.statBlock["complexity"];
         this.damageDice = this.statBlock["damageDice"];
         this.damageCount = this.statBlock["damageCount"];
@@ -133,6 +135,9 @@ export class spellComponent {
     addEventListeners() {
         assignToolTip(this.toolTipButtonElement, this.descriptionElement);
         assignDraggableElementByID("spellComponent" + this.name);
+        if (this.type == "Void"){
+            assignMouseOverVFX(this.toolTipButtonElement, voidMouseOver, voidMouseOut);
+        }
     }
 
     formattedDataCell(num, descriptor) {

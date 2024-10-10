@@ -1,7 +1,7 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID, assignClickableButtonByElement, assignDroppableAreaByElement, assignEditableTextByElement } from "./buttons.js";
-import { findComponentByName, componentList } from "../main.js";
+import { findComponentByName, componentList, setSelectedWand } from "../main.js";
 import { handleDeleteWandPress } from "./addNewWand.js";
 import { clearChildren } from "./elementHelpers.js";
 import { formatFileName, saveJSONFile } from "./json.js";
@@ -101,6 +101,7 @@ export class wand {
         this.beautifySelectedTitle(descriptionClone);
         this.replaceComponentsInClonedDescription(descriptionClone);
         this.#compileSpell();
+        setSelectedWand(this);
     }
 
     duplicateSelectedDescription() {
@@ -139,7 +140,7 @@ export class wand {
         } //reclone the components so that they get new toolTip listeners
         for (let componentIndex in this.slotsByObject) {
             const componentClone = this.slotsByObject[componentIndex].clone();
-            componentClone.toolTipButtonElement.classList.add("wandActiveComponent");
+            componentClone.componentElement.classList.add("wandActiveComponent");
             componentClone.drawElement(clonedComponentDisplayElement);
             assignDroppableAreaByElement(componentClone.toolTipButtonElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
         }

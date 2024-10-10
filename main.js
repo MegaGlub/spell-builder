@@ -10,7 +10,6 @@ import { clearChildren, emptyArray } from "./src/elementHelpers.js";
 //lock button for wands
 //"empowered" status effect switch for +potency (force highest strength?)
     //"weakened" status effect too
-//make voidable components glow purple when hovering/holding the void spell (css dropshadow)
 
 //work on the martial arts
     //construct basic display screen
@@ -33,6 +32,7 @@ export const savedComponentNames = []; //names from availableComponents.json, us
 export const wandList = []; //all wands, built from json. No such availability filtering.
 export const encryption_key = "ballfish_wuz_here"; //doesn't need to be secure.
 export const valid_crypto_sign = "valid_crypto"; //used to confirm that it worked.
+export let selectedWand; //mostly just used for vfx purposes, should use this to clean up the wand selection code later probably
 
 logText("Assigning buttons...");
 assignStaticButtons();
@@ -139,4 +139,8 @@ export function findComponentByName(name){
         i++;
     }
     return -1; //return -1 if not in the list
+}
+
+export function setSelectedWand(wand){
+    selectedWand = wand;
 }

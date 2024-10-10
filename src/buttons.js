@@ -54,12 +54,14 @@ export function assignEditableTextByElement(element, funct){
     element.addEventListener("keyup", funct);
 }
 
-// export function assignFormSubmitButtonByElement(element, funct){
-//     element.addEventListener("submit", (event) => {
-//         event.preventDefault();
-//         funct(event);
-//     });
-// }
+export function assignMouseOverVFX(element, overFunct, outFunct){
+    element.addEventListener("mouseover", (event) => {
+        overFunct(event);
+    });
+    element.addEventListener("mouseout", (event) => {
+        outFunct(event);
+    });
+}
 
 export function assignStaticButtons() {
     assignClickableButtonByID("mainMenuSpellsButton", mainMenuSpellsButtonPress);

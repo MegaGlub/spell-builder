@@ -374,6 +374,10 @@ img {
     width: 128px;
 }
 
+.spellComponentVoidable {
+    filter: drop-shadow(8px 8px 4px #8A2BE2);
+}
+
 .spellTitle {
     color: #FFFFF0;
     font-size: 1.5em;
