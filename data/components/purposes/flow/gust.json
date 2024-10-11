@@ -1,0 +1,51 @@
+{
+    "type": "Purpose",
+    "name": "Gust",
+    "flavor": "Directly control a fluid.",
+    "purposeDescriptions": {
+        "low": "pulls a thin stream of fluid along the Path",
+        "mid": "sends a stream of fluid down the Path",
+        "high": "launches a column of fluid down the Path",
+        "invLow": "pulls a thin stream of a distant fluid towards the caster along the Path",
+        "invMid": "drags a stream of a distant fluid towards the caster along the Path",
+        "invHigh": "blasts the caster with some distant fluid, sending it up the Path"
+    },
+    "image": "images/purposes/flow/gust.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 0,
+        "energy": 0,
+        "primaryType": "Flow",
+        "secondaryType": "Secondary"
+    },
+    "target": "Fluids",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "+2 to All Strength Checks",
+            "mid": "+2 to All Stat Checks, Empowered",
+            "high": "+4 to All Stat Checks, Empowered",
+            "invLow": "-1 to All Stat Checks",
+            "invMid": "Distracted, Vulnerable, Weakened",
+            "invHigh": "Distracted"
+        },
+        "invertible": true, 
+        "potency": 0,
+        "damageCount": {
+            "low": 0,
+            "mid": 0,
+            "high": 2,
+            "invLow": 0,
+            "invMid": 0,
+            "invHigh": 1
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d0",
+            "high": "d6",
+            "invLow": "d0",
+            "invMid": "d0",
+            "invHigh": "d12"
+        }
+    }
+}

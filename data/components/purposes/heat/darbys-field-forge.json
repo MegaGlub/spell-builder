@@ -1,0 +1,51 @@
+{
+    "type": "Purpose",
+    "name": "Darby's Field Forge",
+    "flavor": "Focus heat into a small area.",
+    "purposeDescriptions": {
+        "low": "very gradually pulls heat from nearby environment into the affected area",
+        "mid": "rapidly pulls heat from the nearby environment into the affected area",
+        "high": "instantly cooks the affected area and flash-freezes the nearby environment",
+        "invLow": "gradually freezes the affected area, warming the nearby environment",
+        "invMid": "rapidly cools the affected area, pushing the heat out into the nearby environment",
+        "invHigh": "flash-freezes the affected area, singing the nearby environment with the displaced heat"
+    },
+    "image": "images/purposes/heat/darbys-field-forge.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 3,
+        "energy": 0,
+        "primaryType": "Heat",
+        "secondaryType": "Design"
+    },
+    "target": "Any",
+    "statBlock": {
+        "complexity": 2,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "Burning",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": "Bleeding"
+        },
+        "invertible": true, 
+        "potency": 0,
+        "damageCount": {
+            "low": 0,
+            "mid": 1,
+            "high": 1,
+            "invLow": 0,
+            "invMid": 1,
+            "invHigh": 2
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d3",
+            "high": "d12",
+            "invLow": "d0",
+            "invMid": "d2",
+            "invHigh": "d8"
+        }
+    }
+}

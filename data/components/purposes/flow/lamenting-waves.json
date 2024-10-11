@@ -1,0 +1,51 @@
+{
+    "type": "Purpose",
+    "name": "Lamenting Waves",
+    "flavor": "Raise the tide.",
+    "purposeDescriptions": {
+        "low": "increases the flow rate of affected moving fluid",
+        "mid": "excites affected moving fluid",
+        "high": "chaotically blends and excites affected fluid",
+        "invLow": "decreases the flow rate of affected moving fluid",
+        "invMid": "calms affected moving fluid",
+        "invHigh": "completely stills a fluid body"
+    },
+    "image": "images/purposes/flow/lamenting-waves.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 1,
+        "energy": 0,
+        "primaryType": "Flow",
+        "secondaryType": "Nature"
+    },
+    "target": "Fluids",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "Unbalanced",
+            "mid": "Unbalanced",
+            "high": "Unbalanced, Pinned",
+            "invLow": "Unbalanced",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0,
+        "damageCount": {
+            "low": 0,
+            "mid": 0,
+            "high": 2,
+            "invLow": 0,
+            "invMid": 0,
+            "invHigh": 0
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d0",
+            "high": "d6",
+            "invLow": "d0",
+            "invMid": "d0",
+            "invHigh": "d0"
+        }
+    }
+}

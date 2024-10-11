@@ -1,0 +1,51 @@
+{
+    "type": "Purpose",
+    "name": "Envigorate",
+    "flavor": "Breathe easy.",
+    "purposeDescriptions": {
+        "low": "slightly improves metabolic efficiency for a day, reducing hunger and improving stamina",
+        "mid": "improves oxygen uptake and metabolic efficiency, giving a burst of energy and an improvement to holding breath",
+        "high": "greatly improves oxygen uptake, allowing for underwater breathing and greatly improved above-water athletics",
+        "invLow": "reduces metabolic efficiency for a day, increasing hunger and reducing stamina",
+        "invMid": "interferes with target's lungs, causing them to gasp and wheeze uncontrollably",
+        "invHigh": "suffocates targets, with focus"
+    },
+    "image": "images/purposes/flow/envigorate.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 2,
+        "energy": 1,
+        "primaryType": "Flow",
+        "secondaryType": "Flesh"
+    },
+    "target": "Living Beings",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "+2 to All Strength Checks",
+            "mid": "+2 to All Stat Checks, Empowered",
+            "high": "+4 to All Stat Checks, Empowered",
+            "invLow": "-1 to All Stat Checks",
+            "invMid": "Distracted, Vulnerable, Weakened",
+            "invHigh": "Distracted"
+        },
+        "invertible": true, 
+        "potency": 0,
+        "damageCount": {
+            "low": 0,
+            "mid": 0,
+            "high": 0,
+            "invLow": 0,
+            "invMid": 0,
+            "invHigh": 1
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d0",
+            "high": "d0",
+            "invLow": "d0",
+            "invMid": "d0",
+            "invHigh": "d50"
+        }
+    }
+}

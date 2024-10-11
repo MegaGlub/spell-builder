@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Emulsify",
+    "flavor": "Mix fluids.",
+    "purposeDescriptions": {
+        "low": "forces together multiple fluids to create a strange and unstable heterogenous mixture",
+        "mid": "homeogenously mixes multiple fluids",
+        "high": "permenantly and inseparably mixes multiple fluids",
+        "invLow": "temporarily and poorly separates a fluid mixture",
+        "invMid": "separates a fluid mixture by weight",
+        "invHigh": "permanently separates a fluid mixture by a caster defined parameter"
+    },
+    "image": "images/purposes/flow/emulsify.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 0,
+        "energy": 0,
+        "primaryType": "Flow",
+        "secondaryType": "Secondary"
+    },
+    "target": "Fluids",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}

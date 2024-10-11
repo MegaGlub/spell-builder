@@ -1,0 +1,51 @@
+{
+    "type": "Purpose",
+    "name": "Pressurize",
+    "flavor": "Turn up the pressure.",
+    "purposeDescriptions": {
+        "low": "gradually increases the fluid pressure within the affected area",
+        "mid": "rapidly increases the fluid pressure within the affected area, popping eardrums and lowering pressure nearby",
+        "high": "spikes fluid pressure within the affected area, pulling more fluid from nearby",
+        "invLow": "gradually decreases the fluid pressure within the affected area",
+        "invMid": "rapidly depressurizes the affected area, popping eardrums and raising pressure nearby",
+        "invHigh": "instantly creates a vacuum in the affected area, blasting the removed fluid outwards"
+    },
+    "image": "images/purposes/flow/pressurize.png",
+    "costs": {
+        "primary": 3,
+        "secondary": 0,
+        "energy": 1,
+        "primaryType": "Flow",
+        "secondaryType": "Secondary"
+    },
+    "target": "Fluids",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "Unbalanced",
+            "high": "",
+            "invLow": "",
+            "invMid": "Unbalanced",
+            "invHigh": ""
+        },
+        "invertible": true, 
+        "potency": 0,
+        "damageCount": {
+            "low": 0,
+            "mid": 2,
+            "high": 2,
+            "invLow": 0,
+            "invMid": 1,
+            "invHigh": 2
+        },
+        "damageDice": {
+            "low": "d0",
+            "mid": "d2",
+            "high": "d12",
+            "invLow": "d0",
+            "invMid": "d8",
+            "invHigh": "d20"
+        }
+    }
+}

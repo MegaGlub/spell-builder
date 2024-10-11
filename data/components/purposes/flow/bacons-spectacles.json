@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Bacon's Spectacles",
+    "flavor": "Create a fluid-based lens.",
+    "purposeDescriptions": {
+        "low": "causes affected still fluid to act as a light-splitting lens",
+        "mid": "causes affected still fluid to act as a blurry lens",
+        "high": "causes affected still fluid to act as a precise, clear lens"
+    },
+    "image": "images/purposes/flow/bacons-spectacles.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 0,
+        "primaryType": "Flow",
+        "secondaryType": "Design"
+    },
+    "target": "Fluids",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false, 
+        "potency": 2
+    }
+}

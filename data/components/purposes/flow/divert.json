@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Divert",
+    "flavor": "Redirect a flowing liquid.",
+    "purposeDescriptions": {
+        "low": "partially redirects a flowing liquid to a new, plausible path of the caster's choice for a short time",
+        "mid": "redirects a stream of liquid to a new, plausible path of the caster's choice for a short time",
+        "high": "redirects a stream of liquid to any new path of the caster's choice, for a short time"
+    },
+    "image": "images/purposes/flow/divert.png",
+    "costs": {
+        "primary": 2,
+        "secondary": 2,
+        "energy": 0,
+        "primaryType": "Flow",
+        "secondaryType": "Design"
+    },
+    "target": "Fluids",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "",
+            "mid": "Unbalanced",
+            "high": "Unbalanced"
+        },
+        "invertible": false, 
+        "potency": 1
+    }
+}

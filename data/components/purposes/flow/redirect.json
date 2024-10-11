@@ -1,0 +1,29 @@
+{
+    "type": "Purpose",
+    "name": "Redirect",
+    "flavor": "Steal a spell.",
+    "purposeDescriptions": {
+        "low": "changes the direction of hit spells",
+        "mid": "changes the direction of hit spells, and changes their ownership to the caster of this spell",
+        "high": "changes the direction of hit spells, spiking their potency and changing their ownership to the caster of this spell"
+    },
+    "image": "images/purposes/flow/redirect.png",
+    "costs": {
+        "primary": 1,
+        "secondary": 1,
+        "energy": 1,
+        "primaryType": "Flow",
+        "secondaryType": "Secondary"
+    },
+    "target": "Spells",
+    "statBlock": {
+        "complexity": 1,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": ""
+        },
+        "invertible": false, 
+        "potency": -1
+    }
+}

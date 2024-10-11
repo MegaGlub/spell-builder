@@ -1,0 +1,35 @@
+{
+    "type": "Purpose",
+    "name": "Light",
+    "flavor": "Burn away the shadows.",
+    "purposeDescriptions": {
+        "low": "emits a soft light",
+        "mid": "emits a bright light",
+        "high": "emits a blinding light",
+        "invLow": "reflects no light",
+        "invMid": "dims nearby lights",
+        "invHigh": "removes all light within line-of-sight"
+    },
+    "image": "images/purposes/flow/light.png",
+    "costs": {
+        "primary": 0,
+        "secondary": 0,
+        "energy": 0,
+        "primaryType": "Flow",
+        "secondaryType": "Secondary"
+    },
+    "target": "Any",
+    "statBlock": {
+        "complexity": 0,
+        "effects": {
+            "low": "",
+            "mid": "",
+            "high": "Unbalanced, Dazed",
+            "invLow": "",
+            "invMid": "",
+            "invHigh": "Vulnerable"
+        },
+        "invertible": true, 
+        "potency": 0
+    }
+}
