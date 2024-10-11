@@ -4,7 +4,8 @@ import { logText } from "./logging.js";
 import { completeComponentList, componentList, encryption_key, reloadComponents, savedComponentNames, valid_crypto_sign } from "../main.js";
 import { saveCookies } from "./cookies.js";
 
-const SimpleCrypto = window.ballfish.require("simple-crypto-js").default;
+// const SimpleCrypto = window.ballfish.require('simple-crypto-js');
+// SimpleCrypto.default;
 
 const modalContent = document.getElementById("modalContent");
 const modalBackground = document.getElementById("modalBackground");
@@ -149,8 +150,7 @@ class ImportCreator {
 
     #decryptHash() {
         const encryptedMsg = this.importField.value;
-        const sCrypto = new SimpleCrypto(encryption_key);
-        const msg = sCrypto.decrypt(encryptedMsg);
+        const msg = window.ballfish.encrypt(encryption_key, encryptedMsg);
         return msg.split('|');
     }
 }

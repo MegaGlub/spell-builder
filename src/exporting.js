@@ -3,7 +3,8 @@ import { clearChildren } from "./elementHelpers.js";
 import { logText } from "./logging.js";
 import { encryption_key, savedComponentNames, valid_crypto_sign } from "../main.js";
 
-const SimpleCrypto = window.ballfish.require("simple-crypto-js").default;
+// const SimpleCrypto = window.ballfish.require('simple-crypto-js');
+// SimpleCrypto.default;
 
 const modalContent = document.getElementById("modalContent");
 const modalBackground = document.getElementById("modalBackground");
@@ -127,8 +128,7 @@ class ExportCreator {
     }
 
     #encryptHash(msg){
-        const sCrypto = new SimpleCrypto(encryption_key);
-        const encryptedMsg = sCrypto.encrypt(msg);
+        const encryptedMsg = window.ballfish.encrypt(encryption_key, msg);
         return encryptedMsg;
     }
 }
