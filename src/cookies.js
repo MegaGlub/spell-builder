@@ -1,10 +1,10 @@
-import { savedComponentNames, wandList } from "../main.js";
+import { projectPath, savedComponentNames, wandList } from "../main.js";
 import { createArrayFromJSON, destroyFile, fetchRawJSON, formatFileName, saveJSONFile } from "./json.js";
 import { logText } from "./logging.js";
 
 export async function fetchCookies(){
     logText("\tTechnically, these aren't cookies.\n\tDon't tell anyone that.");
-    const cookieComponents = await fetchRawJSON("data/save/availableComponents.json", createArrayFromJSON);
+    const cookieComponents = await fetchRawJSON(projectPath + "data/save/availableComponents.json", createArrayFromJSON);
     for (let componentName of cookieComponents){
         savedComponentNames.push(componentName);
     }
@@ -13,7 +13,7 @@ export async function fetchCookies(){
 export async function saveCookies(){
     logText("Saving...");
     const components = packageComponentsForSave();
-    saveJSONFile("data/save/availableComponents.json", components, () => {logText("\tComponents saved!")});
+    saveJSONFile(projectPath + "data/save/availableComponents.json", components, () => {logText("\tComponents saved!")});
     for (let wand of wandList){
         wand.saveToFile();
     }
@@ -21,7 +21,7 @@ export async function saveCookies(){
 
 export async function deleteWandCookie(wandName){
     const fileName = formatFileName(wandName);
-    destroyFile("data/wands/" + fileName + ".json", () => {});
+    destroyFile(projectPath + "data/wands/" + fileName + ".json", () => {});
 }
 
 function packageComponentsForSave(){

@@ -1,7 +1,7 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID, assignClickableButtonByElement, assignDroppableAreaByElement, assignEditableTextByElement } from "./buttons.js";
-import { findComponentByName, componentList, setSelectedWand } from "../main.js";
+import { findComponentByName, componentList, setSelectedWand, projectPath } from "../main.js";
 import { handleDeleteWandPress } from "./addNewWand.js";
 import { clearChildren } from "./elementHelpers.js";
 import { formatFileName, saveJSONFile } from "./json.js";
@@ -283,7 +283,7 @@ export class wand {
         );
 
         const fileName = formatFileName(this.name);
-        saveJSONFile("data/wands/" + fileName + ".json", wandJSON, () => {logText("\tWand " + fileName + " saved!")});
+        saveJSONFile(projectPath + "data/wands/" + fileName + ".json", wandJSON, () => {logText("\tWand " + fileName + " saved!")});
     }
 
     #packageComponentsForSave(){
