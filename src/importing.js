@@ -150,7 +150,7 @@ class ImportCreator {
 
     #decryptHash() {
         const encryptedMsg = this.importField.value;
-        const msg = window.ballfish.encrypt(encryption_key, encryptedMsg);
+        const msg = window.ballfish.decrypt(encryption_key, encryptedMsg);
         return msg.split('|');
     }
 }
