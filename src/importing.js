@@ -30,6 +30,7 @@ class ImportCreator {
         this.#assignInputTypes();
         this.#relateFormElements();
         this.#fillFormInnerHTML();
+        this.#fillDeafultValues();
         this.#addEventListeners();
     }
 
@@ -80,6 +81,10 @@ class ImportCreator {
         this.titleElement.innerHTML = "Import New Components";
         this.importName.innerHTML = "Code";
         this.submitButton.innerHTML = "Import";
+    }
+
+    #fillDeafultValues() {
+        this.importField.value = " Paste an import code here.";
     }
 
     #addEventListeners() {
