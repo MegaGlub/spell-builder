@@ -50,7 +50,7 @@ quickSort(componentList);
 logText("Drawing spell components...");
 drawAll(componentList, document.getElementById("spellBox"));
 
-logText("Tring to build wands...");
+logText("Trying to build wands...");
 await buildWands();
 
 logText("Drawing wands...");

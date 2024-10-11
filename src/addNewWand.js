@@ -42,6 +42,7 @@ function deleteWand(name) {
             for (let j = i; j < wandList.length - 1; j++) {
                 wandList[j] = wandList[j + 1];
             }
+            wandList.pop();
             const wandSelector = document.getElementById("wandSelector");
             const removedWand = document.getElementById("wand" + name);
             wandSelector.removeChild(removedWand);
