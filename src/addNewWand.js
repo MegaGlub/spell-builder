@@ -47,12 +47,12 @@ function deleteWand(name) {
             const removedWand = document.getElementById("wand" + name);
             wandSelector.removeChild(removedWand);
             const wandWorkbench = document.getElementById("wandWorkbench");
-            while (wandWorkbench.firstChild){
+            while (wandWorkbench.firstChild) {
                 wandWorkbench.removeChild(wandWorkbench.firstChild);
             }
 
             const fileName = formatFileName(name);
-            destroyFile("data/wands/" + fileName + ".json", () => {logText("Wand file " + fileName + " deleted.")});
+            destroyFile("data/wands/" + fileName + ".json", () => { logText("Wand file " + fileName + " deleted.") });
             return true;
         }
     }
@@ -227,7 +227,7 @@ class wandFormCreator {
             var path = file.path;
             const splitPath = path.split("\\");
             path = "";
-            for (let i = 0; i < splitPath.length - 1; i++){
+            for (let i = 0; i < splitPath.length - 1; i++) {
                 path += splitPath[i] + "/";
             }
             path += splitPath[splitPath.length - 1];
@@ -238,25 +238,25 @@ class wandFormCreator {
         });
     }
 
-    #isWandNameUnique(){
-        for (let wand of wandList){
-            if (formatFileName(wand.name) == formatFileName(this.nameField.value)){
+    #isWandNameUnique() {
+        for (let wand of wandList) {
+            if (formatFileName(wand.name) == formatFileName(this.nameField.value)) {
                 return false;
             }
         }
         return true;
     }
 
-    #addError(fatal, text){
+    #addError(fatal, text) {
         const error = document.createElement("div");
         const icon = document.createElement("img");
         const errorMsg = document.createElement("div");
         error.className = "modalFormError";
         icon.className = "errorIcon";
         errorMsg.className = "modalFormErrorMessage";
-        if (fatal){
+        if (fatal) {
             icon.src = "images/ui/red-error.png";
-        } else{
+        } else {
             icon.src = "images/ui/yellow-error.png";
         }
         errorMsg.innerHTML = text;
@@ -269,36 +269,38 @@ class wandFormCreator {
         clearChildren(this.errorBox);
         let fatalErrors = false;
         let minorErrors = false;
-        if (!this.nameField.value){
+        if (!this.nameField.value) {
             fatalErrors = true;
             this.#addError(true, "You must have a wand name!");
         }
-        if (!this.#isWandNameUnique()){
+        if (!this.#isWandNameUnique()) {
             fatalErrors = true;
             this.#addError(true, "Wand name must be unique!");
         }
-        if (!this.flavorField.value){
+        if (!this.flavorField.value) {
             minorErrors = true;
             this.#addError(false, "Wand does not have flavor text, which may cause it to display strangely. Click again to create anyways.");
         }
-        if (this.slotsField.value > 15){
+        if (this.slotsField.value > 15) {
             minorErrors = true;
             this.#addError(false, "Wand has too many slots and may not display properly. Click again to create anyways.");
         }
-        if (this.slotsField.value < 3){
+        if (this.slotsField.value < 3) {
             fatalErrors = true;
             this.#addError(true, "You do not have enough available slots to even build a spell (minimum 3)!")
         }
-        if (!this.imageField.value){
+        if (!this.imageField.value) {
             fatalErrors = true;
             this.#addError(true, "You must select an icon for the wand!");
         }
-        if (!fatalErrors && ((!minorErrors) || (minorErrors && this.acceptedMinorErrors))){
+        if (!fatalErrors && ((!minorErrors) || (minorErrors && this.acceptedMinorErrors))) {
+            this.acceptedMinorErrors = false;
             this.#actuallySubmitTheDamnThing();
-        } else if (minorErrors){
+        } else if (minorErrors) {
             this.acceptedMinorErrors = true;
         }
     }
+
     #actuallySubmitTheDamnThing() {
         const slots = [];
         for (let i = 0; i < this.slotsField.value; i++) {
@@ -341,11 +343,11 @@ class wandDestroyer {
         this.#addEventListeners();
     }
 
-    drawElement(parentElement){
+    drawElement(parentElement) {
         parentElement.appendChild(this.container);
     }
 
-    #addEventListeners(){
+    #addEventListeners() {
         assignClickableButtonByElement(this.deleteButton, () => {
             deleteWand(this.wandName);
             logText("Deleting wand " + this.wandName + ".");
