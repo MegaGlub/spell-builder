@@ -240,7 +240,7 @@ class wandFormCreator {
 
     #isWandNameUnique(){
         for (let wand of wandList){
-            if (wand.name == this.nameField.value){
+            if (formatFileName(wand.name) == formatFileName(this.nameField.value)){
                 return false;
             }
         }
