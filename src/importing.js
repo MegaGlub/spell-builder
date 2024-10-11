@@ -4,7 +4,7 @@ import { logText } from "./logging.js";
 import { completeComponentList, componentList, encryption_key, reloadComponents, savedComponentNames, valid_crypto_sign } from "../main.js";
 import { saveCookies } from "./cookies.js";
 
-const SimpleCrypto = require("simple-crypto-js").default;
+const SimpleCrypto = window.ballfish.require("simple-crypto-js").default;
 
 const modalContent = document.getElementById("modalContent");
 const modalBackground = document.getElementById("modalBackground");

@@ -1,4 +1,4 @@
-var fs = module.require('fs');
+var fs = window.ballfish.require('fs');
 import { spellComponent } from "./spellComponent.js";
 import { formComponent } from "./formComponent.js";
 import { pathComponent } from "./pathComponent.js";

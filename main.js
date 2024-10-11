@@ -4,6 +4,7 @@ import { quickSort } from "./src/sorting.js";
 import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
 import { clearChildren, emptyArray } from "./src/elementHelpers.js";
+import { getRootDir } from "./src/fileMods.js";
 
 //you could totally invert extrude if you weren't a pussy
 
@@ -33,6 +34,7 @@ export const wandList = []; //all wands, built from json. No such availability f
 export const encryption_key = "ballfish_wuz_here"; //doesn't need to be secure.
 export const valid_crypto_sign = "valid_crypto"; //used to confirm that it worked.
 export let selectedWand; //mostly just used for vfx purposes, should use this to clean up the wand selection code later probably
+export const projectPath = getRootDir();
 
 logText("Assigning buttons...");
 assignStaticButtons();
@@ -64,7 +66,7 @@ logText("Complete!");
 finishLoading();
 
 async function buildComponentsFromFiles() {
-    const root = "data/components/";
+    const root = projectPath + "data/components/";
     const leaves = [
         "branches", 
         "enhancements", 
@@ -109,7 +111,7 @@ function separateChaffComponents(){
 }
 
 async function buildWands(){
-    const dir = "data/wands";
+    const dir = projectPath + "data/wands";
     logText("\tExploring: " + dir);
     const freshWands = await readJSONDirectory(dir, createWandFromJSON);
     for (const wand of freshWands) {

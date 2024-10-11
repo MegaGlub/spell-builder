@@ -1,10 +1,12 @@
 const { app, BrowserWindow } = require('electron')
+const path = require('node:path');
 
 const createWindow = () => {
   const win = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js')
     },
     width: 1920,
     height: 1080, //these guys have real computers
