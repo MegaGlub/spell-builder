@@ -95,10 +95,10 @@ export class wand {
     selectWand() {
         // logText("Selected wand " + this.name + ".");
         const descriptionClone = this.duplicateSelectedDescription();
-        this.createDeleteButton(descriptionClone);
-        this.createStatWidgets(descriptionClone);
-        this.beautifySelectedTitle(descriptionClone);
-        this.replaceComponentsInClonedDescription(descriptionClone);
+        this.#createDeleteButton(descriptionClone);
+        this.#createStatWidgets(descriptionClone);
+        this.#beautifySelectedTitle(descriptionClone);
+        this.#replaceComponentsInClonedDescription(descriptionClone);
         this.#compileSpell();
         setSelectedWand(this);
     }
@@ -114,7 +114,7 @@ export class wand {
         return descriptionClone;
     }
 
-    createDeleteButton(descriptionClone) {
+    #createDeleteButton(descriptionClone) {
         descriptionClone.appendChild(this.deleteButtonElement);
 
         const deleteWandDescription = document.createElement("span");
@@ -126,25 +126,26 @@ export class wand {
         });
     }
 
-    createStatWidgets(descriptionClone) {
+    #createStatWidgets(descriptionClone) {
         const widgetBox = document.createElement("div");
         widgetBox.className = "wandWidgetBox";
         descriptionClone.appendChild(widgetBox);
 
-        this.createEmpowermentSwitch(widgetBox);
+        this.#createEmpowermentSwitch(widgetBox);
+        this.#createStatFields(widgetBox);
     }
 
-    createEmpowermentSwitch(widgetBox){
+    #createEmpowermentSwitch(widgetBox){
         const powerSelectionSwitch = document.createElement("form");
         widgetBox.appendChild(powerSelectionSwitch);
 
         this.statBlock.set("empowermentPotencyModifier", 0);
-        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/green-up-arrow.png", 5, false, "Empowered Token");
-        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/empty-circle.png", 0, true, "No Tokens");
-        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/red-down-arrow.png", -5, false, "Weakened Token");
+        this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/green-up-arrow.png", 5, false, "Empowered Token");
+        this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/empty-circle.png", 0, true, "No Tokens");
+        this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/red-down-arrow.png", -5, false, "Weakened Token");
     }
 
-    createEmpowermentOption(powerSelectionSwitch, image, value, defaultSelected, toolTipDescription){
+    #createEmpowermentOption(powerSelectionSwitch, image, value, defaultSelected, toolTipDescription){
         const optionContainer = document.createElement("label");
         const clickableBits = document.createElement("input");
         const imageElement = document.createElement("img");
@@ -174,7 +175,11 @@ export class wand {
         this.#compileSpell();
     }
 
-    beautifySelectedTitle(descriptionClone) {
+    #createStatFields(widgetBox){
+        /* TODO */
+    }
+
+    #beautifySelectedTitle(descriptionClone) {
         const activeTitle = descriptionClone.querySelector(".spellTitle");
         activeTitle.classList.replace("spellTitle", "wandActiveTitle");
         assignEditableTextByElement(activeTitle, this.handleNameEdit.bind(this));
@@ -183,7 +188,7 @@ export class wand {
         assignEditableTextByElement(activeFlavor, this.handleFlavorEdit.bind(this));
     }
 
-    replaceComponentsInClonedDescription(descriptionClone) {
+    #replaceComponentsInClonedDescription(descriptionClone) {
         const clonedComponentDisplayElement = descriptionClone.querySelector(".wandComponentDisplay");
         clonedComponentDisplayElement.classList.add("wandActiveComponentDisplay");
         clonedComponentDisplayElement.id = "wandActiveComponentDisplay";
