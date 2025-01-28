@@ -102,14 +102,6 @@ img {
     z-index: 0;
 }
 
-.toolTipButton {
-    /*background-color: #2F4F4F;*/
-    cursor: pointer;
-    display: inline-block;
-    height: fit-content;
-    width: fit-content;
-}
-
 .toolTip {
     background-color: #000000;
     border-radius: 0em 0.5em 0.5em 0.5em;
