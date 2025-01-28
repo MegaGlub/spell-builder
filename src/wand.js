@@ -139,9 +139,9 @@ export class wand {
         widgetBox.appendChild(powerSelectionSwitch);
 
         this.statBlock.set("empowermentPotencyModifier", 0);
-        this.createEmpowermentOption(powerSelectionSwitch, /* PUT IMAGE HERE */ "images/ui/trash.png", 5, false);
-        this.createEmpowermentOption(powerSelectionSwitch, /* PUT IMAGE HERE */ "images/ui/trash.png", 0, true);
-        this.createEmpowermentOption(powerSelectionSwitch, /* PUT IMAGE HERE */ "images/ui/trash.png", -5, false);
+        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/green-up-arrow.png", 5, false);
+        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/empty-circle.png", 0, true);
+        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/red-down-arrow.png", -5, false);
     }
 
     createEmpowermentOption(powerSelectionSwitch, image, value, defaultSelected){
