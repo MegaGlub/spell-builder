@@ -13,22 +13,14 @@ const modalBackground = document.getElementById("modalBackground");
 let wandFormHelper;
 
 export function createWandAddButton() {
-    console.log("balls")
-    const toolTipButton = document.createElement("div");
-    const toolTipContents = document.createElement("span");
-    const wandAddButton = document.createElement("img");
-    const wandSelector = document.getElementById("wandSelector");
-    toolTipButton.appendChild(wandAddButton);
-    wandSelector.appendChild(toolTipButton);
-    toolTipButton.width = "100%"; //needed for add button spacing
-    toolTipButton.className = "toolTipButton";
-    toolTipButton.style.margin = "0";
-    toolTipButton.id = "wandAddButton"; //it's a little wierd to give this the ID, but whatever
-    toolTipContents.innerHTML = "Create new wand";
+    const wandAddButton = document.getElementById("wandAddButton")
     wandAddButton.src = "images/ui/add.png";
-    wandAddButton.className = "wandAddButton";
-    assignToolTip(toolTipButton, toolTipContents);
     assignClickableButtonByElement(wandAddButton, handleOpenAddPress);
+    
+    const toolTipContents = document.createElement("span");
+    toolTipContents.innerHTML = "Create new wand";
+    assignToolTip(wandAddButton, toolTipContents);
+
     wandFormHelper = new wandFormCreator();
 }
 
