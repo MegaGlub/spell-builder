@@ -107,7 +107,6 @@ img {
     cursor: pointer;
     display: inline-block;
     height: fit-content;
-    margin: 16px;
     width: fit-content;
 }
 
@@ -369,9 +368,9 @@ img {
 
 .spellComponent {
     border-radius: 1.5em;
-    display: block;
+    display: inline-block;
     height: 128px;
-    margin: 0;
+    margin: 16px;
     width: 128px;
 }
 
