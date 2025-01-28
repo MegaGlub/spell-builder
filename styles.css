@@ -110,7 +110,7 @@ img {
     font-size: 1em;
     height: fit-content;
     left: 0;
-    max-width: 512px;
+    max-width: 1000px;
     padding: 4px;
     position: absolute;
     top: 0;
@@ -516,6 +516,8 @@ img {
     height: min-content;
     justify-content: space-evenly;
     margin: 0.75em;
+    margin-left: 1.25em;
+    margin-right: 1.25em;
     padding: 0.5em;
 }
 
