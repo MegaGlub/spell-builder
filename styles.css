@@ -119,10 +119,11 @@ img {
     font-size: 1em;
     height: fit-content;
     left: 0;
+    max-width: 512px;
     padding: 4px;
     position: absolute;
     top: 0;
-    width: 512px;
+    width: fit-content;
     z-index: 51;
 }
 
