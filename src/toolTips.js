@@ -26,10 +26,10 @@ function updateToolTipPosition(mouseEvent) {
         toolTip.style.left = (clientX) + 18 + "px";
     }
 
-    if (clientY + toolTipHeight + 12 > windowHeight) {
+    if (clientY + toolTipHeight + 18 > windowHeight) {
         toolTip.style.top = (windowHeight - (toolTipHeight)) + "px";
     } else {
-        toolTip.style.top = (clientY) + 12 + "px";
+        toolTip.style.top = (clientY) + 18 + "px";
     }
 }
 

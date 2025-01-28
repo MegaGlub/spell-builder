@@ -114,6 +114,11 @@ export class wand {
 
     createDeleteButton(descriptionClone) {
         descriptionClone.appendChild(this.deleteButtonElement);
+
+        const deleteWandDescription = document.createElement("span");
+        deleteWandDescription.innerHTML = "Delete wand";
+
+        assignToolTip(this.deleteButtonElement, deleteWandDescription);
         assignClickableButtonByElement(this.deleteButtonElement, () => {
             handleDeleteWandPress(this.name)
         });
