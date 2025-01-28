@@ -29,9 +29,7 @@ export function handleDeleteWandPress(wandName) {
     logText("\tPreparing to delete wand: " + wandName + "...");
     const wandDeleter = new wandDestroyer(wandName);
     modalBackground.style.display = "block";
-    while (modalContent.firstChild) {
-        modalContent.removeChild(modalContent.firstChild);
-    }
+    clearChildren(modalContent);
     wandDeleter.drawElement(modalContent);
 
 }
