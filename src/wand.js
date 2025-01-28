@@ -139,15 +139,16 @@ export class wand {
         widgetBox.appendChild(powerSelectionSwitch);
 
         this.statBlock.set("empowermentPotencyModifier", 0);
-        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/green-up-arrow.png", 5, false);
-        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/empty-circle.png", 0, true);
-        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/red-down-arrow.png", -5, false);
+        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/green-up-arrow.png", 5, false, "Empowered Token");
+        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/empty-circle.png", 0, true, "No Tokens");
+        this.createEmpowermentOption(powerSelectionSwitch, "images/ui/red-down-arrow.png", -5, false, "Weakened Token");
     }
 
-    createEmpowermentOption(powerSelectionSwitch, image, value, defaultSelected){
+    createEmpowermentOption(powerSelectionSwitch, image, value, defaultSelected, toolTipDescription){
         const optionContainer = document.createElement("label");
         const clickableBits = document.createElement("input");
         const imageElement = document.createElement("img");
+        const description = document.createElement("span");
 
         optionContainer.className = "radioWidget";
         clickableBits.className = "radioWidgetInput";
@@ -157,12 +158,14 @@ export class wand {
         clickableBits.value = value;
         clickableBits.checked = defaultSelected;
         imageElement.src = image;
+        description.innerHTML = toolTipDescription;
 
         powerSelectionSwitch.appendChild(optionContainer);
         optionContainer.appendChild(clickableBits);
         optionContainer.appendChild(imageElement);
 
         assignClickableButtonByElement(clickableBits, this.#handleEmpowermentOptionPress.bind(this));
+        assignToolTip(optionContainer, description);
     }
 
     #handleEmpowermentOptionPress(event){
