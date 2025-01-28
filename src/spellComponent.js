@@ -27,7 +27,6 @@ export class spellComponent {
     }
 
     #createEmptyElements() {
-        this.toolTipButtonElement = document.createElement("div");
         this.descriptionElement = document.createElement("span");
         this.spellTitleElement = document.createElement("div");
         this.spellTypeElement = document.createElement("div");
@@ -43,7 +42,6 @@ export class spellComponent {
     }
 
     #assignElementClasses() {
-        this.toolTipButtonElement.className = "toolTipButton";
         this.spellTitleElement.className = "spellTitle";
         this.spellTypeElement.className = "spellType";
         this.spellFlavorElement.className = "spellFlavor";
@@ -57,11 +55,10 @@ export class spellComponent {
     }
 
     #assignElementIds() {
-        this.toolTipButtonElement.id = "spellComponent" + this.name;
+        this.componentElement.id = "spellComponent" + this.name;
     }
 
     #relateElements() {
-        this.toolTipButtonElement.appendChild(this.componentElement);
         this.descriptionElement.appendChild(this.spellTitleElement);
         this.descriptionElement.appendChild(this.spellTypeElement);
         this.descriptionElement.appendChild(this.spellFlavorElement);
@@ -128,15 +125,15 @@ export class spellComponent {
     }
 
     drawElement(parentElement) {
-        parentElement.appendChild(this.toolTipButtonElement);
+        parentElement.appendChild(this.componentElement);
         this.addEventListeners(); //drag and drop doesn't like being applied to elements without parents
     }
 
     addEventListeners() {
-        assignToolTip(this.toolTipButtonElement, this.descriptionElement);
+        assignToolTip(this.componentElement, this.descriptionElement);
         assignDraggableElementByID("spellComponent" + this.name);
         if (this.type == "Void"){
-            assignMouseOverVFX(this.toolTipButtonElement, voidMouseOver, voidMouseOut);
+            assignMouseOverVFX(this.componentElement, voidMouseOver, voidMouseOut);
         }
     }
 

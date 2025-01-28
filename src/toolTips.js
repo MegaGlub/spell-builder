@@ -1,13 +1,13 @@
 import { logText } from "./logging.js";
 
-export function assignToolTip(toolTipButton, elementDescription) {
-    toolTipButton.addEventListener('mouseover', function () {
-        updateToolTipContents(elementDescription);
+export function assignToolTip(hoverableElement, descriptionElement) {
+    hoverableElement.addEventListener('mouseover', function () {
+        updateToolTipContents(descriptionElement);
     });
-    toolTipButton.addEventListener('mousemove', function (event) {
+    hoverableElement.addEventListener('mousemove', function (event) {
         updateToolTipPosition(event);
     });
-    toolTipButton.addEventListener('mouseout', clearToolTipContents);
+    hoverableElement.addEventListener('mouseout', clearToolTipContents);
 }
 
 const toolTip = document.getElementById("toolTip");

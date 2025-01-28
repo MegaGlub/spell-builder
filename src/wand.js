@@ -33,8 +33,7 @@ export class wand {
     }
 
     #createEmptyElements() {
-        this.toolTipButtonElement = document.createElement("div");
-        this.wandIconElement = document.createElement("span");
+        this.wandElement = document.createElement("span");
         this.descriptionElement = document.createElement("span");
         this.spellTitleElement = document.createElement("div");
         this.spellTypeElement = document.createElement("div");
@@ -47,8 +46,7 @@ export class wand {
     }
 
     #assignElementClasses() {
-        this.toolTipButtonElement.className = "toolTipButton";
-        this.wandIconElement.className = "wandIcon";
+        this.wandElement.className = "wandIcon";
         this.descriptionElement.className = "wandDescription";
         this.spellTitleElement.className = "spellTitle";
         this.spellFlavorElement.className = "spellFlavor";
@@ -59,7 +57,7 @@ export class wand {
     }
 
     #assignElementIds() {
-        this.toolTipButtonElement.id = "wand" + this.name;
+        this.wandElement.id = "wand" + this.name;
         this.descriptionElement.id = "wandDescription" + this.name;
         this.spellDescriptionElement.id = "wandSpellDescription";
     }
@@ -70,8 +68,7 @@ export class wand {
     }
 
     #relateElements() {
-        this.toolTipButtonElement.appendChild(this.wandIconElement);
-        this.wandIconElement.appendChild(this.imageElement);
+        this.wandElement.appendChild(this.imageElement);
         this.descriptionElement.appendChild(this.spellTitleElement);
         this.descriptionElement.appendChild(this.spellFlavorElement);
         this.descriptionElement.appendChild(this.componentDisplayElement);
@@ -85,12 +82,12 @@ export class wand {
     }
 
     drawElement(parentElement) {
-        parentElement.appendChild(this.toolTipButtonElement);
+        parentElement.appendChild(this.wandElement);
         this.addEventListeners();
     }
 
     addEventListeners() {
-        assignToolTip(this.toolTipButtonElement, this.descriptionElement);
+        assignToolTip(this.wandElement, this.descriptionElement);
         assignClickableButtonByID("wand" + this.name, this.selectWand.bind(this)); //the bind is stupid ahhh hell, but it keeps "this" in the right scope
     }
 
@@ -142,7 +139,7 @@ export class wand {
             const componentClone = this.slotsByObject[componentIndex].clone();
             componentClone.componentElement.classList.add("wandActiveComponent");
             componentClone.drawElement(clonedComponentDisplayElement);
-            assignDroppableAreaByElement(componentClone.toolTipButtonElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
+            assignDroppableAreaByElement(componentClone.componentElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
         }
         descriptionClone.appendChild(this.spellDescriptionElement);
     }
@@ -215,7 +212,7 @@ export class wand {
         const oldText = this.name;
         this.name = newText;
         this.spellTitleElement.innerHTML = newText;
-        this.toolTipButtonElement.id = "wand" + newText;
+        this.wandElement.id = "wand" + newText;
         this.descriptionElement.id = "wandDescription" + newText;
         deleteWandCookie(oldText);
         this.saveToFile();

@@ -102,15 +102,6 @@ img {
     z-index: 0;
 }
 
-.toolTipButton {
-    /*background-color: #2F4F4F;*/
-    cursor: pointer;
-    display: inline-block;
-    height: fit-content;
-    margin: 16px;
-    width: fit-content;
-}
-
 .toolTip {
     background-color: #000000;
     border-radius: 0em 0.5em 0.5em 0.5em;
@@ -369,9 +360,9 @@ img {
 
 .spellComponent {
     border-radius: 1.5em;
-    display: block;
+    display: inline-block;
     height: 128px;
-    margin: 0;
+    margin: 16px;
     width: 128px;
 }
 
@@ -477,6 +468,7 @@ img {
     display: block;
     flex: 0 0 auto;
     height: 64px;
+    margin: 16px;
     width: 128px;
 }
 
