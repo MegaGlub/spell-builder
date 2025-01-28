@@ -515,7 +515,9 @@ img {
 
 .radioWidget > *{
     color: #000000;
+    height: fit-content;
     opacity: 0.5;
+    width: fit-content;
 }
 
 .radioWidget:hover > *{

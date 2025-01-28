@@ -3,9 +3,10 @@ import { clearChildren, formatSize, getSign, timeFormat } from "./elementHelpers
 import { Dice, findDiceByString } from "./dice.js";
 
 export class spellBlock {
-    constructor(spellsByComponent, positionInWand, branchBox, textBox, statBox, errorBox) {
+    constructor(spellsByComponent, positionInWand, wandStatBlock, branchBox, textBox, statBox, errorBox) {
         this.spells = spellsByComponent;
         this.positionInWand = positionInWand;
+        this.wandStatBlock = wandStatBlock
 
         this.branchBox = branchBox;
         this.textBox = textBox;
@@ -73,6 +74,11 @@ export class spellBlock {
         this.secondaryTypes = [];
         this.projectileCount = 1;
         this.targetTypes = [];
+
+        this.potency += parseInt(this.wandStatBlock.get("empowermentPotencyModifier"));
+        console.log(this.wandStatBlock.get("empowermentPotencyModifier"));
+
+        console.log(this.potency);
 
         for (let component of this.spells) {
             this.potency += component.statBlock.potency;

@@ -15,6 +15,7 @@ export class wand {
         this.image = image;
         this.slotsByName = slotsByName;
         this.spellBlockCount = 0;
+        this.statBlock = new Map();
 
         this.slotsByObject = [];
 
@@ -137,8 +138,7 @@ export class wand {
         const powerSelectionSwitch = document.createElement("form");
         widgetBox.appendChild(powerSelectionSwitch);
 
-        this.empowermentModifier = 0;
-        console.log(this.empowermentModifier);
+        this.statBlock.set("empowermentPotencyModifier", 0);
         this.createEmpowermentOption(powerSelectionSwitch, /* PUT IMAGE HERE */ "images/ui/trash.png", 5, false);
         this.createEmpowermentOption(powerSelectionSwitch, /* PUT IMAGE HERE */ "images/ui/trash.png", 0, true);
         this.createEmpowermentOption(powerSelectionSwitch, /* PUT IMAGE HERE */ "images/ui/trash.png", -5, false);
@@ -167,7 +167,8 @@ export class wand {
 
     #handleEmpowermentOptionPress(event){
         const pressedOption = event.srcElement;
-        this.empowermentModifier = pressedOption.value;
+        this.statBlock.set("empowermentPotencyModifier", pressedOption.value);
+        this.#compileSpell();
     }
 
     beautifySelectedTitle(descriptionClone) {
@@ -289,7 +290,7 @@ export class wand {
             const blockDescription = this.#generateDescriptionElement("wandSpellDescriptionWords"); //just the container
             const blockStats = this.#generateDescriptionElement("componentStatTable"); //just generates the container, not the table itself
             blockStats.classList.add("wandSpellDescriptionStats");
-            const block = new spellBlock(spellCollection, positionInWand, blockBranch, blockDescription, blockStats, this.errorBoxDescriptionElement);
+            const block = new spellBlock(spellCollection, positionInWand, this.statBlock, blockBranch, blockDescription, blockStats, this.errorBoxDescriptionElement);
             positionInWand += spellCollection.length;
             block.compileSpell();
             this.spellBlockCount++;
