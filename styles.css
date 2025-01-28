@@ -504,13 +504,44 @@ img {
 
 .wandActiveComponentDisplay {
     background-color: #333333;
-    margin-top: 1.5em;
     margin-bottom: 1.5em;
+    margin-top: 1.5em;
+}
+
+.wandWidgetBox {
+    background-color: #FFFFF0;
+    margin: 0.75em;
+}
+
+.radioWidget > *{
+    color: #000000;
+    opacity: 0.5;
+}
+
+.radioWidget:hover > *{
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+.radioWidgetInput {
+    display: none;
+    height: 0;
+    opacity: 0;
+    width: 0;
+}
+
+.radioWidget .radioWidgetInput:checked ~ * {
+    opacity: 1.0;
+}
+
+.widgetIcon {
+    height: 64px;
+    width: 64px;
 }
 
 .wandDeleteButton {
     position: absolute;
-    right: 1em;
+    right: 3em;
     top: 1em;
 }
 .wandDeleteButton:hover {

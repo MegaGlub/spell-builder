@@ -95,6 +95,7 @@ export class wand {
         // logText("Selected wand " + this.name + ".");
         const descriptionClone = this.duplicateSelectedDescription();
         this.createDeleteButton(descriptionClone);
+        this.createStatWidgets(descriptionClone);
         this.beautifySelectedTitle(descriptionClone);
         this.replaceComponentsInClonedDescription(descriptionClone);
         this.#compileSpell();
@@ -122,6 +123,51 @@ export class wand {
         assignClickableButtonByElement(this.deleteButtonElement, () => {
             handleDeleteWandPress(this.name)
         });
+    }
+
+    createStatWidgets(descriptionClone) {
+        const widgetBox = document.createElement("div");
+        widgetBox.className = "wandWidgetBox";
+        descriptionClone.appendChild(widgetBox);
+
+        this.createEmpowermentSwitch(widgetBox);
+    }
+
+    createEmpowermentSwitch(widgetBox){
+        const powerSelectionSwitch = document.createElement("form");
+        widgetBox.appendChild(powerSelectionSwitch);
+
+        this.empowermentModifier = 0;
+        console.log(this.empowermentModifier);
+        this.createEmpowermentOption(powerSelectionSwitch, /* PUT IMAGE HERE */ "images/ui/trash.png", 5, false);
+        this.createEmpowermentOption(powerSelectionSwitch, /* PUT IMAGE HERE */ "images/ui/trash.png", 0, true);
+        this.createEmpowermentOption(powerSelectionSwitch, /* PUT IMAGE HERE */ "images/ui/trash.png", -5, false);
+    }
+
+    createEmpowermentOption(powerSelectionSwitch, image, value, defaultSelected){
+        const optionContainer = document.createElement("label");
+        const clickableBits = document.createElement("input");
+        const imageElement = document.createElement("img");
+
+        optionContainer.className = "radioWidget";
+        clickableBits.className = "radioWidgetInput";
+        imageElement.className = "widgetIcon";
+        clickableBits.type = "radio";
+        clickableBits.name = "empowermentOption";
+        clickableBits.value = value;
+        clickableBits.checked = defaultSelected;
+        imageElement.src = image;
+
+        powerSelectionSwitch.appendChild(optionContainer);
+        optionContainer.appendChild(clickableBits);
+        optionContainer.appendChild(imageElement);
+
+        assignClickableButtonByElement(clickableBits, this.#handleEmpowermentOptionPress.bind(this));
+    }
+
+    #handleEmpowermentOptionPress(event){
+        const pressedOption = event.srcElement;
+        this.empowermentModifier = pressedOption.value;
     }
 
     beautifySelectedTitle(descriptionClone) {
