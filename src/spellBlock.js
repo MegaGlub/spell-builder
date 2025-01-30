@@ -108,10 +108,14 @@ export class spellBlock {
     }
 
     #mergeStat(statArr){
-        if (this.statBlock.has(statArr[0])){
-            this.statBlock.set(statArr[0], parseInt(statArr[1]) + parseInt(this.statBlock.get(statArr[0])));
+        const key = statArr[0];
+        const val = statArr[1];
+        if (this.statBlock.has(key)){
+            this.statBlock.set(key, parseInt(val) + parseInt(this.statBlock.get(key)));
+        } else if (key.subString(key.length - 4) == "Mult" && this.statBlock.has(key.subString(key.length - 4))){
+            this.statBlock.set(key, parseInt(val + parseInt(this.statBlock.get(key.subString(0, key.length - 4)))))
         } else{
-            logText("Warning: \"" + statArr[0] + "\" is not a recognized spell block stat!");
+            logText("Warning: \"" + key + "\" is not a recognized spell block stat!");
         }
     }
 
@@ -120,14 +124,6 @@ export class spellBlock {
             if (component.sizeMultiplier) {
                 this.size *= component.sizeMultiplier;
             }
-        }
-    }
-
-    #multiplyStat(statArr){
-        if (this.statBlock.has(statArr[0].subString())){
-            this.statBlock.set(statArr[0], parseInt(statArr[1]) + parseInt(this.statBlock.get(statArr[0])));
-        } else{
-            logText("Warning: \"" + statArr[0] + "\" is not a recognized spell block stat!");
         }
     }
 
