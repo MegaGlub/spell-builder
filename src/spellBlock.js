@@ -6,7 +6,8 @@ export class spellBlock {
     constructor(spellsByComponent, positionInWand, wandStatBlock, branchBox, textBox, statBox, errorBox) {
         this.spells = spellsByComponent;
         this.positionInWand = positionInWand;
-        this.wandStatBlock = wandStatBlock
+        this.wandStatBlock = wandStatBlock;
+        this.statBlock = new Map();
 
         this.branchBox = branchBox;
         this.textBox = textBox;
@@ -61,48 +62,34 @@ export class spellBlock {
     }
 
     #discoverEarlyStats() {
-        this.potency = 0;
-        this.range = 0;
-        this.size = 0;
-        this.damageModifier = 0;
-        this.hitModifier = 0;
-        this.lifetime = 0;
-        this.primaryCost = 0;
-        this.secondaryCost = 0;
-        this.energyCost = 0;
+        this.statBlock.set("potency", 0);
+        this.statBlock.set("range", 0);
+        this.statBlock.set("size", 0);
+        this.statBlock.set("damageModifier", 0);
+        this.statBlock.set("hitModifier", 0);
+        this.statBlock.set("lifetime", 0);
+        this.statBlock.set("primaryCost", 0);
+        this.statBlock.set("secondaryCost", 0);
+        this.statBlock.set("energyCost", 0);
+        this.statBlock.set("projectiles", 1);
         this.primaryTypes = [];
         this.secondaryTypes = [];
-        this.projectileCount = 1;
         this.targetTypes = [];
 
-        this.potency += parseInt(this.wandStatBlock.get("empowermentPotencyModifier"));
-        console.log(this.wandStatBlock.get("empowermentPotencyModifier"));
-
-        console.log(this.potency);
+        for (const statArr of this.wandStatBlock){
+            this.#mergeStat(statArr); //iterating over a map gives a [key, value] array
+        }
 
         for (let component of this.spells) {
-            this.potency += component.statBlock.potency;
-            if (component.range) {
-                this.range += component.range;
-            }
-            if (component.size) {
-                this.size += component.size;
-            }
-            if (component.damageModifier) {
-                this.damageModifier += component.damageModifier;
-            }
-            if (component.hitModifier) {
-                this.hitModifier += component.hitModifier;
-            }
-            if (component.lifetime) {
-                this.lifetime += component.lifetime;
+            for (const statArr of component.statBlock){
+                this.#mergeStat(statArr);
             }
             if (component.projectileCount) {
                 this.projectileCount *= component.projectileCount;
             }
-            this.primaryCost += component.primaryCost;
-            this.secondaryCost += component.secondaryCost;
-            this.energyCost += component.energyCost;
+            this.primaryCost += component.costs["primary"];
+            this.secondaryCost += component.costs["secondary"];
+            this.energyCost += component.costs["energy"];
             if (component.primaryType != "Primary") {
                 if (!this.primaryTypes.includes(component.primaryType)) {
                     this.primaryTypes.push(component.primaryType);
@@ -117,7 +104,15 @@ export class spellBlock {
                 this.targetTypes.push(component.targetType);
             }
         }
-        this.hitSkill = this.pathComponent.hitSkill;
+        this.statBlock.set("hitSkill", this.pathComponent.statBlock["hitSkill"]);
+    }
+
+    #mergeStat(statArr){
+        if (this.statBlock.has(statArr[0])){
+            this.statBlock.set(statArr[0], parseInt(statArr[1]) + parseInt(this.statBlock.get(statArr[0])));
+        } else{
+            logText("Warning: \"" + statArr[0] + "\" is not a recognized spell block stat!");
+        }
     }
 
     #discoverStatMultipliers() {
@@ -125,6 +120,14 @@ export class spellBlock {
             if (component.sizeMultiplier) {
                 this.size *= component.sizeMultiplier;
             }
+        }
+    }
+
+    #multiplyStat(statArr){
+        if (this.statBlock.has(statArr[0].subString())){
+            this.statBlock.set(statArr[0], parseInt(statArr[1]) + parseInt(this.statBlock.get(statArr[0])));
+        } else{
+            logText("Warning: \"" + statArr[0] + "\" is not a recognized spell block stat!");
         }
     }
 

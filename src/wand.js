@@ -139,7 +139,7 @@ export class wand {
         const powerSelectionSwitch = document.createElement("form");
         widgetBox.appendChild(powerSelectionSwitch);
 
-        this.statBlock.set("empowermentPotencyModifier", 0);
+        this.statBlock.set("potency", 0);
         this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/green-up-arrow.png", 5, false, "Empowered Token");
         this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/empty-circle.png", 0, true, "No Tokens");
         this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/red-down-arrow.png", -5, false, "Weakened Token");
@@ -171,7 +171,7 @@ export class wand {
 
     #handleEmpowermentOptionPress(event){
         const pressedOption = event.srcElement;
-        this.statBlock.set("empowermentPotencyModifier", pressedOption.value);
+        this.statBlock.set("potency", pressedOption.value);
         this.#compileSpell();
     }
 

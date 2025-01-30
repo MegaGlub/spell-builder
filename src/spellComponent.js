@@ -84,40 +84,22 @@ export class spellComponent {
     }
 
     #fillStatTable() {
-        this.primaryCellElement.innerHTML = this.formattedDataCell(this.primaryCost, this.primaryType);
-        this.secondaryCellElement.innerHTML = this.formattedDataCell(this.secondaryCost, this.secondaryType);
-        this.energyCellElement.innerHTML = this.formattedDataCell(this.energyCost, "Energy");
+        this.primaryCellElement.innerHTML = this.formattedDataCell(this.costs["primary"], this.primaryType);
+        this.secondaryCellElement.innerHTML = this.formattedDataCell(this.costs["secondary"], this.secondaryType);
+        this.energyCellElement.innerHTML = this.formattedDataCell(this.costs["energy"], "Energy");
         this.potencyCellElement.innerHTML = this.formattedDataCell(this.potency, "Potency");
         this.complexityCellElement.innerHTML = this.formattedDataCell(this.complexity, "Complexity")
     }
 
     #discoverStats() {
-        this.invertible = this.statBlock["invertible"];
-        this.complexity = this.statBlock["complexity"];
-        this.damageDice = this.statBlock["damageDice"];
-        this.damageCount = this.statBlock["damageCount"];
-        this.damageModifier = this.statBlock["damageModifier"];
-        this.hitModifier = this.statBlock["hitModifier"];
-        this.hitSkill = this.statBlock["hitSkill"];
-        this.lifetime = this.statBlock["lifetime"];
-        this.potency = this.statBlock["potency"];
-        this.healing = this.statBlock["healing"];
-        this.range = this.statBlock["range"];
-        this.size = this.statBlock["size"];
-        this.sizeMultiplier = this.statBlock["sizeMultiplier"];
-        this.projectileCount = this.statBlock["projectileCount"];
-
-        this.primaryCost = this.costs["primary"];
         this.primaryType = "Primary";
         if (this.costs["primaryType"]) {
             this.primaryType = this.costs["primaryType"];
         }
-        this.secondaryCost = this.costs["secondary"];
         this.secondaryType = "Secondary";
         if (this.costs["secondaryType"]) {
             this.secondaryType = this.costs["secondaryType"];
         }
-        this.energyCost = this.costs["energy"];
     }
 
     #colorizeText() {

@@ -34,7 +34,7 @@ export class purposeComponent extends spellComponent {
   }
   #fillStatTable() {
     this.targetCellElement.innerHTML = "Targets: " + this.targetType;
-    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.#formatEffectsForRealTho(this.effects[1]);
+    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.#formatEffectsForRealTho(this.statBlock["effects"][1]);
   }
   #formatEffects(jsonEffects) {
     this.effects = [];
