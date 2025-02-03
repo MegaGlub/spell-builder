@@ -10,10 +10,8 @@ export class spellComponent {
         this.flavor = flavor;
         this.image = image;
         this.costs = costs;
-        this.statBlock = new Map(Object.entries(statBlock));
-        console.log(this.statBlock);
 
-        this.#discoverStats();
+        this.#discoverStats(statBlock);
         this.buildComponentVisuals();
     }
 
@@ -92,7 +90,13 @@ export class spellComponent {
         this.complexityCellElement.innerHTML = this.formattedDataCell(this.complexity, "Complexity")
     }
 
-    #discoverStats() {
+    #discoverStats(statBlock) {
+        if (statBlock[Symbol.toStringTag] == "Map"){
+            this.statBlock = statBlock;
+        } else{
+            this.statBlock = new Map(Object.entries(statBlock));
+        }
+
         this.primaryType = "Primary";
         if (this.costs["primaryType"]) {
             this.primaryType = this.costs["primaryType"];
