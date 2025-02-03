@@ -71,6 +71,7 @@ export class spellBlock {
         this.statBlock.set("energyCost", 0);
         this.statBlock.set("projectileCount", 1);
         this.statBlock.set("complexity", 2);
+        this.statBlock.set("healing", false);
         this.primaryTypes = [];
         this.secondaryTypes = [];
         this.targetTypes = [];
@@ -80,6 +81,8 @@ export class spellBlock {
         }
 
         for (let component of this.spells) {
+            console.log(typeof component.statBlock);
+            console.log(component.statBlock);
             for (const statArr of component.statBlock) {
                 this.#mergeStat(statArr);
             }
@@ -115,7 +118,11 @@ export class spellBlock {
         const key = statArr[0];
         const val = statArr[1];
         if (this.statBlock.has(key)) {
-            this.statBlock.set(key, parseInt(val) + parseInt(this.statBlock.get(key)));
+            if (typeof this.statBlock.get(key) == "number") {
+                this.statBlock.set(key, parseInt(val) + parseInt(this.statBlock.get(key)));
+            } else if (typeof this.statBlock.get(key) == "boolean") {
+                this.statBlock.set(key, val);
+            }
         } else if (key.subString(key.length - 4) == "Mult" && this.statBlock.has(key.subString(key.length - 4))) {
             this.statBlock.set(key, parseInt(val + parseInt(this.statBlock.get(key.subString(0, key.length - 4)))))
         } else {
@@ -126,43 +133,37 @@ export class spellBlock {
     #discoverDamage() {
         this.statBlock.set("damageCount", 0);
         this.statBlock.set("damageDice", Dice.D0);
-        this.damageDice = Dice.D0;
         for (let component of this.spells) {
             const newDmg = this.#getComponentDamageDice(component);
-            if (newDmg.sides > this.damageDice.sides) {
-                this.damageDice = newDmg;
+            if (newDmg.sides > this.statBlock.get("damageDice").sides) {
+                this.statBlock.set("damageDice", newDmg);
             }
         }
-        if (this.damageDice != Dice.D0) {
+        if (this.statBlock.get("damageDice") != Dice.D0) {
             for (let component of this.spells) {
                 const newCnt = this.#getComponentDamageCount(component);
-                this.damageCount += newCnt * (this.#getComponentDamageDice(component).sides / this.damageDice.sides);
+                const oldDmg = parseInt(this.statBlock.get("damageCount"));
+                this.statBlock.set("damageCount", oldDmg + (newCnt * this.#getComponentDamageDice(component).sides / this.statBlock.get("damageDice").sides));
             }
         }
-        this.damageCount = Math.floor(this.damageCount);
+        this.statBlock.set("damageCount", Math.floor(this.statBlock.get(damageCount)));
         //damage modifier is found in the normal stat blocks.
     }
 
     #discoverHealing() {
-        this.healing = false;
-        for (let component of this.purposeComponents) {
-            if (component.statBlock["healing"]) {
-                this.healing = true;
-            }
-        }
-        if (!this.healing && this.damageCount < 0) {
-            this.damageCount = 0;
+        if (!this.statBlock.get("healing") && parseInt(this.statBlock.get("damageCount")) < 0) {
+            this.statBlock.set("damageCount", 0);
         }
     }
 
     #getComponentDamageDice(component) {
         let result = "d0";
-        if (component.damageDice) {
+        if (component.statBlock.has("damageDice")) {
             if (component.type == "Purpose") {
                 const potencyEnum = this.#getPurposeEnumFromPotency(component);
-                result = component.damageDice[potencyEnum];
+                result = component.statBlock.get("damageDice")[potencyEnum];
             } else {
-                result = component.damageDice;
+                result = component.statBlock.get("damageDice");
             }
         }
         return findDiceByString(result);
@@ -170,19 +171,19 @@ export class spellBlock {
 
     #getComponentDamageCount(component) {
         let result = 0;
-        if (component.damageCount) {
+        if (component.statBlock.has("damageCount")) {
             if (component.type == "Purpose") {
                 const potencyEnum = this.#getPurposeEnumFromPotency(component);
-                result = component.damageCount[potencyEnum];
+                result = component.statBlock.get("damageCount")[potencyEnum];
             } else {
-                result = component.damageCount;
+                result = component.statBlock.get("damageCount");
             }
         }
         return result;
     }
 
     #getPurposeEnumFromPotency(purpose) {
-        if (purpose.statBlock.invertible == true && this.inverted) { //purpose.invertible is being stored as a string
+        if (purpose.statBlock["invertible"] == true && this.inverted) {
             if (parseInt(this.statBlock["potency"]) <= -2) {
                 return "invHigh";
             } else if (parseInt(this.statBlock["potency"]) <= 1) {
@@ -393,12 +394,12 @@ export class spellBlock {
 
     #fillInnerHTML() {
         this.damageCellElement.innerHTML = "Damage: " + this.#formatDamage(); //ex: 2d6 + 2
-        this.hitCellElement.innerHTML = "To-Hit: " + this.hitSkill + " " + getSign(this.hitModifier);
+        this.hitCellElement.innerHTML = "To-Hit: " + this.statBlock.get("hitSkill") + " " + getSign(parseInt(this.statBlock.get("hitModifier")));
         this.actionPointCellElement.innerHTML = "AP cost: " + this.#formatAP();
         this.effectsRowElement.innerHTML = "Effects: " + this.effects;
-        this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.range);
-        this.sizeCellElement.innerHTML = "Size: " + formatSize(this.size);
-        this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(this.lifetime);
+        this.rangeCellElement.innerHTML = "Range: ~" + formatSize(parseInt(this.statBlock.get("range")));
+        this.sizeCellElement.innerHTML = "Size: " + formatSize(parseInt(this.statBlock.get("size")));
+        this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(parseInt(this.statBlock.get("lifetime")));
         let costIndex = 0;
         for (let type of this.primaryTypes) {
             this.costCellElements[costIndex].innerHTML = this.#formatCost("Primary", type);
@@ -420,35 +421,35 @@ export class spellBlock {
     }
 
     #formatDamage() {
-        if (this.damageDice.val == 0) {
+        if (this.statBlock.get("damageDice").val == 0) {
             return "-";
         }
-        if (this.damageCount == 0) {
-            if (this.damageModifier > 0) {
-                return "" + this.damageModifier;
-            } else if (this.damageModifier < 0 && this.healing) {
-                return "" + this.damageModifier;
+        if (parseInt(this.statBlock.get("damageCount")) == 0) {
+            if (parseInt(this.statBlock.get("damageModifier")) > 0) {
+                return "" + this.statBlock.get("damageModifier");
+            } else if (parseInt(this.statBlock.get("damageModifier")) < 0 && this.statBlock.get("healing")) {
+                return "" + this.statBlock.get("damageModifier");
             } else {
                 return "-";
             }
         }
 
         let result = "";
-        result += this.damageCount;
-        result += this.damageDice.val;
-        if (this.damageModifier != 0) {
+        result += this.statBlock.get("damageCount");
+        result += this.statBlock.get("damageDice").val;
+        if (parseInt(this.statBlock.get("damageModifier")) != 0) {
             result += " ";
-            result += getSign(this.damageModifier);
+            result += getSign(parseInt(this.statBlock.get("damageModifier")));
         }
-        if (this.projectileCount != 1) {
-            result = this.projectileCount + "x (" + result;
+        if (parseInt(this.statBlock.get("projectileCount")) != 1) {
+            result = this.statBlock.get("projectileCount") + "x (" + result;
             result += ")";
         }
         return result;
     }
 
     #formatAP() {
-        let remainingComplexity = this.complexity;
+        let remainingComplexity = parseInt(this.statBlock.get("complexity"));
         let primaryAP = 0;
         let secondaryAP = 0;
         let result = "";
