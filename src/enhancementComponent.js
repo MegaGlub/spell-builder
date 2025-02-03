@@ -3,7 +3,6 @@ export class enhancementComponent extends spellComponent {
   constructor(name, flavor, enhancementDescription, image, costs, statBlock) {
     super(name, "Enhancement", flavor, image, costs, statBlock);
     this.enhancementDescription = enhancementDescription;
-    this.statBlock = statBlock;
   }
 
   // buildEnhancementVisuals() {

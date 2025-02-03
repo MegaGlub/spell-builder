@@ -7,7 +7,6 @@ export class purposeComponent extends spellComponent {
     this.unformattedEffects = statBlock["effects"];
     this.#formatEffects(this.unformattedEffects);
     this.targetType = targetType;
-    this.statBlock = statBlock;  //for some reason invertible is being passed as a string. what a nightmare of typeless languages
     this.invertible = this.statBlock["invertible"];
     this.buildPurposeVisuals();
   }
@@ -35,7 +34,7 @@ export class purposeComponent extends spellComponent {
   }
   #fillStatTable() {
     this.targetCellElement.innerHTML = "Targets: " + this.targetType;
-    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.#formatEffectsForRealTho(this.statBlock["effects"][1]);
+    this.estimatedEffectsRowElement.innerHTML = "Estimated Effects: " + this.#formatEffectsForRealTho(this.statBlock.get("effects")["mid"]);
   }
   #formatEffects(jsonEffects) {
     this.effects = [];

@@ -10,7 +10,8 @@ export class spellComponent {
         this.flavor = flavor;
         this.image = image;
         this.costs = costs;
-        this.statBlock = statBlock;
+        this.statBlock = new Map(Object.entries(statBlock));
+        console.log(this.statBlock);
 
         this.#discoverStats();
         this.buildComponentVisuals();

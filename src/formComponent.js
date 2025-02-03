@@ -4,7 +4,6 @@ export class formComponent extends spellComponent {
     constructor(name, flavor, formDescription, image, costs, statBlock) {
         super(name, "Form", flavor, image, costs, statBlock);
         this.formDescription = formDescription;
-        this.statBlock = statBlock;
         this.buildFormVisuals();
     }
 

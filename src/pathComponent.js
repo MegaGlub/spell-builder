@@ -4,7 +4,6 @@ export class pathComponent extends spellComponent {
   constructor(name, flavor, pathDescription, image, costs, statBlock) {
     super(name, "Path", flavor, image, costs, statBlock);
     this.pathDescription = pathDescription;
-    this.statBlock = statBlock;
     this.buildPathVisuals();
   }
 
