@@ -13,6 +13,6 @@
         "complexity": 2,
         "hitModifier": -2,
         "potency": -1,
-        "projectileMult": 3
+        "projectileCountMult": 3
     }
 }

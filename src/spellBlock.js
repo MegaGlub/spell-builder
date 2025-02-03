@@ -45,17 +45,15 @@ export class spellBlock {
         this.#discoverEarlyStats();
         this.#discoverDamage();
         this.#discoverHealing();
-        this.#discoverComplexity();
-        this.#discoverStatMultipliers();
         this.effects = "None!"; //effects are discovered in this.addPurposeToText() for convenience, maybe redo later
     }
 
     #discoverInversion() {
         this.inverted = false;
         if (this.voidComponent) {
-            if (this.#areAllPurposesInvertible()){
+            if (this.#areAllPurposesInvertible()) {
                 this.inverted = true;
-            } else{
+            } else {
                 this.complexity++;
             }
         }
@@ -71,21 +69,19 @@ export class spellBlock {
         this.statBlock.set("primaryCost", 0);
         this.statBlock.set("secondaryCost", 0);
         this.statBlock.set("energyCost", 0);
-        this.statBlock.set("projectiles", 1);
+        this.statBlock.set("projectileCount", 1);
+        this.statBlock.set("complexity", 2);
         this.primaryTypes = [];
         this.secondaryTypes = [];
         this.targetTypes = [];
 
-        for (const statArr of this.wandStatBlock){
+        for (const statArr of this.wandStatBlock) {
             this.#mergeStat(statArr); //iterating over a map gives a [key, value] array
         }
 
         for (let component of this.spells) {
-            for (const statArr of component.statBlock){
+            for (const statArr of component.statBlock) {
                 this.#mergeStat(statArr);
-            }
-            if (component.projectileCount) {
-                this.projectileCount *= component.projectileCount;
             }
             this.primaryCost += component.costs["primary"];
             this.secondaryCost += component.costs["secondary"];
@@ -100,35 +96,36 @@ export class spellBlock {
                     this.secondaryTypes.push(component.secondaryType);
                 }
             }
-            if (component.targetType){
+            if (component.targetType) {
                 this.targetTypes.push(component.targetType);
             }
         }
+
         this.statBlock.set("hitSkill", this.pathComponent.statBlock["hitSkill"]);
+
+        if (this.spells.length > 7) {
+            this.statBlock.set("complexity", parseInt(this.statBlock.get("complexity")) + 1);
+        }
+        if (parseInt(this.statBlock.get("complexity")) <= 0) { //just as error catching.
+            this.statBlock.set("complexity", 1);
+        }
     }
 
-    #mergeStat(statArr){
+    #mergeStat(statArr) {
         const key = statArr[0];
         const val = statArr[1];
-        if (this.statBlock.has(key)){
+        if (this.statBlock.has(key)) {
             this.statBlock.set(key, parseInt(val) + parseInt(this.statBlock.get(key)));
-        } else if (key.subString(key.length - 4) == "Mult" && this.statBlock.has(key.subString(key.length - 4))){
+        } else if (key.subString(key.length - 4) == "Mult" && this.statBlock.has(key.subString(key.length - 4))) {
             this.statBlock.set(key, parseInt(val + parseInt(this.statBlock.get(key.subString(0, key.length - 4)))))
-        } else{
+        } else {
             logText("Warning: \"" + key + "\" is not a recognized spell block stat!");
         }
     }
 
-    #discoverStatMultipliers() {
-        for (let component of this.spells) {
-            if (component.sizeMultiplier) {
-                this.size *= component.sizeMultiplier;
-            }
-        }
-    }
-
     #discoverDamage() {
-        this.damageCount = 0;
+        this.statBlock.set("damageCount", 0);
+        this.statBlock.set("damageDice", Dice.D0);
         this.damageDice = Dice.D0;
         for (let component of this.spells) {
             const newDmg = this.#getComponentDamageDice(component);
@@ -146,30 +143,14 @@ export class spellBlock {
         //damage modifier is found in the normal stat blocks.
     }
 
-    #discoverComplexity() {
-        this.complexity = 2;
-        for (let component of this.spells) {
-            if (component.complexity) {
-                this.complexity += component.complexity;
-            }
-        }
-        if (this.spells.length > 7) {
-            this.complexity++;
-        }
-
-        if (this.complexity <= 0) { //just as error catching.
-            this.complexity = 1;
-        }
-    }
-
     #discoverHealing() {
         this.healing = false;
-        for (let component of this.purposeComponents){
-            if (component.healing){
+        for (let component of this.purposeComponents) {
+            if (component.statBlock["healing"]) {
                 this.healing = true;
             }
         }
-        if (!this.healing && this.damageCount < 0){
+        if (!this.healing && this.damageCount < 0) {
             this.damageCount = 0;
         }
     }
@@ -202,17 +183,17 @@ export class spellBlock {
 
     #getPurposeEnumFromPotency(purpose) {
         if (purpose.statBlock.invertible == true && this.inverted) { //purpose.invertible is being stored as a string
-            if (this.potency <= -2) {
+            if (parseInt(this.statBlock["potency"]) <= -2) {
                 return "invHigh";
-            } else if (this.potency <= 1) {
+            } else if (parseInt(this.statBlock["potency"]) <= 1) {
                 return "invMid";
             } else {
                 return "invLow";
             }
         } else {
-            if (this.potency >= 2) {
+            if (parseInt(this.statBlock["potency"]) >= 2) {
                 return "high";
-            } else if (this.potency >= -1) {
+            } else if (parseInt(this.statBlock["potency"]) >= -1) {
                 return "mid";
             } else {
                 return "low";
@@ -392,7 +373,7 @@ export class spellBlock {
             this.statTableElement.appendChild(costCellElement);
             requiredSkew--;
         }
-        while (requiredSkew < 0){
+        while (requiredSkew < 0) {
             requiredSkew += 3;
         }
         this.statTableElement.appendChild(this.energyCostCellElement);
@@ -445,9 +426,9 @@ export class spellBlock {
         if (this.damageCount == 0) {
             if (this.damageModifier > 0) {
                 return "" + this.damageModifier;
-            } else if (this.damageModifier < 0 && this.healing){
+            } else if (this.damageModifier < 0 && this.healing) {
                 return "" + this.damageModifier;
-            }else {
+            } else {
                 return "-";
             }
         }
@@ -511,7 +492,7 @@ export class spellBlock {
 
     #formatTargets() {
         let result = ""
-        for (let i = 0; i < this.targetTypes.length - 1; i++){
+        for (let i = 0; i < this.targetTypes.length - 1; i++) {
             result += this.targetTypes[i] + ", ";
         }
         result += this.targetTypes[this.targetTypes.length - 1];
