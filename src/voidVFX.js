@@ -7,9 +7,8 @@ export function voidMouseOver(event) {
         }
     }
     if (selectedWand) {
-        for (let component of selectedWand.slotsByObject) {
+        for (let component of selectedWand.clonedDescriptionComponents) {
             if (component.statBlock.get("invertible")) {
-                console.log(component);
                 component.componentElement.classList.add("spellComponentVoidable");
             }
         }
@@ -23,7 +22,7 @@ export function voidMouseOut(event) {
         }
     }
     if (selectedWand) {
-        for (let component of selectedWand.slotsByObject) {
+        for (let component of selectedWand.clonedDescriptionComponents) {
             if (component.statBlock.get("invertible")) {
                 component.componentElement.classList.remove("spellComponentVoidable");
             }

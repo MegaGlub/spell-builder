@@ -189,6 +189,7 @@ export class wand {
     }
 
     #replaceComponentsInClonedDescription(descriptionClone) {
+        this.clonedDescriptionComponents = [];
         const clonedComponentDisplayElement = descriptionClone.querySelector(".wandComponentDisplay");
         clonedComponentDisplayElement.classList.add("wandActiveComponentDisplay");
         clonedComponentDisplayElement.id = "wandActiveComponentDisplay";
@@ -200,6 +201,7 @@ export class wand {
             componentClone.componentElement.classList.add("wandActiveComponent");
             componentClone.drawElement(clonedComponentDisplayElement);
             assignDroppableAreaByElement(componentClone.componentElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
+            this.clonedDescriptionComponents.push(componentClone);
         }
         descriptionClone.appendChild(this.spellDescriptionElement);
     }
