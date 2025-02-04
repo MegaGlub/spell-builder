@@ -61,7 +61,6 @@ const wandSelector = document.getElementById("wandSelector");
 drawAll(wandList, wandSelector);
 wandSelector.appendChild(addWandButton);
 
-
 logText("Complete!");
 finishLoading();
 

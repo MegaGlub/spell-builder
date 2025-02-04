@@ -171,7 +171,7 @@ export class wand {
 
     #handleEmpowermentOptionPress(event){
         const pressedOption = event.srcElement;
-        this.statBlock.set("potency", pressedOption.value);
+        this.statBlock.set("potency", parseInt(pressedOption.value));
         this.#compileSpell();
     }
 
