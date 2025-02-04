@@ -177,6 +177,51 @@ export class wand {
 
     #createStatFields(widgetBox){
         /* TODO */
+        /*
+        const listOfWidgets;
+        const listOfLabels;
+        const listOfStatKeys;
+        for listOfWidgets{
+            this.#generateStatField()
+        }
+        */
+       const widgets = [
+        {"label": "Primary Cost", "defaultVal": 0, "statKey": "primaryCost"},
+        {"label": "Secondary Cost", "defaultVal": 0, "statKey": "secondaryCost"},
+        {"label": "Energy Cost", "defaultVal": 0, "statKey": "energyCost"},
+        {"label": "Potency", "defaultVal": 0, "statKey": "potency"},
+        {"label": "Complexity", "defaultVal": 0, "statKey": "complexity"},
+        {"label": "Range (cm)", "defaultVal": 0, "statKey": "range"},
+        {"label": "Size (cm)", "defaultVal": 0, "statKey": "size"},
+        {"label": "Lifetime", "defaultVal": 0, "statKey": "lifetime"},
+        {"label": "Projectiles", "defaultVal": 1, "statKey": "projectileCount"}
+       ]
+    }
+
+    #generateStatField(widgetBox, defaultVal, label, statKey){
+        const widgetCell = document.createElement("span");
+        const widgetLabel = document.createElement("label");
+        const widgetField = document.createElement("input");
+        widgetCell.className = "widgetCell";
+        widgetLabel.className = "widgetLabel";
+        widgetField.className = "widgetField";
+
+        widgetField.type = "number";
+        widgetField.val = defaultVal;
+        widgetField.setAttribute("statKey", statKey);
+        widgetLabel.innerHTML = label;
+
+        widgetBox.appendChild(widgetCell);
+        widgetCell.appendChild(widgetLabel);
+        widgetCell.appendChild(widgetField);
+
+        assignEditableTextByElement(widgetField, this.#handleWidgetEdit.bind(this));
+    }
+
+    #handleWidgetEdit(event){
+        const statKey = event.srcElement.getAttribute("statKey");
+        this.statBlock.set(statKey, parseInt(event.srcElement.value));
+        this.#compileSpell();
     }
 
     #beautifySelectedTitle(descriptionClone) {
