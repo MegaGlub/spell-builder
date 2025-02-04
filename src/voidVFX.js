@@ -9,10 +9,7 @@ export function voidMouseOver(event) {
     if (selectedWand) {
         for (let component of selectedWand.slotsByObject) {
             if (component.statBlock.get("invertible")) {
-                console.log(component);
                 component.componentElement.classList.add("spellComponentVoidable");
-                console.log(component.componentElement.classList.contains("spellComponentVoidable"));
-                console.log(component);
             }
         }
     }
