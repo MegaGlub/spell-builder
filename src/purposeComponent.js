@@ -7,7 +7,6 @@ export class purposeComponent extends spellComponent {
     this.unformattedEffects = statBlock["effects"];
     this.#formatEffects(this.unformattedEffects);
     this.targetType = targetType;
-    this.invertible = this.statBlock["invertible"];
     this.buildPurposeVisuals();
   }
 

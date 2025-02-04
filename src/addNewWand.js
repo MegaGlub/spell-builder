@@ -37,7 +37,6 @@ export function handleDeleteWandPress(wandName) {
     modalBackground.style.display = "block";
     clearChildren(modalContent);
     wandDeleter.drawElement(modalContent);
-
 }
 
 function deleteWand(name) {

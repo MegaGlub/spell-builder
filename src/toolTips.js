@@ -1,3 +1,4 @@
+import { clearChildren } from "./elementHelpers.js";
 import { logText } from "./logging.js";
 
 export function assignToolTip(hoverableElement, descriptionElement) {
@@ -34,13 +35,12 @@ function updateToolTipPosition(mouseEvent) {
 }
 
 function updateToolTipContents(description){
+    clearChildren(toolTip);
     toolTip.appendChild(description.cloneNode(true));
     toolTip.style.display = "block";
 }
 
 function clearToolTipContents(){
     toolTip.style.display = "none";
-    while (toolTip.firstChild) { //clear old description
-        toolTip.removeChild(toolTip.firstChild);
-    }
+    clearChildren(toolTip);
 }
