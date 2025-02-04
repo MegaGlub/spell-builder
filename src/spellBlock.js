@@ -88,19 +88,7 @@ export class spellBlock {
             for (const statArr of component.statBlock) {
                 this.#mergeStat(statArr);
             }
-            this.primaryCost += component.costs["primary"];
-            this.secondaryCost += component.costs["secondary"];
-            this.energyCost += component.costs["energy"];
-            if (component.primaryType != "Primary") {
-                if (!this.primaryTypes.includes(component.primaryType)) {
-                    this.primaryTypes.push(component.primaryType);
-                }
-            }
-            if (component.secondaryType != "Secondary") {
-                if (!this.primaryTypes.includes(component.secondaryType) && !this.secondaryTypes.includes(component.secondaryType)) {
-                    this.secondaryTypes.push(component.secondaryType);
-                }
-            }
+            this.#mergeCosts(component);
             if (component.targetType) {
                 this.targetTypes.push(component.targetType);
             }
@@ -117,19 +105,37 @@ export class spellBlock {
     #mergeStat(statArr) {
         const key = statArr[0];
         const val = statArr[1];
-        
+
         if (this.statBlock.has(key)) {
-            if (typeof this.statBlock.get(key) == "number") {
-                this.statBlock.set(key, parseInt(val) + parseInt(this.statBlock.get(key)));
-            } else if (typeof this.statBlock.get(key) == "boolean") {
-                this.statBlock.set(key, val);
-            } else if (typeof this.statBlock.get(key) == "string") {
-                this.statBlock.set(key, val);
+            switch (typeof this.statBlock.get(key)){
+                case "number":
+                    this.statBlock.set(key, parseInt(val) + parseInt(this.statBlock.get(key)));
+                    break;
+                case "boolean":
+                case "string":
+                    this.statBlock.set(key, val);
+                    break;
             }
         } else if (key.substring(key.length - 4) == "Mult" && this.statBlock.has(key.subString(key.length - 4))) {
-            this.statBlock.set(key, parseInt(val + parseInt(this.statBlock.get(key.subString(0, key.length - 4)))))
+            this.statBlock.set(key, parseInt(val) * parseInt(this.statBlock.get(key.subString(0, key.length - 4))));
         } else {
             logText("Warning: \"" + key + "\" is not a recognized spell block stat!");
+        }
+    }
+
+    #mergeCosts(component) {
+        this.primaryCost += component.costs["primary"];
+        this.secondaryCost += component.costs["secondary"];
+        this.energyCost += component.costs["energy"];
+        if (component.primaryType != "Primary") {
+            if (!this.primaryTypes.includes(component.primaryType)) {
+                this.primaryTypes.push(component.primaryType);
+            }
+        }
+        if (component.secondaryType != "Secondary") {
+            if (!this.primaryTypes.includes(component.secondaryType) && !this.secondaryTypes.includes(component.secondaryType)) {
+                this.secondaryTypes.push(component.secondaryType);
+            }
         }
     }
 
