@@ -566,6 +566,7 @@ img {
     border-radius: 0.2em;
     color: #FFFFF0;
     font-size: 2em;
+    min-width: 4em;
     width: fit-content;
 }
 .wandActiveTitle:hover{
@@ -578,6 +579,7 @@ img {
     border-radius: 0.2em;
     color: #D3D3D3;
     font-size: 1em;
+    min-width: 5em;
     width: fit-content;
 }
 .wandActiveFlavor:hover{
