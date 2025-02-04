@@ -26,8 +26,8 @@ export class pathComponent extends spellComponent {
     this.statTableElement.appendChild(this.lifetimeCellElement);
   }
   #fillInnerHTML() {
-    this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.statBlock["range"]);
-    this.lifetimeCellElement.innerHTML = "Proj. Life: " + timeFormat(this.statBlock["lifetime"]);
+    this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.statBlock.get("range"));
+    this.lifetimeCellElement.innerHTML = "Proj. Life: " + timeFormat(this.statBlock.get("lifetime"));
   }
 
   clone() {

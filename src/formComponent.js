@@ -23,7 +23,7 @@ export class formComponent extends spellComponent {
         this.statTableElement.appendChild(this.sizeCellElement);
     }
     #fillInnerHTML() {
-        this.sizeCellElement.innerHTML = "Size: " + formatSize(this.statBlock["size"]);
+        this.sizeCellElement.innerHTML = "Size: " + formatSize(this.statBlock.get("size"));
     }
 
     clone() {

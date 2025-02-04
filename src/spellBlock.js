@@ -95,9 +95,9 @@ export class spellBlock {
         }
 
         if (this.spells.length > 7) {
-            this.statBlock.set("complexity", parseInt(this.statBlock.get("complexity")) + 1);
+            this.statBlock.set("complexity", this.statBlock.get("complexity") + 1);
         }
-        if (parseInt(this.statBlock.get("complexity")) <= 0) { //just as error catching.
+        if (this.statBlock.get("complexity") <= 0) { //just as error catching.
             this.statBlock.set("complexity", 1);
         }
     }
@@ -109,7 +109,7 @@ export class spellBlock {
         if (this.statBlock.has(key)) {
             switch (typeof this.statBlock.get(key)){
                 case "number":
-                    this.statBlock.set(key, parseInt(val) + parseInt(this.statBlock.get(key)));
+                    this.statBlock.set(key, val + this.statBlock.get(key));
                     break;
                 case "boolean":
                 case "string":
@@ -117,7 +117,7 @@ export class spellBlock {
                     break;
             }
         } else if (key.substring(key.length - 4) == "Mult" && this.statBlock.has(key.subString(key.length - 4))) {
-            this.statBlock.set(key, parseInt(val) * parseInt(this.statBlock.get(key.subString(0, key.length - 4))));
+            this.statBlock.set(key, val * this.statBlock.get(key.subString(0, key.length - 4)));
         } else {
             logText("Warning: \"" + key + "\" is not a recognized spell block stat!");
         }
@@ -151,7 +151,7 @@ export class spellBlock {
         if (this.statBlock.get("damageDice") != Dice.D0) {
             for (let component of this.spells) {
                 const newCnt = this.#getComponentDamageCount(component);
-                const oldDmg = parseInt(this.statBlock.get("damageCount"));
+                const oldDmg = this.statBlock.get("damageCount");
                 this.statBlock.set("damageCount", oldDmg + (newCnt * this.#getComponentDamageDice(component).sides / this.statBlock.get("damageDice").sides));
             }
         }
@@ -160,7 +160,7 @@ export class spellBlock {
     }
 
     #discoverHealing() {
-        if (!this.statBlock.get("healing") && parseInt(this.statBlock.get("damageCount")) < 0) {
+        if (!this.statBlock.get("healing") && this.statBlock.get("damageCount") < 0) {
             this.statBlock.set("damageCount", 0);
         }
     }
@@ -193,17 +193,17 @@ export class spellBlock {
 
     #getPurposeEnumFromPotency(purpose) {
         if (purpose.statBlock["invertible"] == true && this.inverted) {
-            if (parseInt(this.statBlock["potency"]) <= -2) {
+            if (this.statBlock.get("potency") <= -2) {
                 return "invHigh";
-            } else if (parseInt(this.statBlock["potency"]) <= 1) {
+            } else if (this.statBlock.get("potency") <= 1) {
                 return "invMid";
             } else {
                 return "invLow";
             }
         } else {
-            if (parseInt(this.statBlock["potency"]) >= 2) {
+            if (this.statBlock.get("potency") >= 2) {
                 return "high";
-            } else if (parseInt(this.statBlock["potency"]) >= -1) {
+            } else if (this.statBlock.get("potency") >= -1) {
                 return "mid";
             } else {
                 return "low";
@@ -403,12 +403,12 @@ export class spellBlock {
 
     #fillInnerHTML() {
         this.damageCellElement.innerHTML = "Damage: " + this.#formatDamage(); //ex: 2d6 + 2
-        this.hitCellElement.innerHTML = "To-Hit: " + this.statBlock.get("hitSkill") + " " + getSign(parseInt(this.statBlock.get("hitModifier")));
+        this.hitCellElement.innerHTML = "To-Hit: " + this.statBlock.get("hitSkill") + " " + getSign(this.statBlock.get("hitModifier"));
         this.actionPointCellElement.innerHTML = "AP cost: " + this.#formatAP();
         this.effectsRowElement.innerHTML = "Effects: " + this.effects;
-        this.rangeCellElement.innerHTML = "Range: ~" + formatSize(parseInt(this.statBlock.get("range")));
-        this.sizeCellElement.innerHTML = "Size: " + formatSize(parseInt(this.statBlock.get("size")));
-        this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(parseInt(this.statBlock.get("lifetime")));
+        this.rangeCellElement.innerHTML = "Range: ~" + formatSize(this.statBlock.get("range"));
+        this.sizeCellElement.innerHTML = "Size: " + formatSize(this.statBlock.get("size"));
+        this.lifetimeCellElement.innerHTML = "Lifetime: " + timeFormat(this.statBlock.get("lifetime"));
         let costIndex = 0;
         for (let type of this.primaryTypes) {
             this.costCellElements[costIndex].innerHTML = this.#formatCost("Primary", type);
@@ -433,10 +433,10 @@ export class spellBlock {
         if (this.statBlock.get("damageDice").val == 0) {
             return "-";
         }
-        if (parseInt(this.statBlock.get("damageCount")) == 0) {
-            if (parseInt(this.statBlock.get("damageModifier")) > 0) {
+        if (this.statBlock.get("damageCount") == 0) {
+            if (this.statBlock.get("damageModifier") > 0) {
                 return "" + this.statBlock.get("damageModifier");
-            } else if (parseInt(this.statBlock.get("damageModifier")) < 0 && this.statBlock.get("healing")) {
+            } else if (this.statBlock.get("damageModifier") < 0 && this.statBlock.get("healing")) {
                 return "" + this.statBlock.get("damageModifier");
             } else {
                 return "-";
@@ -446,11 +446,11 @@ export class spellBlock {
         let result = "";
         result += this.statBlock.get("damageCount");
         result += this.statBlock.get("damageDice").val;
-        if (parseInt(this.statBlock.get("damageModifier")) != 0) {
+        if (this.statBlock.get("damageModifier") != 0) {
             result += " ";
-            result += getSign(parseInt(this.statBlock.get("damageModifier")));
+            result += getSign(this.statBlock.get("damageModifier"));
         }
-        if (parseInt(this.statBlock.get("projectileCount")) != 1) {
+        if (this.statBlock.get("projectileCount") != 1) {
             result = this.statBlock.get("projectileCount") + "x (" + result;
             result += ")";
         }
@@ -458,7 +458,7 @@ export class spellBlock {
     }
 
     #formatAP() {
-        let remainingComplexity = parseInt(this.statBlock.get("complexity"));
+        let remainingComplexity = this.statBlock.get("complexity");
         let primaryAP = 0;
         let secondaryAP = 0;
         let result = "";
