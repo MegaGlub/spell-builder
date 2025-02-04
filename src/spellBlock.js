@@ -70,19 +70,21 @@ export class spellBlock {
         this.statBlock.set("secondaryCost", 0);
         this.statBlock.set("energyCost", 0);
         this.statBlock.set("projectileCount", 1);
+        this.statBlock.set("hitSkill", "Uhoh, there's bugs in my code.");
         this.statBlock.set("complexity", 2);
         this.statBlock.set("healing", false);
         this.primaryTypes = [];
         this.secondaryTypes = [];
         this.targetTypes = [];
+        this.primaryCost = 0;
+        this.secondaryCost = 0;
+        this.energyCost = 0;
 
         for (const statArr of this.wandStatBlock) {
             this.#mergeStat(statArr); //iterating over a map gives a [key, value] array
         }
 
         for (let component of this.spells) {
-            console.log(typeof component.statBlock);
-            console.log(component.statBlock);
             for (const statArr of component.statBlock) {
                 this.#mergeStat(statArr);
             }
@@ -104,8 +106,6 @@ export class spellBlock {
             }
         }
 
-        this.statBlock.set("hitSkill", this.pathComponent.statBlock["hitSkill"]);
-
         if (this.spells.length > 7) {
             this.statBlock.set("complexity", parseInt(this.statBlock.get("complexity")) + 1);
         }
@@ -117,13 +117,16 @@ export class spellBlock {
     #mergeStat(statArr) {
         const key = statArr[0];
         const val = statArr[1];
+        
         if (this.statBlock.has(key)) {
             if (typeof this.statBlock.get(key) == "number") {
                 this.statBlock.set(key, parseInt(val) + parseInt(this.statBlock.get(key)));
             } else if (typeof this.statBlock.get(key) == "boolean") {
                 this.statBlock.set(key, val);
+            } else if (typeof this.statBlock.get(key) == "string") {
+                this.statBlock.set(key, val);
             }
-        } else if (key.subString(key.length - 4) == "Mult" && this.statBlock.has(key.subString(key.length - 4))) {
+        } else if (key.substring(key.length - 4) == "Mult" && this.statBlock.has(key.subString(key.length - 4))) {
             this.statBlock.set(key, parseInt(val + parseInt(this.statBlock.get(key.subString(0, key.length - 4)))))
         } else {
             logText("Warning: \"" + key + "\" is not a recognized spell block stat!");
@@ -146,7 +149,7 @@ export class spellBlock {
                 this.statBlock.set("damageCount", oldDmg + (newCnt * this.#getComponentDamageDice(component).sides / this.statBlock.get("damageDice").sides));
             }
         }
-        this.statBlock.set("damageCount", Math.floor(this.statBlock.get(damageCount)));
+        this.statBlock.set("damageCount", Math.floor(this.statBlock.get("damageCount")));
         //damage modifier is found in the normal stat blocks.
     }
 
@@ -240,7 +243,7 @@ export class spellBlock {
     #addPurposeToText(purpose) {
         const potencyEnum = this.#getPurposeEnumFromPotency(purpose);
         this.#addDescriptionText(purpose.purposeDescriptions[potencyEnum], purpose.type, purpose.costs["primaryType"]);
-        this.#addNewEffect(purpose.statBlock.effects[potencyEnum]);
+        this.#addNewEffect(purpose.statBlock.get("effects")[potencyEnum]);
     }
 
     #addDescriptionText(text, componentType, specifier) { //specifier is optional controlling the underlines, -1 when not in use

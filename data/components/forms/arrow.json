@@ -3,8 +3,8 @@
     "name": "Arrow",
     "flavor": "In the shape of an arrow.",
     "formDescription": {
-        "singular": " arrow that ",
-        "plural" : " shafts that "
+        "singular": " dart that ",
+        "plural" : " darts that "
     },
     "image": "images/forms/arrow.png",
     "costs": {
