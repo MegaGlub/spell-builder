@@ -131,21 +131,21 @@ export class wand {
         widgetBox.className = "wandWidgetBox";
         descriptionClone.appendChild(widgetBox);
 
-        this.#createEmpowermentSwitch(widgetBox);
         this.#createStatFields(widgetBox);
+        this.#createEmpowermentSwitch(widgetBox);
     }
 
-    #createEmpowermentSwitch(widgetBox){
+    #createEmpowermentSwitch(widgetBox) {
         const powerSelectionSwitch = document.createElement("form");
         widgetBox.appendChild(powerSelectionSwitch);
+        this.empowerment = 0;
 
-        this.statBlock.set("potency", 0);
         this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/green-up-arrow.png", 5, false, "Empowered Token");
         this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/empty-circle.png", 0, true, "No Tokens");
         this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/red-down-arrow.png", -5, false, "Weakened Token");
     }
 
-    #createEmpowermentOption(powerSelectionSwitch, image, value, defaultSelected, toolTipDescription){
+    #createEmpowermentOption(powerSelectionSwitch, image, value, defaultSelected, toolTipDescription) {
         const optionContainer = document.createElement("label");
         const clickableBits = document.createElement("input");
         const imageElement = document.createElement("img");
@@ -169,36 +169,33 @@ export class wand {
         assignToolTip(optionContainer, description);
     }
 
-    #handleEmpowermentOptionPress(event){
+    #handleEmpowermentOptionPress(event) {
         const pressedOption = event.srcElement;
-        this.statBlock.set("potency", parseInt(pressedOption.value));
+        const val = parseInt(pressedOption.value);
+        const truePotency = this.statBlock.get("potency") - this.empowerment;
+        this.statBlock.set("potency", truePotency + val);
+        this.empowerment = val;
         this.#compileSpell();
     }
 
-    #createStatFields(widgetBox){
-        /* TODO */
-        /*
-        const listOfWidgets;
-        const listOfLabels;
-        const listOfStatKeys;
-        for listOfWidgets{
-            this.#generateStatField()
+    #createStatFields(widgetBox) {
+        const widgets = [
+            { "label": "Primary Cost", "defaultVal": 0, "statKey": "primaryCost" },
+            { "label": "Secondary Cost", "defaultVal": 0, "statKey": "secondaryCost" },
+            { "label": "Energy Cost", "defaultVal": 0, "statKey": "energyCost" },
+            { "label": "Potency", "defaultVal": 0, "statKey": "potency" },
+            { "label": "Complexity", "defaultVal": 0, "statKey": "complexity" },
+            { "label": "Range (cm)", "defaultVal": 0, "statKey": "range" },
+            { "label": "Size (cm)", "defaultVal": 0, "statKey": "size" },
+            { "label": "Lifetime", "defaultVal": 0, "statKey": "lifetime" },
+            { "label": "Projectiles", "defaultVal": 1, "statKey": "projectileCount" }
+        ]
+        for (const widget of widgets) {
+            this.#generateStatField(widgetBox, widget["defaultVal"], widget["label"], widget["statKey"]);
         }
-        */
-       const widgets = [
-        {"label": "Primary Cost", "defaultVal": 0, "statKey": "primaryCost"},
-        {"label": "Secondary Cost", "defaultVal": 0, "statKey": "secondaryCost"},
-        {"label": "Energy Cost", "defaultVal": 0, "statKey": "energyCost"},
-        {"label": "Potency", "defaultVal": 0, "statKey": "potency"},
-        {"label": "Complexity", "defaultVal": 0, "statKey": "complexity"},
-        {"label": "Range (cm)", "defaultVal": 0, "statKey": "range"},
-        {"label": "Size (cm)", "defaultVal": 0, "statKey": "size"},
-        {"label": "Lifetime", "defaultVal": 0, "statKey": "lifetime"},
-        {"label": "Projectiles", "defaultVal": 1, "statKey": "projectileCount"}
-       ]
     }
 
-    #generateStatField(widgetBox, defaultVal, label, statKey){
+    #generateStatField(widgetBox, defaultVal, label, statKey) {
         const widgetCell = document.createElement("span");
         const widgetLabel = document.createElement("label");
         const widgetField = document.createElement("input");
@@ -207,7 +204,7 @@ export class wand {
         widgetField.className = "widgetField";
 
         widgetField.type = "number";
-        widgetField.val = defaultVal;
+        widgetField.value = parseInt(defaultVal);
         widgetField.setAttribute("statKey", statKey);
         widgetLabel.innerHTML = label;
 
@@ -216,11 +213,19 @@ export class wand {
         widgetCell.appendChild(widgetField);
 
         assignEditableTextByElement(widgetField, this.#handleWidgetEdit.bind(this));
+        this.statBlock.set(statKey, parseInt(defaultVal));
     }
 
-    #handleWidgetEdit(event){
+    #handleWidgetEdit(event) {
         const statKey = event.srcElement.getAttribute("statKey");
-        this.statBlock.set(statKey, parseInt(event.srcElement.value));
+        let val = parseInt(event.srcElement.value);
+        if (!val) {
+            val = 0;
+        } 
+        if (statKey == "potency"){
+            val += this.empowerment;
+        }
+        this.statBlock.set(statKey, val);
         this.#compileSpell();
     }
 
@@ -339,7 +344,7 @@ export class wand {
         let positionInWand = 1;
         for (let spellCollection of nonCompiledSpellBlocks) {
             let blockBranch;
-            if (this.spellBlockCount >= 1){
+            if (this.spellBlockCount >= 1) {
                 blockBranch = this.#generateDescriptionElement("wandSpellDescriptionBranch");
             }
             const blockDescription = this.#generateDescriptionElement("wandSpellDescriptionWords"); //just the container
@@ -358,8 +363,8 @@ export class wand {
     #detectSpellBlocks() { //TODO separates the spell into multiple blocks, returns an array of arrays with the split component at the front. may require a new component
         const result = [];
         let tempArr = [];
-        for (let i = 0; i < this.slotsByObject.length; i++){
-            if (this.slotsByObject[i].type == "Branch"){
+        for (let i = 0; i < this.slotsByObject.length; i++) {
+            if (this.slotsByObject[i].type == "Branch") {
                 result.push(tempArr);
                 tempArr = [];
             }
@@ -369,7 +374,7 @@ export class wand {
         return result;
     }
 
-    #generateDescriptionElement(cssClass){
+    #generateDescriptionElement(cssClass) {
         const result = document.createElement("span");
         result.className = cssClass;
         this.spellDescriptionElement.appendChild(result);
@@ -387,12 +392,12 @@ export class wand {
         );
 
         const fileName = formatFileName(this.name);
-        saveJSONFile(projectPath + "data/wands/" + fileName + ".json", wandJSON, () => {logText("\tWand " + fileName + " saved!")});
+        saveJSONFile(projectPath + "data/wands/" + fileName + ".json", wandJSON, () => { logText("\tWand " + fileName + " saved!") });
     }
 
-    #packageComponentsForSave(){
+    #packageComponentsForSave() {
         let result = "[";
-        for (let i = 0; i < this.slotsByName.length - 1; i++){
+        for (let i = 0; i < this.slotsByName.length - 1; i++) {
             result += "\n\t\t\"" + this.slotsByName[i] + "\",";
         }
         result += "\n\t\t\"" + this.slotsByName[this.slotsByName.length - 1] + "\"";

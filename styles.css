@@ -511,6 +511,7 @@ img {
 .wandWidgetBox {
     background-color: #FFFFF0;
     border-radius: 0.25em;
+    color: #000000;
     display: flex;
     flex-wrap: wrap;
     height: min-content;
