@@ -129,7 +129,8 @@ export function createWandFromJSON(json){
         json.name,
         json.flavor,
         json.image,
-        json.slots
+        json.slots,
+        json.statBlock
     );
 }
 

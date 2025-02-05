@@ -306,6 +306,17 @@ class wandFormCreator {
 
     #actuallySubmitTheDamnThing() {
         const slots = [];
+        const statBlock = {
+            "primaryCost": 0,
+            "secondaryCost": 0,
+            "energyCost": 0,
+            "potency": 0,
+            "complexity": 0,
+            "range": 0,
+            "size": 0,
+            "lifetime": 0,
+            "projectileCount": 1
+        }
         for (let i = 0; i < this.slotsField.value; i++) {
             slots.push("Nothing");
         }
@@ -313,7 +324,8 @@ class wandFormCreator {
             this.nameField.value,
             this.flavorField.value,
             this.imageField.value,
-            slots
+            slots,
+            statBlock
         ));
         const addWandButton = document.getElementById("wandAddButton");
         const wandSelector = document.getElementById("wandSelector");

@@ -9,18 +9,26 @@ import { spellBlock } from "./spellBlock.js";
 import { deleteWandCookie } from "./cookies.js";
 
 export class wand {
-    constructor(name, flavor, image, slotsByName) {
+    constructor(name, flavor, image, slotsByName, statBlock) {
         this.name = name;
         this.flavor = flavor;
         this.image = image;
         this.slotsByName = slotsByName;
         this.spellBlockCount = 0;
-        this.statBlock = new Map();
 
         this.slotsByObject = [];
 
+        this.#discoverStats(statBlock);
         this.buildWandVisuals();
         logText("\tWand built: " + this.name + ".");
+    }
+
+    #discoverStats(statBlock){
+        if (statBlock[Symbol.toStringTag] == "Map"){
+            this.statBlock = statBlock;
+        } else{
+            this.statBlock = new Map(Object.entries(statBlock));
+        }
     }
 
     buildWandVisuals() {
@@ -131,8 +139,8 @@ export class wand {
         widgetBox.className = "wandWidgetBox";
         descriptionClone.appendChild(widgetBox);
 
-        this.#createStatFields(widgetBox);
         this.#createEmpowermentSwitch(widgetBox);
+        this.#createStatFields(widgetBox);
     }
 
     #createEmpowermentSwitch(widgetBox) {
@@ -180,15 +188,15 @@ export class wand {
 
     #createStatFields(widgetBox) {
         const widgets = [
-            { "label": "Primary Cost", "defaultVal": 0, "statKey": "primaryCost" },
-            { "label": "Secondary Cost", "defaultVal": 0, "statKey": "secondaryCost" },
-            { "label": "Energy Cost", "defaultVal": 0, "statKey": "energyCost" },
-            { "label": "Potency", "defaultVal": 0, "statKey": "potency" },
-            { "label": "Complexity", "defaultVal": 0, "statKey": "complexity" },
-            { "label": "Range (cm)", "defaultVal": 0, "statKey": "range" },
-            { "label": "Size (cm)", "defaultVal": 0, "statKey": "size" },
-            { "label": "Lifetime", "defaultVal": 0, "statKey": "lifetime" },
-            { "label": "Projectiles", "defaultVal": 1, "statKey": "projectileCount" }
+            { "label": "Primary Cost", "defaultVal": this.statBlock.get("primaryCost"), "statKey": "primaryCost" },
+            { "label": "Secondary Cost", "defaultVal": this.statBlock.get("secondaryCost"), "statKey": "secondaryCost" },
+            { "label": "Energy Cost", "defaultVal": this.statBlock.get("energyCost"), "statKey": "energyCost" },
+            { "label": "Potency", "defaultVal": this.statBlock.get("potency") - this.empowerment, "statKey": "potency" },
+            { "label": "Complexity", "defaultVal": this.statBlock.get("complexity"), "statKey": "complexity" },
+            { "label": "Range (cm)", "defaultVal": this.statBlock.get("range"), "statKey": "range" },
+            { "label": "Size (cm)", "defaultVal": this.statBlock.get("size"), "statKey": "size" },
+            { "label": "Lifetime", "defaultVal": this.statBlock.get("lifetime"), "statKey": "lifetime" },
+            { "label": "Projectiles", "defaultVal": this.statBlock.get("projectileCount"), "statKey": "projectileCount" }
         ]
         for (const widget of widgets) {
             this.#generateStatField(widgetBox, widget["defaultVal"], widget["label"], widget["statKey"]);
@@ -213,6 +221,7 @@ export class wand {
         widgetCell.appendChild(widgetField);
 
         assignEditableTextByElement(widgetField, this.#handleWidgetEdit.bind(this));
+        assignClickableButtonByElement(widgetField, this.#handleWidgetEdit.bind(this));
         this.statBlock.set(statKey, parseInt(defaultVal));
     }
 
@@ -223,7 +232,7 @@ export class wand {
             val = 0;
         } 
         if (statKey == "potency"){
-            val += this.empowerment;
+            val -= this.empowerment;
         }
         this.statBlock.set(statKey, val);
         this.#compileSpell();
@@ -387,7 +396,8 @@ export class wand {
             + "\n\t\"name\": \"" + this.name + "\","
             + "\n\t\"flavor\": \"" + this.flavor + "\","
             + "\n\t\"image\": \"" + this.image + "\","
-            + "\n\t\"slots\": " + this.#packageComponentsForSave()
+            + "\n\t\"slots\": " + this.#packageComponentsForSave() + ","
+            + "\n\t\"statBlock\": " + this.#packageStatBlockForSave()
             + "\n}"
         );
 
@@ -402,6 +412,16 @@ export class wand {
         }
         result += "\n\t\t\"" + this.slotsByName[this.slotsByName.length - 1] + "\"";
         result += "\n\t]";
+        return result;
+    }
+
+    #packageStatBlockForSave() {
+        let result = "{";
+        for (const statArr of this.statBlock){
+            result += "\n\t\t\"" + statArr[0] + "\": " + statArr[1] + ",";
+        }
+        result = result.substring(0, result.length - 1); //trim last comma
+        result += "\n\t}";
         return result;
     }
 }
