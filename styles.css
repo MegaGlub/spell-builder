@@ -472,6 +472,10 @@ img {
     width: 128px;
 }
 
+.selectedWand {
+    filter: drop-shadow(8px 8px 4px #000000);
+}
+
 .wandAddButton {
     bottom: 0;
     display: inline-block;

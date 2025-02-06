@@ -23,10 +23,10 @@ export class wand {
         logText("\tWand built: " + this.name + ".");
     }
 
-    #discoverStats(statBlock){
-        if (statBlock[Symbol.toStringTag] == "Map"){
+    #discoverStats(statBlock) {
+        if (statBlock[Symbol.toStringTag] == "Map") {
             this.statBlock = statBlock;
-        } else{
+        } else {
             this.statBlock = new Map(Object.entries(statBlock));
         }
     }
@@ -102,7 +102,8 @@ export class wand {
 
     selectWand() {
         // logText("Selected wand " + this.name + ".");
-        const descriptionClone = this.duplicateSelectedDescription();
+        this.#addWandVFX();
+        const descriptionClone = this.#duplicateSelectedDescription();
         this.#createDeleteButton(descriptionClone);
         this.#createStatWidgets(descriptionClone);
         this.#beautifySelectedTitle(descriptionClone);
@@ -111,7 +112,15 @@ export class wand {
         setSelectedWand(this);
     }
 
-    duplicateSelectedDescription() {
+    #addWandVFX() {
+        const previouslySelectedWands = document.querySelectorAll(".selectedWand");
+        if (previouslySelectedWands.length != 0) { //thank you javascript, very cool.
+            previouslySelectedWands[0].classList.remove("selectedWand");
+        }
+        this.wandElement.classList.add("selectedWand");
+    }
+
+    #duplicateSelectedDescription() {
         const descriptionBox = document.getElementById("wandWorkbench");
         while (descriptionBox.firstChild) {
             descriptionBox.removeChild(descriptionBox.firstChild);
@@ -241,8 +250,8 @@ export class wand {
         let val = parseInt(event.srcElement.value);
         if (!val) {
             val = 0;
-        } 
-        if (statKey == "potency"){
+        }
+        if (statKey == "potency") {
             val -= this.empowerment;
         }
         this.statBlock.set(statKey, val);
@@ -428,7 +437,7 @@ export class wand {
 
     #packageStatBlockForSave() {
         let result = "{";
-        for (const statArr of this.statBlock){
+        for (const statArr of this.statBlock) {
             result += "\n\t\t\"" + statArr[0] + "\": " + statArr[1] + ",";
         }
         result = result.substring(0, result.length - 1); //trim last comma
