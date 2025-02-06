@@ -7,7 +7,7 @@ export class spellBlock {
         this.spells = spellsByComponent;
         this.positionInWand = positionInWand;
         this.wandStatBlock = wandStatBlock;
-        this.statBlock = new Map();
+        this.statBlock = new Map(wandStatBlock);
 
         this.branchBox = branchBox;
         this.textBox = textBox;
@@ -60,33 +60,19 @@ export class spellBlock {
     }
 
     #discoverEarlyStats() {
-        this.statBlock.set("potency", 0);
-        this.statBlock.set("range", 0);
-        this.statBlock.set("size", 0);
-        this.statBlock.set("damageModifier", 0);
-        this.statBlock.set("hitModifier", 0);
-        this.statBlock.set("lifetime", 0);
-        this.statBlock.set("primaryCost", 0);
-        this.statBlock.set("secondaryCost", 0);
-        this.statBlock.set("energyCost", 0);
-        this.statBlock.set("projectileCount", 1);
         this.statBlock.set("hitSkill", "Uhoh, there's bugs in my code.");
-        this.statBlock.set("complexity", 2);
         this.statBlock.set("healing", false);
         this.primaryTypes = [];
         this.secondaryTypes = [];
         this.targetTypes = [];
-        this.primaryCost = 0;
-        this.secondaryCost = 0;
-        this.energyCost = 0;
 
-        for (const statArr of this.wandStatBlock) {
-            this.#mergeStat(statArr); //iterating over a map gives a [key, value] array
-        }
+        // for (const statArr of this.wandStatBlock) {
+        //     this.#mergeStat(statArr);
+        // }
 
         for (let component of this.spells) {
             for (const statArr of component.statBlock) {
-                this.#mergeStat(statArr);
+                this.#mergeStat(statArr); //iterating over a map gives a [key, value] array
             }
             this.#mergeCosts(component);
             if (component.targetType) {
@@ -124,9 +110,12 @@ export class spellBlock {
     }
 
     #mergeCosts(component) {
-        this.primaryCost += component.costs["primary"];
-        this.secondaryCost += component.costs["secondary"];
-        this.energyCost += component.costs["energy"];
+        const newPrimaryCost = this.statBlock.get("primaryCost") + component.costs["primary"];
+        const newSecondaryCost = this.statBlock.get("secondaryCost") + component.costs["secondary"];
+        const newEnergyCost = this.statBlock.get("energyCost") + component.costs["energy"];
+        this.statBlock.set("primaryCost", newPrimaryCost);
+        this.statBlock.set("secondaryCost", newSecondaryCost);
+        this.statBlock.set("energyCost", newEnergyCost);
         if (component.primaryType != "Primary") {
             if (!this.primaryTypes.includes(component.primaryType)) {
                 this.primaryTypes.push(component.primaryType);
@@ -421,7 +410,7 @@ export class spellBlock {
         if (this.inverted) {
             this.energyCostCellElement.innerHTML = "Void: -1";
         } else {
-            this.energyCostCellElement.innerHTML = "Energy: " + getSign(-this.energyCost);
+            this.energyCostCellElement.innerHTML = "Energy: " + getSign(-this.statBlock.get("energyCost"));
         }
         if (this.branchBox) {
             this.branchBox.innerHTML = this.branchComponent.branchDescription;
@@ -484,15 +473,15 @@ export class spellBlock {
         switch (costType) {
             case "Primary":
                 if (this.inverted) {
-                    return type + ": " + getSign(this.primaryCost);
+                    return type + ": " + getSign(this.statBlock.get("primaryCost"));
                 } else {
-                    return type + ": " + getSign(-this.primaryCost);
+                    return type + ": " + getSign(-this.statBlock.get("primaryCost"));
                 }
             case "Secondary":
                 if (this.inverted) {
-                    return type + ": " + getSign(this.secondaryCost);
+                    return type + ": " + getSign(this.statBlock.get("secondaryCost"));
                 } else {
-                    return type + ": " + getSign(-this.secondaryCost);
+                    return type + ": " + getSign(-this.statBlock.get("secondaryCost"));
                 }
             default:
                 logText("Table failed to get cost for costType: " + costType + " and type: " + type);

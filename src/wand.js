@@ -193,6 +193,8 @@ export class wand {
             { "label": "Energy Cost", "defaultVal": this.statBlock.get("energyCost"), "statKey": "energyCost" },
             { "label": "Potency", "defaultVal": this.statBlock.get("potency") - this.empowerment, "statKey": "potency" },
             { "label": "Complexity", "defaultVal": this.statBlock.get("complexity"), "statKey": "complexity" },
+            { "label": "To-Hit Mod", "defaultVal": this.statBlock.get("hitModifier"), "statKey": "hitModifier" },
+            { "label": "Damage Mod", "defaultVal": this.statBlock.get("damageModifier"), "statKey": "damageModifier" },
             { "label": "Range (cm)", "defaultVal": this.statBlock.get("range"), "statKey": "range" },
             { "label": "Size (cm)", "defaultVal": this.statBlock.get("size"), "statKey": "size" },
             { "label": "Lifetime", "defaultVal": this.statBlock.get("lifetime"), "statKey": "lifetime" },
