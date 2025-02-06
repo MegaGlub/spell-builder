@@ -148,9 +148,9 @@ export class wand {
         widgetBox.appendChild(powerSelectionSwitch);
         this.empowerment = 0;
 
-        this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/green-up-arrow.png", 5, false, "Empowered Token");
-        this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/empty-circle.png", 0, true, "No Tokens");
-        this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/red-down-arrow.png", -5, false, "Weakened Token");
+        this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/empowered.png", 5, false, "Empowered Token");
+        this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/no-buffs.png", 0, true, "No Tokens");
+        this.#createEmpowermentOption(powerSelectionSwitch, "images/ui/weakened.png", -5, false, "Weakened Token");
     }
 
     #createEmpowermentOption(powerSelectionSwitch, image, value, defaultSelected, toolTipDescription) {
