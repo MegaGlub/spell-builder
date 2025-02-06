@@ -118,7 +118,7 @@ img {
     z-index: 51;
 }
 
-.toolTipHoveringHighlight {
+.toolTipHoveringHighlight.toolTipHoveringHighlight { /* thank you mdn. krill yourself */
     filter: drop-shadow(8px 8px 4px #000000);
 }
 
@@ -365,6 +365,7 @@ img {
 .spellComponent {
     border-radius: 1.5em;
     display: inline-block;
+    filter: drop-shadow(4px 4px #000000);
     height: 128px;
     margin: 16px;
     width: 128px;
@@ -474,10 +475,11 @@ img {
     height: 64px;
     margin: 16px;
     width: 128px;
+    filter: drop-shadow(4px 4px 4px #000000);
 }
 
 .selectedWand {
-    filter: drop-shadow(8px 8px 4px #000000);
+    filter: drop-shadow(8px 8px 2px #000000);
 }
 
 .wandAddButton {
