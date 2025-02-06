@@ -3,12 +3,16 @@ import { logText } from "./logging.js";
 
 export function assignToolTip(hoverableElement, descriptionElement) {
     hoverableElement.addEventListener('mouseover', function () {
+        hoverableElement.classList.add("toolTipHoveringHighlight");
         updateToolTipContents(descriptionElement);
     });
     hoverableElement.addEventListener('mousemove', function (event) {
         updateToolTipPosition(event);
     });
-    hoverableElement.addEventListener('mouseout', clearToolTipContents);
+    hoverableElement.addEventListener('mouseout', function () {
+        hoverableElement.classList.remove("toolTipHoveringHighlight");
+        clearToolTipContents();
+    });
 }
 
 const toolTip = document.getElementById("toolTip");

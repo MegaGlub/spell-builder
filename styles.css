@@ -118,6 +118,10 @@ img {
     z-index: 51;
 }
 
+.toolTipHoveringHighlight {
+    filter: drop-shadow(8px 8px 4px #000000);
+}
+
 .modalBackground {
     background-color: #00000099;
     display: none;
