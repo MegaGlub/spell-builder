@@ -136,8 +136,12 @@ export class wand {
 
     #createStatWidgets(descriptionClone) {
         const widgetBox = document.createElement("div");
+        const widgetTitle = document.createElement("div");
         widgetBox.className = "wandWidgetBox";
+        widgetTitle.className = "widgetTitle";
+        widgetTitle.innerHTML = "Stat Modifiers";
         descriptionClone.appendChild(widgetBox);
+        widgetBox.appendChild(widgetTitle);
 
         this.#createEmpowermentSwitch(widgetBox);
         this.#createStatFields(widgetBox);
@@ -145,6 +149,7 @@ export class wand {
 
     #createEmpowermentSwitch(widgetBox) {
         const powerSelectionSwitch = document.createElement("form");
+        powerSelectionSwitch.className = "radioWidgetGroup";
         widgetBox.appendChild(powerSelectionSwitch);
         this.empowerment = 0;
 
@@ -187,6 +192,10 @@ export class wand {
     }
 
     #createStatFields(widgetBox) {
+        const statBlockElement = document.createElement("span");
+        statBlockElement.className = "widgetStatBlock";
+        widgetBox.appendChild(statBlockElement);
+
         const widgets = [
             { "label": "Primary Cost", "defaultVal": this.statBlock.get("primaryCost"), "statKey": "primaryCost" },
             { "label": "Secondary Cost", "defaultVal": this.statBlock.get("secondaryCost"), "statKey": "secondaryCost" },
@@ -201,24 +210,24 @@ export class wand {
             { "label": "Projectiles", "defaultVal": this.statBlock.get("projectileCount"), "statKey": "projectileCount" }
         ]
         for (const widget of widgets) {
-            this.#generateStatField(widgetBox, widget["defaultVal"], widget["label"], widget["statKey"]);
+            this.#generateStatField(statBlockElement, widget["defaultVal"], widget["label"], widget["statKey"]);
         }
     }
 
-    #generateStatField(widgetBox, defaultVal, label, statKey) {
+    #generateStatField(statBlockElement, defaultVal, label, statKey) {
         const widgetCell = document.createElement("span");
         const widgetLabel = document.createElement("label");
         const widgetField = document.createElement("input");
         widgetCell.className = "widgetCell";
         widgetLabel.className = "widgetLabel";
-        widgetField.className = "widgetField";
+        widgetField.className = "widgetNumberField";
 
         widgetField.type = "number";
         widgetField.value = parseInt(defaultVal);
         widgetField.setAttribute("statKey", statKey);
         widgetLabel.innerHTML = label;
 
-        widgetBox.appendChild(widgetCell);
+        statBlockElement.appendChild(widgetCell);
         widgetCell.appendChild(widgetLabel);
         widgetCell.appendChild(widgetField);
 
