@@ -91,6 +91,7 @@ export class spellBlock {
     #mergeStat(statArr) {
         const key = statArr[0];
         const val = statArr[1];
+        const subKey = key.substring(0, key.length - 4);
 
         if (this.statBlock.has(key)) {
             switch (typeof this.statBlock.get(key)){
@@ -102,10 +103,10 @@ export class spellBlock {
                     this.statBlock.set(key, val);
                     break;
             }
-        } else if (key.substring(key.length - 4) == "Mult" && this.statBlock.has(key.subString(key.length - 4))) {
-            this.statBlock.set(key, val * this.statBlock.get(key.subString(0, key.length - 4)));
+        } else if (key.substring(key.length - 4) == "Mult" && this.statBlock.has(subKey)) {
+            this.statBlock.set(subKey, val * this.statBlock.get(subKey));
         } else {
-            logText("Warning: \"" + key + "\" is not a recognized spell block stat!");
+            // logText("Warning: \"" + key + "\" is not a recognized spell block stat!");
         }
     }
 
@@ -205,7 +206,7 @@ export class spellBlock {
     }
 
     #fillFormText() {
-        if (this.projectileCount > 1) {
+        if (this.statBlock.get("projectileCount") > 1) {
             this.#addDescriptionText(this.formComponent.formDescription["plural"], this.formComponent.type);
         } else {
             this.#addDescriptionText(this.formComponent.formDescription["singular"], this.formComponent.type);
