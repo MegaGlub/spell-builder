@@ -119,7 +119,7 @@ export class spellComponent {
     drawElement(parentElement) {
         parentElement.appendChild(this.componentElement);
         if (this.locked){
-            this.showLock;
+            this.showLock();
         }
         this.addEventListeners(); //drag and drop doesn't like being applied to elements without parents
     }
@@ -195,13 +195,11 @@ export class spellComponent {
     showLock() {
         this.lockIconElement.style.display = "block";
         this.locked = true;
-        console.log(this.lockIconElement.style.display);
     }
 
     hideLock() {
         this.lockIconElement.style.display = "none";
         this.locked = false;
-        console.log(this.lockIconElement.style.display);
     }
 
     costOf() {

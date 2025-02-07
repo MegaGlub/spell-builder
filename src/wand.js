@@ -278,11 +278,9 @@ export class wand {
         } //reclone the components so that they get new toolTip listeners
         for (let componentIndex in this.slotsByObject) {
             const componentClone = this.slotsByObject[componentIndex].clone();
+            componentClone.locked = this.lockedSlots[componentIndex];
             componentClone.componentElement.classList.add("wandActiveComponent");
             componentClone.drawElement(clonedComponentDisplayElement);
-            if (this.lockedSlots[componentIndex]){
-                componentClone.showLock();
-            }
             assignDroppableAreaByElement(componentClone.componentElement, this.#handleComponentHold.bind(this), this.#handleComponentDrop.bind(this));
             assignClickableButtonByElement(componentClone.componentElement, this.#handleComponentClick.bind(this));
             this.clonedDescriptionComponents.push(componentClone);
@@ -309,9 +307,7 @@ export class wand {
         else {
             const componentClone = componentList[indexOfComponent].clone();
             this.slotsByObject[index] = componentClone;
-            if (this.lockedSlots[index]){
-                componentClone.showLock();
-            }
+            componentClone.locked = this.lockedSlots[index];
             componentClone.drawElement(this.componentDisplayElement);
         }
     }
@@ -327,7 +323,6 @@ export class wand {
         this.updateComponentDisplay();
         this.selectWand();
         document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#333333";
-        this.saveToFile();
     }
 
     #handleComponentClick(event) {
@@ -335,18 +330,16 @@ export class wand {
         const component = this.slotsByObject[positionInWand];
         if (this.lockedSlots[positionInWand] == true){
             this.lockedSlots[positionInWand] = false;
-            console.log("hiding lock...");
             /* Remove icon -> remove css -> re-enable droppable area */
             component.hideLock();
+            
         } else{
             this.lockedSlots[positionInWand] = true;
-            console.log("showing lock...");
             /* Add icon -> add css -> disable droppable area */
             component.showLock();
         }
         this.updateComponentDisplay();
         this.selectWand();
-        this.saveToFile();
     }
 
     findPositionInWand(clientX, clientY) { //finds the element by looking at the x coordinate of the drop action
