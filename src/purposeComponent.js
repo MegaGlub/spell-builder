@@ -1,8 +1,8 @@
 import { logText } from "./logging.js";
 import { spellComponent } from "./spellComponent.js";
 export class purposeComponent extends spellComponent {
-  constructor(name, flavor, purposeDescriptions, image, costs, targetType, statBlock) {
-    super(name, "Purpose", flavor, image, costs, statBlock);
+  constructor(name, flavor, purposeDescriptions, image, costs, targetType, statBlock, locked) {
+    super(name, "Purpose", flavor, image, costs, statBlock, locked);
     this.purposeDescriptions = purposeDescriptions;
     this.unformattedEffects = statBlock["effects"];
     this.#formatEffects(this.unformattedEffects);
@@ -59,7 +59,8 @@ export class purposeComponent extends spellComponent {
       this.image,
       this.costs,
       this.targetType,
-      this.statBlock
+      this.statBlock,
+      this.locked
     );
   }
 }

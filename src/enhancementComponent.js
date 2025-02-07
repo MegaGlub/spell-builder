@@ -1,7 +1,7 @@
 import { spellComponent } from "./spellComponent.js";
 export class enhancementComponent extends spellComponent {
-  constructor(name, flavor, enhancementDescription, image, costs, statBlock) {
-    super(name, "Enhancement", flavor, image, costs, statBlock);
+  constructor(name, flavor, enhancementDescription, image, costs, statBlock, locked) {
+    super(name, "Enhancement", flavor, image, costs, statBlock, locked);
     this.enhancementDescription = enhancementDescription;
   }
 
@@ -35,7 +35,8 @@ export class enhancementComponent extends spellComponent {
       this.enhancementDescription,
       this.image,
       this.costs,
-      this.statBlock
+      this.statBlock,
+      this.locked
     );
   }
 }

@@ -53,7 +53,8 @@ function createBranchComponentFromJSON(json) {
         json.branchDescription,
         json.image,
         json.costs,
-        json.statBlock
+        json.statBlock,
+        false
     )
 }
 
@@ -64,7 +65,8 @@ function createEnhancementComponentFromJSON(json) {
         json.enhancementDescription,
         json.image,
         json.costs,
-        json.statBlock
+        json.statBlock,
+        false
     );
 }
 
@@ -75,7 +77,8 @@ function createFormComponentFromJSON(json) {
         json.formDescription,
         json.image,
         json.costs,
-        json.statBlock
+        json.statBlock,
+        false
     );
 }
 
@@ -86,7 +89,8 @@ function createPathComponentFromJSON(json) {
         json.pathDescription,
         json.image,
         json.costs,
-        json.statBlock
+        json.statBlock,
+        false
     );
 }
 
@@ -98,7 +102,8 @@ function createPurposeComponentFromJSON(json) {
         json.image,
         json.costs,
         json.target,
-        json.statBlock
+        json.statBlock,
+        false
     );
 }
 
@@ -109,7 +114,8 @@ function createTriggerComponentFromJSON(json) {
         json.triggerDescription,
         json.image,
         json.costs,
-        json.statBlock
+        json.statBlock,
+        false
     );
 }
 
@@ -120,7 +126,8 @@ function createMiscComponentFromJSON(json) {
         json.flavor,
         json.image,
         json.costs,
-        json.statBlock
+        json.statBlock,
+        false
     );
 }
 
@@ -130,7 +137,8 @@ export function createWandFromJSON(json){
         json.flavor,
         json.image,
         json.slots,
-        json.statBlock
+        json.statBlock,
+        json.lockedSlots
     );
 }
 

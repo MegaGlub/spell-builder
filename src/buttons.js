@@ -21,8 +21,8 @@ export function assignClickableButtonByElement(element, funct) {
     });
 }
 
-export function assignDraggableElementByID(elementId){
-    const element = document.getElementById(elementId);
+export function assignDraggableElementByElement(element){
+    // const element = document.getElementById(elementID);
     element.draggable = true;
     element.style.cursor = "grab";
     element.addEventListener("dragstart", (event) => {
@@ -30,7 +30,7 @@ export function assignDraggableElementByID(elementId){
         // event.dataTransfer.effectAllowed = "move";
         // element.style.cursor = "grabbing";
         element.style.opacity = "0.5";
-        event.dataTransfer.setData("text/plain", elementId);
+        event.dataTransfer.setData("text/plain", element.id);
     });
     element.addEventListener("dragend", () => {
         // element.style.cursor = "grab";
@@ -47,6 +47,14 @@ export function assignDroppableAreaByElement(element, dragOverFunct, dropFunct) 
         event.preventDefault();
         dropFunct(event);
     });
+}
+
+export function removeDraggableElementByElement(element){
+    console.log("TODO: add removal for draggables");
+}
+
+export function removeDroppableAreaByElement(element, dragOverFunct, dropFunct) {
+    console.log("TODO: add removal for drop areas");
 }
 
 export function assignEditableTextByElement(element, funct){

@@ -1,8 +1,8 @@
 import { formatSize } from "./elementHelpers.js";
 import { spellComponent } from "./spellComponent.js";
 export class formComponent extends spellComponent {
-    constructor(name, flavor, formDescription, image, costs, statBlock) {
-        super(name, "Form", flavor, image, costs, statBlock);
+    constructor(name, flavor, formDescription, image, costs, statBlock, locked) {
+        super(name, "Form", flavor, image, costs, statBlock, locked);
         this.formDescription = formDescription;
         this.buildFormVisuals();
     }
@@ -33,7 +33,8 @@ export class formComponent extends spellComponent {
             this.formDescription,
             this.image,
             this.costs,
-            this.statBlock
+            this.statBlock,
+            this.locked
         );
     }
 }

@@ -1,8 +1,8 @@
 import { formatSize, timeFormat } from "./elementHelpers.js";
 import { spellComponent } from "./spellComponent.js";
 export class pathComponent extends spellComponent {
-  constructor(name, flavor, pathDescription, image, costs, statBlock) {
-    super(name, "Path", flavor, image, costs, statBlock);
+  constructor(name, flavor, pathDescription, image, costs, statBlock, locked) {
+    super(name, "Path", flavor, image, costs, statBlock, locked);
     this.pathDescription = pathDescription;
     this.buildPathVisuals();
   }
@@ -37,7 +37,8 @@ export class pathComponent extends spellComponent {
       this.pathDescription,
       this.image,
       this.costs,
-      this.statBlock
+      this.statBlock,
+      this.locked
     );
   }
 }

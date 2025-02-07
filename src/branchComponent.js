@@ -1,7 +1,7 @@
 import { spellComponent } from "./spellComponent.js";
 export class branchComponent extends spellComponent {
-    constructor(name, flavor, branchDescription, image, costs, statBlock) {
-        super(name, "Branch", flavor, image, costs, statBlock);
+    constructor(name, flavor, branchDescription, image, costs, statBlock, locked) {
+        super(name, "Branch", flavor, image, costs, statBlock, locked);
         this.branchDescription = branchDescription;
     }
 
@@ -12,7 +12,8 @@ export class branchComponent extends spellComponent {
             this.branchDescription,
             this.image,
             this.costs,
-            this.statBlock
+            this.statBlock,
+            this.locked
         )
     }
 }

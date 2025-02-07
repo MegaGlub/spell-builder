@@ -9,11 +9,12 @@ import { spellBlock } from "./spellBlock.js";
 import { deleteWandCookie } from "./cookies.js";
 
 export class wand {
-    constructor(name, flavor, image, slotsByName, statBlock) {
+    constructor(name, flavor, image, slotsByName, statBlock, lockedSlots) {
         this.name = name;
         this.flavor = flavor;
         this.image = image;
         this.slotsByName = slotsByName;
+        this.lockedSlots = lockedSlots;
         this.spellBlockCount = 0;
 
         this.slotsByObject = [];
@@ -279,7 +280,11 @@ export class wand {
             const componentClone = this.slotsByObject[componentIndex].clone();
             componentClone.componentElement.classList.add("wandActiveComponent");
             componentClone.drawElement(clonedComponentDisplayElement);
-            assignDroppableAreaByElement(componentClone.componentElement, this.handleElementHold.bind(this), this.handleElementDrop.bind(this));
+            if (this.lockedSlots[componentIndex]){
+                componentClone.showLock();
+            }
+            assignDroppableAreaByElement(componentClone.componentElement, this.#handleComponentHold.bind(this), this.#handleComponentDrop.bind(this));
+            assignClickableButtonByElement(componentClone.componentElement, this.#handleComponentClick.bind(this));
             this.clonedDescriptionComponents.push(componentClone);
         }
         descriptionClone.appendChild(this.spellDescriptionElement);
@@ -304,17 +309,20 @@ export class wand {
         else {
             const componentClone = componentList[indexOfComponent].clone();
             this.slotsByObject[index] = componentClone;
+            if (this.lockedSlots[index]){
+                componentClone.showLock();
+            }
             componentClone.drawElement(this.componentDisplayElement);
         }
     }
 
-    handleElementHold() {
+    #handleComponentHold() {
         document.getElementById("wandActiveComponentDisplay").style.backgroundColor = "#B0C4DE";
     }
 
-    handleElementDrop(event) {
+    #handleComponentDrop(event) {
         const droppedElementId = event.dataTransfer.getData("text/plain");
-        const positionInWand = this.findDroppedPositionInWand(event.clientX, event.clientY);
+        const positionInWand = this.findPositionInWand(event.clientX, event.clientY);
         this.slotsByName[positionInWand] = droppedElementId.substr(14);
         this.updateComponentDisplay();
         this.selectWand();
@@ -322,7 +330,26 @@ export class wand {
         this.saveToFile();
     }
 
-    findDroppedPositionInWand(clientX, clientY) { //finds the element by looking at the x coordinate of the drop action
+    #handleComponentClick(event) {
+        const positionInWand = this.findPositionInWand(event.clientX, event.clientY);
+        const component = this.slotsByObject[positionInWand];
+        if (this.lockedSlots[positionInWand] == true){
+            this.lockedSlots[positionInWand] = false;
+            console.log("hiding lock...");
+            /* Remove icon -> remove css -> re-enable droppable area */
+            component.hideLock();
+        } else{
+            this.lockedSlots[positionInWand] = true;
+            console.log("showing lock...");
+            /* Add icon -> add css -> disable droppable area */
+            component.showLock();
+        }
+        this.updateComponentDisplay();
+        this.selectWand();
+        this.saveToFile();
+    }
+
+    findPositionInWand(clientX, clientY) { //finds the element by looking at the x coordinate of the drop action
         const descriptionBox = document.getElementById("wandActiveComponentDisplay");
         const availableComponents = [...descriptionBox.querySelectorAll(".wandActiveComponent")]; //converts the array-like into an array after grabbing
         const nearestElement = availableComponents.reduce((nearest, child) => {
@@ -416,7 +443,8 @@ export class wand {
             + "\n\t\"name\": \"" + this.name + "\","
             + "\n\t\"flavor\": \"" + this.flavor + "\","
             + "\n\t\"image\": \"" + this.image + "\","
-            + "\n\t\"slots\": " + this.#packageComponentsForSave() + ","
+            + "\n\t\"slots\": " + this.#packageArrayForSave(this.slotsByName) + ","
+            + "\n\t\"lockedSlots\": " + this.#packageArrayForSave(this.lockedSlots) + ","
             + "\n\t\"statBlock\": " + this.#packageStatBlockForSave()
             + "\n}"
         );
@@ -425,12 +453,20 @@ export class wand {
         saveJSONFile(projectPath + "data/wands/" + fileName + ".json", wandJSON, () => { logText("\tWand " + fileName + " saved!") });
     }
 
-    #packageComponentsForSave() {
+    #packageArrayForSave(arr) {
         let result = "[";
-        for (let i = 0; i < this.slotsByName.length - 1; i++) {
-            result += "\n\t\t\"" + this.slotsByName[i] + "\",";
+        for (let i = 0; i < arr.length - 1; i++) {
+            if (typeof arr[i] == "string"){
+                result += "\n\t\t\"" + arr[i] + "\",";
+            } else{
+                result += "\n\t\t" + arr[i] + ",";
+            }
         }
-        result += "\n\t\t\"" + this.slotsByName[this.slotsByName.length - 1] + "\"";
+        if (typeof arr[arr.length - 1] == "string") {
+            result += "\n\t\t\"" + arr[arr.length - 1] + "\"";
+        } else{
+            result += "\n\t\t" + arr[arr.length - 1] + "";
+        }
         result += "\n\t]";
         return result;
     }

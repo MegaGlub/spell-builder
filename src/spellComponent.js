@@ -1,15 +1,16 @@
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
-import { assignDraggableElementByID, assignMouseOverVFX } from "./buttons.js";
+import { assignDraggableElementByElement, assignMouseOverVFX } from "./buttons.js";
 import { getSign } from "./elementHelpers.js";
 import { voidMouseOut, voidMouseOver } from "./voidVFX.js";
 export class spellComponent {
-    constructor(name, type, flavor, image, costs, statBlock) {
+    constructor(name, type, flavor, image, costs, statBlock, locked) {
         this.name = name;
         this.type = type;
         this.flavor = flavor;
         this.image = image;
         this.costs = costs;
+        this.locked = locked;
 
         this.#discoverStats(statBlock);
         this.buildComponentVisuals();
@@ -19,7 +20,7 @@ export class spellComponent {
         this.#createEmptyElements();
         this.#assignElementClasses();
         this.#assignElementIds();
-        this.#assignImage();
+        this.#assignImages();
         this.#relateElements();
         this.#fillInnerHTML();
         this.#colorizeText();
@@ -32,6 +33,7 @@ export class spellComponent {
         this.spellFlavorElement = document.createElement("div");
         this.componentElement = document.createElement("span");
         this.imageElement = document.createElement("img");
+        this.lockIconElement = document.createElement("img");
         this.statTableElement = document.createElement("div");
         this.primaryCellElement = document.createElement("span");
         this.secondaryCellElement = document.createElement("span");
@@ -45,6 +47,7 @@ export class spellComponent {
         this.spellTypeElement.className = "spellType";
         this.spellFlavorElement.className = "spellFlavor";
         this.componentElement.className = "spellComponent";
+        this.lockIconElement.className = "spellLockIcon";
         this.statTableElement.className = "componentStatTable";
         this.primaryCellElement.className = "componentStatCell";
         this.secondaryCellElement.className = "componentStatCell";
@@ -68,10 +71,12 @@ export class spellComponent {
         this.statTableElement.appendChild(this.potencyCellElement);
         this.statTableElement.appendChild(this.complexityCellElement);
         this.componentElement.appendChild(this.imageElement);
+        this.componentElement.appendChild(this.lockIconElement);
     }
 
-    #assignImage() {
+    #assignImages() {
         this.imageElement.src = this.image;
+        this.lockIconElement.src = "images/ui/locked.png";
     }
 
     #fillInnerHTML() {
@@ -113,12 +118,18 @@ export class spellComponent {
 
     drawElement(parentElement) {
         parentElement.appendChild(this.componentElement);
+        if (this.locked){
+            this.showLock;
+        }
         this.addEventListeners(); //drag and drop doesn't like being applied to elements without parents
     }
 
     addEventListeners() {
         assignToolTip(this.componentElement, this.descriptionElement);
-        assignDraggableElementByID("spellComponent" + this.name);
+        if (!this.locked){
+            // assignDraggableElementByID("spellComponent" + this.name);
+            assignDraggableElementByElement(this.componentElement);
+        }
         if (this.type == "Void"){
             assignMouseOverVFX(this.componentElement, voidMouseOver, voidMouseOut);
         }
@@ -181,6 +192,18 @@ export class spellComponent {
         }
     }
 
+    showLock() {
+        this.lockIconElement.style.display = "block";
+        this.locked = true;
+        console.log(this.lockIconElement.style.display);
+    }
+
+    hideLock() {
+        this.lockIconElement.style.display = "none";
+        this.locked = false;
+        console.log(this.lockIconElement.style.display);
+    }
+
     costOf() {
         return this.primaryCost + this.secondaryCost + (2 * this.energyCost);
     }
@@ -216,7 +239,8 @@ export class spellComponent {
             this.flavor,
             this.image,
             this.costs,
-            this.statBlock
+            this.statBlock,
+            this.locked
         );
     }
 }

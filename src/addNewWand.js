@@ -322,12 +322,14 @@ class wandFormCreator {
         for (let i = 0; i < this.slotsField.value; i++) {
             slots.push("Nothing");
         }
+        const lockedSlots = Array(this.slotsField.value).fill(false);
         wandList.push(new wand(
             this.nameField.value,
             this.flavorField.value,
             this.imageField.value,
             slots,
-            statBlock
+            statBlock,
+            lockedSlots
         ));
         const addWandButton = document.getElementById("wandAddButton");
         const wandSelector = document.getElementById("wandSelector");
