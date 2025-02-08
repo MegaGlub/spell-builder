@@ -269,6 +269,7 @@ export class wand {
     }
 
     #replaceComponentsInClonedDescription(descriptionClone) {
+        this.componentDroppableControllers = new Array(this.slotsByName.length);
         this.clonedDescriptionComponents = [];
         const clonedComponentDisplayElement = descriptionClone.querySelector(".wandComponentDisplay");
         clonedComponentDisplayElement.classList.add("wandActiveComponentDisplay");
@@ -281,7 +282,13 @@ export class wand {
             componentClone.locked = this.lockedSlots[componentIndex];
             componentClone.componentElement.classList.add("wandActiveComponent");
             componentClone.drawElement(clonedComponentDisplayElement);
-            assignDroppableAreaByElement(componentClone.componentElement, this.#handleComponentHold.bind(this), this.#handleComponentDrop.bind(this));
+            if (!componentClone.locked){
+                this.componentDroppableControllers[componentIndex] = assignDroppableAreaByElement(
+                    componentClone.componentElement,
+                    this.#handleComponentHold.bind(this),
+                    this.#handleComponentDrop.bind(this)
+                );
+            }
             assignClickableButtonByElement(componentClone.componentElement, this.#handleComponentClick.bind(this));
             this.clonedDescriptionComponents.push(componentClone);
         }
@@ -332,11 +339,17 @@ export class wand {
             this.lockedSlots[positionInWand] = false;
             /* Remove icon -> remove css -> re-enable droppable area */
             component.hideLock();
-            
+            this.componentDroppableControllers[positionInWand] = assignDroppableAreaByElement(
+                component.componentElement,
+                this.#handleComponentHold.bind(this),
+                this.#handleComponentDrop.bind(this)
+            );
         } else{
             this.lockedSlots[positionInWand] = true;
             /* Add icon -> add css -> disable droppable area */
             component.showLock();
+            this.componentDroppableControllers[positionInWand].abort();
+            this.componentDroppableControllers[positionInWand] = undefined;
         }
         this.updateComponentDisplay();
         this.selectWand();

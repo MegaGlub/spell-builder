@@ -35,26 +35,20 @@ export function assignDraggableElementByElement(element){
     element.addEventListener("dragend", () => {
         // element.style.cursor = "grab";
         element.style.opacity = "1.0";
-    })
+    });
 }
 
 export function assignDroppableAreaByElement(element, dragOverFunct, dropFunct) {
+    const controller = new AbortController();
     element.addEventListener("dragover", (event) => {
         event.preventDefault();
         dragOverFunct;
-    });
+    }, {signal: controller.signal});
     element.addEventListener("drop", (event) => {
         event.preventDefault();
         dropFunct(event);
-    });
-}
-
-export function removeDraggableElementByElement(element){
-    console.log("TODO: add removal for draggables");
-}
-
-export function removeDroppableAreaByElement(element, dragOverFunct, dropFunct) {
-    console.log("TODO: add removal for drop areas");
+    }, {signal: controller.signal});
+    return controller;
 }
 
 export function assignEditableTextByElement(element, funct){
