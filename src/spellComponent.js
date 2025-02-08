@@ -91,8 +91,8 @@ export class spellComponent {
         this.primaryCellElement.innerHTML = this.formattedDataCell(this.costs["primary"], this.primaryType);
         this.secondaryCellElement.innerHTML = this.formattedDataCell(this.costs["secondary"], this.secondaryType);
         this.energyCellElement.innerHTML = this.formattedDataCell(this.costs["energy"], "Energy");
-        this.potencyCellElement.innerHTML = this.formattedDataCell(this.potency, "Potency");
-        this.complexityCellElement.innerHTML = this.formattedDataCell(this.complexity, "Complexity")
+        this.potencyCellElement.innerHTML = this.formattedDataCell(this.statBlock.get("potency"), "Potency");
+        this.complexityCellElement.innerHTML = this.formattedDataCell(this.statBlock.get("complexity"), "Complexity")
     }
 
     #discoverStats(statBlock) {

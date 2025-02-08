@@ -274,7 +274,7 @@ export class spellBlock {
             case "Trigger":
                 return "#FA8072";
             default:
-                return "#000000";
+                return "#FFFFF0";
         }
     }
 
@@ -284,7 +284,7 @@ export class spellBlock {
                 return "#DBA463";
             case "Nature":
                 return "#3CB371";
-            case "Eath":
+            case "Earth":
                 return "#5A4E44";
             case "Flesh":
                 return "#E86A73";
@@ -293,7 +293,7 @@ export class spellBlock {
             case "Flow":
                 return "#588DBE";
             default:
-                logText("Underline color for wand description failed, defaulting to black.");
+                logText("Underline color for wand description failed: \"" + vis + "\" not recognized, defaulting to black.");
                 return "#000000";
         }
     }
