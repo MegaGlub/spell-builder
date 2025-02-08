@@ -1,11 +1,11 @@
 {
     "type": "Purpose",
-    "name": "Pheonix Spice",
+    "name": "Phoenix Spice",
     "flavor": "Enough scovilles to literally breathe fire.",
     "purposeDescriptions": {
         "low": "imbues a peppery kick into affected food, which causes anyone who consumes it to let out a loud smoky belch a moment later",
-        "mid": "imbues a firey haymaker-spice into affected food, causing anyone who consumes it to let out a meter-long jet of flame a moment later",
-        "high": "instills a mind-destroyingly strong spice into affect food, causing anyone who consumes it to let out a painful ten meter jet of flame",
+        "mid": "imbues a firey haymaker of spice into affected food, causing anyone who consumes it to let out a meter-long jet of flame a moment later",
+        "high": "instills a mind-destroyingly strong spice into affected food, causing anyone who consumes it to let out a painful ten meter jet of flame",
         "invLow": "suffuses a minty freshness into affected food, which causes anyone who consumes it to let out a cold, teeth-chattering breath a moment later",
         "invMid": "suffuses an icey mint taste into affected food, causing anyone who consumes it to let out a blast of sub-zero ice shards a moment later",
         "invHigh": "instills a mind-numbingly strong mint into affected food, causing anyone who consumes it to let out a jet of supercooled ice and air"
