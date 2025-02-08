@@ -106,10 +106,10 @@ export class wand {
         this.#addWandVFX();
         const descriptionClone = this.#duplicateSelectedDescription();
         this.#createDeleteButton(descriptionClone);
-        this.#createStatWidgets(descriptionClone);
         this.#beautifySelectedTitle(descriptionClone);
         this.#replaceComponentsInClonedDescription(descriptionClone);
         this.#compileSpell();
+        this.#createStatWidgets(descriptionClone);
         setSelectedWand(this);
     }
 

@@ -377,7 +377,7 @@ img {
 
 .spellLockIcon {
     display: none;
-    filter:drop-shadow(2px 2px 2px #000000);
+    filter: drop-shadow(2px 2px 2px #000000);
     height: 64px;
     left: 32px;
     opacity: 1.0;
@@ -536,6 +536,7 @@ img {
     color: #000000;
     height: min-content;
     margin: 0.75em;
+    margin-bottom: 2em;
     margin-left: 1.25em;
     margin-right: 1.25em;
     overflow: hidden;
@@ -586,6 +587,7 @@ img {
 }
 
 .radioWidget .radioWidgetInput:checked ~ * {
+    filter: drop-shadow(4px 4px #000000);
     opacity: 1.0;
 }
 
@@ -626,6 +628,7 @@ img {
     right: 3em;
     top: 1em;
 }
+
 .wandDeleteButton:hover {
     cursor: pointer;
 }
