@@ -3,7 +3,7 @@ import { assignToolTip } from "./toolTips.js";
 import { assignClickableButtonByID, assignClickableButtonByElement, assignDroppableAreaByElement, assignEditableTextByElement } from "./buttons.js";
 import { findComponentByName, componentList, setSelectedWand, projectPath } from "../main.js";
 import { handleDeleteWandPress } from "./addNewWand.js";
-import { clearChildren } from "./elementHelpers.js";
+import { clearChildren, filterStringForJSON } from "./elementHelpers.js";
 import { formatFileName, saveJSONFile } from "./json.js";
 import { spellBlock } from "./spellBlock.js";
 import { deleteWandCookie } from "./cookies.js";
@@ -382,7 +382,7 @@ export class wand {
 
     handleNameEdit() {
         const activeTitle = document.getElementsByClassName("wandActiveTitle")[0];
-        const newText = activeTitle.innerHTML;
+        const newText = filterStringForJSON(activeTitle.innerHTML);
         const oldText = this.name;
         this.name = newText;
         this.spellTitleElement.innerHTML = newText;
@@ -394,7 +394,7 @@ export class wand {
 
     handleFlavorEdit() {
         const activeFlavor = document.getElementsByClassName("wandActiveFlavor")[0];
-        const newText = activeFlavor.innerHTML;
+        const newText = filterStringForJSON(activeFlavor.innerHTML);
         this.flavor = newText;
         this.spellFlavorElement.innerHTML = newText;
         this.saveToFile();

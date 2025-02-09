@@ -159,5 +159,6 @@ export function formatFileName(name){
     fileName = fileName.replaceAll("\[^A-Za-z0-9\]", "");
     fileName = fileName.replaceAll(" ", "-");
     fileName = fileName.toLowerCase();
+    fileName = fileName.trim();
     return fileName;
 }

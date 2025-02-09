@@ -5,7 +5,7 @@ import { wand } from "./wand.js";
 import { readImageDirectory } from "./fileMods.js";
 import { saveCookies } from "./cookies.js";
 import { destroyFile, formatFileName } from "./json.js";
-import { clearChildren } from "./elementHelpers.js";
+import { clearChildren, filterStringForJSON } from "./elementHelpers.js";
 import { assignToolTip } from "./toolTips.js";
 
 const modalContent = document.getElementById("modalContent");
@@ -324,8 +324,8 @@ class wandFormCreator {
         }
         const lockedSlots = Array(this.slotsField.value).fill(false);
         wandList.push(new wand(
-            this.nameField.value,
-            this.flavorField.value,
+            filterStringForJSON(this.nameField.value),
+            filterStringForJSON(this.flavorField.value),
             this.imageField.value,
             slots,
             statBlock,

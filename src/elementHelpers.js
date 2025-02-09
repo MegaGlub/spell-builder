@@ -56,3 +56,10 @@ export function sewArrays(arr1, arr2) {
 export function emptyArray(arr){
     arr.splice(0, arr.length);
 }
+
+export function filterStringForJSON(str){
+    let result = str;
+    result = result.replaceAll("\[^A-Za-z0-9\"\'\-\_\!\.\,\[\]\@\#\$\%\^\&\*\(\)\ ]", "ERR");
+    result = result.trim();
+    return result;
+}
