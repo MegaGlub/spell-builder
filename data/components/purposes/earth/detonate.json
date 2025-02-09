@@ -5,7 +5,7 @@
     "purposeDescriptions": {
         "low": "shatters and cracks water-soaked Earth",
         "mid": "violently detonates water-doused Earth",
-        "high": "violently detonates water-doused Earth, and causes chaining explosions in the shrapnel"
+        "high": "violently detonates water-doused Earth and causes chaining explosions in the shrapnel"
     },
     "image": "images/purposes/earth/detonate.png",
     "costs": {

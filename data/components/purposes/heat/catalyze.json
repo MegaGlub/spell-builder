@@ -4,7 +4,7 @@
     "flavor": "Create a seed bomb.",
     "purposeDescriptions": {
         "low": "causes affected flammable objects to burst into rapidly sprouting seeds once ignited",
-        "mid": "causes affected flammable objects to violently explode into rapidly sprouting seeds once ignited once ignited",
+        "mid": "causes affected flammable objects to violently explode into rapidly sprouting seeds once ignited",
         "high": "causes affected flammable objects to violently explode into a fragmentation bomb of high-velocity seeds once ignited",
         "invLow": "greatly reduces the detonation speed of nearby explosives for a short few minutes",
         "invMid": "completely nullifies nearby explosive materials for about half an hour",

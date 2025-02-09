@@ -32,7 +32,7 @@
         "invertible": true, 
         "potency": 0,
         "damageCount": {
-            "low": 2,
+            "low": 1,
             "mid": 2,
             "high": 2,
             "invLow": 0,
@@ -40,12 +40,13 @@
             "invHigh": 0
         },
         "damageDice": {
-            "low": "d4",
+            "low": "d3",
             "mid": "d6",
             "high": "d8",
             "invLow": "d0",
             "invMid": "d0",
             "invHigh": "d0"
-        }
+        },
+        "damageModifier": 3
     }
 }
