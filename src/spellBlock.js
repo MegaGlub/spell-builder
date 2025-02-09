@@ -340,6 +340,7 @@ export class spellBlock {
 
     #assignElementClasses() {
         this.statTableElement.className = "componentStatTable";
+        this.statTableElement.style.width = "100%"; // normally limited to fit within the toolTip
         this.damageCellElement.className = "componentStatCell";
         this.hitCellElement.className = "componentStatCell";
         this.actionPointCellElement.className = "componentStatCell";
