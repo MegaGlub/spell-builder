@@ -149,7 +149,7 @@ export class wand {
         const widgetTitle = document.createElement("div");
         widgetBox.className = "wandWidgetBox";
         widgetTitle.className = "widgetTitle";
-        widgetTitle.innerHTML = "Stat Modifiers";
+        widgetTitle.innerHTML = "Wand Stat Modifiers";
         descriptionClone.appendChild(widgetBox);
         widgetBox.appendChild(widgetTitle);
 
