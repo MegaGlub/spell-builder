@@ -59,7 +59,8 @@ export function emptyArray(arr){
 
 export function filterStringForJSON(str){
     let result = str;
-    result = result.replaceAll("\[^A-Za-z0-9\"\'\-\_\!\.\,\[\]\@\#\$\%\^\&\*\(\)\ ]", "ERR");
+    const regex = /[^A-Za-z0-9\"\'-\_\!\?\.\,\[\]\@\#\$\%\^\&\*\(\)\ ]/g;
+    result = result.replaceAll(regex, "");
     result = result.trim();
     return result;
 }

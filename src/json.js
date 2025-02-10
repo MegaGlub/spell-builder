@@ -156,8 +156,10 @@ export async function destroyFile(fileName, returnCallback){
 
 export function formatFileName(name){
     let fileName = name;
-    fileName = fileName.replaceAll("\[^A-Za-z0-9\]", "");
+    const regex = /[^A-Za-z0-9-]/g;
+    fileName = fileName.trim();
     fileName = fileName.replaceAll(" ", "-");
+    fileName = fileName.replaceAll(regex, "");
     fileName = fileName.toLowerCase();
     fileName = fileName.trim();
     return fileName;

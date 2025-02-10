@@ -397,6 +397,7 @@ export class wand {
         const newText = filterStringForJSON(activeFlavor.innerHTML);
         this.flavor = newText;
         this.spellFlavorElement.innerHTML = newText;
+        console.log(activeFlavor);
         this.saveToFile();
     }
 

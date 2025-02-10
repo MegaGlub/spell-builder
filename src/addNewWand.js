@@ -243,7 +243,10 @@ class wandFormCreator {
 
     #isWandNameUnique() {
         for (let wand of wandList) {
+            console.log(formatFileName(wand.name));
+            console.log(formatFileName(this.nameField.value));
             if (formatFileName(wand.name) == formatFileName(this.nameField.value)) {
+                console.log("not unique...");
                 return false;
             }
         }
