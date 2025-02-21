@@ -8,10 +8,6 @@ import { getRootDir } from "./src/fileMods.js";
 
 //you could totally invert extrude if you weren't a pussy
 
-//lock button for wands
-//"empowered" status effect switch for +potency (force highest strength?)
-    //"weakened" status effect too
-
 //work on the martial arts
     //construct basic display screen
     //import skills via json

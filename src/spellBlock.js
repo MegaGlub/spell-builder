@@ -183,7 +183,7 @@ export class spellBlock {
 
     #getPurposeEnumFromPotency(purpose) {
         if (purpose.statBlock["invertible"] == true && this.inverted) {
-            if (this.statBlock.get("potency") <= -2) {
+            if (this.statBlock.get("potency") <= -3) {
                 return "invHigh";
             } else if (this.statBlock.get("potency") <= 1) {
                 return "invMid";
@@ -191,7 +191,7 @@ export class spellBlock {
                 return "invLow";
             }
         } else {
-            if (this.statBlock.get("potency") >= 2) {
+            if (this.statBlock.get("potency") >= 3) {
                 return "high";
             } else if (this.statBlock.get("potency") >= -1) {
                 return "mid";
