@@ -88,7 +88,6 @@ export class wand {
     #fillInnerHTML() {
         this.spellTitleElement.innerHTML = this.name;
         this.spellFlavorElement.innerHTML = this.flavor;
-        this.componentDisplayElement;
     }
 
     drawElement(parentElement) {

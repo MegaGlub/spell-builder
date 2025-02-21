@@ -13,10 +13,27 @@ export class spellComponent {
         this.locked = locked;
 
         this.#discoverStats(statBlock);
-        this.buildComponentVisuals();
+        this.#buildComponentVisuals();
     }
 
-    buildComponentVisuals() {
+    #discoverStats(statBlock) {
+        if (statBlock[Symbol.toStringTag] == "Map"){
+            this.statBlock = statBlock;
+        } else{
+            this.statBlock = new Map(Object.entries(statBlock));
+        }
+
+        this.primaryType = "Primary";
+        if (this.costs["primaryType"]) {
+            this.primaryType = this.costs["primaryType"];
+        }
+        this.secondaryType = "Secondary";
+        if (this.costs["secondaryType"]) {
+            this.secondaryType = this.costs["secondaryType"];
+        }
+    }
+
+    #buildComponentVisuals() {
         this.#createEmptyElements();
         this.#assignElementClasses();
         this.#assignElementIds();
@@ -60,6 +77,11 @@ export class spellComponent {
         this.componentElement.id = "spellComponent" + this.name;
     }
 
+    #assignImages() {
+        this.imageElement.src = this.image;
+        this.lockIconElement.src = "images/ui/locked.png";
+    }
+
     #relateElements() {
         this.descriptionElement.appendChild(this.spellTitleElement);
         this.descriptionElement.appendChild(this.spellTypeElement);
@@ -72,11 +94,6 @@ export class spellComponent {
         this.statTableElement.appendChild(this.complexityCellElement);
         this.componentElement.appendChild(this.imageElement);
         this.componentElement.appendChild(this.lockIconElement);
-    }
-
-    #assignImages() {
-        this.imageElement.src = this.image;
-        this.lockIconElement.src = "images/ui/locked.png";
     }
 
     #fillInnerHTML() {
@@ -93,23 +110,6 @@ export class spellComponent {
         this.energyCellElement.innerHTML = this.formattedDataCell(this.costs["energy"], "Energy");
         this.potencyCellElement.innerHTML = this.formattedDataCell(this.statBlock.get("potency"), "Potency");
         this.complexityCellElement.innerHTML = this.formattedDataCell(this.statBlock.get("complexity"), "Complexity")
-    }
-
-    #discoverStats(statBlock) {
-        if (statBlock[Symbol.toStringTag] == "Map"){
-            this.statBlock = statBlock;
-        } else{
-            this.statBlock = new Map(Object.entries(statBlock));
-        }
-
-        this.primaryType = "Primary";
-        if (this.costs["primaryType"]) {
-            this.primaryType = this.costs["primaryType"];
-        }
-        this.secondaryType = "Secondary";
-        if (this.costs["secondaryType"]) {
-            this.secondaryType = this.costs["secondaryType"];
-        }
     }
 
     #colorizeText() {
