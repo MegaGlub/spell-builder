@@ -498,6 +498,7 @@ img {
 .wandAddButton {
     bottom: 0;
     display: inline-block;
+    filter: drop-shadow(2px 2px 4px #000000);
     height: 64px;
     margin-top: 16px;
     margin-left: calc(((1em + 128px + 20px) / 2) - 32px);

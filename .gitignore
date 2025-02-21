@@ -130,7 +130,5 @@ dist
 .pnp.*
 
 # don't put saves into the repo anymore
-data/save/availableComponents.json
 data/wands
-data/save/availableComponents.json
 data/save/availableComponents.json
