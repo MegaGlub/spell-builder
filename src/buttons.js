@@ -6,6 +6,8 @@ import { createExportButton } from "./exporting.js";
 const mainMenuScreen = document.getElementById("mainMenuScreen");
 const mainMenuSpellsButton = document.getElementById("mainMenuSpellsButton");
 const mainMenuMartialsButton = document.getElementById("mainMenuMartialsButton");
+const spellScreen = document.getElementById("spellScreen");
+const martialScreen = document.getElementById("martialScreen");
 const modalBackground = document.getElementById("modalBackground");
 
 export function assignClickableButtonByID(elementId, funct) {
@@ -65,6 +67,7 @@ export function assignMouseOverVFX(element, overFunct, outFunct){
     });
 }
 
+
 export function assignStaticButtons() {
     assignClickableButtonByID("mainMenuSpellsButton", mainMenuSpellsButtonPress);
     assignClickableButtonByID("mainMenuMartialsButton", mainMenuMartialsButtonPress);
@@ -79,10 +82,12 @@ export function assignStaticButtons() {
 }
 
 function mainMenuSpellsButtonPress() {
+    martialScreen.style.display = "none";
     hideMainMenu();
 }
 
 function mainMenuMartialsButtonPress() {
+    spellScreen.style.display = "none";
     hideMainMenu();
 }
 
@@ -94,6 +99,8 @@ function hideMainMenu() {
 
 function unhideMainMenu() {
     mainMenuScreen.style.display = "flex";
+    spellScreen.style.display = "block";
+    martialScreen.style.display = "block";
     mainMenuSpellsButton.disabled = false;
     mainMenuMartialsButton.disabled = false;
 }
