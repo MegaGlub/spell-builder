@@ -1,5 +1,5 @@
 import { logText } from "./src/logging.js";
-import { createComponentFromJSON, createWandFromJSON, readJSONDirectory } from "./src/json.js";
+import { createComponentFromJSON, createWandFromJSON, createMartialFromJSON, readJSONDirectory } from "./src/json.js";
 import { quickSort } from "./src/sorting.js";
 import { assignStaticButtons } from "./src/buttons.js";
 import { fetchCookies } from "./src/cookies.js";
@@ -25,6 +25,7 @@ logText("Retrieving element IDs...");
 
 export const completeComponentList = []; //all components, built from json
 export const componentList = []; //just the components available to the user
+export const martialList = [];
 export const savedComponentNames = []; //names from availableComponents.json, used to build componentList
 export const wandList = []; //all wands, built from json. No such availability filtering.
 export const encryption_key = "ballfish_wuz_here"; //doesn't need to be secure.
@@ -56,6 +57,10 @@ const addWandButton = document.getElementById("wandAddButton");
 const wandSelector = document.getElementById("wandSelector");
 drawAll(wandList, wandSelector);
 wandSelector.appendChild(addWandButton);
+
+logText("Creating martial actions...");
+await buildMartialsFromFiles();
+drawAll(martialList, document.getElementById("martialBox"));
 
 logText("Complete!");
 finishLoading();
@@ -119,6 +124,30 @@ function drawAll(drawableElements, destination) {
     for (const drawable of drawableElements) {
         // logText("\tDrawing " + drawable.name + ".");
         drawable.drawElement(destination);
+    }
+}
+
+async function buildMartialsFromFiles() {
+    const root = projectPath + "data/weapons/";
+    const leaves = [
+        "bows", 
+        "clubs", 
+        "daggers", 
+        "firearms", 
+        "greatblades", 
+        "handaxes",
+        "polearms",
+        "shields",
+        "shortswords",
+        "spears",
+        "unarmed", 
+        "uncategorized"];
+    for (const leaf of leaves) {
+        logText("\tExploring: " + root + leaf);
+        const freshMartials = await readJSONDirectory(root + leaf, createMartialFromJSON);
+        for (const martialAction of freshMartials) {
+            martialList.push(martialAction);
+        }
     }
 }
 

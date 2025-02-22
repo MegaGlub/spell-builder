@@ -1,0 +1,31 @@
+{
+    "name": "Slash",
+    "statBlock": {
+        "cost": {
+            "primary": 1,
+            "secondary": 0
+        },
+        "damage": {
+            "count": 1,
+            "dice": "d10",
+            "modifier": 0
+        },
+        "effects": [
+            "None!"
+        ],
+        "range": 100,
+        "requirements" : [
+            "Wielding bladed weapon"
+        ],
+        "toHit": {
+            "stat": "Dex",
+            "modifier": -1
+        }
+    },
+    "editBlock": {
+        "notes": "balls"
+    },
+    "skillBlock": {
+        "unarmed": 0
+    }
+}

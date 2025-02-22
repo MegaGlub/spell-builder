@@ -718,6 +718,11 @@ img {
     width: calc(90% - 8px);
 }
 
+.martialBox{
+    background-color: #BC8F8F;
+    color: #000000;
+}
+
 .bottomToolBar {
     background-color: #333333;
     bottom: 0px;

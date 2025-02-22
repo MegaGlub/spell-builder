@@ -8,6 +8,7 @@ import { enhancementComponent } from "./enhancementComponent.js";
 import { wand } from "./wand.js";
 import { logText } from "./logging.js";
 import { branchComponent } from "./branchComponent.js";
+import { martialAction } from "./martialAction.js";
 
 export async function readJSONDirectory(dirPath, processingFunct) {
     const result = [];
@@ -140,6 +141,15 @@ export function createWandFromJSON(json){
         json.statBlock,
         json.lockedSlots
     );
+}
+
+export function createMartialFromJSON(json){
+    return new martialAction(
+        json.name,
+        json.statBlock,
+        json.editBlock,
+        json.skillBlock
+    )
 }
 
 export function createArrayFromJSON(json){
