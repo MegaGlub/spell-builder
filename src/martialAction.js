@@ -95,8 +95,8 @@ export class martialAction {
     #formatStatList(statList) { //formatting for effects and requirements
         const resultElement = document.createElement("div");
         let resultStr = "";
-        for (const stat in statList){
-            resultStr += stat + "\n";
+        for (const index in statList){
+            resultStr += statList[index] + "\n";
         }
         resultStr = resultStr.trim();
         resultElement.innerHTML = resultStr;
@@ -153,7 +153,7 @@ export class martialAction {
         } if (this.statBlock.has(key)) {
             return this.statBlock.get(key);
         }
-        return "";
+        return "-";
     }
 
     drawElement(parentElement) {
