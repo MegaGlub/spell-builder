@@ -742,6 +742,7 @@ img {
     background-color: #EEBBBB;
     color: #000000;
     display: inline-flex;
+    font-size: 1.25em;
     justify-content: center;
     height: 97%;
     left: 0;
