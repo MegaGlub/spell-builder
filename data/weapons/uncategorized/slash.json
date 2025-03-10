@@ -5,11 +5,7 @@
             "primary": 1,
             "secondary": 0
         },
-        "damage": {
-            "count": 1,
-            "dice": "d10",
-            "modifier": 0
-        },
+        "damage": "1d8 + 1",
         "effects": [
             "None!"
         ],
@@ -17,10 +13,7 @@
         "requirements" : [
             "Wielding bladed weapon"
         ],
-        "toHit": {
-            "stat": "Dex",
-            "modifier": -1
-        }
+        "toHit": "Dex - 1"
     },
     "editBlock": {
     },

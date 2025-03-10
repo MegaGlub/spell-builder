@@ -74,12 +74,12 @@ export class martialAction {
 
     #fillStatTable(){
         this.#generateDataCell(this.requirementElement, "Requirements", this.#formatStatList, this.getStat("requirements"));
-        this.#generateDataCell(this.damageElement, "Damage", this.#formatDamage, this.getStat("damage"));
-        this.#generateDataCell(this.toHitElement, "To-Hit", this.#formatToHit, this.getStat("toHit"));
+        this.#generateDataCell(this.damageElement, "Damage", this.#formatBasicStat, this.getStat("damage"));
+        this.#generateDataCell(this.toHitElement, "To-Hit", this.#formatBasicStat, this.getStat("toHit"));
         this.#generateDataCell(this.costElement, "Cost", this.#formatAP, this.getStat("cost"));
         this.#generateDataCell(this.rangeElement, "Range", this.#formatRange, this.getStat("range"));
         this.#generateDataCell(this.effectsElement, "Applied Effects", this.#formatStatList, this.getStat("effects"));
-        this.#generateDataCell(this.notesElement, "Player Notes", this.#formatNotes, this.getStat("notes"));
+        this.#generateDataCell(this.notesElement, "Player Notes", this.#formatBasicStat, this.getStat("notes"));
     }
 
     #generateDataCell(element, label, formatFunct, rawData){
@@ -103,22 +103,9 @@ export class martialAction {
         return resultElement;
     }
 
-    #formatDamage(damage) {
+    #formatBasicStat(stat) {
         const resultElement = document.createElement("div");
-        resultElement.innerHTML = damage["count"] + damage["dice"];
-        if (damage["modifier"] != 0){
-            resultElement.innerHTML += getSign(damage["modifier"]);
-        }
-        return resultElement;
-    }
-
-    #formatToHit(toHit) { 
-        const resultElement = document.createElement("div");
-        let resultStr = toHit["stat"];
-        if (toHit["modifier"] != 0){
-            resultStr += " " + getSign(toHit["modifier"]);
-        }
-        resultElement.innerHTML = resultStr;
+        resultElement.innerHTML = stat;
         return resultElement;
     }
 
@@ -138,12 +125,6 @@ export class martialAction {
     #formatRange(stat) {
         const resultElement = document.createElement("div");
         resultElement.innerHTML = formatSize(stat);
-        return resultElement;
-    }
-
-    #formatNotes(str) {
-        const resultElement = document.createElement("div");
-        resultElement.innerHTML = str;
         return resultElement;
     }
 
