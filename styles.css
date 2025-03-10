@@ -810,6 +810,19 @@ img {
     cursor: pointer;
 }
 
+.actionStatValue {
+    border-radius: 0.2em;
+    color: #000000;
+    min-width: 2em;
+    width: fit-content;
+}
+
+.actionStatValue:hover {
+    box-shadow: 0 0 10px 100px #FFFFF0 inset;
+    color: #333333;
+    cursor: text;
+}
+
 .bottomToolBar {
     background-color: #333333;
     bottom: 0px;

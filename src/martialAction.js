@@ -92,8 +92,9 @@ export class martialAction {
         element.appendChild(formatFunct(rawData));
     }
 
-    #formatStatList(statList) { //formatting for effects and requirements
+    #formatStatList(statList) { // TODO: change to make a new element per line, then return a block of all those lines
         const resultElement = document.createElement("div");
+        resultElement.className = "actionStatValue";
         let resultStr = "";
         for (const index in statList){
             resultStr += statList[index] + "\n";
@@ -105,12 +106,14 @@ export class martialAction {
 
     #formatBasicStat(stat) {
         const resultElement = document.createElement("div");
+        resultElement.className = "actionStatValue";
         resultElement.innerHTML = stat;
         return resultElement;
     }
 
     #formatAP(costs) {
         const resultElement = document.createElement("div");
+        resultElement.className = "actionStatValue";
         let resultStr = "";
         for (let i = 0; i < costs["primary"]; i++){
             resultStr += "\u25c9";
@@ -124,6 +127,7 @@ export class martialAction {
 
     #formatRange(stat) {
         const resultElement = document.createElement("div");
+        resultElement.className = "actionStatValue";
         resultElement.innerHTML = formatSize(stat);
         return resultElement;
     }
