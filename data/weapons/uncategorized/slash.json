@@ -6,13 +6,11 @@
             "secondary": 0
         },
         "damage": "1d8 + 1",
-        "effects": [
-            "None!"
-        ],
+        "effects": 
+            "None!",
         "range": 100,
-        "requirements" : [
-            "Wielding bladed weapon"
-        ],
+        "requirements" :
+            "Wielding bladed weapon",
         "toHit": "Dex - 1"
     },
     "editBlock": {

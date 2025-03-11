@@ -1,4 +1,5 @@
-import { formatSize, getSign } from "./elementHelpers.js";
+import { assignEditableTextByElement } from "./buttons.js";
+import { filterStringForJSON, formatSize } from "./elementHelpers.js";
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 export class martialAction {
@@ -73,35 +74,28 @@ export class martialAction {
     }
 
     #fillStatTable(){
-        this.#generateDataCell(this.requirementElement, "Requirements", this.#formatStatList, this.getStat("requirements"));
-        this.#generateDataCell(this.damageElement, "Damage", this.#formatBasicStat, this.getStat("damage"));
-        this.#generateDataCell(this.toHitElement, "To-Hit", this.#formatBasicStat, this.getStat("toHit"));
-        this.#generateDataCell(this.costElement, "Cost", this.#formatAP, this.getStat("cost"));
-        this.#generateDataCell(this.rangeElement, "Range", this.#formatRange, this.getStat("range"));
-        this.#generateDataCell(this.effectsElement, "Applied Effects", this.#formatStatList, this.getStat("effects"));
-        this.#generateDataCell(this.notesElement, "Player Notes", this.#formatBasicStat, this.getStat("notes"));
+        this.#generateDataCell(this.requirementElement, "Requirements", this.#formatBasicStat, "requirements", this.handleBasicStatEdit.bind(this));
+        this.#generateDataCell(this.damageElement, "Damage", this.#formatBasicStat, "damage", this.handleBasicStatEdit.bind(this));
+        this.#generateDataCell(this.toHitElement, "To-Hit", this.#formatBasicStat, "toHit", this.handleBasicStatEdit.bind(this));
+        this.#generateDataCell(this.costElement, "Cost", this.#formatAP, "cost", this.handleCostEdit.bind(this));
+        this.#generateDataCell(this.rangeElement, "Range", this.#formatRange, "range", this.handleRangeEdit.bind(this));
+        this.#generateDataCell(this.effectsElement, "Applied Effects", this.#formatBasicStat, "effects", this.handleBasicStatEdit.bind(this));
+        this.#generateDataCell(this.notesElement, "Player Notes", this.#formatBasicStat, "notes", this.handleBasicStatEdit.bind(this));
     }
 
-    #generateDataCell(element, label, formatFunct, rawData){
+    #generateDataCell(element, label, formatFunct, key, editFunct){
+        const rawData = this.getStat(key);
         this.descriptionElement.appendChild(element);
         const labelElement = document.createElement("div");
         labelElement.className = "actionStatLabel";
         labelElement.innerHTML = label;
         element.appendChild(labelElement);
 
-        element.appendChild(formatFunct(rawData));
-    }
-
-    #formatStatList(statList) { // TODO: change to make a new element per line, then return a block of all those lines
-        const resultElement = document.createElement("div");
-        resultElement.className = "actionStatValue";
-        let resultStr = "";
-        for (const index in statList){
-            resultStr += statList[index] + "\n";
-        }
-        resultStr = resultStr.trim();
-        resultElement.innerHTML = resultStr;
-        return resultElement;
+        const valueElement = formatFunct(rawData);
+        element.appendChild(valueElement);
+        assignEditableTextByElement(valueElement, () => {
+            editFunct(valueElement, key);
+        })
     }
 
     #formatBasicStat(stat) {
@@ -132,6 +126,25 @@ export class martialAction {
         return resultElement;
     }
 
+    handleBasicStatEdit(element, statKey) {
+        let newText = filterStringForJSON(element.innerHTML);
+        if (newText == ""){
+            newText = "-";
+        }
+        console.log(newText);
+        this.editBlock.set(statKey, newText);
+        this.saveToFile();
+        console.log(this);
+    }
+
+    handleCostEdit(element, statKey) {
+        logText("cost edit not yet implemented");
+    }
+
+    handleRangeEdit(element, statKey) {
+        logText("range edit not yet implemented");
+    }
+
     getStat(key){
         if (this.editBlock.has(key)){
             return this.editBlock.get(key);
@@ -148,5 +161,9 @@ export class martialAction {
 
     addEventListeners(){
         logText("Event listeners not yet available.");
+    }
+
+    saveToFile() {
+        console.log(this);
     }
 }
