@@ -1,10 +1,13 @@
+import { projectPath } from "../main.js";
 import { assignEditableTextByElement } from "./buttons.js";
 import { filterStringForJSON, formatSize } from "./elementHelpers.js";
+import { formatFileName, saveJSONFile } from "./json.js";
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
 export class martialAction {
-    constructor(name, statBlock, editBlock, skillBlock) {
+    constructor(name, category, statBlock, editBlock, skillBlock) {
         this.name = name;
+        this.category = category;
         this.statBlock = this.#discoverMap(statBlock);
         this.editBlock = this.#discoverMap(editBlock);
         this.skillBlock = this.#discoverMap(skillBlock);
@@ -131,10 +134,8 @@ export class martialAction {
         if (newText == ""){
             newText = "-";
         }
-        console.log(newText);
         this.editBlock.set(statKey, newText);
         this.saveToFile();
-        console.log(this);
     }
 
     handleCostEdit(element, statKey) {
@@ -164,6 +165,42 @@ export class martialAction {
     }
 
     saveToFile() {
-        console.log(this);
+        let martialJSON = (
+            "{\n\t\"type\": \"Martial\","
+            + "\n\t\"category\": \"" + this.category + "\","
+            + "\n\t\"name\": \"" + this.name + "\","
+            + "\n\t\"statBlock\": " + this.#packageMapForSave(this.statBlock) + ","
+            + "\n\t\"editBlock\": " + this.#packageMapForSave(this.editBlock) + ","
+            + "\n\t\"skillBlock\": " + this.#packageMapForSave(this.skillBlock)
+            +"\n}"
+        );
+        
+        const fileName = formatFileName(this.name);
+        saveJSONFile(projectPath + "data/weapons/" + this.category + "/" + fileName + ".json", martialJSON, () => { logText("\tMartial " + fileName + " saved!")});
+    }
+
+    #packageMapForSave(map) {
+        let result = "{";
+        console.log(map);
+        for (let key of map.keys()){
+            const value = map.get(key);
+            console.log(key + " : " + value);
+            if (typeof value == "string"){
+                result += "\n\t\t\"" + key + "\": \"" + value + "\",";
+            } else if (typeof value == "object") {
+                //do some different bullshit
+                result += "\n\t\t\"" + key + "\": {";
+                for (let key2 of value) { //double order key values
+                    result += "\n\t\t\t\"" + key2 + "\": " + value[key] + ",";
+                }
+                result = result.substring(0, result.length - 1);
+                result += "\n\t\t},";
+            }else{
+                result += "\n\t\t\"" + key + "\": " + value + ",";
+            }
+        }
+        result = result.substring(0, result.length - 1); //trim final comma
+        result += "\n\t}";
+        return result;
     }
 }

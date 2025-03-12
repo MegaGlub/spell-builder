@@ -1,0 +1,23 @@
+{
+    "type": "martial",
+    "name": "Slash",
+    "category": "uncategorized",
+    "statBlock": {
+        "cost": {
+            "primary": 1,
+            "secondary": 0
+        },
+        "damage": "1d8 + 1",
+        "effects": 
+            "None!",
+        "range": 100,
+        "requirements" :
+            "Wielding bladed weapon",
+        "toHit": "Dex - 1"
+    },
+    "editBlock": {
+    },
+    "skillBlock": {
+        "unarmed": 0
+    }
+}

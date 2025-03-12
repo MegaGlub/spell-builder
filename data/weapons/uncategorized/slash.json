@@ -1,21 +1,19 @@
 {
-    "name": "Slash",
-    "statBlock": {
-        "cost": {
-            "primary": 1,
-            "secondary": 0
-        },
-        "damage": "1d8 + 1",
-        "effects": 
-            "None!",
-        "range": 100,
-        "requirements" :
-            "Wielding bladed weapon",
-        "toHit": "Dex - 1"
-    },
-    "editBlock": {
-    },
-    "skillBlock": {
-        "unarmed": 0
-    }
+	"type": "Martial",
+	"category": "uncategorized",
+	"name": "Slash",
+	"statBlock": {
+		"cost": "[object Object]",
+		"damage": "1d8 + 1",
+		"effects": "None!",
+		"range": 100,
+		"requirements": "Wielding bladed weapon",
+		"toHit": "Dex - 1"
+	},
+	"editBlock": {
+		"requirements": "Wielding bladed we"
+	},
+	"skillBlock": {
+		"unarmed": 0
+	}
 }

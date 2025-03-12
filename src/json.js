@@ -146,6 +146,7 @@ export function createWandFromJSON(json){
 export function createMartialFromJSON(json){
     return new martialAction(
         json.name,
+        json.category,
         json.statBlock,
         json.editBlock,
         json.skillBlock
