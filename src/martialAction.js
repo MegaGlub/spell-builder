@@ -186,13 +186,12 @@ export class martialAction {
             console.log(key + " : " + typeof value);
             if (typeof value == "string"){
                 result += "\n\t\t\"" + key + "\": \"" + value + "\",";
-            } else if (typeof value == "object") {
-                //do some different bullshit
+            } else if (typeof value == "object") { //aka a map within a map, such as for cost
                 result += "\n\t\t\"" + key + "\": {";
                 for (const [key2, value2] of Object.entries(value)) { //double order key values
                     result += "\n\t\t\t\"" + key2 + "\": " + value2 + ",";
                 }
-                result = result.substring(0, result.length - 1);
+                result = result.substring(0, result.length - 1); //comma trim
                 result += "\n\t\t},";
             }else{
                 result += "\n\t\t\"" + key + "\": " + value + ",";
