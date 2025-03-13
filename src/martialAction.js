@@ -1,5 +1,5 @@
 import { projectPath } from "../main.js";
-import { assignEditableTextByElement } from "./buttons.js";
+import { assignClickableButtonByElement, assignEditableTextByElement } from "./buttons.js";
 import { filterStringForJSON, formatSize } from "./elementHelpers.js";
 import { formatFileName, saveJSONFile } from "./json.js";
 import { logText } from "./logging.js";
@@ -78,13 +78,13 @@ export class martialAction {
     }
 
     #fillStatTable(){
-        this.#generateDataCell(this.requirementElement, "Requirements", this.#formatBasicStat, "requirements", this.assignBasicStatEditable, "Required status, stance, or secondary costs to use this ability.");
-        this.#generateDataCell(this.damageElement, "Damage", this.#formatBasicStat, "damage", this.assignBasicStatEditable, "Formula for the Damage Roll of the attack.");
-        this.#generateDataCell(this.toHitElement, "To-Hit", this.#formatBasicStat, "toHit", this.assignBasicStatEditable, "Formula for the To-Hit Roll of the attack.");
-        this.#generateDataCell(this.costElement, "Cost", this.#formatAP, "cost", this.assignCostStatEditable, "Action point cost to use the attack.<br>(\u25c9: Primary, \u25cb: Secondary)");
-        this.#generateDataCell(this.rangeElement, "Range", this.#formatRange, "range", this.assignBasicStatEditable, "Range of the attack.<br>(Note that anything less than 3m will generally be considered adjacent only.)");
-        this.#generateDataCell(this.effectsElement, "Applied Effects", this.#formatBasicStat, "effects", this.assignBasicStatEditable, "Effects applied to yourself, enemies, or nearby allies on use.");
-        this.#generateDataCell(this.notesElement, "Player Notes", this.#formatBasicStat, "notes", this.assignBasicStatEditable, "Write notes for yourself on use-cases or clarifications.");
+        this.#generateDataCell(this.requirementElement, "Requirements", this.#formatBasicStat, "requirements", this.assignBasicStatEditable.bind(this), "Required status, stance, or secondary costs to use this ability.");
+        this.#generateDataCell(this.damageElement, "Damage", this.#formatBasicStat, "damage", this.assignBasicStatEditable.bind(this), "Formula for the Damage Roll of the attack.");
+        this.#generateDataCell(this.toHitElement, "To-Hit", this.#formatBasicStat, "toHit", this.assignBasicStatEditable.bind(this), "Formula for the To-Hit Roll of the attack.");
+        this.#generateDataCell(this.costElement, "Cost", this.#formatAP, "cost", this.assignCostStatEditable.bind(this), "Action point cost to use the attack.<br>(\u25c9: Primary, \u25cb: Secondary)");
+        this.#generateDataCell(this.rangeElement, "Range", this.#formatRange, "range", this.assignBasicStatEditable.bind(this), "Range of the attack.<br>(Note that anything less than 3m will generally be considered adjacent only.)");
+        this.#generateDataCell(this.effectsElement, "Applied Effects", this.#formatBasicStat, "effects", this.assignBasicStatEditable.bind(this), "Effects applied to yourself, enemies, or nearby allies on use.");
+        this.#generateDataCell(this.notesElement, "Player Notes", this.#formatBasicStat, "notes", this.assignBasicStatEditable.bind(this), "Write notes for yourself on use-cases or clarifications.");
     }
 
     #generateDataCell(element, label, formatFunct, key, editFunct, toolTipText){
@@ -137,23 +137,43 @@ export class martialAction {
     }
 
     assignBasicStatEditable(element, key){
-        const editFunct = this.handleBasicStatEdit.bind(this);
+        const editFunct = this.#handleBasicStatEdit.bind(this);
         assignEditableTextByElement(element, () => {
             editFunct(element, key);
         });
     }
 
-    assignCostStatEditable(element, key){
-        logText("lmao, this cost stat cannot be editted");
-    }
-
-    handleBasicStatEdit(element, statKey) {
+    #handleBasicStatEdit(element, statKey) {
         let newText = filterStringForJSON(element.innerHTML);
         if (newText == ""){
             newText = "-";
         }
         this.editBlock.set(statKey, newText);
         this.saveToFile();
+    }
+
+    assignCostStatEditable(element, key){
+        const plusPrimaryButton = document.createElement("img");
+        const minusPrimaryButton = document.createElement("img");
+        const plusSecondaryButton = document.createElement("img");
+        const minusSecondaryButton = document.createElement("img");
+
+        const buttons = [plusPrimaryButton, minusPrimaryButton, plusSecondaryButton, minusSecondaryButton];
+        const params = [["primary", 1], ["primary", -1], ["secondary", 1], ["secondary", -1]];
+        const images = ["plus-primary.png", "minus-primary.png", "plus-secondary.png", "minus-secondary.png"];
+        const className = "actionCostButton";
+
+        for (let i = 0; i < 4; i++){
+            buttons[i].src = "images/ui/" + images[i];
+            buttons[i].className = className;
+            this.costElement.appendChild(buttons[i]);
+            const funct = this.#handleCostPress.bind(this);
+            assignClickableButtonByElement(buttons[i], () => {funct(params[i][0], params[i][1])});
+        }
+    }
+
+    #handleCostPress(stat, num){
+        logText(stat + " " + num + " pressed!");
     }
 
     getStat(key){

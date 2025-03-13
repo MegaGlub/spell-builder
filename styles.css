@@ -813,6 +813,7 @@ img {
 .actionStatValue {
     border-radius: 0.2em;
     color: #000000;
+    display: inline-block;
     min-width: 2em;
     width: fit-content;
 }
@@ -821,6 +822,17 @@ img {
     box-shadow: 0 0 10px 100px #FFFFF0 inset;
     color: #333333;
     cursor: text;
+}
+
+.actionCostButton {
+    display: inline;
+    margin-left: 4px;
+    height: 16px;
+    width: 16px;
+}
+
+.actionCostButton:hover {
+    filter: drop-shadow(2px 2px #000000);
 }
 
 .bottomToolBar {
