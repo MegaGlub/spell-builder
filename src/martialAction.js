@@ -182,16 +182,15 @@ export class martialAction {
     #packageMapForSave(map) {
         let result = "{";
         console.log(map);
-        for (let key of map.keys()){
-            const value = map.get(key);
-            console.log(key + " : " + value);
+        for (const [key, value] of map.entries()){
+            console.log(key + " : " + typeof value);
             if (typeof value == "string"){
                 result += "\n\t\t\"" + key + "\": \"" + value + "\",";
             } else if (typeof value == "object") {
                 //do some different bullshit
                 result += "\n\t\t\"" + key + "\": {";
-                for (let key2 of value) { //double order key values
-                    result += "\n\t\t\t\"" + key2 + "\": " + value[key] + ",";
+                for (const [key2, value2] of Object.entries(value)) { //double order key values
+                    result += "\n\t\t\t\"" + key2 + "\": " + value2 + ",";
                 }
                 result = result.substring(0, result.length - 1);
                 result += "\n\t\t},";
