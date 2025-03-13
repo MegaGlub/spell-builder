@@ -73,20 +73,21 @@ export class martialAction {
 
     #fillInnerHTML() {
         this.titleElement.innerHTML = this.name;
+        this.descriptionElement.spellcheck = "false";
         this.#fillStatTable();
     }
 
     #fillStatTable(){
-        this.#generateDataCell(this.requirementElement, "Requirements", this.#formatBasicStat, "requirements", this.handleBasicStatEdit.bind(this));
-        this.#generateDataCell(this.damageElement, "Damage", this.#formatBasicStat, "damage", this.handleBasicStatEdit.bind(this));
-        this.#generateDataCell(this.toHitElement, "To-Hit", this.#formatBasicStat, "toHit", this.handleBasicStatEdit.bind(this));
-        this.#generateDataCell(this.costElement, "Cost", this.#formatAP, "cost", this.handleCostEdit.bind(this));
-        this.#generateDataCell(this.rangeElement, "Range", this.#formatRange, "range", this.handleRangeEdit.bind(this));
-        this.#generateDataCell(this.effectsElement, "Applied Effects", this.#formatBasicStat, "effects", this.handleBasicStatEdit.bind(this));
-        this.#generateDataCell(this.notesElement, "Player Notes", this.#formatBasicStat, "notes", this.handleBasicStatEdit.bind(this));
+        this.#generateDataCell(this.requirementElement, "Requirements", this.#formatBasicStat, "requirements", this.assignBasicStatEditable, "Required status, stance, or secondary costs to use this ability.");
+        this.#generateDataCell(this.damageElement, "Damage", this.#formatBasicStat, "damage", this.assignBasicStatEditable, "Formula for the Damage Roll of the attack.");
+        this.#generateDataCell(this.toHitElement, "To-Hit", this.#formatBasicStat, "toHit", this.assignBasicStatEditable, "Formula for the To-Hit Roll of the attack.");
+        this.#generateDataCell(this.costElement, "Cost", this.#formatAP, "cost", this.assignCostStatEditable, "Action point cost to use the attack.<br>(\u25c9: Primary, \u25cb: Secondary)");
+        this.#generateDataCell(this.rangeElement, "Range", this.#formatRange, "range", this.assignBasicStatEditable, "Range of the attack.<br>(Note that anything less than 3m will generally be considered adjacent only.)");
+        this.#generateDataCell(this.effectsElement, "Applied Effects", this.#formatBasicStat, "effects", this.assignBasicStatEditable, "Effects applied to yourself, enemies, or nearby allies on use.");
+        this.#generateDataCell(this.notesElement, "Player Notes", this.#formatBasicStat, "notes", this.assignBasicStatEditable, "Write notes for yourself on use-cases or clarifications.");
     }
 
-    #generateDataCell(element, label, formatFunct, key, editFunct){
+    #generateDataCell(element, label, formatFunct, key, editFunct, toolTipText){
         const rawData = this.getStat(key);
         this.descriptionElement.appendChild(element);
         const labelElement = document.createElement("div");
@@ -96,9 +97,11 @@ export class martialAction {
 
         const valueElement = formatFunct(rawData);
         element.appendChild(valueElement);
-        assignEditableTextByElement(valueElement, () => {
-            editFunct(valueElement, key);
-        })
+        editFunct(valueElement, key);
+
+        const toolTip = document.createElement("span");
+        toolTip.innerHTML = toolTipText;
+        assignToolTip(element, toolTip);
     }
 
     #formatBasicStat(stat) {
@@ -125,8 +128,23 @@ export class martialAction {
     #formatRange(stat) {
         const resultElement = document.createElement("div");
         resultElement.className = "actionStatValue";
-        resultElement.innerHTML = formatSize(stat);
+        if (typeof stat == "string"){
+            resultElement.innerHTML = stat;
+        } else{
+            resultElement.innerHTML = formatSize(stat);
+        }
         return resultElement;
+    }
+
+    assignBasicStatEditable(element, key){
+        const editFunct = this.handleBasicStatEdit.bind(this);
+        assignEditableTextByElement(element, () => {
+            editFunct(element, key);
+        });
+    }
+
+    assignCostStatEditable(element, key){
+        logText("lmao, this cost stat cannot be editted");
     }
 
     handleBasicStatEdit(element, statKey) {
@@ -136,14 +154,6 @@ export class martialAction {
         }
         this.editBlock.set(statKey, newText);
         this.saveToFile();
-    }
-
-    handleCostEdit(element, statKey) {
-        logText("cost edit not yet implemented");
-    }
-
-    handleRangeEdit(element, statKey) {
-        logText("range edit not yet implemented");
     }
 
     getStat(key){
@@ -161,7 +171,9 @@ export class martialAction {
     }
 
     addEventListeners(){
-        logText("Event listeners not yet available.");
+        const revertToolTip = document.createElement("span");
+        revertToolTip.innerHTML = "Revert edits to default.<br>(Does not revert notes)";
+        assignToolTip(this.revertButtonElement, revertToolTip);
     }
 
     saveToFile() {

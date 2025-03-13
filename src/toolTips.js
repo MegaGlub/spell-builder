@@ -25,13 +25,13 @@ function updateToolTipPosition(mouseEvent) {
     const toolTipWidth = toolTip.offsetWidth;
     const toolTipHeight = toolTip.offsetHeight;
 
-    if (clientX + toolTipWidth + 18 > windowWidth) {
+    if (clientX + toolTipWidth + 18 >= windowWidth) {
         toolTip.style.left = (windowWidth - (toolTipWidth)) + "px";
     } else {
         toolTip.style.left = (clientX) + 18 + "px";
     }
 
-    if (clientY + toolTipHeight + 18 > windowHeight) {
+    if (clientY + toolTipHeight + 18 >= windowHeight) {
         toolTip.style.top = (windowHeight - (toolTipHeight)) + "px";
     } else {
         toolTip.style.top = (clientY) + 18 + "px";
