@@ -826,7 +826,8 @@ img {
 
 .actionCostButton {
     display: inline;
-    margin-left: 4px;
+    float: inline-end;
+    margin-right: 4px;
     height: 16px;
     width: 16px;
 }

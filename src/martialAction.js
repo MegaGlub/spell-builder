@@ -1,6 +1,6 @@
 import { projectPath } from "../main.js";
 import { assignClickableButtonByElement, assignEditableTextByElement } from "./buttons.js";
-import { filterStringForJSON, formatSize } from "./elementHelpers.js";
+import { clearChildren, filterStringForJSON, formatSize } from "./elementHelpers.js";
 import { formatFileName, saveJSONFile } from "./json.js";
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
@@ -121,6 +121,11 @@ export class martialAction {
         for (let i = 0; i < costs["secondary"]; i++){
             resultStr += "\u25cb";
         }
+
+        if (resultStr == ""){
+            resultStr = "-";
+        }
+
         resultElement.innerHTML = resultStr;
         return resultElement;
     }
@@ -173,7 +178,24 @@ export class martialAction {
     }
 
     #handleCostPress(stat, num){
-        logText(stat + " " + num + " pressed!");
+        const costs = this.getStat("cost");
+        console.log("Stat: " + stat + " | New: " + costs[stat]);
+        let newVal = costs[stat] + num;
+        if (newVal > 2){
+            newVal = 2;
+        } else if (newVal < 0){
+            newVal = 0;
+        }
+        costs[stat] = newVal;
+        this.editBlock.set("cost", costs);
+        console.log("Stat: " + stat + " | New: " + costs[stat]);
+        console.log(costs);
+
+        this.costElement.replaceChild(
+            this.#formatAP(this.getStat("cost")),
+            this.costElement.childNodes[1] //the HTML content of costElement is in index 1;
+        );
+        this.saveToFile();
     }
 
     getStat(key){
@@ -213,9 +235,7 @@ export class martialAction {
 
     #packageMapForSave(map) {
         let result = "{";
-        console.log(map);
         for (const [key, value] of map.entries()){
-            console.log(key + " : " + typeof value);
             if (typeof value == "string"){
                 result += "\n\t\t\"" + key + "\": \"" + value + "\",";
             } else if (typeof value == "object") { //aka a map within a map, such as for cost
