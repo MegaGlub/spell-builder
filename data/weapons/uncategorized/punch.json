@@ -1,0 +1,22 @@
+{
+    "type": "martial",
+    "name": "Punch",
+    "category": "uncategorized",
+    "statBlock": {
+        "cost": {
+            "primary": 0,
+            "secondary": 1
+        },
+        "damage": "1d3",
+        "effects": "On Crit: Apply Unbalanced\nIf target has > 3 armor: Take 1d3 self-damage",
+        "range": 100,
+        "requirements" :
+            "Wielding nothing",
+        "toHit": "Constitution - 2"
+    },
+    "editBlock": {
+    },
+    "skillBlock": {
+        "unarmed": 0
+    }
+}

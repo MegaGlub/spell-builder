@@ -743,6 +743,7 @@ img {
     color: #000000;
     display: inline-flex;
     font-size: 1.25em;
+    flex-wrap: wrap;
     justify-content: center;
     height: 97%;
     left: 0;
@@ -759,10 +760,13 @@ img {
     border-bottom: 1px solid #000000;
     border-left: 1px solid #000000;
     display: flex;
+    flex-basis: auto;
     flex-wrap: wrap;
     height: fit-content;
-    margin: 16px;
-    width: 60%;
+    margin: 32px;
+    max-width: 40%;
+    min-width: min-content;
+    width: fit-content;
 }
 
 .actionTitle {

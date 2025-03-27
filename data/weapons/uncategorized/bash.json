@@ -1,0 +1,22 @@
+{
+	"type": "Martial",
+	"category": "uncategorized",
+	"name": "Bash",
+	"statBlock": {
+		"cost": {
+			"primary": 0,
+			"secondary": 2
+		},
+		"damage": "1d8",
+		"effects": "On Crit: Apply Dazed",
+		"range": 100,
+		"requirements": "Wielding blunt weapon",
+		"toHit": "Strength - 2"
+	},
+	"editBlock": {
+		"requirements": "Wielding blunt weapon"
+	},
+	"skillBlock": {
+		"clubs": 0
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"type": "Martial",
+	"category": "uncategorized",
+	"name": "Blindfire",
+	"statBlock": {
+		"cost": {
+			"primary": 2,
+			"secondary": 2
+		},
+		"damage": "1d12 + 3",
+		"effects": "None!",
+		"range": 2400,
+		"requirements": "Wielding loaded ranged weapon",
+		"toHit": "Perception - 10"
+	},
+	"editBlock": {
+		"cost": {
+			"primary": 2,
+			"secondary": 2
+		}
+	},
+	"skillBlock": {
+		"bows": 0,
+		"firearms": 0
+	}
+}
