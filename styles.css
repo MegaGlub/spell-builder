@@ -792,6 +792,7 @@ img {
     max-height: calc(2em + 4px);
     min-height: calc(1em + 4px);
     min-width: 20%;
+    max-width: 25%;
     padding: 2px;
     width: fit-content;
 }

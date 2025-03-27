@@ -168,7 +168,7 @@ export class martialAction {
         const images = ["plus-primary.png", "minus-primary.png", "plus-secondary.png", "minus-secondary.png"];
         const className = "actionCostButton";
 
-        for (let i = 0; i < 4; i++){
+        for (let i = 3; i >= 0; i--){
             buttons[i].src = "images/ui/" + images[i];
             buttons[i].className = className;
             this.costElement.appendChild(buttons[i]);
