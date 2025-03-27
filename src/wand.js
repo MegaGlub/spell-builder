@@ -216,7 +216,7 @@ export class wand {
             { "label": "Range (cm)", "defaultVal": this.statBlock.get("range"), "statKey": "range" },
             { "label": "Size (cm)", "defaultVal": this.statBlock.get("size"), "statKey": "size" },
             { "label": "Lifetime", "defaultVal": this.statBlock.get("lifetime"), "statKey": "lifetime" },
-            { "label": "Projectiles", "defaultVal": this.statBlock.get("projectileCount"), "statKey": "projectileCount" }
+            { "label": "Projectiles\n(Note: unstable)", "defaultVal": this.statBlock.get("projectileCount"), "statKey": "projectileCount" }
         ]
         for (const widget of widgets) {
             this.#generateStatField(statBlockElement, widget["defaultVal"], widget["label"], widget["statKey"]);
