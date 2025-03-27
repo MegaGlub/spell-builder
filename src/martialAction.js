@@ -179,7 +179,6 @@ export class martialAction {
 
     #handleCostPress(stat, num){
         const costs = this.getStat("cost");
-        console.log("Stat: " + stat + " | New: " + costs[stat]);
         let newVal = costs[stat] + num;
         if (newVal > 2){
             newVal = 2;
@@ -188,8 +187,6 @@ export class martialAction {
         }
         costs[stat] = newVal;
         this.editBlock.set("cost", costs);
-        console.log("Stat: " + stat + " | New: " + costs[stat]);
-        console.log(costs);
 
         this.costElement.replaceChild(
             this.#formatAP(this.getStat("cost")),
