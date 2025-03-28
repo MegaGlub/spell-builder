@@ -807,11 +807,11 @@ img {
 
 .actionRevertButton {
     position: relative;
-    height: 64px;
-    margin: -32px; /* Deletes the reserved space in the document. IDK man, don't ask me. */
+    height: 32px;
+    margin: -16px; /* Deletes the reserved space in the document. IDK man, don't ask me. */
     right: -2.5em;
     top: 1em;
-    width: 64px;
+    width: 32px;
 }
 
 .actionRevertButton:hover {
