@@ -246,7 +246,7 @@ export class martialAction {
         let result = "{";
         for (const [key, value] of map.entries()) {
             if (typeof value == "string") {
-                result += "\n\t\t\"" + key + "\": \"" + value + "\",";
+                result += "\n\t\t\"" + key + "\": \"" + filterStringForJSON(value) + "\",";
             } else if (typeof value == "object") { //aka a map within a map, such as for cost
                 result += "\n\t\t\"" + key + "\": {";
                 for (const [key2, value2] of Object.entries(value)) { //double order key values

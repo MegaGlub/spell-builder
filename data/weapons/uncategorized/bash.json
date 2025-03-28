@@ -14,7 +14,6 @@
 		"toHit": "Strength - 2"
 	},
 	"editBlock": {
-		"requirements": "Wielding blunt weapon"
 	},
 	"skillBlock": {
 		"clubs": 0
