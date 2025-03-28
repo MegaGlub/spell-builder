@@ -77,7 +77,7 @@ export class martialAction {
         this.#fillStatTable();
     }
 
-    #fillStatTable(){
+    #fillStatTable() {
         this.#generateDataCell(this.requirementElement, "Requirements", this.#formatBasicStat, "requirements", this.assignBasicStatEditable.bind(this), "Required status, stance, or secondary costs to use this ability.");
         this.#generateDataCell(this.damageElement, "Damage", this.#formatBasicStat, "damage", this.assignBasicStatEditable.bind(this), "Formula for the Damage Roll of the attack.");
         this.#generateDataCell(this.toHitElement, "To-Hit", this.#formatBasicStat, "toHit", this.assignBasicStatEditable.bind(this), "Formula for the To-Hit Roll of the attack.");
@@ -87,7 +87,8 @@ export class martialAction {
         this.#generateDataCell(this.notesElement, "Player Notes", this.#formatBasicStat, "notes", this.assignBasicStatEditable.bind(this), "Write notes for yourself on use-cases or clarifications.");
     }
 
-    #generateDataCell(element, label, formatFunct, key, editFunct, toolTipText){
+    #generateDataCell(element, label, formatFunct, key, editFunct, toolTipText) {
+        clearChildren(element);
         const rawData = this.getStat(key);
         this.descriptionElement.appendChild(element);
         const labelElement = document.createElement("div");
@@ -115,14 +116,14 @@ export class martialAction {
         const resultElement = document.createElement("div");
         resultElement.className = "actionStatValue";
         let resultStr = "";
-        for (let i = 0; i < costs["primary"]; i++){
+        for (let i = 0; i < costs["primary"]; i++) {
             resultStr += "\u25c9";
         }
-        for (let i = 0; i < costs["secondary"]; i++){
+        for (let i = 0; i < costs["secondary"]; i++) {
             resultStr += "\u25cb";
         }
 
-        if (resultStr == ""){
+        if (resultStr == "") {
             resultStr = "-";
         }
 
@@ -133,15 +134,15 @@ export class martialAction {
     #formatRange(stat) {
         const resultElement = document.createElement("div");
         resultElement.className = "actionStatValue";
-        if (typeof stat == "string"){
+        if (typeof stat == "string") {
             resultElement.innerHTML = stat;
-        } else{
+        } else {
             resultElement.innerHTML = formatSize(stat);
         }
         return resultElement;
     }
 
-    assignBasicStatEditable(element, key){
+    assignBasicStatEditable(element, key) {
         const editFunct = this.#handleBasicStatEdit.bind(this);
         assignEditableTextByElement(element, () => {
             editFunct(element, key);
@@ -150,14 +151,14 @@ export class martialAction {
 
     #handleBasicStatEdit(element, statKey) {
         let newText = filterStringForJSON(element.innerHTML);
-        if (newText == ""){
+        if (newText == "") {
             newText = "-";
         }
         this.editBlock.set(statKey, newText);
         this.saveToFile();
     }
 
-    assignCostStatEditable(element, key){
+    assignCostStatEditable(element, key) {
         const plusPrimaryButton = document.createElement("img");
         const minusPrimaryButton = document.createElement("img");
         const plusSecondaryButton = document.createElement("img");
@@ -168,21 +169,21 @@ export class martialAction {
         const images = ["plus-primary.png", "minus-primary.png", "plus-secondary.png", "minus-secondary.png"];
         const className = "actionCostButton";
 
-        for (let i = 3; i >= 0; i--){
+        for (let i = 3; i >= 0; i--) {
             buttons[i].src = "images/ui/" + images[i];
             buttons[i].className = className;
             this.costElement.appendChild(buttons[i]);
             const funct = this.#handleCostPress.bind(this);
-            assignClickableButtonByElement(buttons[i], () => {funct(params[i][0], params[i][1])});
+            assignClickableButtonByElement(buttons[i], () => { funct(params[i][0], params[i][1]) });
         }
     }
 
-    #handleCostPress(stat, num){
-        const costs = this.getStat("cost");
+    #handleCostPress(stat, num) {
+        const costs = { ...this.getStat("cost") }; //creates a shallow copy (to not fuck with this.statBlock)
         let newVal = costs[stat] + num;
-        if (newVal > 2){
+        if (newVal > 2) {
             newVal = 2;
-        } else if (newVal < 0){
+        } else if (newVal < 0) {
             newVal = 0;
         }
         costs[stat] = newVal;
@@ -195,8 +196,8 @@ export class martialAction {
         this.saveToFile();
     }
 
-    getStat(key){
-        if (this.editBlock.has(key)){
+    getStat(key) {
+        if (this.editBlock.has(key)) {
             return this.editBlock.get(key);
         } if (this.statBlock.has(key)) {
             return this.statBlock.get(key);
@@ -209,10 +210,21 @@ export class martialAction {
         this.addEventListeners();
     }
 
-    addEventListeners(){
+    addEventListeners() {
         const revertToolTip = document.createElement("span");
         revertToolTip.innerHTML = "Revert edits to default.<br>(Does not revert notes)";
         assignToolTip(this.revertButtonElement, revertToolTip);
+        assignClickableButtonByElement(this.revertButtonElement, this.#handleRevertPress.bind(this));
+    }
+
+    #handleRevertPress() {
+        const previousNotes = this.editBlock.get("notes");
+        this.editBlock = new Map();
+        if (previousNotes){
+            this.editBlock.set("notes", previousNotes);
+        }
+        this.saveToFile();
+        this.#fillStatTable();
     }
 
     saveToFile() {
@@ -223,17 +235,17 @@ export class martialAction {
             + "\n\t\"statBlock\": " + this.#packageMapForSave(this.statBlock) + ","
             + "\n\t\"editBlock\": " + this.#packageMapForSave(this.editBlock) + ","
             + "\n\t\"skillBlock\": " + this.#packageMapForSave(this.skillBlock)
-            +"\n}"
+            + "\n}"
         );
-        
+
         const fileName = formatFileName(this.name);
-        saveJSONFile(projectPath + "data/weapons/" + this.category + "/" + fileName + ".json", martialJSON, () => { logText("\tMartial " + fileName + " saved!")});
+        saveJSONFile(projectPath + "data/weapons/" + this.category + "/" + fileName + ".json", martialJSON, () => { logText("\tMartial " + fileName + " saved!") });
     }
 
     #packageMapForSave(map) {
         let result = "{";
-        for (const [key, value] of map.entries()){
-            if (typeof value == "string"){
+        for (const [key, value] of map.entries()) {
+            if (typeof value == "string") {
                 result += "\n\t\t\"" + key + "\": \"" + value + "\",";
             } else if (typeof value == "object") { //aka a map within a map, such as for cost
                 result += "\n\t\t\"" + key + "\": {";
@@ -242,7 +254,7 @@ export class martialAction {
                 }
                 result = result.substring(0, result.length - 1); //comma trim
                 result += "\n\t\t},";
-            }else{
+            } else {
                 result += "\n\t\t\"" + key + "\": " + value + ",";
             }
         }
