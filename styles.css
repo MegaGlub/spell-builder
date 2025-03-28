@@ -806,9 +806,10 @@ img {
 }
 
 .actionRevertButton {
-    position: relative;
+    filter: drop-shadow(6px 6px #000000);
     height: 32px;
     margin: -16px; /* Deletes the reserved space in the document. IDK man, don't ask me. */
+    position: relative;
     right: -2.5em;
     top: 1em;
     width: 32px;
@@ -834,6 +835,7 @@ img {
 
 .actionCostButton {
     display: inline;
+    filter: drop-shadow(2px 2px #000000);
     float: inline-end;
     margin-right: 4px;
     height: 16px;
@@ -841,7 +843,7 @@ img {
 }
 
 .actionCostButton:hover {
-    filter: drop-shadow(2px 2px #000000);
+    filter: drop-shadow(2px 2px 2px #000000);
 }
 
 .bottomToolBar {

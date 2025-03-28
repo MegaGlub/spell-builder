@@ -1,6 +1,6 @@
 import { projectPath } from "../main.js";
 import { assignClickableButtonByElement, assignEditableTextByElement } from "./buttons.js";
-import { clearChildren, filterStringForJSON, formatSize } from "./elementHelpers.js";
+import { clearChildren, filterStringForJSON, formatSize, getSign } from "./elementHelpers.js";
 import { formatFileName, saveJSONFile } from "./json.js";
 import { logText } from "./logging.js";
 import { assignToolTip } from "./toolTips.js";
