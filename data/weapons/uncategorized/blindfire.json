@@ -4,20 +4,16 @@
 	"name": "Blindfire",
 	"statBlock": {
 		"cost": {
-			"primary": 2,
-			"secondary": 2
+			"primary": 1,
+			"secondary": 0
 		},
-		"damage": "1d12 + 3",
+		"damage": "1d12",
 		"effects": "None!",
 		"range": 2400,
 		"requirements": "Wielding loaded ranged weapon",
 		"toHit": "Perception - 10"
 	},
 	"editBlock": {
-		"cost": {
-			"primary": 2,
-			"secondary": 2
-		}
 	},
 	"skillBlock": {
 		"bows": 0,

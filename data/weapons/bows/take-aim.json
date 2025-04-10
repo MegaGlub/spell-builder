@@ -1,0 +1,18 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Take Aim",
+	"statBlock": {
+		"cost": {
+			"primary": 0,
+			"secondary": 2
+		},
+        "effects": "Self: Apply Precision",
+		"requirements": "Wielding loaded bow or crossbow"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 1
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Center Bolt",
+	"statBlock": {
+		"cost": {
+			"primary": 1,
+			"secondary": 2
+		},
+		"damage": "1d12 + 4",
+		"range": 4000,
+		"requirements": "Wielding loaded bow / crossbow,\nStance is not \"Off-balance\"",
+		"toHit": "Perception"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 1
+	}
+}
