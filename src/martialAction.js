@@ -243,7 +243,7 @@ export class martialAction {
     }
 
     #packageMapForSave(map) {
-        let result = "{";
+        let result = "{ ";
         for (const [key, value] of map.entries()) {
             if (typeof value == "string") {
                 result += "\n\t\t\"" + key + "\": \"" + filterStringForJSON(value) + "\",";
