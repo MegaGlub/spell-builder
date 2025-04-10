@@ -62,6 +62,10 @@ export function filterStringForJSON(str){
     result = result.trim();
     const whiteSpaceRegex = /\r\r|\r|\n/g;
     result = result.replace(whiteSpaceRegex, "\\n");
+    const quoteRegex = /\"/g;
+    result = result.replace(quoteRegex, "\\\"");
+    const singleQuoteRegex = /\'/g;
+    result = result.replace(singleQuoteRegex, "\\\'");
     const filterRegex = /[^A-Za-z0-9\"\'-\_\!\?\.\,\[\]\@\#\$\%\^\&\*\(\)\ \n]/g;
     result = result.replaceAll(filterRegex, "");
     result = result.trim();
