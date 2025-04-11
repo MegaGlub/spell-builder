@@ -7,7 +7,7 @@
 			"primary": 2,
 			"secondary": 1
 		},
-		"damage": "1d8",
+		"damage": "2d4",
 		"range": 2000,
         "effects": "Apply Pinned\nOn Crit: Apply Vulnerable",
 		"requirements": "Wielding loaded bow / crossbow,\nStance is not \"Off-balance\"",
@@ -16,6 +16,6 @@
 	"editBlock": {
 	},
 	"skillBlock": {
-		"bows": 2
+		"bows": 3
 	}
 }

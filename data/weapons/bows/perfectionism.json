@@ -1,0 +1,18 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Perfectionism",
+	"statBlock": {
+		"cost": {
+			"primary": 0,
+			"secondary": 1
+		},
+        "effects": "Self: Change stance to \"Perfectionist\"\nPerfectionist: Damaging critical hits apply Weakened, Dazed",
+		"requirements": "Wielding bow or crossbow"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 4
+	}
+}

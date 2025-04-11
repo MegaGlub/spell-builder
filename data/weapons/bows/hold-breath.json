@@ -8,7 +8,7 @@
 			"secondary": 1
 		},
         "effects": "Self: Apply Focused\nCrit: Self: Apply Prepared",
-		"requirements": "No visible enemy within 12m",
+		"requirements": "No visible enemy within 10m",
         "toHit": "Constitution",
         "notes": "(To-hit roll is optional and for Crits only.)"
 	},

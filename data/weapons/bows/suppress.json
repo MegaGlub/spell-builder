@@ -1,0 +1,21 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Suppress",
+	"statBlock": {
+		"cost": {
+			"primary": 1,
+			"secondary": 0
+		},
+		"damage": "1d8 - 2",
+		"range": 2000,
+        "effects": "Apply Fizzled, Weakened \nOn Crit: Apply Unbalanced",
+		"requirements": "Wielding loaded bow / crossbow,\nStance is not \"Off-balance\"\nRiposte: Ranged attack is attempted against a teammate",
+		"toHit": "Dexterity + 4"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 2
+	}
+}

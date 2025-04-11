@@ -1,0 +1,20 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Snipe",
+	"statBlock": {
+		"cost": {
+			"primary": 2,
+			"secondary": 1
+		},
+		"damage": "1d20",
+		"range": 8000,
+		"requirements": "Wielding loaded longbow / heavy crossbow,\nStance is not \"Off-balance\"",
+		"toHit": "Perception"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 3
+	}
+}
