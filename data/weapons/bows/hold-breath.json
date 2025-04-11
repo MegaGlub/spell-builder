@@ -1,0 +1,20 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Hold Breath",
+	"statBlock": {
+		"cost": {
+			"primary": 0,
+			"secondary": 1
+		},
+        "effects": "Self: Apply Focused\nCrit: Self: Apply Prepared",
+		"requirements": "No visible enemy within 12m",
+        "toHit": "Constitution",
+        "notes": "(To-hit roll is optional and for Crits only.)"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 2
+	}
+}

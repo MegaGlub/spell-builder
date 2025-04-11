@@ -1,0 +1,21 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Pinning Bolt",
+	"statBlock": {
+		"cost": {
+			"primary": 2,
+			"secondary": 1
+		},
+		"damage": "1d8",
+		"range": 2000,
+        "effects": "Apply Pinned\nOn Crit: Apply Vulnerable",
+		"requirements": "Wielding loaded bow / crossbow,\nStance is not \"Off-balance\"",
+		"toHit": "Perception"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 2
+	}
+}

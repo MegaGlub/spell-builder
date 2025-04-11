@@ -1,0 +1,21 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Overwatch",
+	"statBlock": {
+		"cost": {
+			"primary": 1,
+			"secondary": 0
+		},
+        "damage": "1d12 + 4",
+        "range": 3000,
+        "effects": "Self: Apply Riposting",
+		"requirements": "Wielding loaded bow or crossbow\nRiposte: A target within your field of view exits cover",
+        "toHit": "Dexterity + 3"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 1
+	}
+}
