@@ -1,7 +1,7 @@
 {
     "type": "martial",
-    "name": "Slash",
     "category": "uncategorized",
+    "name": "Slash",
     "statBlock": {
         "cost": {
             "primary": 1,
