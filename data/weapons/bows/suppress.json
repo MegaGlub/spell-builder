@@ -9,8 +9,8 @@
 		},
 		"damage": "1d8 - 2",
 		"range": 2000,
-        "effects": "Apply Fizzled, Weakened \nOn Crit: Apply Unbalanced",
-		"requirements": "Wielding loaded bow / crossbow,\nStance is not \"Off-balance\"\nRiposte: Ranged attack is attempted against a teammate",
+        "effects": "Riposte: Apply Fizzled, Weakened \nRiposte: Relevant Teammate: Apply Steadfast",
+		"requirements": "Wielding loaded bow / crossbow,\nStance is not \"Off-balance\"\nRiposte: Attack is attempted against a teammate within view (activates before the attack)",
 		"toHit": "Dexterity + 4"
 	},
 	"editBlock": {

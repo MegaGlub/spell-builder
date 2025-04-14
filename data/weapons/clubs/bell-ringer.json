@@ -1,0 +1,21 @@
+{
+	"type": "Martial",
+	"category": "clubs",
+	"name": "Bell-Ringer",
+	"statBlock": {
+		"cost": {
+			"primary": 2,
+			"secondary": 0
+		},
+		"damage": "2d4",
+		"effects": "Apply Dazed",
+		"range": 200,
+		"requirements": "Wielding club",
+		"toHit": "Strength"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"clubs": 1
+	}
+}

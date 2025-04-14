@@ -1,0 +1,17 @@
+{
+	"type": "Martial",
+	"category": "clubs",
+	"name": "Anvil",
+	"statBlock": {
+		"cost": {
+			"primary": 0,
+			"secondary": 2
+		},
+        "effects": "Self: Apply Prepared \nSelf: Change stance to \"Redsmith\" \nRedsmith: When you apply Armor Break or Stunned to an enemy, give yourself Prepared."
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"clubs": 2
+	}
+}
