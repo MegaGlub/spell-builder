@@ -1,0 +1,21 @@
+{
+    "type": "martial",
+    "category": "unarmed",
+    "name": "Kisami-zuki",
+    "statBlock": {
+        "cost": {
+            "primary": 0,
+            "secondary": 1
+        },
+        "damage": "1d3",
+        "effects": "Apply Dazed \nIf Self stance is Zenkutsu: Gain 1 sAP, change stance to Kokutsu",
+        "range": 200,
+        "requirements": "Wielding Nothing",
+        "toHit": "Dexterity"
+    },
+    "editBlock": {
+    },
+    "skillBlock": {
+        "unarmed": 1
+    }
+}

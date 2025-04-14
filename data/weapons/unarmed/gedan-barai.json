@@ -1,0 +1,21 @@
+{
+    "type": "martial",
+    "category": "unarmed",
+    "name": "Gedan Barai",
+    "statBlock": {
+        "cost": {
+            "primary": 1,
+            "secondary": 0
+        },
+        "damage": "1d4",
+        "effects": "Self: Change stance to Kokutsu \nSelf: Apply Braced, Riposting \nRiposted target gains Unbalanced before their attack\nKokutsu: You are immune to Unbalanced",
+        "range": 100,
+        "requirements": "Wielding nothing \nRiposte: A target attempts to melee attack you",
+        "toHit": "Constitution"
+    },
+    "editBlock": {
+    },
+    "skillBlock": {
+        "unarmed": 1
+    }
+}
