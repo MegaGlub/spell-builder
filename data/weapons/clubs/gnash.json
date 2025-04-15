@@ -1,0 +1,21 @@
+{
+	"type": "Martial",
+	"category": "clubs",
+	"name": "Gnash",
+	"statBlock": {
+		"cost": {
+			"primary": 2,
+			"secondary": 1
+		},
+		"damage": "1d12 + 4",
+		"effects": "Apply Vulnerable \nOn Crit: Apply Armor Broken",
+		"range": 100,
+		"requirements": "Wielding club \nTarget has Stunned or Distracted",
+		"toHit": "Strength + 3"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"clubs": 1
+	}
+}

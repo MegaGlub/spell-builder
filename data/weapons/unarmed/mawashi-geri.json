@@ -1,0 +1,20 @@
+{
+    "type": "martial",
+    "category": "unarmed",
+    "name": "Mawashi Geri",
+    "statBlock": {
+        "cost": {
+            "primary": 1,
+            "secondary": 1
+        },
+        "damage": "1d6",
+        "effects": "Apply Weakened \nIf Self stance is Kokutsu: Gain 1 sAP \nSelf: Change stance to Zenkutsu",
+        "range": 200,
+        "toHit": "Strength"
+    },
+    "editBlock": {
+    },
+    "skillBlock": {
+        "unarmed": 1
+    }
+}

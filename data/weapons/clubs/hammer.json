@@ -1,0 +1,20 @@
+{
+	"type": "Martial",
+	"category": "clubs",
+	"name": "Hammer",
+	"statBlock": {
+		"cost": {
+			"primary": 2,
+			"secondary": 2
+		},
+		"damage": "5d6",
+		"range": 300,
+		"requirements": "Wielding club \nTarget has Armor Broken",
+		"toHit": "Constitution"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"clubs": 2
+	}
+}

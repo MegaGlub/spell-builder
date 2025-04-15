@@ -1,0 +1,21 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Suppress",
+	"statBlock": {
+		"cost": {
+			"primary": 1,
+			"secondary": 0
+		},
+		"damage": "1d8 - 2",
+		"range": 2000,
+        "effects": "Riposte: Apply Fizzled, Weakened \nRiposte: Relevant Teammate: Apply Steadfast",
+		"requirements": "Wielding loaded bow / crossbow,\nStance is not \"Off-balance\"\nRiposte: Attack is attempted against a teammate within view (activates before the attack)",
+		"toHit": "Dexterity + 4"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 2
+	}
+}

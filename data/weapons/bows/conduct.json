@@ -1,0 +1,18 @@
+{
+	"type": "Martial",
+	"category": "bows",
+	"name": "Conduct",
+	"statBlock": {
+		"cost": {
+			"primary": 0,
+			"secondary": 0
+		},
+        "effects": "Self: Instantly reload an unloaded crossbow (if applicable) \nSelf: Change stance to \"Conductor\" \nConductor: Whenever you successfully hit a ranged attack, give an ally Prepared and give yourself 1sAP.",
+		"requirements": "Last action was: Wield bow or crossbow"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"bows": 4
+	}
+}

@@ -1,7 +1,7 @@
 {
     "type": "martial",
-    "name": "Punch",
     "category": "uncategorized",
+    "name": "Punch",
     "statBlock": {
         "cost": {
             "primary": 0,

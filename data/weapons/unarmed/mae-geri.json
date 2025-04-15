@@ -1,0 +1,21 @@
+{
+    "type": "martial",
+    "category": "unarmed",
+    "name": "Mae Geri",
+    "statBlock": {
+        "cost": {
+            "primary": 1,
+            "secondary": 1
+        },
+        "damage": "1d8",
+        "effects": "Apply Unbalanced, Dazed \nOn Crit: Apply Stunned (instead of Dazed)",
+        "range": 200,
+        "requirements": "Stance is Zenkutsu or Neko Ashi",
+        "toHit": "Dexterity + 2"
+    },
+    "editBlock": {
+    },
+    "skillBlock": {
+        "unarmed": 1
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "martial",
+    "category": "unarmed",
+    "name": "Choku-zuki",
+    "statBlock": {
+        "cost": {
+            "primary": 1,
+            "secondary": 0
+        },
+        "damage": "1d4",
+        "effects": "If stance is Zenkutsu: + 1d4 damage",
+        "range": 100,
+        "requirements": "Wielding nothing",
+        "toHit": "Constitution"
+    },
+    "editBlock": {
+    },
+    "skillBlock": {
+        "unarmed": 1
+    }
+}

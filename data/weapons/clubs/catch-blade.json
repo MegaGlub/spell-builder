@@ -1,0 +1,20 @@
+{
+	"type": "Martial",
+	"category": "clubs",
+	"name": "Catch Blade",
+	"statBlock": {
+		"cost": {
+			"primary": 0,
+			"secondary": 1
+		},
+		"effects": "Self: Apply Braced, Riposting \nRiposte: Apply Weakened \nRiposte: If target fails a Strength check versus your Armor, they become disarmed",
+		"range": 100,
+		"requirements": "Wielding wooden club \nStance is not \"Off-balance\" \nRiposte: A target hits you with an attack with a bladed weapon",
+		"toHit": "Constitution"
+	},
+	"editBlock": {
+	},
+	"skillBlock": {
+		"clubs": 1
+	}
+}
