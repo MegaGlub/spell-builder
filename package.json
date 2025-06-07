@@ -5,7 +5,7 @@
   "main": "run.js",
   "scripts": {
     "start": "electron-forge start",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --import ./test/setup/setup.mjs --test \"./test/cases/**/*.test.*\"",
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
