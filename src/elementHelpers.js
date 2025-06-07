@@ -60,13 +60,15 @@ export function emptyArray(arr){
 export function filterStringForJSON(str){
     let result = str;
     result = result.trim();
-    const whiteSpaceRegex = /\r\r|\r|\n/g;
-    result = result.replace(whiteSpaceRegex, "\\n");
+    const backslashRegex = /\\/g;
+    result = result.replace(backslashRegex, "\\\\");
+    const newlineRegex = /\r\n|\n/g;
+    result = result.replace(newlineRegex, "\\n");
     const quoteRegex = /\"/g;
     result = result.replace(quoteRegex, "\\\"");
     const singleQuoteRegex = /\'/g;
     result = result.replace(singleQuoteRegex, "\\\'");
-    const filterRegex = /[^A-Za-z0-9\"\'-\_\!\?\.\,\[\]\@\#\$\%\^\&\*\(\)\ \n]/g;
+    const filterRegex = /[^A-Za-z0-9\\\"\'-\_\!\?\.\,\[\]\@\#\$\%\^\&\*\(\)\ \n]/g;
     result = result.replaceAll(filterRegex, "");
     result = result.trim();
     return result;
