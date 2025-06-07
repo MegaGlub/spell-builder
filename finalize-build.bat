@@ -1,6 +1,11 @@
 @echo off
-xcopy /s/e/y/i %~dp0\images %~dp0\out\spell-builder-win32-x64\images
-xcopy /s/e/y/i %~dp0\data %~dp0\out\spell-builder-win32-x64\data
-cd out
-set /p "version=Enter current version: "
-tar.exe -a -c -f spell-builder-%version%.zip spell-builder-win32-x64
+xcopy /s/e/y/i "images" "out/spell-builder-win32-x64/images" || goto :error
+xcopy /s/e/y/i "data" "out/spell-builder-win32-x64/data" || goto :error
+cd out || goto :error
+set /p "version=Enter current version: " || goto :error
+tar -a -c -f "spell-builder-%version%.zip" "spell-builder-win32-x64" || goto :error
+goto :EOF
+
+:error
+echo "Failed with error #%errorlevel%."
+exit /b %errorlevel%
