@@ -1,4 +1,7 @@
 @echo off
+if exist "out/" (
+	rmdir /s /q "out" || goto :error
+)
 xcopy /s/e/y/i "images" "out/spell-builder-win32-x64/images" || goto :error
 xcopy /s/e/y/i "data" "out/spell-builder-win32-x64/data" || goto :error
 cd out || goto :error
